@@ -1,32 +1,39 @@
 
-
 // Define Nutrition Variables
-// *do not include units*
-var nf_serving_size_unit='',// Cup,
-  	nf_serving_size_qty='',// 1,
-		nf_serving_weight_grams='',// 120 ,
-		nf_servings_per_container='',// 5,
-		nf_calories='',
-		nf_calories_from_fat='',
-		nf_total_fat='',
-		nf_saturated_fat='',
-		nf_monounsaturated_fat='',
-		nf_polyunsaturated_fat='',
-		nf_trans_fatty_acid='',
-		nf_cholesterol='',
-		nf_sodium='',
-		nf_total_carbohydrate='',
-		nf_dietary_fiber='',
-		nf_sugars='',
-		nf_protein='',
-		nf_vitamin_a_iu='',
-		nf_vitamin_a_dv='',
-		nf_vitamin_c_mg='',
-		nf_vitamin_c_dv='',
-		nf_calcium_mg='',
-		nf_calcium_dv='',
-		nf_iron_mg='',
-		nf_iron_dv='';
+var nutriVariables = {
+	"serving_size_unit":"",
+	"serving_size_qty":"",
+	"serving_weight_grams":"",
+	"servings_per_container":"",
+	"calories":"",
+	"calories_from_fat":"",
+	"total_fat":"",
+	"saturated_fat":"",
+	"monounsaturated_fat":"",
+	"polyunsaturated_fat":"",
+	"trans_fatty_acid":"",
+	"cholesterol":"",
+	"sodium":"",
+	"total_carbohydrate":"",
+	"dietary_fiber":"",
+	"sugars":"",
+	"protein":"",
+	"vitamin_a_iu":"",
+	"vitamin_a_dv":"",
+	"vitamin_c_mg":"",
+	"vitamin_c_dv":"",
+	"calcium_mg":"",
+	"calcium_dv":"",
+	"iron_mg":"",
+	"iron_dv":"";
+}
+
+// example call
+// nutriVariables.servings_per_container
+// gives you the value of that property in the hash
+
+// ntx(nutriVariables);
+// RENDERS | BELOW CONTENT
 
 var nutritionLabel="";
 nutritionLabel += "<div class=\"nutritionLabel\">";
