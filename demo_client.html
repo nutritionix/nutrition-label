@@ -1,19 +1,17 @@
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
-<script type="text/javascript" src="http://example.com/js/shareplus/shareplus.min.js"></script>
-<link rel="stylesheet" href="http://example.com/js/shareplus/themes/simple/style.css">
+<script type="text/javascript" src="nutritionLabel_v1.0.js"></script>
+<link rel="stylesheet" href="nutritionLabel_v1.0.css">
 
 $(document).ready(function(){
-  $('.share').shareplus({
-		height: '130px',
+  $('.nutritionDiv').n({
+   // ^ #JAMES are these variables correct? probably not
+   		
+   		nf_serving_size_qty: 1,
+		nf_serving_size_unit: "Cup",
+	      	nf_serving_weight_grams: 120,
+	      	  
 	      	  	    	
-		speedIn: 400, // fadeIn speed
-		speedOut: 600, // fadeOut speed
-	      	  	    	
-		displayTitle: true, // true or flase
-		title: "Share & Bookmark", // shareplus box title
-	      	  	    	
-
+        // #JAMES how do do the response.write call to get the label to display in the div code below?
 	});
 });
+
+<div class="nutritionDiv"></div>
