@@ -1,6 +1,5 @@
-
 // Define Nutrition Variables
-var nutriVariables = {
+var n = {
 	"serving_size_unit":"",
 	"serving_size_qty":"",
 	"serving_weight_grams":"",
@@ -29,7 +28,7 @@ var nutriVariables = {
 }
 
 // example call
-// nutriVariables.servings_per_container
+// n.servings_per_container
 // gives you the value of that property in the hash
 
 // ntx(nutriVariables);
@@ -39,7 +38,7 @@ var nutritionLabel="";
 nutritionLabel += "<div class=\"nutritionLabel\">";
 nutritionLabel += "            <div class=\"title\">Nutrition Facts<\/div>";
 nutritionLabel += "            <div class=\"serving\">";
-nutritionLabel += "                <div>Serving Size " + nf_serving_size_qty + " " + nf_serving_size_unit + "(" + nf_serving_weight_grams + "g)<\/div>";
+nutritionLabel += "                <div>Serving Size " + nf_serving_size_qty + " " + n.serving_size_unit + "(" + nf_serving_weight_grams + "g)<\/div>";
 nutritionLabel += "                <div>Servings Per Container<\/div>";
 nutritionLabel += "            <\/div>";
 nutritionLabel += "            <div class=\"bar1\"><\/div>";
