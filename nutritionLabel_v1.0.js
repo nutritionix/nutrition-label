@@ -1,30 +1,30 @@
 // Define Nutrition Variables
 var n = {
-	"serving_size_unit":"",
-	"serving_size_qty":"",
-	"serving_weight_grams":"",
-	"servings_per_container":"",
-	"calories":"",
-	"calories_from_fat":"",
-	"total_fat":"",
-	"saturated_fat":"",
-	"monounsaturated_fat":"",
-	"polyunsaturated_fat":"",
-	"trans_fatty_acid":"",
-	"cholesterol":"",
-	"sodium":"",
-	"total_carbohydrate":"",
-	"dietary_fiber":"",
-	"sugars":"",
-	"protein":"",
-	"vitamin_a_iu":"",
-	"vitamin_a_dv":"",
-	"vitamin_c_mg":"",
-	"vitamin_c_dv":"",
-	"calcium_mg":"",
-	"calcium_dv":"",
-	"iron_mg":"",
-	"iron_dv":"";
+	"nf_serving_size_unit":"",
+	"nf_serving_size_qty":"",
+	"nf_serving_weight_grams":"",
+	"nf_servings_per_container":"",
+	"nf_calories":"",
+	"nf_calories_from_fat":"",
+	"nf_total_fat":"",
+	"nf_saturated_fat":"",
+	"nf_monounsaturated_fat":"",
+	"nf_polyunsaturated_fat":"",
+	"nf_trans_fatty_acid":"",
+	"nf_cholesterol":"",
+	"nf_sodium":"",
+	"nf_total_carbohydrate":"",
+	"nf_dietary_fiber":"",
+	"nf_sugars":"",
+	"nf_protein":"",
+	"nf_vitamin_a_iu":"",
+	"nf_vitamin_a_dv":"",
+	"nf_vitamin_c_mg":"",
+	"nf_vitamin_c_dv":"",
+	"nf_calcium_mg":"",
+	"nf_calcium_dv":"",
+	"nf_iron_mg":"",
+	"nf_iron_dv":"";
 }
 
 // example call
@@ -38,7 +38,7 @@ var nutritionLabel="";
 nutritionLabel += "<div class=\"nutritionLabel\">";
 nutritionLabel += "            <div class=\"title\">Nutrition Facts<\/div>";
 nutritionLabel += "            <div class=\"serving\">";
-nutritionLabel += "                <div>Serving Size " + nf_serving_size_qty + " " + n.serving_size_unit + "(" + nf_serving_weight_grams + "g)<\/div>";
+nutritionLabel += "                <div>Serving Size " + n.nf_serving_size_qty + " " + n.nf_serving_size_unit + "(" + n.nf_serving_weight_grams + "g)</div>";
 nutritionLabel += "                <div>Servings Per Container<\/div>";
 nutritionLabel += "            <\/div>";
 nutritionLabel += "            <div class=\"bar1\"><\/div>";
