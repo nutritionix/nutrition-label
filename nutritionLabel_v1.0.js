@@ -1,3 +1,11 @@
+//TO DO
+// - If a nutrition value is not defined,  display "naText" var by default (12/18/12)
+
+
+
+var naText = "N/A"; // default text displayed if no nutrition value is avialable for that attribute
+
+
 // Define Nutrition Variables
 var n = {
 	"nf_serving_size_unit":"",
