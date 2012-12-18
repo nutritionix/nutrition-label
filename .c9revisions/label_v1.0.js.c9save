@@ -1,0 +1,69 @@
+{"ts":1355862101985,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":true,"ts":1355862203507,"patch":[[{"diffs":[[1,"\n\nvar "]],"start1":0,"start2":0,"length1":0,"length2":6}]],"length":6,"saved":false}
+{"ts":1355862212013,"patch":[[{"diffs":[[0,"\n\nvar "],[1,";"]],"start1":0,"start2":0,"length1":6,"length2":7}]],"length":7,"saved":false}
+{"ts":1355862258140,"patch":[[{"diffs":[[0,"\n\n"],[-1,"var ;"],[1,"nf_serving_size_unit\nnf_serving_size_qty\nnf_serving_weight_grams\nnf_servings_per_container\nnf_calories\nnf_calories_from_fat\nnf_total_fat\nnf_saturated_fat\nnf_monounsaturated_fat\nnf_polyunsaturated_fat\nnf_trans_fatty_acid\nnf_cholesterol\nnf_sodium\nnf_total_carbohydrate\nnf_dietary_fiber\nnf_sugars\nnf_protein\nnf_vitamin_a_iu\nnf_vitamin_a_dv\nnf_vitamin_c_mg\nnf_vitamin_c_dv\nnf_calcium_mg\nnf_calcium_dv\nnf_iron_mg\nnf_iron_dv"]],"start1":0,"start2":0,"length1":7,"length2":420}]],"length":420,"saved":false}
+{"ts":1355862259960,"patch":[[{"diffs":[[0,"\n\n"],[1,"var "],[0,"nf_servi"]],"start1":0,"start2":0,"length1":10,"length2":14}]],"length":424,"saved":false}
+{"ts":1355862262665,"patch":[[{"diffs":[[0,"ize_unit"],[1,"="],[0,"\nnf_serv"]],"start1":18,"start2":18,"length1":16,"length2":17}]],"length":425,"saved":false}
+{"ts":1355862278785,"patch":[[{"diffs":[[0,"ze_unit="],[1,"''"],[0,"\nnf_serv"]],"start1":19,"start2":19,"length1":16,"length2":18}]],"length":427,"saved":false}
+{"ts":1355862280107,"patch":[[{"diffs":[[0,"_unit=''"],[1,";"],[0,"\nnf_serv"]],"start1":21,"start2":21,"length1":16,"length2":17}]],"length":428,"saved":false}
+{"ts":1355862282216,"patch":[[{"diffs":[[0,"size_qty"],[1," ="],[0,"\nnf_serv"]],"start1":42,"start2":42,"length1":16,"length2":18}]],"length":430,"saved":false}
+{"ts":1355862284501,"patch":[[{"diffs":[[0,"_qty"],[-1," ="],[0,"\nnf_"]],"start1":46,"start2":46,"length1":10,"length2":8}]],"length":428,"saved":false}
+{"ts":1355862286445,"patch":[[{"diffs":[[0,"size_qty"],[1,"="],[0,"\nnf_serv"]],"start1":42,"start2":42,"length1":16,"length2":17}]],"length":429,"saved":false}
+{"ts":1355862287700,"patch":[[{"diffs":[[0,"ize_qty="],[1,"'';"],[0,"\nnf_serv"]],"start1":43,"start2":43,"length1":16,"length2":19}]],"length":432,"saved":false}
+{"ts":1355862291395,"patch":[[{"diffs":[[0,"ht_grams"],[1,"='';"],[0,"\nnf_serv"]],"start1":70,"start2":70,"length1":16,"length2":20}]],"length":436,"saved":false}
+{"ts":1355862295970,"patch":[[{"diffs":[[0,"ontainer"],[1,"='';"],[0,"\nnf_calo"]],"start1":100,"start2":100,"length1":16,"length2":20},{"diffs":[[0,"calories"],[1,"='';"],[0,"\nnf_calo"]],"start1":116,"start2":116,"length1":16,"length2":20}]],"length":444,"saved":false}
+{"ts":1355862297240,"patch":[[{"diffs":[[0,"ies_from_fat"],[1,"='';"],[0,"\nnf_total_fa"]],"start1":137,"start2":137,"length1":24,"length2":28},{"diffs":[[0,"nf_total_fat"],[1,"='';"],[0,"\nnf_saturate"]],"start1":154,"start2":154,"length1":24,"length2":28}]],"length":452,"saved":false}
+{"ts":1355862299201,"patch":[[{"diffs":[[0,"aturated_fat"],[1,"='';"],[0,"\nnf_monounsa"]],"start1":175,"start2":175,"length1":24,"length2":28},{"diffs":[[0,"aturated_fat"],[1,"='';"],[0,"\nnf_polyunsa"]],"start1":202,"start2":202,"length1":24,"length2":28},{"diffs":[[0,"ated_fat"],[1,"='';"],[0,"\nnf_tran"]],"start1":233,"start2":233,"length1":16,"length2":20},{"diffs":[[0,"tty_acid"],[1,"='';"],[0,"\nnf_chol"]],"start1":257,"start2":257,"length1":16,"length2":20}]],"length":468,"saved":false}
+{"ts":1355862300493,"patch":[[{"diffs":[[0,"lesterol"],[1,"='';"],[0,"\nnf_sodi"]],"start1":276,"start2":276,"length1":16,"length2":20},{"diffs":[[0,"f_sodium"],[1,"='';"],[0,"\nnf_tota"]],"start1":290,"start2":290,"length1":16,"length2":20},{"diffs":[[0,"ohydrate"],[1,"='';"],[0,"\nnf_diet"]],"start1":316,"start2":316,"length1":16,"length2":20}]],"length":480,"saved":false}
+{"ts":1355862301598,"patch":[[{"diffs":[[0,"ry_fiber"],[1,"='';"],[0,"\nnf_suga"]],"start1":337,"start2":337,"length1":16,"length2":20},{"diffs":[[0,"f_sugars"],[1,"='';"],[0,"\nnf_prot"]],"start1":351,"start2":351,"length1":16,"length2":20}]],"length":488,"saved":false}
+{"ts":1355862302746,"patch":[[{"diffs":[[0,"_protein"],[1,"='';"],[0,"\nnf_vita"]],"start1":366,"start2":366,"length1":16,"length2":20},{"diffs":[[0,"min_a_iu"],[1,"='';"],[0,"\nnf_vita"]],"start1":386,"start2":386,"length1":16,"length2":20}]],"length":496,"saved":false}
+{"ts":1355862303711,"patch":[[{"diffs":[[0,"min_a_dv"],[1,"='';"],[0,"\nnf_vita"]],"start1":406,"start2":406,"length1":16,"length2":20},{"diffs":[[0,"min_c_mg"],[1,"='';"],[0,"\nnf_vita"]],"start1":426,"start2":426,"length1":16,"length2":20}]],"length":504,"saved":false}
+{"ts":1355862304376,"patch":[[{"diffs":[[0,"min_c_dv"],[1,"='';"],[0,"\nnf_calc"]],"start1":446,"start2":446,"length1":16,"length2":20}]],"length":508,"saved":false}
+{"ts":1355862306417,"patch":[[{"diffs":[[0,"lcium_mg"],[1,"='';"],[0,"\nnf_calc"]],"start1":464,"start2":464,"length1":16,"length2":20},{"diffs":[[0,"lcium_dv"],[1,"='';"],[0,"\nnf_iron"]],"start1":482,"start2":482,"length1":16,"length2":20},{"diffs":[[0,"_iron_mg"],[1,"='';"],[0,"\nnf_iron"]],"start1":497,"start2":497,"length1":16,"length2":20},{"diffs":[[0,"_iron_dv"],[1,"='';"]],"start1":512,"start2":512,"length1":8,"length2":12}]],"length":524,"saved":false}
+{"ts":1355862325873,"patch":[[{"diffs":[[0,"ze_unit='';\n"],[1,"var "],[0,"nf_serving_s"]],"start1":19,"start2":19,"length1":24,"length2":28}]],"length":528,"saved":false}
+{"ts":1355862328231,"patch":[[{"diffs":[[0,"ize_qty='';\n"],[1,"var "],[0,"nf_serving_w"]],"start1":47,"start2":47,"length1":24,"length2":28},{"diffs":[[0,"t_grams='';\n"],[1,"var "],[0,"nf_servings_"]],"start1":79,"start2":79,"length1":24,"length2":28}]],"length":536,"saved":false}
+{"ts":1355862328975,"patch":[[{"diffs":[[0,"ntainer='';\n"],[1,"var "],[0,"nf_calories="]],"start1":113,"start2":113,"length1":24,"length2":28}]],"length":540,"saved":false}
+{"ts":1355862329523,"patch":[[{"diffs":[[0,"alories='';\n"],[1,"var "],[0,"nf_calories_"]],"start1":133,"start2":133,"length1":24,"length2":28}]],"length":544,"saved":false}
+{"ts":1355862330194,"patch":[[{"diffs":[[0,"rom_fat='';\n"],[1,"var "],[0,"nf_total_fat"]],"start1":162,"start2":162,"length1":24,"length2":28}]],"length":548,"saved":false}
+{"ts":1355862330787,"patch":[[{"diffs":[[0,"tal_fat='';\n"],[1,"var "],[0,"nf_saturated"]],"start1":183,"start2":183,"length1":24,"length2":28}]],"length":552,"saved":false}
+{"ts":1355862331410,"patch":[[{"diffs":[[0,"fat='';\n"],[1,"var "],[0,"nf_monou"]],"start1":212,"start2":212,"length1":16,"length2":20}]],"length":556,"saved":false}
+{"ts":1355862332104,"patch":[[{"diffs":[[0,"ted_fat='';\n"],[1,"var "],[0,"nf_polyunsat"]],"start1":239,"start2":239,"length1":24,"length2":28}]],"length":560,"saved":false}
+{"ts":1355862333780,"patch":[[{"diffs":[[0,"ted_fat='';\n"],[1,"var "],[0,"nf_trans_fat"]],"start1":270,"start2":270,"length1":24,"length2":28}]],"length":564,"saved":false}
+{"ts":1355862335017,"patch":[[{"diffs":[[0,"ty_acid='';\n"],[1,"var "],[0,"nf_cholester"]],"start1":298,"start2":298,"length1":24,"length2":28}]],"length":568,"saved":false}
+{"ts":1355862339004,"patch":[[{"diffs":[[0,"esterol='';\n"],[1,"var "],[0,"nf_sodium=''"]],"start1":321,"start2":321,"length1":24,"length2":28}]],"length":572,"saved":false}
+{"ts":1355862342281,"patch":[[{"diffs":[[0,"ium='';\n"],[1,"var "],[0,"nf_total"]],"start1":343,"start2":343,"length1":16,"length2":20}]],"length":576,"saved":false}
+{"ts":1355862343532,"patch":[[{"diffs":[[0,"ate='';\n"],[1,"var "],[0,"nf_dieta"]],"start1":373,"start2":373,"length1":16,"length2":20},{"diffs":[[0,"ber='';\n"],[1,"var "],[0,"nf_sugar"]],"start1":398,"start2":398,"length1":16,"length2":20}]],"length":584,"saved":false}
+{"ts":1355862354343,"patch":[[{"diffs":[[0,"ars='';\n"],[1,"var "],[0,"nf_prote"]],"start1":416,"start2":416,"length1":16,"length2":20}]],"length":588,"saved":false}
+{"ts":1355862355143,"patch":[[{"diffs":[[0,"protein='';\n"],[1,"var "],[0,"nf_vitamin_a"]],"start1":431,"start2":431,"length1":24,"length2":28},{"diffs":[[0,"in_a_iu='';\n"],[1,"var "],[0,"nf_vitamin_a"]],"start1":455,"start2":455,"length1":24,"length2":28}]],"length":596,"saved":false}
+{"ts":1355862355785,"patch":[[{"diffs":[[0,"in_a_dv='';\n"],[1,"var "],[0,"nf_vitamin_c"]],"start1":479,"start2":479,"length1":24,"length2":28}]],"length":600,"saved":false}
+{"ts":1355862356481,"patch":[[{"diffs":[[0,"_mg='';\n"],[1,"var "],[0,"nf_vitam"]],"start1":507,"start2":507,"length1":16,"length2":20}]],"length":604,"saved":false}
+{"ts":1355862357087,"patch":[[{"diffs":[[0,"in_c_dv='';\n"],[1,"var "],[0,"nf_calcium_m"]],"start1":527,"start2":527,"length1":24,"length2":28}]],"length":608,"saved":false}
+{"ts":1355862358391,"patch":[[{"diffs":[[0,"_mg='';\n"],[1,"var "],[0,"nf_calci"]],"start1":553,"start2":553,"length1":16,"length2":20},{"diffs":[[0,"cium_dv='';\n"],[1,"var "],[0,"nf_iron_mg='"]],"start1":571,"start2":571,"length1":24,"length2":28}]],"length":616,"saved":false}
+{"ts":1355862358989,"patch":[[{"diffs":[[0,"_mg='';\n"],[1,"var "],[0,"nf_iron_"]],"start1":594,"start2":594,"length1":16,"length2":20}]],"length":620,"saved":false}
+{"ts":1355862375161,"patch":[[{"diffs":[[1,"\n\n"],[0,"\n\nvar nf"]],"start1":0,"start2":0,"length1":8,"length2":10}]],"length":622,"saved":false}
+{"ts":1355862377736,"patch":[[{"diffs":[[0,"\n\n\n"],[1,"// D"],[0,"\nvar nf_"]],"start1":0,"start2":0,"length1":11,"length2":15}]],"length":626,"saved":false}
+{"ts":1355862379030,"patch":[[{"diffs":[[0,"\n\n\n// D"],[1,"efine "],[0,"\nvar nf_"]],"start1":0,"start2":0,"length1":15,"length2":21}]],"length":632,"saved":false}
+{"ts":1355862381006,"patch":[[{"diffs":[[0," Define "],[1,"Nutrition V"],[0,"\nvar nf_"]],"start1":5,"start2":5,"length1":16,"length2":27}]],"length":643,"saved":false}
+{"ts":1355862382302,"patch":[[{"diffs":[[0,"rition V"],[1,"ariables"],[0,"\nvar nf_"]],"start1":16,"start2":16,"length1":16,"length2":24}]],"length":651,"saved":false}
+{"ts":1355862385047,"patch":[[{"diffs":[[0,"ize_unit='';"],[1," "],[0,"\nvar nf_serv"]],"start1":49,"start2":49,"length1":24,"length2":25}]],"length":652,"saved":false}
+{"ts":1355862387678,"patch":[[{"diffs":[[0,"nit=''; "],[1,"// "],[0,"\nvar nf_"]],"start1":54,"start2":54,"length1":16,"length2":19}]],"length":655,"saved":false}
+{"ts":1355862388313,"patch":[[{"diffs":[[0,"=''; // "],[1,"ex"],[0,"\nvar nf_"]],"start1":57,"start2":57,"length1":16,"length2":18}]],"length":657,"saved":false}
+{"ts":1355862391385,"patch":[[{"diffs":[[0,"'; // ex"],[1,"ample "],[0,"\nvar nf_"]],"start1":59,"start2":59,"length1":16,"length2":22}]],"length":663,"saved":false}
+{"ts":1355862395258,"patch":[[{"diffs":[[0," // "],[-1,"example "],[0,"\nvar"]],"start1":61,"start2":61,"length1":16,"length2":8}]],"length":655,"saved":false}
+{"ts":1355862397211,"patch":[[{"diffs":[[0,"=''; // "],[1,"Cup"],[0,"\nvar nf_"]],"start1":57,"start2":57,"length1":16,"length2":19}]],"length":658,"saved":false}
+{"ts":1355862400226,"patch":[[{"diffs":[[0,"size_qty='';"],[1," // "],[0,"\nvar nf_serv"]],"start1":84,"start2":84,"length1":24,"length2":28}]],"length":662,"saved":false}
+{"ts":1355862403064,"patch":[[{"diffs":[[0,"=''; // "],[1,"1"],[0,"\nvar nf_"]],"start1":92,"start2":92,"length1":16,"length2":17}]],"length":663,"saved":false}
+{"ts":1355862404856,"patch":[[{"diffs":[[0,"ht_grams='';"],[1," // "],[0,"\nvar nf_serv"]],"start1":121,"start2":121,"length1":24,"length2":28}]],"length":667,"saved":false}
+{"ts":1355862408376,"patch":[[{"diffs":[[0,"=''; // "],[1,"120"],[0,"\nvar nf_"]],"start1":129,"start2":129,"length1":16,"length2":19}]],"length":670,"saved":false}
+{"ts":1355862409946,"patch":[[{"diffs":[[0,"; // 120"],[1," ()"],[0,"\nvar nf_"]],"start1":132,"start2":132,"length1":16,"length2":19}]],"length":673,"saved":false}
+{"ts":1355862415046,"patch":[[{"diffs":[[0,"// 120 ("],[1,"do not include uni"],[0,")\nvar nf"]],"start1":134,"start2":134,"length1":16,"length2":34}]],"length":691,"saved":false}
+{"ts":1355862416156,"patch":[[{"diffs":[[0,"include "],[-1,"uni"],[1,"n"],[0,")\nvar nf"]],"start1":149,"start2":149,"length1":19,"length2":17}]],"length":689,"saved":false}
+{"ts":1355862417467,"patch":[[{"diffs":[[0,"include "],[-1,"n"],[1,"unit"],[0,")\nvar nf"]],"start1":149,"start2":149,"length1":17,"length2":20}]],"length":692,"saved":false}
+{"ts":1355862420295,"patch":[[{"diffs":[[0,"riables\n"],[1,"// \n"],[0,"var nf_s"]],"start1":25,"start2":25,"length1":16,"length2":20}]],"length":696,"saved":false}
+{"ts":1355862421936,"patch":[[{"diffs":[[0,"bles\n// "],[1,"*"],[0,"\nvar nf_"]],"start1":28,"start2":28,"length1":16,"length2":17}]],"length":697,"saved":false}
+{"ts":1355862426159,"patch":[[{"diffs":[[0,"les\n// *"],[1,"do not include units*"],[0,"\nvar nf_"]],"start1":29,"start2":29,"length1":16,"length2":37}]],"length":718,"saved":false}
+{"ts":1355862433625,"patch":[[{"diffs":[[0,"120 "],[-1,"(do not include unit)"],[0,"\nvar"]],"start1":163,"start2":163,"length1":29,"length2":8}]],"length":697,"saved":false}
+{"ts":1355862435634,"patch":[[{"diffs":[[0,"ontainer='';"],[1," // "],[0,"\nvar nf_calo"]],"start1":189,"start2":189,"length1":24,"length2":28}]],"length":701,"saved":false}
+{"ts":1355862436916,"patch":[[{"diffs":[[0,"=''; // "],[1,"5"],[0,"\nvar nf_"]],"start1":197,"start2":197,"length1":16,"length2":17}]],"length":702,"saved":false}
+{"ts":1355862440196,"patch":[[{"diffs":[[0,"calories='';"],[1," "],[0,"\nvar nf_calo"]],"start1":214,"start2":214,"length1":24,"length2":25}]],"length":703,"saved":false}
+{"ts":1355862444714,"patch":[[{"diffs":[[0,"ries='';"],[-1," "],[0,"\nvar nf_"]],"start1":218,"start2":218,"length1":17,"length2":16}]],"length":702,"saved":false}
