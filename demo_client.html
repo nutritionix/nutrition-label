@@ -1,17 +1,71 @@
-<script type="text/javascript" src="nutritionLabel_v1.0.js"></script>
-<link rel="stylesheet" href="nutritionLabel_v1.0.css">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Nutritionix Label</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-$(document).ready(function(){
-  $('.nutritionDiv').n({
-   // ^ #JAMES are these variables correct? probably not
-   		
-   		nf_serving_size_qty: 1,
-		nf_serving_size_unit: "Cup",
-	      	nf_serving_weight_grams: 120,
-	      	  
-	      	  	    	
-        // #JAMES how do do the response.write call to get the label to display in the div code below?
-	});
-});
+    <!-- USER WILL ADD STYLE SHEET FOR LABEL -->
+		<link rel="stylesheet" href="nutritionLabel_v1.0.css">
 
-<div class="nutritionDiv"></div>
+  </head>
+
+  <body>
+		<!-- USER ADDS A DIV TO BE APPENDED -->
+		<!-- NOTES THE ID -->
+		<div id="nutritionDiv"></div>
+
+
+
+
+
+	<!-- LOAD JS AT BOTTOM OF DOC -->
+	<!-- SCRIPTS IN HEAD TAG BLOCK -->
+	<!-- UNLESS CALLED ASYNC -->
+	<!-- ============================================================================ -->
+  <!-- WE DONT WANT TO RELY ON ANY!!! JQUERY	 -->
+  <!-- PURE DOM -->
+	<script type="text/javascript" src="nutritionLabel_v1.0.js"></script>
+  <script type="text/javascript">
+			// call ntx function
+			// pass in the ID of the div that will be appended
+			// pass in object parameters
+			_ntx('nutritionDiv').label({
+				"serving_size_unit"			 :"Cup",
+				"serving_size_qty" 			 :1,
+				"serving_weight_grams"	 :120,
+				"servings_per_container" :200,
+				"calories"							 :1000,
+				"calories_from_fat"			 :10,
+				"total_fat"							 :null,
+				"saturated_fat"					 :null,
+				"monounsaturated_fat"		 :null,
+				"polyunsaturated_fat"		 :null,
+				"trans_fatty_acid"			 :null,
+				"cholesterol"						 :null,
+				"sodium"								 :null,
+				"total_carbohydrate"		 :null,
+				"dietary_fiber"					 :null,
+				"sugars"								 :null,
+				"protein"								 :null,
+				"vitamin_a_iu"					 :null,
+				"vitamin_a_dv"					 :null,
+				"vitamin_c_mg"					 :null,
+				"vitamin_c_dv"					 :null,
+				"calcium_mg"						 :null,
+				"calcium_dv"						 :null,
+				"iron_mg"								 :null,
+				"iron_dv"								 :null
+			});
+
+  </script>
+  </body>
+</html>
+
+
+
+
+
+
