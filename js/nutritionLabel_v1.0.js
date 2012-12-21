@@ -45,6 +45,13 @@ _ntx.prototype = {
 		// Build Label
 		// DONT Escape chars unless nessacary
 		// use single inside of double to achieve same effect.
+		
+		
+		//calculate the nutrition percentages
+		var total_fat_dv=Math.round(n.total_fat/65*100);
+		var saturated_fat=Math.round(n.saturated_fat/20*100);
+		
+		
 		var nutritionLabel="";
 		nutritionLabel += "<div class='nutritionLabel'>";
 		nutritionLabel += "            <div class='title'>Nutrition Facts</div>";
@@ -67,11 +74,11 @@ _ntx.prototype = {
 		nutritionLabel += "            </div>";
 		nutritionLabel += "            <div class='line'>";
 		nutritionLabel += "                <div class='dv'>";
-		nutritionLabel += "                    <b>18</b>%</div>";
+		nutritionLabel += "                    <b>"+total_fat_dv+"</b>%</div>";
 		nutritionLabel += "                <b>Total Fat</b> "+n.total_fat+"</div>";
 		nutritionLabel += "            <div class='line indent'>";
 		nutritionLabel += "                <div class='dv'>";
-		nutritionLabel += "                    <b>15</b>%</div>Saturated Fat "+n.saturated_fat+"</div>";
+		nutritionLabel += "                    <b>"+saturated_fat+"</b>%</div>Saturated Fat "+n.saturated_fat+"</div>";
 		nutritionLabel += "            <div class='line indent'>";
 		nutritionLabel += "                <i>Trans</i>Fat 12g</div>";
 		nutritionLabel += "            <div class='line'>";

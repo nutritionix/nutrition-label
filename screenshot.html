@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Nutritionix Screenshot Hack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- USER WILL ADD STYLE SHEET FOR LABEL -->
+		<link rel="stylesheet" href="/css/nutritionLabel_v1.0.css">
+
+  </head>
+
+	<body>
+
+		<div class="container"> 
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+			<script type="text/javascript" src="/js/html2canvas.js?rev032"></script> 
+			<script type="text/javascript">
+			var date=new Date();var message,timeoutTimer,timer;var proxyUrl="http://html2canvas.appspot.com/query";function addRow(a,c,d){var b=$("<tr />").appendTo($(a));b.append($("<td />").css("font-weight","bold").text(c)).append($("<td />").text(d))}function throwMessage(b,a){window.clearTimeout(timeoutTimer);timeoutTimer=window.setTimeout(function(){message.fadeOut(function(){message.remove()})},a||2000);$(message).remove();message=$("<div />").html(b).css({margin:0,padding:10,background:"#000",opacity:0.7,position:"fixed",top:10,right:10,fontFamily:"Tahoma",color:"#fff",fontSize:12,borderRadius:12,width:"auto",height:"auto",textAlign:"center",textDecoration:"none"}).hide().fadeIn().appendTo("body")}$(function(){$("#recommended a").click(function(c){c.preventDefault();$("#url").val(this.href);$("button").click()});var a,b;$('input[type="button"]').click(function(){$(a.contentWindow).unbind("load");$(a).contents().find("body").html2canvas({canvasHeight:b.body.scrollHeight,canvasWidth:b.body.scrollWidth,logging:true})});$("#getscreenshot").click(function(d){d.preventDefault();$(this).prop("disabled",true);var c=$("#url").val();$("#content").append($("<img />").attr("src","loading.gif").css("margin-top",40));var f=document.createElement("a");f.href=c;$.ajax({data:{xhr2:false,url:f.href},url:proxyUrl,dataType:"jsonp",success:function(e){a=document.createElement("iframe");$(a).css({visibility:"hidden"}).width($(window).width()).height($(window).height());$("#content").append(a);b=a.contentWindow.document;b.open();$(a.contentWindow).load(function(){var g=$(a).contents().find("body"),h={onrendered:function(j){$("#content").empty().append(j);$("#getscreenshot").prop("disabled",false);$("base").attr("href","")},allowTaint:true,taintTest:false,flashcanvas:"src/flashcanvas.min.js"},i=html2canvas(g,h)});$("base").attr("href",f.protocol+"//"+f.hostname+"/"+f.pathname);e=e.replace("<head>","<head><base href='"+f.protocol+"//"+f.hostname+"/"+f.pathname+"'  />");if($("#disablejs").prop("checked")){e=e.replace(/\<script/gi,"<!--<script");e=e.replace(/\<\/script\>/gi,"<\/script>-->")}b.write(e);b.close()}})})});
+		</script> 
+
+		<h1>JavaScript screenshot creator</h1> 
+		<form class="well form-search"> 
+			<label for="url">Website URL:</label> <input type="url" id="url" value="http://www.yahoo.com" class="input-medium search-query"><button class="btn" id="getscreenshot">Get screenshot!</button> 
+		</form> 
+		<label for="disablejs">Disable JavaScript (recommended, doesn't work well with the proxy)</label> 
+		<input type="checkbox" id="disablejs" checked=""><br> 
+		<small>Tested with Google Chrome 12, Firefox 4 and Opera 11.5</small> 
+		<h3>HACKED SOLUTION by James R Qualls</h3>
+		<p>
+			This will only work if the HTML Page that is request has CORS Enabled Serverside, and if it is HOSTED on an server
+			that is hosted, and accessable.
+		</p>
+
+		<h4>About</h4> 
+		<p> The whole screenshot is created with JavaScript. The only server interaction that is happening on this page is the proxy for loading the external pages/images into JSONP/CORS enabled page and onwards onto the JavaScript renderer script. There are a lot of problems of loading external pages, even with a proxy, and as such many pages will not render at all. If you wish to try the script properly, I recommend you get a copy of the source from <a href="https://github.com/niklasvh/html2canvas">here</a> instead. 
+		</p> 
+		<div id="content"></div> 
+		<hr> 
+		<footer> 
+			<p> Created by <a href="http://hertzen.com">Niklas von Hertzen</a> <iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.1355514129.html#_=1356052416720&amp;id=twitter-widget-1&amp;lang=en&amp;screen_name=Niklasvh&amp;show_count=false&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button" style="width: 120px; height: 20px;" title="Twitter Follow Button" data-twttr-rendered="true"></iframe> 
+				<script>!function(e,a,f){var c,b=e.getElementsByTagName(a)[0];if(!e.getElementById(f)){c=e.createElement(a);c.id=f;c.src="//platform.twitter.com/widgets.js";b.parentNode.insertBefore(c,b)}}(document,"script","twitter-wjs");</script> 
+			</p> 
+		</footer> 
+		</div>
+
+	</body>
+</html>
