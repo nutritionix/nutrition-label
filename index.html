@@ -1,71 +1,171 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Nutritionix Label</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<!--
+/******************************************
+ * NUTRITIONIX.com
+ *
+ * This plugin allows you to create a fully customizable nutrition label
+ *
+ * @authors			majin22 <leejay22@gmail.com> (js) and genesis23rd <genesis23rd@gmail.com> (css and html)
+ * @copyright		Copyright (c) 2012 Nutritionix.
+ * @license			This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.
+ * @link				http://www.nutritionix.com
+ * @github			http://github.com/nutritionix/nutrition-label
+ * @version			1.0.0
+ *
+ ******************************************/
+ -->
+ <html>
+ <head>
+ </head>
+ <body>
 
-    <!-- USER WILL ADD STYLE SHEET FOR LABEL -->
-		<link rel="stylesheet" href="/css/nutritionLabel_v1.0.css">
+<pre>
+This plugin can be used to create customized nutrition labels like the ones that can be seen on <a href="http://www.nutritionix.com">http://www.nutritionix.com</a>
 
-  </head>
+These are the default values on the plugin that you need to change to create a customized nutrition label.
 
-  <body>
-		<!-- USER ADDS A DIV TO BE APPENDED -->
-		<!-- NOTES THE ID -->
-		<div id="nutritionDiv"></div>
+	//logo for the top of the page
+	logo : '../images/h3.png',
+	//this is for not applicable values. this is used when you want to show the nutrition value (eg. calories) but show a not applicable icon instead of a value
+	naImage : '../images/tiny-logo.png',
+	//default width of the nutrition label
+	width : 250,
+	//allows the values: vit a, vit c, calcium and iron to be on top of each other and not side by side
+	lowerNutritionSideBySide : true,
+	//the name of the item for this label (eg. cheese burger or mayonnaise)
+	itemName : 'Item / Ingredient Name',
+	//to scroll the ingredients if the innerheight is > scrollHeightComparison
+	scrollLongIngredients : false,
+	scrollHeightComparison : 100,
+	//the height in px of the ingredients div
+	scrollHeightPixel : 95,
+	//this is to set how many decimal places will be shown on the nutrition values (calories, fat, protein, vitamin a, iron, etc)
+	decimalPlacesForNutrition : 1,
+	//this is to set how many decimal places will be shown for the "% daily values*"
+	decimalPlacesForDailyValues : 0,
 
+	//show the home page print link
+	showHomePrintLink : false,
+	//url for the home page print link
+	urlHomePrintLink : 'http://www.nutritionix.com',
+	//link name for the home page print link
+	nameHomePrintLink : 'Nutritionix',
 
+	//default calorie intake
+	calorieIntake : 2000,
 
+	//these are the recommended daily intake values
+	dailyValueTotalFat : 65,
+	dailyValueSatFat : 20,
+	dailyValueCholesterol : 300,
+	dailyValueSodium : 2400,
+	dailyValueCarb : 300,
+	dailyValueFiber : 25,
 
+	//these values can be change to hide some nutrition values
+	showServingSize : true,
+	showCalories : true,
+	showFatCalories : true,
+	showTotalFat : true,
+	showSatFat : true,
+	showTransFat : true,
+	showPolyFat : true,
+	showMonoFat : true,
+	showCholesterol : true,
+	showSodium : true,
+	showTotalCarb : true,
+	showFibers : true,
+	showSugars : true,
+	showProteins : true,
+	showVitaminA : true,
+	showVitaminC : true,
+	showCalcium : true,
+	showIron : true,
 
-	<!-- LOAD JS AT BOTTOM OF DOC -->
-	<!-- SCRIPTS IN HEAD TAG BLOCK -->
-	<!-- UNLESS CALLED ASYNC -->
-	<!-- ============================================================================ -->
-  <!-- WE DONT WANT TO RELY ON ANY!!! JQUERY	 -->
-  <!-- PURE DOM -->
-	<script type="text/javascript" src="/js/nutritionLabel_v1.0.js"></script>
-  <script type="text/javascript">
-			// call ntx function
-			// pass in the ID of the div that will be appended
-			// pass in object parameters
-			_ntx('nutritionDiv').label({
-				"serving_size_unit":"Cup",
-				"serving_size_qty":1,
-				"serving_weight_grams":120,
-				"servings_per_container" :200,
-				"calories":1000,
-				"calories_from_fat":10,
-				"total_fat":null,
-				"saturated_fat":null,
-				"monounsaturated_fat":null,
-				"polyunsaturated_fat":null,
-				"trans_fatty_acid":null,
-				"cholesterol":null,
-				"sodium":null,
-				"total_carbohydrate":null,
-				"dietary_fiber":null,
-				"sugars":null,
-				"protein":null,
-				"vitamin_a_iu":null,
-				"vitamin_a_dv":null,
-				"vitamin_c_mg":null,
-				"vitamin_c_dv":null,
-				"calcium_mg":null,
-				"calcium_dv":null,
-				"iron_mg":null,
-				"iron_dv":null
-			});
+	//to show the 'amount per serving' text
+	showAmountPerServing : true,
+	//to show the 'servings per container' data and replace the default 'Serving Size' value (without unit and servings per container text and value)
+	showServingsPerContainer : false,
+	//to show the item name. there are special cases where the item name is replaced with 'servings per container' value
+	showItemName : true,
+	//to show the ingredients value or not
+	showIngredients : true,
+	//to show the disclaimer text or not
+	showDisclaimer : true,
 
-  </script>
-  </body>
-</html>
+	//the are to set some values as 'not applicable'. this means that the nutrition label will appear but the value will be a 'N/A image'
+	naServingSize : false,
+	naCalories : false,
+	naFatCalories : false,
+	naTotalFat : false,
+	naSatFat : false,
+	naTransFat : false,
+	naPolyFat : false,
+	naMonoFat : false,
+	naCholesterol : false,
+	naSodium : false,
+	naTotalCarb : false,
+	naFibers : false,
+	naSugars : false,
+	naProteins : false,
+	naVitaminA : false,
+	naVitaminC : false,
+	naCalcium : false,
+	naIron : false,
 
+	//these are the default values for the nutrition info
+	valueServingSize : 0,
+	valueServingSizeUnit : '',
+	valueServingPerContainer : 1,
+	valueCalories : 0,
+	valueFatCalories : 0,
+	valueTotalFat : 0,
+	valueSatFat : 0,
+	valueTransFat : 0,
+	valuePolyFat : 0,
+	valueMonoFat : 0,
+	valueCholesterol : 0,
+	valueSodium : 0,
+	valueTotalCarb : 0,
+	valueFibers : 0,
+	valueSugars : 0,
+	valueProteins : 0,
+	valueVitaminA : 0,
+	valueVitaminC : 0,
+	valueCalcium : 0,
+	valueIron : 0,
 
+	//these text settings is so you can create nutrition labels in different languages or to simply change them to your need
+	textNutritionFacts : 'Nutrition Facts',
+	textDailyValues : 'Daily Value',
+	textServingSize : 'Serving Size',
+	textServingsPerContainer : 'Servings Per Container',
+	textAmountPerServing : 'Amount Per Serving',
+	textCalories : 'Calories',
+	textFatCalories : 'Calories from Fat',
+	textTotalFat : 'Total Fat',
+	textSatFat : 'Saturated Fat',
+	textTransFat : 'Trans Fat',
+	textPolyFat : 'Polyunsaturated Fat',
+	textMonoFat : 'Monounsaturated Fat',
+	textCholesterol : 'Cholesterol',
+	textSodium : 'Sodium',
+	textTotalCarb : 'Total Carbohydrates',
+	textFibers : 'Dietary Fiber',
+	textSugars : 'Sugars',
+	textProteins : 'Protein',
+	textVitaminA : 'Vitamin A',
+	textVitaminC : 'Vitamin C',
+	textCalcium : 'Calcium',
+	textIron : 'Iron',
+	ingredientLabel : 'INGREDIENTS:',
+	ingredientList : 'None',
+	disclaimer : 'Please note that these nutrition values are estimated based on our standard serving portions.  As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal.  If you have any questions about our nutrition calculator, please contact Nutritionix.',
+	textPercentDailyPart1 : 'Percent Daily Values are based on a',
+	textPercentDailyPart2 : 'calorie diet'
 
+There are a lot of sample on our <a href="html/demo.html">demo page</a> on how the plugin can be used
 
+</pre>
 
-
+ </body>
+ </html>

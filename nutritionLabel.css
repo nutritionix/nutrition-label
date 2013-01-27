@@ -1,0 +1,149 @@
+/******************************************
+ * NUTRITIONIX.com
+ *
+ * This plugin allows you to create a fully customizable nutrition label
+ *
+ * @authors			majin22 <leejay22@gmail.com> (js) and genesis23rd <genesis23rd@gmail.com> (css and html)
+ * @copyright		Copyright (c) 2012 Nutritionix.
+ * @license			This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.
+ * @link				http://www.nutritionix.com
+ * @github			http://github.com/nutritionix/nutrition-label
+ * @version			1.0.0
+ *
+ ******************************************/
+
+.alignL { text-align: left; }
+.alignC { text-align: center; }
+.alignR { text-align: right; }
+
+.calclogo {
+	bottom:23px;
+	float:left;
+	margin:0 10px 0 0;
+	position:relative;
+}
+.linkTD{
+  text-align: center;
+}
+.homeLinkPrint{}
+.spaceAbove{
+  height: 2px
+}
+.spaceBelow{
+  height: 10px
+}
+
+
+/* start of calculator css */
+#calContent {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+#calcDisclaimer{
+  padding-top: 5px;
+  text-align: left;
+  width: 100%;
+  font-weight: normal;
+	font-size: 11px;
+}
+#calcDisclaimerText {
+  padding-right:6px;
+}
+
+#nutritionfacts {
+  border: 1px solid black;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+  background-color: white;
+  color:#414141;
+  font-family:verdana,sans-serif;
+  font-size:12px;
+	text-align: left;
+}
+#nutritionfacts td {
+	color: black;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	padding: 0;
+	line-height:16px;
+}
+#nutritionfacts td.head {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 24px;
+	line-height:40px;
+	text-align:center;
+	white-space: nowrap;
+}
+#nutritionfacts div.line { border-top: 1px solid black; }
+#nutritionfacts div.label {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 11px;
+	float: left;
+}
+#nutritionfacts div.labellight {
+	font-family: Arial;
+	float: left;
+}
+#nutritionfacts div.weight {
+	display: inline;
+	font-family: Arial;
+	padding-left: 1px;
+}
+#nutritionfacts div.dvlabel {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: right;
+	font-size: 7pt;
+}
+#nutritionfacts div.dv {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	display: inline;
+	float: right;
+}
+#nutritionfacts td.indent { padding-left: 10px; }
+#nutritionfacts div.serving {
+	font-family: Arial;
+	font-size: 8pt;
+}
+#nutritionfacts table.info td {
+	font-family: Helvetica,Arial;
+	font-size: 6pt;
+}
+#nutritionfacts table.info td.indent { padding-left: 4pt; }
+#nutritionfacts table.vitamins {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 3px;
+}
+#nutritionfacts table.vitamins td {
+		font-family: Arial;
+		white-space: nowrap;
+		width: 33%;
+}
+.h7{
+	height: 7px;
+}
+.bar {
+	line-height:0em;
+	font-size:1px;
+	border-top: 7px solid #000;
+	height: 0;
+}
+.bgBlack{
+	background-color: #000;
+}
+.fs7pt{
+	font-size: 7pt;
+}
+.w100p{
+	width: 100%;
+}
+#div-fat_calories {
+  text-align: right;
+  width:120px;
+  float: right !important;
+}
