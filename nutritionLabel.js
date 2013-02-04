@@ -70,7 +70,7 @@
 		//this is for not applicable values. this is used when you want to show the nutrition value (eg. calories) but show a not applicable icon instead of a value
 		naImage : '../images/tiny-logo.png',
 		//default width of the nutrition label
-		width : 250,
+		width : 290,
 		//allows the values: vit a, vit c, calcium and iron to be on top of each other and not side by side
 		lowerNutritionSideBySide : true,
 		//the name of the item for this label (eg. cheese burger or mayonnaise)
@@ -186,7 +186,7 @@
 		textFatCalories : 'Calories from Fat',
 		textTotalFat : 'Total Fat',
 		textSatFat : 'Saturated Fat',
-		textTransFat : 'Trans Fat',
+		textTransFat : '<i>Trans</i> Fat',
 		textPolyFat : 'Polyunsaturated Fat',
 		textMonoFat : 'Monounsaturated Fat',
 		textCholesterol : 'Cholesterol',
@@ -276,84 +276,48 @@
 			var calorieIntakeMod = (parseFloat($this.settings.calorieIntake) / 2000).toFixed(2);
 
 			//this is a straighforward code - creates the html code for the label based on the settings
-			var nutritionLabel = '<div id="nutritionfacts" style="width: '+ $this.settings.width +'px;">\n';
-				nutritionLabel += tab1 + '<table cellspacing="0" cellpadding="0" class="w100p">\n';
-					nutritionLabel += tab2 + '<tr><td class="head alignC">'+ localLogo + $this.settings.textNutritionFacts + '</td></tr>\n';
-					nutritionLabel += tab2 + '<tr>\n';
-						nutritionLabel += tab3 + '<td class="alignL">\n';
+			var nutritionLabel = '<div class="nutritionLabel" style="width: '+ $this.settings.width +'px;">\n';
+					nutritionLabel += tab2 + '<div class="title">'+ localLogo + $this.settings.textNutritionFacts + '</div>\n';
 
 						if ($this.settings.showServingSize){
 							//hideServings is a special variable on the save meal pages
-							nutritionLabel += tab4 + '<div id="div-measurement" class="serving">\n';
+							nutritionLabel += tab4 + '<div class="serving">\n';
 
 							if (!$this.settings.showServingsPerContainer){
-								nutritionLabel += tab5 + $this.settings.textServingSize + '\n';
-								nutritionLabel += tab5 + '<div class="weight measurement_na" id="totalServing">\n';
+								nutritionLabel += tab5 + '<div>' + $this.settings.textServingSize + '\n';
 									nutritionLabel += tab6 + ($this.settings.naServingSize ? naValue : $this.settings.valueServingSize.toFixed($this.settings.decimalPlacesForNutrition) ) + '\n';
-								nutritionLabel += tab5 + '</div>\n';
+								nutritionLabel += tab5 + '</div>\n';								
 							}else{
-								nutritionLabel += tab5 + '<span>' + $this.settings.textServingSize + ' </span>\n';
-
-								nutritionLabel += tab5 + '<span id="serving_unit_quantity">\n';
-									nutritionLabel += tab6 + ($this.settings.naServingSize ? naValue : $this.settings.valueServingSize.toFixed($this.settings.decimalPlacesForNutrition) ) + '\n';
-								nutritionLabel += tab5 + '</span>\n';
-
-								nutritionLabel += tab5 + '<span id="serving_unit_name">\n';
-									nutritionLabel += tab6 + $this.settings.valueServingSizeUnit + '\n';
-								nutritionLabel += tab5 + '</span><br/>\n';
-
-								nutritionLabel += tab5 + '<span>' + $this.settings.textServingsPerContainer + ' </span>\n';
-								nutritionLabel += tab5 + '<span id="serving_per_container">\n';
+								// Serving size
+								nutritionLabel += tab5 + '<div>' + $this.settings.textServingSize + '\n';
+									nutritionLabel += tab6 + ($this.settings.naServingSize ? naValue : $this.settings.valueServingSize.toFixed($this.settings.decimalPlacesForNutrition) ) +' '+ $this.settings.valueServingSizeUnit + '\n';
+								nutritionLabel += tab5 + '</div>\n';
+								// Serving per container
+								nutritionLabel += tab5 + '<div>' + $this.settings.textServingsPerContainer + '\n';
 									nutritionLabel += tab6 + $this.settings.valueServingPerContainer.toFixed($this.settings.decimalPlacesForNutrition) + '\n';
-								nutritionLabel += tab5 + '</span>\n';
+								nutritionLabel += tab5 + '</div>\n';
 							}
-
 							nutritionLabel += tab4 + '</div>\n';
 						}
 
 						if ($this.settings.showItemName)
-							nutritionLabel += tab4 + '<div id="calContent" class="alignL">' + $this.settings.itemName + '</div>\n';
+							nutritionLabel += tab4 + '<div class="name">' + $this.settings.itemName + '</div>\n';
 
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-					nutritionLabel += tab2 + '<tr class="h7">\n';
-						nutritionLabel += tab3 + '<td class="bar"></td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
+						nutritionLabel += tab3 + '<div class="bar1"></div>\n';
+
 
 				if ($this.settings.showAmountPerServing){
-					nutritionLabel += tab2 + '<tr id="div-measurement-2">\n';
-						nutritionLabel += tab3 + '<td class="alignL">\n';
-							nutritionLabel += tab4 + '<div class="label fs7pt">' + $this.settings.textAmountPerServing + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
+					nutritionLabel += tab2 + '<div class="line m">';
+						nutritionLabel += tab3 + '<b>' + $this.settings.textAmountPerServing + '</b>\n';
+					nutritionLabel += tab2 + '</div>\n';
 				}
 
-					nutritionLabel += tab2 + '<tr>\n';
-						nutritionLabel += tab3 + '<td>\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-
-							if ($this.settings.showCalories){
-								nutritionLabel += tab5 + '<div class="label" id="div-calories">\n';
-									nutritionLabel += tab6 + $this.settings.textCalories + '\n';
-									nutritionLabel += tab6 + '<div class="weight calories_na" id="totalCal">\n';
-										nutritionLabel += tab7 + (
-											$this.settings.naCalories ?
-												naValue :
-												(
-													jQuery.type($this.settings.valueCalories) == 'string' ?
-														$this.settings.valueCalories :
-														$this.settings.valueCalories.toFixed($this.settings.decimalPlacesForNutrition)
-												)
-											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-							}
+				nutritionLabel += tab2 + '<div class="line">\n';
 
 							if ($this.settings.showFatCalories){
-								nutritionLabel += tab5 + '<div class="labellight" id="div-fat_calories">\n';
-									nutritionLabel += tab6 + $this.settings.textFatCalories + '\n';
-									nutritionLabel += tab6 + '<div class="weight fat_calories_na" id="calFromFat">\n';
-										nutritionLabel += tab7 + (
+								nutritionLabel += tab3 + '<div class="fr">\n';
+									nutritionLabel += tab4 + $this.settings.textFatCalories + '\n';
+										nutritionLabel += tab5 + (
 											$this.settings.naFatCalories ?
 												naValue :
 												(
@@ -362,63 +326,67 @@
 														$this.settings.valueFatCalories.toFixed($this.settings.decimalPlacesForNutrition)
 												)
 											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
+								nutritionLabel += tab3 + '</div>\n';
 							}
-
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-
-					nutritionLabel += tab2 + '<tr>\n';
-						nutritionLabel += tab3 + '<td>\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="dvlabel">\n';
-									nutritionLabel += tab6 + '% ' + $this.settings.textDailyValues + '<sup>*</sup>\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-
-				if ($this.settings.showTotalFat){
-					nutritionLabel += tab2 + '<tr id="div-total_fat">\n';
-						nutritionLabel += tab3 + '<td>\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="label">\n';
-									nutritionLabel += tab6 + $this.settings.textTotalFat + '\n';
-									nutritionLabel += tab6 + '<div class="weight total_fat_na" id="totalFat">\n';
-										nutritionLabel += tab7 + (
-											$this.settings.naTotalFat ?
+							
+							if ($this.settings.showCalories){
+								nutritionLabel += tab3 + '<div>\n';
+									nutritionLabel += tab4 + '<b>' + $this.settings.textCalories + '</b>\n';
+										nutritionLabel += tab5 + (
+											$this.settings.naCalories ?
 												naValue :
 												(
-													jQuery.type($this.settings.valueTotalFat) == 'string' ?
-														$this.settings.valueTotalFat :
-														$this.settings.valueTotalFat.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
+													jQuery.type($this.settings.valueCalories) == 'string' ?
+														$this.settings.valueCalories :
+														$this.settings.valueCalories.toFixed($this.settings.decimalPlacesForNutrition)
 												)
 											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-								nutritionLabel += tab5 + '<div class="dv total_fat_na_p" id="totalFatP">\n';
-									nutritionLabel += $this.settings.naTotalFat ?
-										naValue :
-										tab6 + (
-											jQuery.type($this.settings.valueTotalFat) == 'string' ?
-											0 : parseFloat( ($this.settings.valueTotalFat / ($this.settings.dailyValueTotalFat * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
-										) + '%\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
+								nutritionLabel += tab3 + '</div>\n';
+							}							
+
+					nutritionLabel += tab2 + '</div>\n';
+					nutritionLabel += tab2 + '<div class="bar2"></div>';					
+
+					nutritionLabel += tab5 + '<div class="line ar">\n';
+						nutritionLabel += tab6 + '<b>% ' + $this.settings.textDailyValues + '<sup>*</sup></b>\n';
+					nutritionLabel += tab5 + '</div>\n';
+
+
+				if ($this.settings.showTotalFat){
+					nutritionLabel += tab2 + '<div class="line">';
+						nutritionLabel += tab3 + '<div class="dv">\n';
+							nutritionLabel += $this.settings.naTotalFat ?
+								naValue :
+								tab6 + '<b>' + (
+									jQuery.type($this.settings.valueTotalFat) == 'string' ?
+									0 : parseFloat( ($this.settings.valueTotalFat / ($this.settings.dailyValueTotalFat * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
+								) + '</b>%\n';
+						nutritionLabel += tab3 + '</div>\n';																						
+						nutritionLabel += tab3 + '<b>' + $this.settings.textTotalFat + '</b>\n';
+							nutritionLabel += 
+								(	$this.settings.naTotalFat ?
+									naValue :
+									(
+										jQuery.type($this.settings.valueTotalFat) == 'string' ?
+											$this.settings.valueTotalFat :
+											$this.settings.valueTotalFat.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
+									)
+								) + '\n';						
+					nutritionLabel += tab2 + '</div>\n';
 				}
 
 				if ($this.settings.showSatFat){
-					nutritionLabel += tab2 + '<tr id="div-saturated_fat">\n';
-						nutritionLabel += tab3 + '<td class="indent">\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="labellight">\n';
-									nutritionLabel += tab6 + $this.settings.textSatFat + '\n';
-									nutritionLabel += tab6 + '<div class="weight saturated_fat_na" id="totalSatFat">\n';
-										nutritionLabel += tab7 +
+					nutritionLabel += tab2 + '<div class="line indent">';
+						nutritionLabel += tab3 + '<div class="dv">\n';
+							nutritionLabel += $this.settings.naSatFat ?
+								naValue :
+								tab6 + '<b>' + (
+									jQuery.type($this.settings.valueSatFat) == 'string' ?
+									0 : parseFloat( ($this.settings.valueSatFat / ($this.settings.dailyValueSatFat * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
+								) + '</b>%\n';
+						nutritionLabel += tab3 + '</div>\n';						
+						nutritionLabel += tab3 + $this.settings.textSatFat + '\n';
+										nutritionLabel += 
 											( $this.settings.naSatFat ?
 												naValue :
 												(
@@ -427,29 +395,13 @@
 														$this.settings.valueSatFat.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
 												)
 											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-								nutritionLabel += tab5 + '<div class="dv saturated_fat_na_p" id="totalSatFatP">\n';
-									nutritionLabel += $this.settings.naSatFat ?
-										naValue :
-										tab6 + (
-											jQuery.type($this.settings.valueSatFat) == 'string' ?
-											0 : parseFloat( ($this.settings.valueSatFat / ($this.settings.dailyValueSatFat * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
-										) + '%\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
+						nutritionLabel += tab2 + '</div>\n';
 				}
-
+				
 				if ($this.settings.showTransFat){
-					nutritionLabel += tab2 + '<tr id="div-trans_fat">\n';
-						nutritionLabel += tab3 + '<td class="indent">\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="labellight">\n';
-									nutritionLabel += tab6 + $this.settings.textTransFat + '\n';
-									nutritionLabel += tab6 + '<div class="weight trans_fat_na" id="totalTransFat">\n';
-										nutritionLabel += tab7 +
+					nutritionLabel += tab2 + '<div class="line indent">';						
+						nutritionLabel += tab3 + $this.settings.textTransFat + '\n';
+										nutritionLabel += 
 											( $this.settings.naTransFat ?
 												naValue :
 												(
@@ -458,21 +410,13 @@
 														$this.settings.valueTransFat.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
 												)
 											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-				}
-
+						nutritionLabel += tab2 + '</div>\n';
+				}		
+				
 				if ($this.settings.showPolyFat){
-					nutritionLabel += tab2 + '<tr id="div-polyunsaturated_fat">\n';
-						nutritionLabel += tab3 + '<td class="indent">\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="labellight">\n';
-									nutritionLabel += tab6 + $this.settings.textPolyFat + '\n';
-									nutritionLabel += tab6 + '<div class="weight polyunsaturated_fat_na" id="totalPolyFat">\n';
-										nutritionLabel += tab7 +
+					nutritionLabel += tab2 + '<div class="line indent">';						
+						nutritionLabel += tab3 + $this.settings.textPolyFat + '\n';
+										nutritionLabel += 
 											( $this.settings.naPolyFat ?
 												naValue :
 												(
@@ -481,21 +425,13 @@
 														$this.settings.valuePolyFat.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
 												)
 											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-				}
-
+						nutritionLabel += tab2 + '</div>\n';
+				}		
+				
 				if ($this.settings.showMonoFat){
-					nutritionLabel += tab2 + '<tr id="div-monounsaturated_fat">\n';
-						nutritionLabel += tab3 + '<td class="indent">\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="labellight">\n';
-									nutritionLabel += tab6 + $this.settings.textMonoFat + '\n';
-									nutritionLabel += tab6 + '<div class="weight monounsaturated_fat_na" id="totalMonoFat">\n';
-										nutritionLabel += tab7 +
+					nutritionLabel += tab2 + '<div class="line indent">';						
+						nutritionLabel += tab3 + $this.settings.textMonoFat + '\n';
+										nutritionLabel += 
 											( $this.settings.naMonoFat ?
 												naValue :
 												(
@@ -504,145 +440,109 @@
 														$this.settings.valueMonoFat.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
 												)
 											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-				}
+						nutritionLabel += tab2 + '</div>\n';
+				}												
+		
 
 				if ($this.settings.showCholesterol){
-					nutritionLabel += tab2 + '<tr id="div-cholesterol">\n';
-						nutritionLabel += tab3 + '<td>\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="label">\n';
-									nutritionLabel += tab6 + $this.settings.textCholesterol + '\n';
-									nutritionLabel += tab6 + '<div class="weight cholesterol_na" id="totalChol">\n';
-										nutritionLabel += tab7 +
-											( $this.settings.naCholesterol ?
-												naValue :
-												(
-													jQuery.type($this.settings.valueCholesterol) == 'string' ?
-														$this.settings.valueCholesterol :
-														$this.settings.valueCholesterol.toFixed($this.settings.decimalPlacesForNutrition) + 'mg'
-												)
-											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-								nutritionLabel += tab5 + '<div class="dv cholesterol_na_p" id="totalCholP">\n';
-									nutritionLabel += $this.settings.naCholesterol ?
-										naValue :
-										tab6 + (
-											jQuery.type($this.settings.valueCholesterol) == 'string' ?
-											0 : parseFloat( ($this.settings.valueCholesterol / ($this.settings.dailyValueCholesterol * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
-										) + '%\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
+					nutritionLabel += tab2 + '<div class="line">';
+						nutritionLabel += tab3 + '<div class="dv">\n';
+							nutritionLabel += $this.settings.naCholesterol ?
+								naValue :
+								tab6 + '<b>' + (
+									jQuery.type($this.settings.valueCholesterol) == 'string' ?
+									0 : parseFloat( ($this.settings.valueCholesterol / ($this.settings.dailyValueCholesterol * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
+								) + '</b>%\n';
+						nutritionLabel += tab3 + '</div>\n';																						
+						nutritionLabel += tab3 + '<b>' + $this.settings.textCholesterol + '</b>\n';
+							nutritionLabel += 
+								(	$this.settings.naCholesterol ?
+									naValue :
+									(
+										jQuery.type($this.settings.valueCholesterol) == 'string' ?
+											$this.settings.valueCholesterol :
+											$this.settings.valueCholesterol.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
+									)
+								) + '\n';						
+					nutritionLabel += tab2 + '</div>\n';
 				}
+		
 
 				if ($this.settings.showSodium){
-					nutritionLabel += tab2 + '<tr id="div-sodium">\n';
-						nutritionLabel += tab3 + '<td>\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="label">\n';
-									nutritionLabel += tab6 + $this.settings.textSodium + '\n';
-									nutritionLabel += tab6 + '<div class="weight sodium_na" id="totalSod">\n';
-										nutritionLabel += tab7 +
-											( $this.settings.naSodium ?
-												naValue :
-												(
-													jQuery.type($this.settings.valueSodium) == 'string' ?
-														$this.settings.valueSodium :
-														$this.settings.valueSodium.toFixed($this.settings.decimalPlacesForNutrition) + 'mg'
-												)
-											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-								nutritionLabel += tab5 + '<div class="dv sodium_na_p" id="totalSodP">\n';
-									nutritionLabel += $this.settings.naSodium ?
-										naValue :
-										tab6 + (
-											jQuery.type($this.settings.valueSodium) == 'string' ?
-											0 : parseFloat( ($this.settings.valueSodium / ($this.settings.dailyValueSodium * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
-										) + '%\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-				}
+					nutritionLabel += tab2 + '<div class="line">';
+						nutritionLabel += tab3 + '<div class="dv">\n';
+							nutritionLabel += $this.settings.naSodium ?
+								naValue :
+								tab6 + '<b>' + (
+									jQuery.type($this.settings.valueSodium) == 'string' ?
+									0 : parseFloat( ($this.settings.valueSodium / ($this.settings.dailyValueSodium * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
+								) + '</b>%\n';
+						nutritionLabel += tab3 + '</div>\n';																						
+						nutritionLabel += tab3 + '<b>' + $this.settings.textSodium + '</b>\n';
+							nutritionLabel += 
+								(	$this.settings.naSodium ?
+									naValue :
+									(
+										jQuery.type($this.settings.valueSodium) == 'string' ?
+											$this.settings.valueSodium :
+											$this.settings.valueSodium.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
+									)
+								) + '\n';						
+					nutritionLabel += tab2 + '</div>\n';
+				}		
+				
 
 				if ($this.settings.showTotalCarb){
-					nutritionLabel += tab2 + '<tr id="div-total_carb">\n';
-						nutritionLabel += tab3 + '<td>\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="label">\n';
-									nutritionLabel += tab6 + $this.settings.textTotalCarb + '\n';
-									nutritionLabel += tab6 + '<div class="weight total_carb_na" id="totalCarb">\n';
-										nutritionLabel += tab7 +
-											( $this.settings.naTotalCarb ?
-												naValue :
-												(
-													jQuery.type($this.settings.valueTotalCarb) == 'string' ?
-														$this.settings.valueTotalCarb :
-														$this.settings.valueTotalCarb.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
-												)
-											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-								nutritionLabel += tab5 + '<div class="dv total_carb_na_p" id="totalCarbP">\n';
-									nutritionLabel += $this.settings.naTotalCarb ?
-										naValue :
-										tab6 + (
-											jQuery.type($this.settings.valueTotalCarb) == 'string' ?
-											0 : parseFloat( ($this.settings.valueTotalCarb / ($this.settings.dailyValueCarb * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
-										) + '%\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-				}
-
+					nutritionLabel += tab2 + '<div class="line">';
+						nutritionLabel += tab3 + '<div class="dv">\n';
+							nutritionLabel += $this.settings.naTotalCarb ?
+								naValue :
+								tab6 + '<b>' + (
+									jQuery.type($this.settings.valueTotalCarb) == 'string' ?
+									0 : parseFloat( ($this.settings.valueTotalCarb / ($this.settings.dailyValueCarb * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
+								) + '</b>%\n';
+						nutritionLabel += tab3 + '</div>\n';																						
+						nutritionLabel += tab3 + '<b>' + $this.settings.textTotalCarb + '</b>\n';
+							nutritionLabel += 
+								(	$this.settings.naTotalCarb ?
+									naValue :
+									(
+										jQuery.type($this.settings.valueTotalCarb) == 'string' ?
+											$this.settings.valueTotalCarb :
+											$this.settings.valueTotalCarb.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
+									)
+								) + '\n';						
+					nutritionLabel += tab2 + '</div>\n';
+				}	
+				
 				if ($this.settings.showFibers){
-					nutritionLabel += tab2 + '<tr id="div-fibers">\n';
-						nutritionLabel += tab3 + '<td class="indent">\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="labellight">\n';
-									nutritionLabel += tab6 + $this.settings.textFibers + '\n';
-									nutritionLabel += tab6 + '<div class="weight fibers_na" id="totalFiber">\n';
-										nutritionLabel += tab7 +
-											( $this.settings.naFibers ?
-												naValue :
-												(
-													jQuery.type($this.settings.valueFibers) == 'string' ?
-														$this.settings.valueFibers :
-														$this.settings.valueFibers.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
-												)
-											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-								nutritionLabel += tab5 + '<div class="dv fibers_na_p" id="totalFiberP">\n';
-									nutritionLabel += $this.settings.naFibers ?
-										naValue :
-										tab6 + (
-											jQuery.type($this.settings.valueFibers) == 'string' ?
-											0 : parseFloat( ($this.settings.valueFibers / ($this.settings.dailyValueFiber * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
-										) + '%\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-				}
-
+					nutritionLabel += tab2 + '<div class="line indent">';
+						nutritionLabel += tab3 + '<div class="dv">\n';
+							nutritionLabel += $this.settings.naFibers ?
+								naValue :
+								tab6 + '<b>' + (
+									jQuery.type($this.settings.valueFibers) == 'string' ?
+									0 : parseFloat( ($this.settings.valueFibers / ($this.settings.dailyValueFiber * calorieIntakeMod) ) * 100 ).toFixed($this.settings.decimalPlacesForDailyValues)
+								) + '</b>%\n';
+						nutritionLabel += tab3 + '</div>\n';																						
+						nutritionLabel += tab3 + $this.settings.textFibers + '\n';
+							nutritionLabel += 
+								(	$this.settings.naFibers ?
+									naValue :
+									(
+										jQuery.type($this.settings.valueFibers) == 'string' ?
+											$this.settings.valueFibers :
+											$this.settings.valueFibers.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
+									)
+								) + '\n';						
+					nutritionLabel += tab2 + '</div>\n';
+				}									
+		
+			
 				if ($this.settings.showSugars){
-					nutritionLabel += tab2 + '<tr id="div-sugars">\n';
-						nutritionLabel += tab3 + '<td class="indent">\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="labellight">\n';
-									nutritionLabel += tab6 + $this.settings.textSugars + '\n';
-									nutritionLabel += tab6 + '<div class="weight sugars_na" id="totalSugar">\n';
-										nutritionLabel += tab7 +
+					nutritionLabel += tab2 + '<div class="line indent">';						
+						nutritionLabel += tab3 + $this.settings.textSugars + '\n';
+										nutritionLabel += 
 											( $this.settings.naSugars ?
 												naValue :
 												(
@@ -651,21 +551,14 @@
 														$this.settings.valueSugars.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
 												)
 											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-				}
+						nutritionLabel += tab2 + '</div>\n';
+				}				
+
 
 				if ($this.settings.showProteins){
-					nutritionLabel += tab2 + '<tr id="div-protein">\n';
-						nutritionLabel += tab3 + '<td>\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="label">\n';
-									nutritionLabel += tab6 + $this.settings.textProteins + '\n';
-									nutritionLabel += tab6 + '<div class="weight protein_na" id="totalProt">\n';
-										nutritionLabel += tab7 +
+					nutritionLabel += tab2 + '<div class="line">';						
+						nutritionLabel += tab3 + '<b>' + $this.settings.textProteins + '</b>\n';
+										nutritionLabel += 
 											( $this.settings.naProteins ?
 												naValue :
 												(
@@ -674,126 +567,103 @@
 														$this.settings.valueProteins.toFixed($this.settings.decimalPlacesForNutrition) + 'g'
 												)
 											) + '\n';
-									nutritionLabel += tab6 + '</div>\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
+						nutritionLabel += tab2 + '</div>\n';
+				}		
+
+		
+				nutritionLabel += tab2 + '<div class="bar1"></div>\n';
+				
+
+
+				if ($this.settings.showVitaminA){
+					nutritionLabel += tab2 + '<div class="line">';											
+						nutritionLabel += tab3 + '<div class="dv">\n';					
+						nutritionLabel += 
+							( $this.settings.naVitaminA ?
+								naValue :
+								(
+									jQuery.type($this.settings.valueVitaminA) == 'string' ?
+										$this.settings.valueVitaminA :
+										$this.settings.valueVitaminA.toFixed($this.settings.decimalPlacesForNutrition) + '%'
+								)
+							) + '\n';											
+						nutritionLabel += tab3 + '</div>\n';																													
+						nutritionLabel += tab3 + $this.settings.textVitaminA + '\n';											
+					nutritionLabel += tab2 + '</div>\n';
+				}
+				
+				if ($this.settings.showVitaminC){
+					nutritionLabel += tab2 + '<div class="line">';											
+						nutritionLabel += tab3 + '<div class="dv">\n';					
+						nutritionLabel += 
+							( $this.settings.naVitaminC ?
+								naValue :
+								(
+									jQuery.type($this.settings.valueVitaminC) == 'string' ?
+										$this.settings.valueVitaminC :
+										$this.settings.valueVitaminC.toFixed($this.settings.decimalPlacesForNutrition) + '%'
+								)
+							) + '\n';											
+						nutritionLabel += tab3 + '</div>\n';																													
+						nutritionLabel += tab3 + $this.settings.textVitaminC + '\n';											
+					nutritionLabel += tab2 + '</div>\n';
+				}					
+				
+				if ($this.settings.showCalcium){
+					nutritionLabel += tab2 + '<div class="line">';											
+						nutritionLabel += tab3 + '<div class="dv">\n';					
+						nutritionLabel += 
+							( $this.settings.naCalcium ?
+								naValue :
+								(
+									jQuery.type($this.settings.valueCalcium) == 'string' ?
+										$this.settings.valueCalcium :
+										$this.settings.valueCalcium.toFixed($this.settings.decimalPlacesForNutrition) + '%'
+								)
+							) + '\n';											
+						nutritionLabel += tab3 + '</div>\n';																													
+						nutritionLabel += tab3 + $this.settings.textCalcium + '\n';											
+					nutritionLabel += tab2 + '</div>\n';
+				}				
+				
+				if ($this.settings.showIron){
+					nutritionLabel += tab2 + '<div class="line">';											
+						nutritionLabel += tab3 + '<div class="dv">\n';					
+						nutritionLabel += 
+							( $this.settings.naIron ?
+								naValue :
+								(
+									jQuery.type($this.settings.valueIron) == 'string' ?
+										$this.settings.valueIron :
+										$this.settings.valueIron.toFixed($this.settings.decimalPlacesForNutrition) + '%'
+								)
+							) + '\n';											
+						nutritionLabel += tab3 + '</div>\n';																													
+						nutritionLabel += tab3 + $this.settings.textIron + '\n';											
+					nutritionLabel += tab2 + '</div>\n';
+				}												
+
+
+			
+				nutritionLabel += tab2 + '<div class="dvCalorieDiet">\n';
+					nutritionLabel += tab3 + '<div class="calorieNote">\n';				
+						nutritionLabel += tab4 + '<span class="star">*</span> ' + $this.settings.textPercentDailyPart1 + ' ' + $this.settings.calorieIntake + ' ' + $this.settings.textPercentDailyPart2 + '.\n';
+
+						if ($this.settings.showIngredients){
+							nutritionLabel += tab4 + '<br /><b class="active">' + $this.settings.ingredientLabel + '</b>\n';
+							nutritionLabel += tab4 + $this.settings.ingredientList + '\n';
+						}
+						
+					nutritionLabel += tab3 + '</div>\n';										
+				nutritionLabel += tab3 + '</div>\n';				
+				
+
+				if ($this.settings.showDisclaimer){
+					nutritionLabel += tab4 + '<div class="labellight dvlabel2 alignC" id="calcDisclaimer">\n';
+						nutritionLabel += tab5 + '<span id="calcDisclaimerText">' + $this.settings.disclaimer + '</span>\n';
+					nutritionLabel += tab4 + '</div>\n';
 				}
 
-					nutritionLabel += tab2 + '<tr class="h7">\n';
-						nutritionLabel += tab3 + '<td class="bar"></td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-					nutritionLabel += tab2 + '<tr>\n';
-						nutritionLabel += tab3 + '<td>\n';
-							nutritionLabel += tab4 + '<table border="0" cellspacing="0" cellpadding="0" class="vitamins">\n';
-								nutritionLabel += tab5 + '<tr>\n';
-
-								if ($this.settings.showVitaminA){
-									nutritionLabel += tab6 + '<td id="div-vitamin_a">\n';
-										nutritionLabel += tab7 + $this.settings.textVitaminA + '\n';
-										nutritionLabel += tab7 + '<span id="totalVitA" class="vitamin_a_na">\n';
-											nutritionLabel += tab8 + (
-												$this.settings.naVitaminA ?
-													naValue :
-													(
-														jQuery.type($this.settings.valueVitaminA) == 'string' ?
-															$this.settings.valueVitaminA :
-															$this.settings.valueVitaminA.toFixed($this.settings.decimalPlacesForNutrition) + '%'
-													)
-												) + '\n';
-										nutritionLabel += tab7 + '</span>\n';
-									nutritionLabel += tab6 + '</td>\n';
-									nutritionLabel += tab6 + '<td id="div-vitamin_a-2" class="alignC">&#149;</td>\n';
-								}
-
-								if ($this.settings.showVitaminC){
-									nutritionLabel += tab6 + '<td id="div-vitamin_c" class="alignR">\n';
-										nutritionLabel += tab7 + $this.settings.textVitaminC + '\n';
-										nutritionLabel += tab7 + '<span id="totalVitC" class="vitamin_c_na">\n';
-											nutritionLabel += tab8 + (
-												$this.settings.naVitaminC ?
-													naValue :
-													(
-														jQuery.type($this.settings.valueVitaminC) == 'string' ?
-															$this.settings.valueVitaminC :
-															$this.settings.valueVitaminC.toFixed($this.settings.decimalPlacesForNutrition) + '%'
-													)
-												) + '\n';
-										nutritionLabel += tab7 + '</span>\n';
-									nutritionLabel += tab6 + '</td>\n';
-								}
-
-								nutritionLabel += tab5 + '</tr>\n';
-								nutritionLabel += tab5 + '<tr>\n';
-
-								if ($this.settings.showCalcium){
-									nutritionLabel += tab6 + '<td id="div-calcium">\n';
-										nutritionLabel += tab7 + $this.settings.textCalcium + '\n';
-										nutritionLabel += tab7 + '<span id="totalCalc" class="calcium_na">\n';
-											nutritionLabel += tab8 + (
-												$this.settings.naCalcium ?
-													naValue :
-													(
-														jQuery.type($this.settings.valueCalcium) == 'string' ?
-															$this.settings.valueCalcium :
-															$this.settings.valueCalcium.toFixed($this.settings.decimalPlacesForNutrition) + '%'
-													)
-												) + '\n';
-										nutritionLabel += tab7 + '</span>\n';
-									nutritionLabel += tab6 + '</td>\n';
-									nutritionLabel += tab6 + '<td id="div-calcium-2" class="alignC">&#149;</td>\n';
-								}
-
-								if ($this.settings.showIron){
-									nutritionLabel += tab6 + '<td id="div-iron" class="alignR">\n';
-										nutritionLabel += tab7 + $this.settings.textIron + '\n';
-										nutritionLabel += tab7 + '<span id="totalIron" class="iron_na">\n';
-											nutritionLabel += tab8 + (
-												$this.settings.naIron ?
-													naValue :
-													(
-														jQuery.type($this.settings.valueIron) == 'string' ?
-															$this.settings.valueIron :
-															$this.settings.valueIron.toFixed($this.settings.decimalPlacesForNutrition) + '%'
-													)
-												) + '\n';
-										nutritionLabel += tab7 + '</span>\n';
-									nutritionLabel += tab6 + '</td>\n';
-								}
-
-								nutritionLabel += tab5 + '</tr>\n';
-							nutritionLabel += tab4 + '</table>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-					nutritionLabel += tab2 + '<tr>\n';
-						nutritionLabel += tab3 + '<td class="alignL">\n';
-							nutritionLabel += tab4 + '<div class="line">\n';
-								nutritionLabel += tab5 + '<div class="labellight dvlabel2">\n';
-									nutritionLabel += tab6 + '*' + $this.settings.textPercentDailyPart1 + ' <span id="calorieDiet">' + $this.settings.calorieIntake + '</span> ' + $this.settings.textPercentDailyPart2 + '.\n';
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
-					nutritionLabel += tab2 + '<tr><td class="bgBlack"></td></tr>\n';
-					nutritionLabel += tab2 + '<tr>\n';
-						nutritionLabel += tab3 + '<td class="alignL">\n';
-
-							nutritionLabel += tab4 + '<div class="label">\n';
-							if ($this.settings.showIngredients){
-								nutritionLabel += tab5 + $this.settings.ingredientLabel + '\n';
-								nutritionLabel += tab5 + '<div class="weight" id="ingredientList" style="font-weight: normal;">' + $this.settings.ingredientList + '</div>\n';
-							}
-							nutritionLabel += tab4 + '</div><br/>\n';
-
-						if ($this.settings.showDisclaimer){
-							nutritionLabel += tab4 + '<div class="labellight dvlabel2 alignC" id="calcDisclaimer">\n';
-								nutritionLabel += tab5 + '<span id="calcDisclaimerText">' + $this.settings.disclaimer + '</span>\n';
-							nutritionLabel += tab4 + '</div>\n';
-						}
-
-						nutritionLabel += tab3 + '</td>\n';
-					nutritionLabel += tab2 + '</tr>\n';
 
 				if ($this.settings.showHomePrintLink){
 					nutritionLabel += tab2 + '<tr>\n';

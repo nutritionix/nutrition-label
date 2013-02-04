@@ -11,139 +11,94 @@
  * @version			1.0.0
  *
  ******************************************/
-
-.alignL { text-align: left; }
-.alignC { text-align: center; }
-.alignR { text-align: right; }
-
-.calclogo {
-	bottom:23px;
-	float:left;
-	margin:0 10px 0 0;
-	position:relative;
-}
-.linkTD{
-  text-align: center;
-}
-.homeLinkPrint{}
-.spaceAbove{
-  height: 2px
-}
-.spaceBelow{
-  height: 10px
+@font-face {
+  font-family: 'Archivo Black';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Archivo Black Regular'), local('ArchivoBlack-Regular'), url(http://themes.googleusercontent.com/static/fonts/archivoblack/v1/WoAoVT7K3k7hHfxKbvB6B0BTuPGxyeV-VBVV8KqqzrI.woff) format('woff');
 }
 
-
-/* start of calculator css */
-#calContent {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-weight: bold;
+/** Nutrition Label v2.0 **/
+.nutritionLabel { 
+	font-size: 13px;
+	margin-bottom: 15px;
 }
-
-#calcDisclaimer{
-  padding-top: 5px;
-  text-align: left;
-  width: 100%;
-  font-weight: normal;
+.nutritionLabel .title {
+	line-height: 28px;
+	font-size: 34px;								
+}
+.nutritionLabel .m {
 	font-size: 11px;
+}				
+.nutritionLabel .serving {
+	font-size: 14px;
+	line-height: 18px;								
+}	
+.nutritionLabel .name {
+	font-size: 14px;
+	line-height: 18px;
 }
-#calcDisclaimerText {
-  padding-right:6px;
-}
-
-#nutritionfacts {
-  border: 1px solid black;
-  padding: 5px 10px;
-  margin-bottom: 15px;
-  background-color: white;
-  color:#414141;
-  font-family:verdana,sans-serif;
-  font-size:12px;
-	text-align: left;
-}
-#nutritionfacts td {
-	color: black;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 8pt;
-	padding: 0;
-	line-height:16px;
-}
-#nutritionfacts td.head {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	font-size: 24px;
-	line-height:40px;
-	text-align:center;
+.nutritionLabel .dvCalorieDiet,
+.nutritionLabel #calcDisclaimer {
+	font-size: 11px;
+}									
+.nutritionLabel .title {
+	font-family: 'Archivo Black';
 	white-space: nowrap;
+	letter-spacing: -2px;						
 }
-#nutritionfacts div.line { border-top: 1px solid black; }
-#nutritionfacts div.label {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	font-size: 11px;
-	float: left;
+.nutritionLabel {
+	padding: 8px;
+	color: #333;
+	font-family: Arial, Helvetica, sans-serif;
+	border: 2px solid #000;
 }
-#nutritionfacts div.labellight {
-	font-family: Arial;
-	float: left;
+.nutritionLabel .line {
+	border-top: 1px solid #333;
+	padding: 1px 0
 }
-#nutritionfacts div.weight {
-	display: inline;
-	font-family: Arial;
-	padding-left: 1px;
+.nutritionLabel .line.last {
+	border-bottom: 1px solid #333;
 }
-#nutritionfacts div.dvlabel {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	text-align: right;
-	font-size: 7pt;
+.nutritionLabel .serving {
+	padding: 2px 0;
+}					
+.nutritionLabel .line.indent {
+	margin-left: 15px;
 }
-#nutritionfacts div.dv {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	display: inline;
+.nutritionLabel .dv {
 	float: right;
 }
-#nutritionfacts td.indent { padding-left: 10px; }
-#nutritionfacts div.serving {
-	font-family: Arial;
-	font-size: 8pt;
+.nutritionLabel .dv:before {
+	content: '\0000a0';
 }
-#nutritionfacts table.info td {
-	font-family: Helvetica,Arial;
-	font-size: 6pt;
+.nutritionLabel .bar1 { height: 10px; line-height:0; font-size:1px; background: #333;}
+.nutritionLabel .bar2 { height: 5px; line-height:0; font-size:1px; background: #333;}
+
+.nutritionLabel .dvCalorieDiet {
+	color: #777;
 }
-#nutritionfacts table.info td.indent { padding-left: 4pt; }
-#nutritionfacts table.vitamins {
-	width: 100%;
-	border-collapse: collapse;
-	margin-bottom: 3px;
+.nutritionLabel .calorieNote {
+	padding: 6px 0 6px 8px;						
 }
-#nutritionfacts table.vitamins td {
-		font-family: Arial;
-		white-space: nowrap;
-		width: 33%;
+.nutritionLabel .star {
+	margin-left: -7px;
 }
-.h7{
-	height: 7px;
+.nutritionLabel .tblCalorieDiet th {
+	border-bottom: 1px solid #333;
 }
-.bar {
-	line-height:0em;
-	font-size:1px;
-	border-top: 7px solid #000;
-	height: 0;
-}
-.bgBlack{
-	background-color: #000;
-}
-.fs7pt{
-	font-size: 7pt;
-}
-.w100p{
+.nutritionLabel .tblCalorieDiet {
 	width: 100%;
 }
-#div-fat_calories {
-  text-align: right;
-  width:120px;
-  float: right !important;
+.nutritionLabel .tblCalorieDiet td {
+	padding: 0;
+	line-height: normal;
+}					
+.ar { text-align: right; }
+.fr { float: right; }					
+
+.nutritionLabel #calcDisclaimer {
+	padding-left: 6px;
+	padding-right: 6px;
+	color: #777;
 }
