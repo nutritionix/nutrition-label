@@ -8,7 +8,7 @@
 		margin: 0;
 		font-family:Arial, Helvetica, sans-serif;
 	}
-	
+
 
 	textarea{
 		width: 600px;
@@ -36,7 +36,6 @@ $('#test1').nutritionLabel();
 <input type="text" value="http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing" readonly><br/><br/>
 <textarea readonly id="test2Val">
 $('#test2').nutritionLabel({
-	'width' : 280,
 	'showServingSize' : false,
 	'showDisclaimer' : false,
 	'itemName' : '1.00 x Bleu Cheese Dressing',
@@ -69,7 +68,6 @@ $('#test2').nutritionLabel({
 <input type="text" value="http://www.nutritionix.com/label/ingredient/6933" readonly><br/><br/>
 <textarea readonly id="test3Val">
 $('#test3').nutritionLabel({
-	'width' : 300,
 	'showServingSize' : false,
 	'showIngredients' : false,
 	'itemName' : '1.00 x Bleu Cheese Dressing',
@@ -103,7 +101,6 @@ $('#test3').nutritionLabel({
 <input type="text" value="http://www.nutritionix.com/duchess/chocolate-donuts" readonly><br/><br/>
 <textarea readonly id="test4Val">
 $('#test4').nutritionLabel({
-	'width' : 280,
 	'showDisclaimer' : false,
 	'showItemName' : false,
 	'showServingsPerContainer' : true,
@@ -139,7 +136,6 @@ $('#test4').nutritionLabel({
 <input type="text" value="http://www.nutritionix.com/label/item/47584" readonly><br/><br/>
 <textarea readonly id="test5Val">
 $('#test5').nutritionLabel({
-	'width' : 300,
 	'scrollLongIngredients' : true,
 	'showItemName' : false,
 	'showServingsPerContainer' : true,
@@ -175,7 +171,6 @@ $('#test5').nutritionLabel({
 <input type="text" value="http://www.nutritionix.com/ufood-grill/fire-grilled-sirloin-tips" readonly><br/><br/>
 <textarea readonly id="test6Val">
 $('#test6').nutritionLabel({
-	'width' : 280,
 	'showServingSize' : false,
 	'showDisclaimer' : false,
 	'showAmountPerServing' : false,
@@ -209,7 +204,6 @@ $('#test6').nutritionLabel({
 <input type="text" value="http://www.nutritionix.com/label/item/338" readonly><br/><br/>
 <textarea readonly id="test7Val">
 $('#test7').nutritionLabel({
-	'width' : 300,
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
 	'ingredientList' : 'Balsamic Vinaigrette, BBQ Hickory, Steak Tips',
@@ -242,7 +236,6 @@ $('#test7').nutritionLabel({
 <input type="text" value="http://www.nutritionix.com/the-old-spaghetti-factory/olive-tapenade" readonly><br/><br/>
 <textarea readonly id="test8Val">
 $('#test8').nutritionLabel({
-	'width' : 280,
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
 	'showIngredients' : false,
@@ -276,7 +269,6 @@ $('#test8').nutritionLabel({
 <input type="text" value="http://www.nutritionix.com/label/item/6381" readonly><br/><br/>
 <textarea readonly id="test9Val">
 $('#test9').nutritionLabel({
-	'width' : 300,
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
 	'showIngredients' : false,
@@ -309,7 +301,6 @@ $('#test9').nutritionLabel({
 <input type="text" value="http://www.nutritionix.com/teds-montana-grill/bar-none-sliders-bison" readonly><br/><br/>
 <textarea readonly id="test10Val">
 $('#test10').nutritionLabel({
-	'width' : 280,
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
 	'showIngredients' : false,
@@ -363,11 +354,11 @@ $('#test11').nutritionLabel({
 </textarea><hr/><hr/><hr/>
 
 
-<h1>Example #12 - similar to example #8 but the text are not english</h1>
+<h1>Example #12 - similar to example #8 but the text are not english and has a custom width to accommodate the title</h1>
 <div id="test12"></div>
 <textarea readonly id="test12Val">
 $('#test12').nutritionLabel({
-	'width' : 360,
+	'width' : 395,
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
 	'showIngredients' : false,
@@ -424,38 +415,10 @@ $('#test12').nutritionLabel({
 </textarea><hr/><hr/><hr/>
 
 
-<h1>Example #13 - Most basic use of the plugin but without any logo</h1>
+<h1>Example #13 - all values are not applicable and the N/A image is different</h1>
 <div id="test13"></div>
 <textarea readonly id="test13Val">
 $('#test13').nutritionLabel({
-	'logo' : ''
-});
-</textarea><hr/><hr/><hr/>
-
-
-<h1>Example #14 - Most basic use of the plugin but with a different logo v1</h1>
-<div id="test14"></div>
-<textarea readonly id="test14Val">
-$('#test14').nutritionLabel({
-	'width' : 320,
-	'logo' : 'demo_images/logo_subway.gif'
-});
-</textarea><hr/><hr/><hr/>
-
-
-<h1>Example #15 - Most basic use of the plugin but with a different logo v2</h1>
-<div id="test15"></div>
-<textarea readonly id="test15Val">
-$('#test15').nutritionLabel({
-	'logo' : 'demo_images/logo_pizzahut.gif'
-});
-</textarea><hr/><hr/><hr/>
-
-
-<h1>Example #16 - all values are not applicable and the N/A image is different</h1>
-<div id="test16"></div>
-<textarea readonly id="test16Val">
-$('#test16').nutritionLabel({
 	'naImage' : 'demo_images/cms_delete.png',
 	'naCalories' : true,
 	'naFatCalories' : true,
@@ -478,12 +441,11 @@ $('#test16').nutritionLabel({
 </textarea><hr/><hr/><hr/>
 
 
-<h1>Example #17 - similar to example #3 but with a few different settings - different calorie intake, decimal places for nutrition changed from 1 to 2, decimal places for the "% daily values" is changed from 0 to 1, showing the home page link at the bottom and customizing it</h1>
-<div id="test17"></div>
-<textarea readonly id="test17Val">
-$('#test17').nutritionLabel({
+<h1>Example #14 - similar to example #3 but with a few different settings - different calorie intake, decimal places for nutrition changed from 1 to 2, decimal places for the "% daily values" is changed from 0 to 1, showing the home page link at the bottom and customizing it</h1>
+<div id="test14"></div>
+<textarea readonly id="test14Val">
+$('#test14').nutritionLabel({
 	'calorieIntake' : 1222,
-	'width' : 300,
 	'showServingSize' : false,
 	'showIngredients' : false,
 	'itemName' : '1.00 x Bleu Cheese Dressing',
@@ -518,11 +480,10 @@ $('#test17').nutritionLabel({
 </textarea><hr/><hr/><hr/>
 
 
-<h1>Example #18 - similar to example #3 but the "recommended daily intake values" are halved</h1>
-<div id="test18"></div>
-<textarea readonly id="test18Val">
-$('#test18').nutritionLabel({
-	'width' : 300,
+<h1>Example #15 - similar to example #3 but the "recommended daily intake values" are halved</h1>
+<div id="test15"></div>
+<textarea readonly id="test15Val">
+$('#test15').nutritionLabel({
 	'showServingSize' : false,
 	'showIngredients' : false,
 	'itemName' : '1.00 x Bleu Cheese Dressing',
@@ -577,9 +538,6 @@ $(document).ready(function(){
 	eval( eval( $('#test13Val').val() ) );
 	eval( eval( $('#test14Val').val() ) );
 	eval( eval( $('#test15Val').val() ) );
-	eval( eval( $('#test16Val').val() ) );
-	eval( eval( $('#test17Val').val() ) );
-	eval( eval( $('#test18Val').val() ) );
 
 	var inputs, index;
 	inputs = document.getElementsByTagName('textarea');
