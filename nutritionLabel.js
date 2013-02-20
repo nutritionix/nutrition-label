@@ -68,7 +68,7 @@
 		//this is for not applicable values. this is used when you want to show the nutrition value (eg. calories) but show a not applicable icon instead of a value
 		naImage : '../images/tiny-logo.png',
 		//default width of the nutrition label
-		width : 250,
+		width : 260,
 		//allows the values: vit a, vit c, calcium and iron to be on top of each other and not side by side
 		lowerNutritionSideBySide : true,
 		//the name of the item for this label (eg. cheese burger or mayonnaise)

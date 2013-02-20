@@ -1,5 +1,6 @@
 <html>
 <head>
+	<link rel='stylesheet' type='text/css' media='screen' href='../bootstrap/css/bootstrap.min.css'>	
 	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel.css'>
 
 	<style>
@@ -7,9 +8,14 @@
 		padding: 15px;
 		margin: 0;
 		font-family:Arial, Helvetica, sans-serif;
+		line-height:  normal;
+	}
+	h1,h2,h3,h4,h5,h6 { 
+		line-height: normal;
+		margin-top: 0;
 	}
 
-
+	p { line-height: 18px; }
 	textarea{
 		width: 600px;
 		padding: 5px;
@@ -19,22 +25,128 @@
 		width: 400px;
 		padding: 3px;
 	}
+
+/* Sidenav for Docs
+-------------------------------------------------- */
+
+.bs-docs-sidenav {
+  width: 228px;
+  margin: 0;
+  padding: 0;
+
+  background-color: #fff;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+     -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+          box-shadow: 0 1px 4px rgba(0,0,0,.065);
+}
+.bs-docs-sidenav > li > a {
+  display: block;
+  width: 190px \9;
+  margin: 0 0 -1px;
+  padding: 8px 14px;
+  border: 1px solid #e5e5e5;
+}
+.bs-docs-sidenav > li:first-child > a {
+  -webkit-border-radius: 6px 6px 0 0;
+     -moz-border-radius: 6px 6px 0 0;
+          border-radius: 6px 6px 0 0;
+}
+.bs-docs-sidenav > li:last-child > a {
+  -webkit-border-radius: 0 0 6px 6px;
+     -moz-border-radius: 0 0 6px 6px;
+          border-radius: 0 0 6px 6px;
+}
+.bs-docs-sidenav > .active > a {
+  position: relative;
+  z-index: 2;
+  padding: 9px 15px;
+  border: 0;
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+     -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+          box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+}
+/* Chevrons */
+.bs-docs-sidenav .icon-chevron-right {
+  float: right;
+  margin-top: 2px;
+  margin-right: -6px;
+  opacity: .25;
+}
+.bs-docs-sidenav > li > a:hover {
+  background-color: #f5f5f5;
+}
+.bs-docs-sidenav a:hover .icon-chevron-right {
+  opacity: .5;
+}
+.bs-docs-sidenav .active .icon-chevron-right,
+.bs-docs-sidenav .active a:hover .icon-chevron-right {
+  background-image: url(../img/glyphicons-halflings-white.png);
+  opacity: 1;
+}
+.bs-docs-sidenav.affix {
+  top: 40px;
+}
+.bs-docs-sidenav.affix-bottom {
+  position: absolute;
+  top: auto;
+  bottom: 270px;
+}	
+
+.nav-list.affix-top {
+	position: fixed;
+}
 	</style>
 
 </head>
 <body>
+	<div class="container">
+	<div class="row">		
+      <div class="span3 bs-docs-sidenav">
+        <ul class="nav nav-list bs-docs-sidenav affix-top">
+          <li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
+          <li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
+          <li><a href="#test3"><i class="icon-chevron-right"></i> Example 3</a></li>
+          <li><a href="#test4"><i class="icon-chevron-right"></i> Example 4</a></li>
+          <li><a href="#test5"><i class="icon-chevron-right"></i> Example 5</a></li>
+          <li><a href="#test6"><i class="icon-chevron-right"></i> Example 6</a></li>
+          <li><a href="#test7"><i class="icon-chevron-right"></i> Example 7</a></li>
+          <li><a href="#test8"><i class="icon-chevron-right"></i> Example 8</a></li>
+          <li><a href="#test9"><i class="icon-chevron-right"></i> Example 9</a></li>
+          <li><a href="#test10"><i class="icon-chevron-right"></i> Example 10</a></li>
+          <li><a href="#test11"><i class="icon-chevron-right"></i> Example 11</a></li>
+          <li><a href="#test12"><i class="icon-chevron-right"></i> Example 12</a></li>
+          <li><a href="#test13"><i class="icon-chevron-right"></i> Example 13</a></li>
+          <li><a href="#test14"><i class="icon-chevron-right"></i> Example 14</a></li>
+          <li><a href="#test15"><i class="icon-chevron-right"></i> Example 15</a></li>                    
+        </ul>
+      </div>
+		<div class="span9">
+			
+			<div class="row">
+				<div class="span4">
+					<div id="test1"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #1</h3>
+					<p>Most basic use of the plugin</p>					
+					<pre>$('#test1').nutritionLabel();</pre>
+				</div>
+			</div>
+			
+			<br /><br />
 
-<h1>Example #1 - Most basic use of the plugin</h1>
-<div id="test1"></div>
-<textarea readonly id="test1Val">
-$('#test1').nutritionLabel();
-</textarea><hr/><hr/><hr/>
-
-
-<h1>Example #2 - Giving specific nutrition label values and hiding some of the parts of the nutrition label</h1>
-<div id="test2"></div>
-<input type="text" value="http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing" readonly><br/><br/>
-<textarea readonly id="test2Val">
+			<div class="row">
+				<div class="span4">
+					<div id="test2"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #2</h3>
+					<p>Giving specific nutrition label values and hiding some of the parts of the nutrition label</p>					
+<pre>
 $('#test2').nutritionLabel({
 	'showServingSize' : false,
 	'showDisclaimer' : false,
@@ -60,21 +172,27 @@ $('#test2').nutritionLabel({
 	'valueCalcium' : 0,
 	'valueIron' : 0
 });
-</textarea><hr/><hr/><hr/>
+</pre>
+<pre>http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing</pre>
+				</div>
+			</div>			
+			
+			<br /><br /><br />
 
-
-<h1>Example #3 - similar to example #2 but with different plugin options</h1>
-<div id="test3"></div>
-<input type="text" value="http://www.nutritionix.com/label/ingredient/6933" readonly><br/><br/>
-<textarea readonly id="test3Val">
+			<div class="row">
+				<div class="span4">
+					<div id="test3"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #3</h3>					
+					<p>Similar to example #2 but with different plugin options</p>					
+<pre>
 $('#test3').nutritionLabel({
 	'showServingSize' : false,
 	'showIngredients' : false,
 	'itemName' : '1.00 x Bleu Cheese Dressing',
-
 	'showPolyFat' : false,
 	'showMonoFat' : false,
-
 	'valueCalories' : 450,
 	'valueFatCalories' : 430,
 	'valueTotalFat' : 48,
@@ -90,16 +208,24 @@ $('#test3').nutritionLabel({
 	'valueVitaminC' : 0,
 	'valueCalcium' : 0,
 	'valueIron' : 0,
-
 	'disclaimer' : 'The nutrition information on this page is derived from published resources, or from information provided from McAlister\'s suppliers. The nutrition information is based on standard product formulations and serving sizes. All nutrition information is based on average values for ingredients from McAlister\'s suppliers throughout the U.S. Variation in serving sizes, preparation techniques, product testing and sources of supply, as well as regional and seasonal differences may affect the nutrition values for each product. In addition, product formulations change periodically. You should expect some variation in the nutrient content of the products purchased in our restaurants.<br/><br/>McAlister\'s Corporation, Inc., its franchisees and employees do not assume responsibility for a particular allergy or sensitivity to any food provided in our restaurants. Federal regulations have identified 8 major food allergens: milk, eggs, wheat, soybeans, peanuts, tree nuts, fish, and crustacean shellfish. For your convenience, menu items and ingredients that contain these major allergens have been indicated. Many of our products contain or may come into contact with or are produced at facilities that handle common allergens, including wheat, peanuts, soy, tree nuts, milk, eggs, fish and shellfish. Please ask our front counter employees or restaurant managers if you have any special concerns.'
 });
-</textarea><hr/><hr/><hr/>
+</pre>
+<pre>http://www.nutritionix.com/label/ingredient/6933</pre>
+				</div>
+			</div>
 
+			<br /><br /><br />
 
-<h1>Example #4 - similar to example #2 but with different plugin options. One thing to note is the use of serving size, serving size unit and showing the serving container to overwrite the default value (compare it to other examples to see the difference)</h1>
-<div id="test4"></div>
-<input type="text" value="http://www.nutritionix.com/duchess/chocolate-donuts" readonly><br/><br/>
-<textarea readonly id="test4Val">
+			<div class="row">
+				<div class="span4">
+					<div id="test4"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #4</h3>
+					<p>Similar to example #2 but with different plugin options. One thing to note is the use of serving size, serving size unit and showing the serving container to overwrite the default value (compare it to other examples to see the difference)</p>					
+
+<pre>
 $('#test4').nutritionLabel({
 	'showDisclaimer' : false,
 	'showItemName' : false,
@@ -128,13 +254,23 @@ $('#test4').nutritionLabel({
 	'valueSugars' : 24,
 	'valueProteins' : 4
 });
-</textarea><hr/><hr/><hr/>
+</pre>
+<pre>http://www.nutritionix.com/duchess/chocolate-donuts</pre>
 
+				</div>
+			</div>
 
-<h1>Example #5 - similar to example #4 but the verry long ingredient list has a scroll to prevent a very tall nutrition label</h1>
-<div id="test5"></div>
-<input type="text" value="http://www.nutritionix.com/label/item/47584" readonly><br/><br/>
-<textarea readonly id="test5Val">
+			<br /><br /><br />
+
+			<div class="row">
+				<div class="span4">
+					<div id="test5"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #5</h3>
+					<p>Similar to example #4 but the verry long ingredient list has a scroll to prevent a very tall nutrition label</p>					
+
+<pre>
 $('#test5').nutritionLabel({
 	'scrollLongIngredients' : true,
 	'showItemName' : false,
@@ -163,13 +299,21 @@ $('#test5').nutritionLabel({
 	'valueSugars' : 24,
 	'valueProteins' : 4
 });
-</textarea><hr/><hr/><hr/>
+</pre>
+<pre>http://www.nutritionix.com/label/item/47584</pre>
+				</div>
+			</div>
 
+			<br /><br /><br />
 
-<h1>Example #6 - similar to example #2 but with only a few visible values</h1>
-<div id="test6"></div>
-<input type="text" value="http://www.nutritionix.com/ufood-grill/fire-grilled-sirloin-tips" readonly><br/><br/>
-<textarea readonly id="test6Val">
+			<div class="row">
+				<div class="span4">
+					<div id="test6"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #6</h3>
+					<p>Similar to example #2 but with only a few visible values</p>					
+<pre>
 $('#test6').nutritionLabel({
 	'showServingSize' : false,
 	'showDisclaimer' : false,
@@ -196,13 +340,22 @@ $('#test6').nutritionLabel({
 	'valueSugars' : 18,
 	'valueProteins' : 48
 });
-</textarea><hr/><hr/><hr/>
+</pre>
+<pre>http://www.nutritionix.com/ufood-grill/fire-grilled-sirloin-tips</pre>
+				</div>
+			</div>
 
+			<br /><br /><br />
 
-<h1>Example #7 - similar to example #6 but with a few different settings</h1>
-<div id="test7"></div>
-<input type="text" value="http://www.nutritionix.com/label/item/338" readonly><br/><br/>
-<textarea readonly id="test7Val">
+			<div class="row">
+				<div class="span4">
+					<div id="test7"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #7</h3>
+					<p>Similar to example #6 but with a few different settings</p>					
+
+<pre>
 $('#test7').nutritionLabel({
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
@@ -228,13 +381,22 @@ $('#test7').nutritionLabel({
 	'valueSugars' : 18,
 	'valueProteins' : 48
 });
-</textarea><hr/><hr/><hr/>
+</pre>
+<pre>http://www.nutritionix.com/label/item/338</pre>
+				</div>
+			</div>
 
+			<br /><br /><br />
 
-<h1>Example #8 - similar to example #2 but with different plugin options. Things to note are the use of 'not applicable' and text value instead of numerical value on sugar</h1>
-<div id="test8"></div>
-<input type="text" value="http://www.nutritionix.com/the-old-spaghetti-factory/olive-tapenade" readonly><br/><br/>
-<textarea readonly id="test8Val">
+			<div class="row">
+				<div class="span4">
+					<div id="test8"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #8</h3>
+					<p>Similar to example #2 but with different plugin options. Things to note are the use of 'not applicable' and text value instead of numerical value on sugar</p>					
+					
+<pre>
 $('#test8').nutritionLabel({
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
@@ -261,13 +423,22 @@ $('#test8').nutritionLabel({
 	'valueSugars' : '<1g',
 	'valueProteins' : 7
 });
-</textarea><hr/><hr/><hr/>
+</pre>
+<pre>http://www.nutritionix.com/the-old-spaghetti-factory/olive-tapenade</pre>
+				</div>
+			</div>
 
+			<br /><br /><br />			
 
-<h1>Example #9 - similar to example #8 but with a few different settings</h1>
-<div id="test9"></div>
-<input type="text" value="http://www.nutritionix.com/label/item/6381" readonly><br/><br/>
-<textarea readonly id="test9Val">
+			<div class="row">
+				<div class="span4">
+					<div id="test9"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #9</h3>
+					<p>Similar to example #8 but with a few different settings</p>					
+					
+<pre>
 $('#test9').nutritionLabel({
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
@@ -293,13 +464,23 @@ $('#test9').nutritionLabel({
 	'valueSugars' : '<1g',
 	'valueProteins' : 7
 });
-</textarea><hr/><hr/><hr/>
+</pre>
+<pre>http://www.nutritionix.com/label/item/6381</pre>
+				</div>
+			</div>
+
+			<br /><br />	<br />		
+
+			<div class="row">
+				<div class="span4">
+					<div id="test10"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #10</h3>
+					<p>Example where a few of the values are not applicable</p>										
 
 
-<h1>Example #10 - example where a few of the values are not applicable</h1>
-<div id="test10"></div>
-<input type="text" value="http://www.nutritionix.com/teds-montana-grill/bar-none-sliders-bison" readonly><br/><br/>
-<textarea readonly id="test10Val">
+<pre>
 $('#test10').nutritionLabel({
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
@@ -326,12 +507,21 @@ $('#test10').nutritionLabel({
 	'valueSatFat' : 25,
 	'valueSodium' : 1750
 });
-</textarea><hr/><hr/><hr/>
+</pre>
+<pre>http://www.nutritionix.com/teds-montana-grill/bar-none-sliders-bison</pre>
+				</div>
+			</div>					
 
+			<br /><br /><br />
 
-<h1>Example #11 - all values are text instead of numerical</h1>
-<div id="test11"></div>
-<textarea readonly id="test11Val">
+			<div class="row">
+				<div class="span4">
+					<div id="test11"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #11</h3>
+					<p>All values are text instead of numerical</p>					
+<pre>
 $('#test11').nutritionLabel({
 	'valueCalories' : '~100',
 	'valueFatCalories' : '<1',
@@ -351,12 +541,23 @@ $('#test11').nutritionLabel({
 	'valueCalcium' : '<5%',
 	'valueIron' : '<1%'
 });
-</textarea><hr/><hr/><hr/>
+</pre>
 
+				</div>
+			</div>	
 
-<h1>Example #12 - similar to example #8 but the text are not english and has a custom width to accommodate the title</h1>
-<div id="test12"></div>
-<textarea readonly id="test12Val">
+			<br /><br />	<br />						
+
+			<div class="row">
+				<div class="span9">
+					<div id="test12"></div>
+				</div>
+			</div>	
+			<div class="row">
+				<div class="span9">
+					<h3>Example #12</h3>
+					<p>Similar to example #8 but the text are not english and has a custom width to accommodate the title</p>					
+<pre>
 $('#test12').nutritionLabel({
 	'width' : 395,
 	'showServingSize' : false,
@@ -412,12 +613,20 @@ $('#test12').nutritionLabel({
 	'textPercentDailyPart1' : 'Des valeurs quotidiennes de pour cent sont basées sur a',
 	'textPercentDailyPart2' : 'régime de calorie'
 });
-</textarea><hr/><hr/><hr/>
+</pre>
+				</div>
+			</div>	
 
+			<br /><br />	<br />						
 
-<h1>Example #13 - all values are not applicable and the N/A image is different</h1>
-<div id="test13"></div>
-<textarea readonly id="test13Val">
+			<div class="row">
+				<div class="span4">
+					<div id="test13"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #13</h3>
+					<p>all values are not applicable and the N/A image is different</p>					
+<pre>
 $('#test13').nutritionLabel({
 	'naImage' : 'demo_images/cms_delete.png',
 	'naCalories' : true,
@@ -438,12 +647,21 @@ $('#test13').nutritionLabel({
 	'naCalcium' : true,
 	'naIron' : true
 });
-</textarea><hr/><hr/><hr/>
+</pre>
 
+				</div>
+			</div>	
 
-<h1>Example #14 - similar to example #3 but with a few different settings - different calorie intake, decimal places for nutrition changed from 1 to 2, decimal places for the "% daily values" is changed from 0 to 1, showing the home page link at the bottom and customizing it</h1>
-<div id="test14"></div>
-<textarea readonly id="test14Val">
+			<br /><br /><br />							
+
+			<div class="row">
+				<div class="span4">
+					<div id="test14"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #14</h3>
+					<p>Similar to example #3 but with a few different settings - different calorie intake, decimal places for nutrition changed from 1 to 2, decimal places for the "% daily values" is changed from 0 to 1, showing the home page link at the bottom and customizing it</p>					
+<pre>
 $('#test14').nutritionLabel({
 	'calorieIntake' : 1222,
 	'showServingSize' : false,
@@ -477,12 +695,21 @@ $('#test14').nutritionLabel({
 
 	'disclaimer' : 'Lorem Ipsum Sit Amet'
 });
-</textarea><hr/><hr/><hr/>
+</pre>
+				</div>
+			</div>					
 
+			<br /><br /><br />
 
-<h1>Example #15 - similar to example #3 but the "recommended daily intake values" are halved</h1>
-<div id="test15"></div>
-<textarea readonly id="test15Val">
+			<div class="row">
+				<div class="span4">
+					<div id="test15"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #15</h3>
+					<p>Similar to example #3 but the "recommended daily intake values" are halved</p>					
+					<pre>$('#test1').nutritionLabel();</pre>
+<pre>
 $('#test15').nutritionLabel({
 	'showServingSize' : false,
 	'showIngredients' : false,
@@ -516,13 +743,57 @@ $('#test15').nutritionLabel({
 
 	'disclaimer' : 'Lorem Ipsum Sit Amet'
 });
+</pre>
+				</div>
+			</div>																																				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </textarea><hr/><hr/><hr/>
 
+
+
+	
+	</div>
+</div>	
+</div>
 
 <script type="text/javascript" src="../js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="../nutritionLabel.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	/*
 	eval( eval( $('#test1Val').val() ) );
 	eval( eval( $('#test2Val').val() ) );
 	eval( eval( $('#test3Val').val() ) );
@@ -538,11 +809,423 @@ $(document).ready(function(){
 	eval( eval( $('#test13Val').val() ) );
 	eval( eval( $('#test14Val').val() ) );
 	eval( eval( $('#test15Val').val() ) );
+    */
 
 	var inputs, index;
 	inputs = document.getElementsByTagName('textarea');
 	for (index = 0; index < inputs.length; ++index)
 		inputs[index].style.height = inputs[index].scrollHeight + 12;
+
+	
+	$('#test1').nutritionLabel();	
+
+	$('#test2').nutritionLabel({
+		'showServingSize' : false,
+		'showDisclaimer' : false,
+		'itemName' : '1.00 x Bleu Cheese Dressing',
+		'ingredientList' : 'Bleu Cheese Dressing',
+		'showPolyFat' : false,
+		'showMonoFat' : false,
+		'valueCalories' : 450,
+		'valueFatCalories' : 430,
+		'valueTotalFat' : 48,
+		'valueSatFat' : 6,
+		'valueTransFat' : 0,
+		'valueCholesterol' : 30,
+		'valueSodium' : 780,
+		'valueTotalCarb' : 3,
+		'valueFibers' : 0,
+		'valueSugars' : 3,
+		'valueProteins' : 3,
+		'valueVitaminA' : 0,
+		'valueVitaminC' : 0,
+		'valueCalcium' : 0,
+		'valueIron' : 0
+	});	
+
+$('#test3').nutritionLabel({
+	'showServingSize' : false,
+	'showIngredients' : false,
+	'itemName' : '1.00 x Bleu Cheese Dressing',
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0,
+	'disclaimer' : 'The nutrition information on this page is derived from published resources, or from information provided from McAlister\'s suppliers. The nutrition information is based on standard product formulations and serving sizes. All nutrition information is based on average values for ingredients from McAlister\'s suppliers throughout the U.S. Variation in serving sizes, preparation techniques, product testing and sources of supply, as well as regional and seasonal differences may affect the nutrition values for each product. In addition, product formulations change periodically. You should expect some variation in the nutrient content of the products purchased in our restaurants.<br/><br/>McAlister\'s Corporation, Inc., its franchisees and employees do not assume responsibility for a particular allergy or sensitivity to any food provided in our restaurants. Federal regulations have identified 8 major food allergens: milk, eggs, wheat, soybeans, peanuts, tree nuts, fish, and crustacean shellfish. For your convenience, menu items and ingredients that contain these major allergens have been indicated. Many of our products contain or may come into contact with or are produced at facilities that handle common allergens, including wheat, peanuts, soy, tree nuts, milk, eggs, fish and shellfish. Please ask our front counter employees or restaurant managers if you have any special concerns.'
+});
+
+$('#test4').nutritionLabel({
+	'showDisclaimer' : false,
+	'showItemName' : false,
+	'showServingsPerContainer' : true,
+	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showFibers' : false,
+	'showVitaminA' : false,
+	'showVitaminC' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+
+	'valueServingSize' : 6,
+	'valueServingSizeUnit' : 'DONUTS',
+
+	'valueCalories' : 400,
+	'valueFatCalories' : 220,
+	'valueTotalFat' : 24,
+	'valueSatFat' : 15,
+	'valueCholesterol' : 25,
+	'valueSodium' : 430,
+	'valueTotalCarb' : 44,
+	'valueSugars' : 24,
+	'valueProteins' : 4
+});
+
+$('#test5').nutritionLabel({
+	'scrollLongIngredients' : true,
+	'showItemName' : false,
+	'showServingsPerContainer' : true,
+	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showFibers' : false,
+	'showVitaminA' : false,
+	'showVitaminC' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+
+	'valueServingSize' : 6,
+	'valueServingSizeUnit' : 'DONUTS',
+
+	'valueCalories' : 400,
+	'valueFatCalories' : 220,
+	'valueTotalFat' : 24,
+	'valueSatFat' : 15,
+	'valueCholesterol' : 25,
+	'valueSodium' : 430,
+	'valueTotalCarb' : 44,
+	'valueSugars' : 24,
+	'valueProteins' : 4
+});	
+
+$('#test6').nutritionLabel({
+	'showServingSize' : false,
+	'showDisclaimer' : false,
+	'showAmountPerServing' : false,
+	'ingredientList' : 'Balsamic Vinaigrette, BBQ Hickory, Steak Tips',
+	'itemName' : '1.00 x Fire Grilled Sirloin Tips',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showVitaminA' : false,
+	'showVitaminC' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+	'showFatCalories' : false,
+
+	'valueCalories' : 410,
+	'valueTotalFat' : 15,
+	'valueSatFat' : 4.5,
+	'valueCholesterol' : 105,
+	'valueSodium' : 1220,
+	'valueTotalCarb' : 20,
+	'valueFibers' : 0,
+	'valueSugars' : 18,
+	'valueProteins' : 48
+});
+
+
+$('#test7').nutritionLabel({
+	'showServingSize' : false,
+	'showAmountPerServing' : false,
+	'ingredientList' : 'Balsamic Vinaigrette, BBQ Hickory, Steak Tips',
+	'itemName' : '1.00 x Fire Grilled Sirloin Tips',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showVitaminA' : false,
+	'showVitaminC' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+	'showFatCalories' : false,
+
+	'valueCalories' : 410,
+	'valueTotalFat' : 15,
+	'valueSatFat' : 4.5,
+	'valueCholesterol' : 105,
+	'valueSodium' : 1220,
+	'valueTotalCarb' : 20,
+	'valueFibers' : 0,
+	'valueSugars' : 18,
+	'valueProteins' : 48
+});
+
+$('#test8').nutritionLabel({
+	'showServingSize' : false,
+	'showAmountPerServing' : false,
+	'showIngredients' : false,
+	'showDisclaimer' : false,
+	'itemName' : '1.00 x Olive Tapenade',
+
+	'naFatCalories' : true,
+	'naPolyFat' : true,
+	'naMonoFat' : true,
+	'naVitaminA' : true,
+	'naVitaminC' : true,
+	'naCalcium' : true,
+	'naIron' : true,
+
+	'valueCalories' : 800,
+	'valueTotalFat' : 66,
+	'valueSatFat' : 7,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 0,
+	'valueSodium' : 1560,
+	'valueTotalCarb' : 46,
+	'valueFibers' : 2,
+	'valueSugars' : '<1g',
+	'valueProteins' : 7
+});
+
+$('#test9').nutritionLabel({
+	'showServingSize' : false,
+	'showAmountPerServing' : false,
+	'showIngredients' : false,
+	'itemName' : '1.00 x Olive Tapenade',
+
+	'naFatCalories' : true,
+	'naPolyFat' : true,
+	'naMonoFat' : true,
+	'naVitaminA' : true,
+	'naVitaminC' : true,
+	'naCalcium' : true,
+	'naIron' : true,
+
+	'valueCalories' : 800,
+	'valueTotalFat' : 66,
+	'valueSatFat' : 7,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 0,
+	'valueSodium' : 1560,
+	'valueTotalCarb' : 46,
+	'valueFibers' : 2,
+	'valueSugars' : '<1g',
+	'valueProteins' : 7
+});
+
+$('#test10').nutritionLabel({
+	'showServingSize' : false,
+	'showAmountPerServing' : false,
+	'showIngredients' : false,
+	'showDisclaimer' : false,
+	'itemName' : '1.00 x Bar None Sliders Bison',
+
+	'naFatCalories' : true,
+	'naTransFat' : true,
+	'naPolyFat' : true,
+	'naMonoFat' : true,
+	'naCholesterol' : true,
+	'naTotalCarb' : true,
+	'naFibers' : true,
+	'naSugars' : true,
+	'naProteins' : true,
+	'naVitaminA' : true,
+	'naVitaminC' : true,
+	'naCalcium' : true,
+	'naIron' : true,
+
+	'valueCalories' : 1110,
+	'valueTotalFat' : 58,
+	'valueSatFat' : 25,
+	'valueSodium' : 1750
+});
+
+
+$('#test11').nutritionLabel({
+	'valueCalories' : '~100',
+	'valueFatCalories' : '<1',
+	'valueTotalFat' : '<1g',
+	'valueSatFat' : 'N/A',
+	'valueTransFat' : '<1g',
+	'valuePolyFat' : '~10g',
+	'valueMonoFat' : '<6g',
+	'valueCholesterol' : '~10mg',
+	'valueSodium' : '<5mg',
+	'valueTotalCarb' : 'Negligible',
+	'valueFibers' : '<1g',
+	'valueSugars' : 'n/a',
+	'valueProteins' : 'not applicable',
+	'valueVitaminA' : 'None',
+	'valueVitaminC' : '~10%',
+	'valueCalcium' : '<5%',
+	'valueIron' : '<1%'
+});
+
+$('#test12').nutritionLabel({
+	'width' : 415,
+	'showServingSize' : false,
+	'showAmountPerServing' : false,
+	'showIngredients' : false,
+	'showDisclaimer' : false,
+	'itemName' : '1.00 x Tapenade de oliva',
+
+	'naFatCalories' : true,
+	'naPolyFat' : true,
+	'naMonoFat' : true,
+	'naVitaminA' : true,
+	'naVitaminC' : true,
+	'naCalcium' : true,
+	'naIron' : true,
+
+	'valueCalories' : 800,
+	'valueTotalFat' : 66,
+	'valueSatFat' : 7,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 0,
+	'valueSodium' : 1560,
+	'valueTotalCarb' : 46,
+	'valueFibers' : 2,
+	'valueSugars' : '<1g',
+	'valueProteins' : 7,
+
+	'textNutritionFacts' : 'Información Nutricional',
+	'textDailyValues' : 'Valors Diaris',
+	'textServingSize' : 'Servire Dimensioni',
+	'textServingsPerContainer' : 'Porções por embalagem',
+	'textAmountPerServing' : 'Menge pro Umhüllung',
+	'textCalories' : 'Kalorien',
+	'textFatCalories' : 'Las calorías de la grasa',
+	'textTotalFat' : 'Celkové množství tuků',
+	'textSatFat' : 'Mættet fedt',
+	'textTransFat' : 'Trans Λίπος',
+	'textPolyFat' : 'לגבי שומים) שומן',
+	'textMonoFat' : 'Kövér POP',
+	'textCholesterol' : 'Cholestérol',
+	'textSodium' : 'sodio',
+	'textTotalCarb' : 'Gesamtkohlenhydrate',
+	'textFibers' : ' Fibra dietética',
+	'textSugars' : 'Sucres',
+	'textProteins' : 'Proteína ',
+	'textVitaminA' : 'Bitamina A',
+	'textVitaminC' : 'C-vitamin',
+	'textCalcium' : 'Calcio',
+	'textIron' : 'Eisen',
+	'ingredientLabel' : 'INGREDIENTE:',
+	'ingredientList' : 'Keines',
+	'disclaimer' : 'Merken Sie bitte, dass diese Nahrungswerte basierten auf unseren dienenden Standardteilen geschätzt werden. Wie Nahrungsmittelumhüllungen möglicherweise eine geringfügige Abweichung jedes Mal Sie Besuch haben, erwarten Sie bitte diese Werte, um mit herein 10% zu sein + /-Ihrer gegenwärtigen Mahlzeit. Wenn Sie irgendwelche Fragen über unseren Nahrungstaschenrechner haben, treten Sie bitte mit Nutritionix in Verbindung.',
+	'textPercentDailyPart1' : 'Des valeurs quotidiennes de pour cent sont basées sur a',
+	'textPercentDailyPart2' : 'régime de calorie'
+});
+
+$('#test13').nutritionLabel({
+	'naImage' : 'demo_images/cms_delete.png',
+	'naCalories' : true,
+	'naFatCalories' : true,
+	'naTotalFat' : true,
+	'naSatFat' : true,
+	'naTransFat' : true,
+	'naPolyFat' : true,
+	'naMonoFat' : true,
+	'naCholesterol' : true,
+	'naSodium' : true,
+	'naTotalCarb' : true,
+	'naFibers' : true,
+	'naSugars' : true,
+	'naProteins' : true,
+	'naVitaminA' : true,
+	'naVitaminC' : true,
+	'naCalcium' : true,
+	'naIron' : true
+});
+
+$('#test14').nutritionLabel({
+	'calorieIntake' : 1222,
+	'showServingSize' : false,
+	'showIngredients' : false,
+	'itemName' : '1.00 x Bleu Cheese Dressing',
+	'decimalPlacesForNutrition' : 2,
+	'decimalPlacesForDailyValues' : 1,
+
+	'showHomePrintLink' : true,
+	'urlHomePrintLink' : 'http://facebook.com',
+	'nameHomePrintLink' : 'Google Name but the URL is facebook\'s',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0,
+
+	'disclaimer' : 'Lorem Ipsum Sit Amet'
+});
+
+$('#test15').nutritionLabel({
+	'showServingSize' : false,
+	'showIngredients' : false,
+	'itemName' : '1.00 x Bleu Cheese Dressing',
+
+	'dailyValueTotalFat' : 32,
+	'dailyValueSatFat' : 10,
+	'dailyValueCholesterol' : 150,
+	'dailyValueSodium' : 1200,
+	'dailyValueCarb' : 150,
+	'dailyValueFiber' : 12,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0,
+
+	'disclaimer' : 'Lorem Ipsum Sit Amet'
+});
+
+
 });
 </script>
 
