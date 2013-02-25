@@ -675,7 +675,64 @@
 						}
 
 					nutritionLabel += tab3 + '</div>\n';
+
+			  		nutritionLabel += tab3 + '<table class="tblCalorieDiet">\n';
+			          nutritionLabel += tab4 + '<thead>\n';
+			            nutritionLabel += tab5 + '<tr>\n';
+			              nutritionLabel += tab6 + '<th>&nbsp;</th>\n';
+			              nutritionLabel += tab6 + '<th>Calories</th>\n';
+			              nutritionLabel += tab6 + '<th>2,000</th>\n';
+			              nutritionLabel += tab6 + '<th>2,500</th>\n';
+			            nutritionLabel += tab5 + '</tr>\n';
+			          nutritionLabel += tab4 + '</thead>\n';
+			          nutritionLabel += tab4 + '<tbody>\n';
+			            nutritionLabel += tab5 + '<tr>\n';
+			              nutritionLabel += tab6 + '<td>Total Fat</td>\n';
+			              nutritionLabel += tab6 + '<td>Less than</td>\n';
+			              nutritionLabel += tab6 + '<td>65g</td>\n';
+			              nutritionLabel += tab6 + '<td>80g</td>\n';
+			            nutritionLabel += tab5 + '</tr>\n';
+			            nutritionLabel += tab5 + '<tr>\n';
+			              nutritionLabel += tab6 + '<td>&nbsp;&nbsp; Saturated Fat</td>\n';
+			              nutritionLabel += tab6 + '<td>Less than</td>\n';
+			              nutritionLabel += tab6 + '<td>20g</td>\n';
+			              nutritionLabel += tab6 + '<td>25g</td>\n';
+			            nutritionLabel += tab5 + '</tr>\n';          
+			            nutritionLabel += tab5 + '<tr>\n';
+			              nutritionLabel += tab6 + '<td>Cholesterol</td>\n';
+			              nutritionLabel += tab6 + '<td>Less than</td>\n';
+			              nutritionLabel += tab6 + '<td>300mg</td>\n';
+			              nutritionLabel += tab6 + '<td>300mg</td>\n';
+			            nutritionLabel += tab5 + '</tr>\n';              
+			            nutritionLabel += tab5 + '<tr>\n';
+			              nutritionLabel += tab6 + '<td>Sodium</td>\n';
+			              nutritionLabel += tab6 + '<td>Less than</td>\n';
+			              nutritionLabel += tab6 + '<td>2400mg</td>\n';
+			              nutritionLabel += tab6 + '<td>2400mg</td>\n';
+			            nutritionLabel += tab5 + '</tr>\n'; 
+			            nutritionLabel += tab5 + '<tr>\n';
+			              nutritionLabel += tab6 + '<td>Total Carbohydrate</td>\n';
+			              nutritionLabel += tab6 + '<td>&nbsp;</td>\n';
+			              nutritionLabel += tab6 + '<td>65g</td>\n';
+			              nutritionLabel += tab6 + '<td>80g</td>\n';
+			            nutritionLabel += tab5 + '</tr>\n';                   
+			            nutritionLabel += tab5 + '<tr>\n';
+			              nutritionLabel += tab6 + '<td>&nbsp;&nbsp; Dietary</td>\n';
+			              nutritionLabel += tab6 + '<td>&nbsp;</td>\n';
+			              nutritionLabel += tab6 + '<td>65g</td>\n';
+			              nutritionLabel += tab6 + '<td>80g</td>\n';
+			            nutritionLabel += tab5 + '</tr>\n';                
+			          nutritionLabel += tab4 + '</tbody>\n';
+			        nutritionLabel += tab3 + '</table>\n';	
+
 				nutritionLabel += tab3 + '</div>\n';
+
+
+
+			
+
+
+
 
 
 				if ($this.settings.showBottomLink){

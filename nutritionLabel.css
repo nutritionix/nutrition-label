@@ -85,7 +85,10 @@
 	margin-left: -7px;
 }
 .nutritionLabel .tblCalorieDiet th {
+	font-size:  11px;	
 	border-bottom: 1px solid #333;
+	text-align: left;
+	color: #777;
 }
 .nutritionLabel .tblCalorieDiet {
 	width: 100%;
@@ -93,6 +96,8 @@
 .nutritionLabel .tblCalorieDiet td {
 	padding: 0;
 	line-height: normal;
+	font-size:  11px;
+	color: #777;	
 }
 .ar { text-align: right; }
 .fr { float: right; }
@@ -120,4 +125,7 @@
 	width: 120px;
 	background-color: white;
 	z-index: 10000;
+}
+.spaceAbove {
+ height: 10px;
 }
