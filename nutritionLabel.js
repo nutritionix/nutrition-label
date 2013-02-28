@@ -3,7 +3,7 @@
  *
  * This plugin allows you to create a fully customizable nutrition label
  *
- * @authors			majin22 <leejay22@gmail.com> (js) and genesis23rd <genesis23rd@gmail.com> (css and html)
+ * @authors			majin22 (js) and genesis23rd (css and html)
  * @copyright		Copyright (c) 2012 Nutritionix.
  * @license			This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.
  * @link				http://www.nutritionix.com
