@@ -1,6 +1,6 @@
-# This is an H1 #
+# Nutrition Label jQuery Plugin by Nutritionix #
 
-> Test Test
+See a Demo: [http://dev2.nutritionix.com/html/label-jquery-plugin/html/demo.html](http://dev2.nutritionix.com/html/label-jquery-plugin/html/demo.html)
+---
 
-> 1. Test 1
-> 2. Test 2
+Summary: 
