@@ -1,0 +1,175 @@
+
+version 1.0.0 - feb 28, 2013
+ - initial version
+ - customizable vales are (taken from the default setting)
+		//default width of the nutrition label
+		width : 260,
+		//the name of the item for this label (eg. cheese burger or mayonnaise)
+		itemName : 'Item / Ingredient Name',
+		//to scroll the ingredients if the innerheight is > scrollHeightComparison
+		scrollLongIngredients : false,
+		scrollHeightComparison : 100,
+		//the height in px of the ingredients div
+		scrollHeightPixel : 95,
+		//this is to set how many decimal places will be shown on the nutrition values (calories, fat, protein, vitamin a, iron, etc)
+		decimalPlacesForNutrition : 1,
+		//this is to set how many decimal places will be shown for the "% daily values*"
+		decimalPlacesForDailyValues : 0,
+
+		//show the customizable link at the bottom
+		showBottomLink : false,
+		//url for the customizable link at the bottom
+		urlBottomLink : 'http://www.nutritionix.com',
+		//link name for the customizable link at the bottom
+		nameBottomLink : 'Nutritionix',
+
+		//default calorie intake
+		calorieIntake : 2000,
+
+		//these are the recommended daily intake values
+		dailyValueTotalFat : 65,
+		dailyValueSatFat : 20,
+		dailyValueCholesterol : 300,
+		dailyValueSodium : 2400,
+		dailyValueCarb : 300,
+		dailyValueFiber : 25,
+
+		//these values can be change to hide some nutrition values
+		showServingSize : true,
+		showCalories : true,
+		showFatCalories : true,
+		showTotalFat : true,
+		showSatFat : true,
+		showTransFat : true,
+		showPolyFat : true,
+		showMonoFat : true,
+		showCholesterol : true,
+		showSodium : true,
+		showTotalCarb : true,
+		showFibers : true,
+		showSugars : true,
+		showProteins : true,
+		showVitaminA : true,
+		showVitaminC : true,
+		showCalcium : true,
+		showIron : true,
+
+		//to show the 'amount per serving' text
+		showAmountPerServing : true,
+		//to show the 'servings per container' data and replace the default 'Serving Size' value (without unit and servings per container text and value)
+		showServingsPerContainer : false,
+		//to show the item name. there are special cases where the item name is replaced with 'servings per container' value
+		showItemName : true,
+		//to show the ingredients value or not
+		showIngredients : true,
+		//to show the calorie diet info at the bottom of the label
+		showCalorieDiet : false,
+
+		//the are to set some values as 'not applicable'. this means that the nutrition label will appear but the value will be a 'gray dash'
+		naServingSize : false,
+		naCalories : false,
+		naFatCalories : false,
+		naTotalFat : false,
+		naSatFat : false,
+		naTransFat : false,
+		naPolyFat : false,
+		naMonoFat : false,
+		naCholesterol : false,
+		naSodium : false,
+		naTotalCarb : false,
+		naFibers : false,
+		naSugars : false,
+		naProteins : false,
+		naVitaminA : false,
+		naVitaminC : false,
+		naCalcium : false,
+		naIron : false,
+
+		//these are the default values for the nutrition info
+		valueServingSize : 0,
+		valueServingSizeUnit : '',
+		valueServingPerContainer : 1,
+		valueCalories : 0,
+		valueFatCalories : 0,
+		valueTotalFat : 0,
+		valueSatFat : 0,
+		valueTransFat : 0,
+		valuePolyFat : 0,
+		valueMonoFat : 0,
+		valueCholesterol : 0,
+		valueSodium : 0,
+		valueTotalCarb : 0,
+		valueFibers : 0,
+		valueSugars : 0,
+		valueProteins : 0,
+		valueVitaminA : 0,
+		valueVitaminC : 0,
+		valueCalcium : 0,
+		valueIron : 0,
+
+		//these are the values for the optional calorie diet
+		valueCol1CalorieDiet : 2000,
+		valueCol2CalorieDiet : 2500,
+		valueCol1DietaryTotalFat : 0,
+		valueCol2DietaryTotalFat : 0,
+		valueCol1DietarySatFat : 0,
+		valueCol2DietarySatFat : 0,
+		valueCol1DietaryCholesterol : 0,
+		valueCol2DietaryCholesterol : 0,
+		valueCol1DietarySodium : 0,
+		valueCol2DietarySodium : 0,
+		valueCol1DietaryTotalCarb : 0,
+		valueCol2DietaryTotalCarb : 0,
+		valueCol1Dietary : 0,
+		valueCol2Dietary : 0,
+
+
+		//these text settings is so you can create nutrition labels in different languages or to simply change them to your need
+		textNutritionFacts : 'Nutrition Facts',
+		textDailyValues : 'Daily Value',
+		textServingSize : 'Serving Size',
+		textServingsPerContainer : 'Servings Per Container',
+		textAmountPerServing : 'Amount Per Serving',
+		textCalories : 'Calories',
+		textFatCalories : 'Calories from Fat',
+		textTotalFat : 'Total Fat',
+		textSatFat : 'Saturated Fat',
+		textTransFat : '<i>Trans</i> Fat',
+		textPolyFat : 'Polyunsaturated Fat',
+		textMonoFat : 'Monounsaturated Fat',
+		textCholesterol : 'Cholesterol',
+		textSodium : 'Sodium',
+		textTotalCarb : 'Total Carbohydrates',
+		textFibers : 'Dietary Fiber',
+		textSugars : 'Sugars',
+		textProteins : 'Protein',
+		textVitaminA : 'Vitamin A',
+		textVitaminC : 'Vitamin C',
+		textCalcium : 'Calcium',
+		textIron : 'Iron',
+		ingredientLabel : 'INGREDIENTS:',
+		ingredientList : 'None',
+		textPercentDailyPart1 : 'Percent Daily Values are based on a',
+		textPercentDailyPart2 : 'calorie diet'
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+version 1.0.1 - mar 2, 2013
+ - added more customizable values (taken from the default setting)
+		//to allow percentage width - usually needed for mobile sites
+		allowPercentageWidth : false,
+		percentageWidth : 99,
+
+		//the brand name of the item for this label (eg. just salad)
+		brandName : 'Brand where this item belongs to'
+
+		//to show the item name at the top of the page
+		showItemNameAtTheTop : false,
+		//show the brand where this item belongs to
+		showBrandName : false,
+
+
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
