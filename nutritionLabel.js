@@ -65,10 +65,17 @@
 
 
 	$.fn.nutritionLabel.defaultSettings = {
-		//default width of the nutrition label
+		//default fixedWidth of the nutrition label
 		width : 260,
+
+		//to allow percentage width - usually needed for mobile sites
+		allowPercentageWidth : false,
+		percentageWidth : 99,
+
 		//the name of the item for this label (eg. cheese burger or mayonnaise)
 		itemName : 'Item / Ingredient Name',
+		//the brand name of the item for this label (eg. just salad)
+		brandName : 'Brand where this item belongs to',
 		//to scroll the ingredients if the innerheight is > scrollHeightComparison
 		scrollLongIngredients : false,
 		scrollHeightComparison : 100,
@@ -123,6 +130,10 @@
 		showServingsPerContainer : false,
 		//to show the item name. there are special cases where the item name is replaced with 'servings per container' value
 		showItemName : true,
+		//to show the item name at the top of the page
+		showItemNameAtTheTop : false,
+		//show the brand where this item belongs to
+		showBrandName : false,
 		//to show the ingredients value or not
 		showIngredients : true,
 		//to show the calorie diet info at the bottom of the label
@@ -312,7 +323,17 @@
 			var calorieIntakeMod = (parseFloat($this.settings.calorieIntake) / 2000).toFixed(2);
 
 			//this is a straighforward code - creates the html code for the label based on the settings
+		if (!$this.settings.allowPercentageWidth)
 			var nutritionLabel = '<div class="nutritionLabel" style="width: '+ $this.settings.width +'px;">\n';
+		else
+			var nutritionLabel = '<div class="nutritionLabel" style="width: '+ $this.settings.percentageWidth +'%;">\n';
+
+			if ($this.settings.showItemName && $this.settings.showItemNameAtTheTop)
+				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div>\n';
+
+			if ($this.settings.showBrandName)
+				nutritionLabel += tab1 + '<div class="brandname">' + $this.settings.brandName + '</div>\n';
+
 				nutritionLabel += tab1 + '<div class="title">' + $this.settings.textNutritionFacts + '</div>\n';
 
 			if ($this.settings.showServingSize){
@@ -339,7 +360,7 @@
 			}
 
 
-			if ($this.settings.showItemName)
+			if ($this.settings.showItemName && !$this.settings.showItemNameAtTheTop)
 				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div>\n';
 
 				nutritionLabel += tab1 + '<div class="bar1"></div>\n';
