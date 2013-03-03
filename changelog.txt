@@ -155,8 +155,10 @@ version 1.0.0 - feb 28, 2013
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
-version 1.0.1 - mar 2, 2013
- - added more customizable values (taken from the default setting)
+version 2.0.0 - mar 3, 2013
+ - some fixes on the showCalorieDiet - the ingredients and calorie daily intake text was included in this block so when it is hidden, these 2 values are hidden too
+ - made some css fix - added a line class on the div with a class dvCalorieDiet (contains the ingredients, calorie daily intake text and calorie diet)
+ - added more customizable values and added a feature to round the values based on FDA rounding rules (taken from the default setting)
 		//to allow percentage width - usually needed for mobile sites
 		allowPercentageWidth : false,
 		percentageWidth : 99,
@@ -169,7 +171,31 @@ version 1.0.1 - mar 2, 2013
 		//show the brand where this item belongs to
 		showBrandName : false,
 
+		//to allow the label to have no border
+		allowNoBorder : false,
 
+		//customizable units for the values
+		unitCalories : '',
+		unitFatCalories : '',
+		unitTotalFat : 'g',
+		unitSatFat : 'g',
+		unitTransFat : 'g',
+		unitPolyFat : 'g',
+		unitMonoFat : 'g',
+		unitCholesterol : 'mg',
+		unitSodium : 'mg',
+		unitTotalCarb : 'g',
+		unitFibers : 'g',
+		unitSugars : 'g',
+		unitProteins : 'g',
+		unitVitaminA : '%',
+		unitVitaminC : '%',
+		unitCalcium : '%',
+		unitIron : '%',
+
+		//to enable rounding of the numerical values based on the FDA rounding rules
+		//http://goo.gl/RMD2O
+		allowFDARounding : false,
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
