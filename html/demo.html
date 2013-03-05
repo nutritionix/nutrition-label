@@ -118,6 +118,7 @@
 				<li><a href="#test10"><i class="icon-chevron-right"></i> Example 10</a></li>
 				<li><a href="#test11"><i class="icon-chevron-right"></i> Example 11</a></li>
 				<li><a href="#test12"><i class="icon-chevron-right"></i> Example 12</a></li>
+				<li><a href="#test13"><i class="icon-chevron-right"></i> Example 13</a></li>
 			</ul>
 		</div>
 		<div class="span9">
@@ -265,6 +266,7 @@ $('#test4').nutritionLabel({
 $('#test5').nutritionLabel({
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
+	'showCalorieDiet' : true,
 	'ingredientList' : 'Balsamic Vinaigrette, BBQ Hickory, Steak Tips',
 	'itemName' : '1.00 x Fire Grilled Sirloin Tips',
 
@@ -404,82 +406,14 @@ $('#test8').nutritionLabel({
 
 
 			<div class="row">
-				<div class="span9">
+				<div class="span4">
 					<div id="test9"></div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="span9">
+				<div class="span5">
 					<h3>Example #9</h3>
-					<p>Similar to example #8 but the text are not english and has a custom width to accommodate the title</p>
+					<p>all values are not applicable and the N/A</p>
 <pre id="pre9">
 $('#test9').nutritionLabel({
-	'width' : 415,
-	'showServingSize' : false,
-	'showAmountPerServing' : false,
-	'showIngredients' : false,
-	'itemName' : '1.00 x Tapenade de oliva',
-
-	'naFatCalories' : true,
-	'naPolyFat' : true,
-	'naMonoFat' : true,
-	'naVitaminA' : true,
-	'naVitaminC' : true,
-	'naCalcium' : true,
-	'naIron' : true,
-
-	'valueCalories' : 800,
-	'valueTotalFat' : 66,
-	'valueSatFat' : 7,
-	'valueTransFat' : 0,
-	'valueCholesterol' : 0,
-	'valueSodium' : 1560,
-	'valueTotalCarb' : 46,
-	'valueFibers' : 2,
-	'valueSugars' : '<1g',
-	'valueProteins' : 7,
-
-	'textNutritionFacts' : 'Información Nutricional',
-	'textDailyValues' : 'Valors Diaris',
-	'textServingSize' : 'Servire Dimensioni',
-	'textServingsPerContainer' : 'Porções por embalagem',
-	'textAmountPerServing' : 'Menge pro Umhüllung',
-	'textCalories' : 'Kalorien',
-	'textFatCalories' : 'Las calorías de la grasa',
-	'textTotalFat' : 'Celkové množství tuků',
-	'textSatFat' : 'Mættet fedt',
-	'textTransFat' : 'Trans Λίπος',
-	'textPolyFat' : 'לגבי שומים) שומן',
-	'textMonoFat' : 'Kövér POP',
-	'textCholesterol' : 'Cholestérol',
-	'textSodium' : 'sodio',
-	'textTotalCarb' : 'Gesamtkohlenhydrate',
-	'textFibers' : ' Fibra dietética',
-	'textSugars' : 'Sucres',
-	'textProteins' : 'Proteína ',
-	'textVitaminA' : 'Bitamina A',
-	'textVitaminC' : 'C-vitamin',
-	'textCalcium' : 'Calcio',
-	'textIron' : 'Eisen',
-	'ingredientLabel' : 'INGREDIENTE:',
-	'ingredientList' : 'Keines',
-	'textPercentDailyPart1' : 'Des valeurs quotidiennes de pour cent sont basées sur a',
-	'textPercentDailyPart2' : 'régime de calorie'
-});
-</pre>
-				</div>
-			</div><br /><br /><br />
-
-
-			<div class="row">
-				<div class="span4">
-					<div id="test10"></div>
-				</div>
-				<div class="span5">
-					<h3>Example #10</h3>
-					<p>all values are not applicable and the N/A</p>
-<pre id="pre10">
-$('#test10').nutritionLabel({
 	'naCalories' : true,
 	'naFatCalories' : true,
 	'naTotalFat' : true,
@@ -505,13 +439,13 @@ $('#test10').nutritionLabel({
 
 			<div class="row">
 				<div class="span4">
-					<div id="test11"></div>
+					<div id="test10"></div>
 				</div>
 				<div class="span5">
-					<h3>Example #11</h3>
+					<h3>Example #10</h3>
 					<p>Similar to example #2 but with a few different settings - different calorie intake, decimal places for nutrition changed from 1 to 2, decimal places for the "% daily values" is changed from 0 to 1, showing the home page link at the bottom and customizing it</p>
-<pre id="pre11">
-$('#test11').nutritionLabel({
+<pre id="pre10">
+$('#test10').nutritionLabel({
 	'calorieIntake' : 1222,
 	'showServingSize' : false,
 	'showIngredients' : false,
@@ -549,14 +483,13 @@ $('#test11').nutritionLabel({
 
 			<div class="row">
 				<div class="span4">
-					<div id="test12"></div>
+					<div id="test11"></div>
 				</div>
 				<div class="span5">
-					<h3>Example #12</h3>
+					<h3>Example #11</h3>
 					<p>Similar to example #2 but the "recommended daily intake values" are halved</p>
-					<pre>$('#test1').nutritionLabel();</pre>
-<pre id="pre12">
-$('#test12').nutritionLabel({
+<pre id="pre11">
+$('#test11').nutritionLabel({
 	'showServingSize' : false,
 	'showIngredients' : false,
 	'itemName' : '1.00 x Bleu Cheese Dressing',
@@ -590,6 +523,113 @@ $('#test12').nutritionLabel({
 </pre>
 				</div>
 			</div>
+
+
+			<div class="row">
+				<div class="span4">
+					<div id="test12"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #12</h3>
+					<p>Similar to example #11 but the calorie diet is enabled (default calorie diet values)</p>
+<pre id="pre12">
+$('#test12').nutritionLabel({
+	'showServingSize' : false,
+	'showIngredients' : false,
+	'showCalorieDiet' : true,
+	'itemName' : '1.00 x Bleu Cheese Dressing',
+
+	'dailyValueTotalFat' : 32,
+	'dailyValueSatFat' : 10,
+	'dailyValueCholesterol' : 150,
+	'dailyValueSodium' : 1200,
+	'dailyValueCarb' : 150,
+	'dailyValueFiber' : 12,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0
+});
+</pre>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="span4">
+					<div id="test13"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #13</h3>
+					<p>Similar to example #11 but the calorie diet is enabled (custom calorie diet values)</p>
+<pre id="pre13">
+$('#test13').nutritionLabel({
+	'showServingSize' : false,
+	'showIngredients' : false,
+	'showCalorieDiet' : true,
+	'itemName' : '1.00 x Bleu Cheese Dressing',
+
+	'dailyValueTotalFat' : 32,
+	'dailyValueSatFat' : 10,
+	'dailyValueCholesterol' : 150,
+	'dailyValueSodium' : 1200,
+	'dailyValueCarb' : 150,
+	'dailyValueFiber' : 12,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0,
+
+	'valueCol1CalorieDiet' : 2200,
+	'valueCol2CalorieDiet' : 2700,
+	'valueCol1DietaryTotalFat' : 120,
+	'valueCol2DietaryTotalFat' : 180,
+	'valueCol1DietarySatFat' : 25,
+	'valueCol2DietarySatFat' : 65,
+	'valueCol1DietaryCholesterol' : 50,
+	'valueCol2DietaryCholesterol' : 70,
+	'valueCol1DietarySodium' : 10,
+	'valueCol2DietarySodium' : 15,
+	'valueCol1DietaryTotalCarb' : 200,
+	'valueCol2DietaryTotalCarb' : 270,
+	'valueCol1Dietary' : 33,
+	'valueCol2Dietary' : 76
+});
+</pre>
+				</div>
+			</div>
+
+
 		</div>
 	</div>
 </div>
@@ -611,6 +651,7 @@ $(document).ready(function(){
 	eval( eval( $('#pre10').html() ) );
 	eval( eval( $('#pre11').html() ) );
 	eval( eval( $('#pre12').html() ) );
+	eval( eval( $('#pre13').html() ) );
 });
 </script>
 
