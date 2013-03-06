@@ -68,9 +68,9 @@
 		//default fixedWidth of the nutrition label
 		width : 260,
 
-		//to allow percentage width - usually needed for mobile sites
-		allowPercentageWidth : false,
-		percentageWidth : 99,
+		//to allow custom width - usually needed for mobile sites
+		allowCustomWidth : false,
+		widthCustom : 'auto',
 
 		//to allow the label to have no border
 		allowNoBorder : false,
@@ -481,10 +481,10 @@
 				borderCSS = 'border: 0;';
 
 			//this is a straighforward code - creates the html code for the label based on the settings
-		if (!$this.settings.allowPercentageWidth)
-			var nutritionLabel = '<div class="nutritionLabel" style="' + borderCSS + ' width: '+ $this.settings.width +'px;">\n';
+		if (!$this.settings.allowCustomWidth)
+			var nutritionLabel = '<div class="nutritionLabel" style="' + borderCSS + ' width: '+ $this.settings.width + 'px;">\n';
 		else
-			var nutritionLabel = '<div class="nutritionLabel" style="' + borderCSS + ' width: '+ $this.settings.percentageWidth +'%;">\n';
+			var nutritionLabel = '<div class="nutritionLabel" style="' + borderCSS + ' width: '+ $this.settings.widthCustom + ';">\n';
 
 			if ($this.settings.showItemName && $this.settings.showItemNameAtTheTop)
 				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div>\n';
@@ -505,7 +505,7 @@
 				}else{
 					// Serving size
 					nutritionLabel += tab2 + '<div>' + $this.settings.textServingSize + ' ';
-						nutritionLabel += ($this.settings.naServingSize ? naValue : $this.settings.valueServingSize.toFixed($this.settings.decimalPlacesForNutrition) ) +' '+ $this.settings.valueServingSizeUnit;
+						nutritionLabel += ($this.settings.naServingSize ? naValue : $this.settings.valueServingSize.toFixed($this.settings.decimalPlacesForNutrition) ) + ' '+ $this.settings.valueServingSizeUnit;
 					nutritionLabel += '</div>\n';
 
 					// Serving per container
