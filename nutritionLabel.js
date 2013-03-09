@@ -1,17 +1,18 @@
-/******************************************
- * NUTRITIONIX.com
- *
- * This plugin allows you to create a fully customizable nutrition label
- *
- * @authors			majin22 (js) and genesis23rd (css and html)
- * @copyright		Copyright (c) 2012 Nutritionix.
- * @license			This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.
- * @link				http://www.nutritionix.com
- * @github			http://github.com/nutritionix/nutrition-label
- * @version			1.0.0
- *
- ******************************************/
-
+/*
+ ******************************************************************************************************************+
+ * NUTRITIONIX.com                                                                                                 |
+ *                                                                                                                 |
+ * This plugin allows you to create a fully customizable nutrition label                                           |
+ *                                                                                                                 |
+ * @authors			majin22 (js) and genesis23rd (css and html)                                               |
+ * @copyright			Copyright (c) 2012 Nutritionix.                                                           |
+ * @license			This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.  |
+ * @link				http://www.nutritionix.com                                                                |
+ * @github			http://github.com/nutritionix/nutrition-label                                             |
+ * @version			2.0.2                                                                                     |
+ *                                                                                                                 |
+ ******************************************************************************************************************+
+*/
 ;(function($){
 	$.fn.nutritionLabel = function(option, settings){
 		if (typeof option === 'object'){
@@ -579,7 +580,6 @@
 					nutritionLabel += '<b>% ' + $this.settings.textDailyValues + '<sup>*</sup></b>';
 				nutritionLabel += '</div>\n';
 
-
 			if ($this.settings.showTotalFat){
 				nutritionLabel += tab1 + '<div class="line">\n';
 					nutritionLabel += tab2 + '<div class="dv">';
@@ -589,8 +589,7 @@
 								jQuery.type($this.settings.valueTotalFat) == 'string' ?
 								0 : parseFloat(
 									(
-										($this.settings.allowFDARounding ? roundFatRule($this.settings.valueTotalFat) : $this.settings.valueTotalFat)
-										 / ($this.settings.dailyValueTotalFat * calorieIntakeMod)
+										($this.settings.allowFDARounding ? roundFatRule($this.settings.valueTotalFat) : $this.settings.valueTotalFat) / ($this.settings.dailyValueTotalFat * calorieIntakeMod)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
 							) + '</b>%';
@@ -623,8 +622,7 @@
 								jQuery.type($this.settings.valueSatFat) == 'string' ?
 								0 : parseFloat(
 									(
-										($this.settings.allowFDARounding ? roundFatRule($this.settings.valueSatFat) : $this.settings.valueSatFat)
-										 / ($this.settings.dailyValueSatFat * calorieIntakeMod)
+										($this.settings.allowFDARounding ? roundFatRule($this.settings.valueSatFat) : $this.settings.valueSatFat) / ($this.settings.dailyValueSatFat * calorieIntakeMod)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
 							) + '</b>%';
@@ -717,8 +715,7 @@
 								jQuery.type($this.settings.valueCholesterol) == 'string' ?
 								0 : parseFloat(
 									(
-										($this.settings.allowFDARounding ? roundCholesterolRule($this.settings.valueCholesterol) : $this.settings.valueCholesterol)
-										 / ($this.settings.dailyValueCholesterol * calorieIntakeMod)
+										($this.settings.allowFDARounding ? roundCholesterolRule($this.settings.valueCholesterol) : $this.settings.valueCholesterol) / ($this.settings.dailyValueCholesterol * calorieIntakeMod)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
 							) + '</b>%';
@@ -751,8 +748,7 @@
 								jQuery.type($this.settings.valueSodium) == 'string' ?
 								0 : parseFloat(
 									(
-										($this.settings.allowFDARounding ? roundSodiumRule($this.settings.valueSodium) : $this.settings.valueSodium)
-										 / ($this.settings.dailyValueSodium * calorieIntakeMod)
+										($this.settings.allowFDARounding ? roundSodiumRule($this.settings.valueSodium) : $this.settings.valueSodium) / ($this.settings.dailyValueSodium * calorieIntakeMod)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
 							) + '</b>%';
@@ -785,8 +781,7 @@
 								jQuery.type($this.settings.valueTotalCarb) == 'string' ?
 								0 : parseFloat(
 									(
-										($this.settings.allowFDARounding ? roundCarbFiberSugarProteinRule($this.settings.valueTotalCarb) : $this.settings.valueTotalCarb)
-										 / ($this.settings.dailyValueCarb * calorieIntakeMod)
+										($this.settings.allowFDARounding ? roundCarbFiberSugarProteinRule($this.settings.valueTotalCarb) : $this.settings.valueTotalCarb) / ($this.settings.dailyValueCarb * calorieIntakeMod)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
 							) + '</b>%';
@@ -819,8 +814,7 @@
 								jQuery.type($this.settings.valueFibers) == 'string' ?
 								0 : parseFloat(
 									(
-										($this.settings.allowFDARounding ? roundCarbFiberSugarProteinRule($this.settings.valueFibers) : $this.settings.valueFibers)
-										 / ($this.settings.dailyValueFiber * calorieIntakeMod)
+										($this.settings.allowFDARounding ? roundCarbFiberSugarProteinRule($this.settings.valueFibers) : $this.settings.valueFibers) / ($this.settings.dailyValueFiber * calorieIntakeMod)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
 							) + '</b>%';
@@ -843,7 +837,6 @@
 				nutritionLabel += tab1 + '</div>\n';
 			}
 
-//xxx
 			if ($this.settings.showSugars){
 				nutritionLabel += tab1 + '<div class="line indent">';
 					nutritionLabel += $this.settings.textSugars + ' ';
@@ -1039,6 +1032,7 @@
 			//returns the html for the nutrition label
 			return nutritionLabel;
 		},
+
 
 		destroy: function($this){
 			$this.html('');
