@@ -199,3 +199,25 @@ version 2.0.0 - mar 3, 2013
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
+
+version 2.0.1 - mar 6, 2013
+ - improve the width feature by changing this setting
+		//to allow percentage width - usually needed for mobile sites
+		allowPercentageWidth : false,
+		percentageWidth : 99,
+
+  to:
+		//to allow custom width - usually needed for mobile sites
+		allowCustomWidth : false,
+		widthCustom : 'auto',
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+version 2.0.2 - mar 9, 2013
+ - fixed a bug where the minified version of the plugin is causing error
+ - added a minified version of the plugin
+ - minor change on the demo pages so that it uses the minified version of the plugin
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
