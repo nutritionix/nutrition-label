@@ -16,38 +16,36 @@
 
 /** Nutrition Label v2.0 **/
 .nutritionLabel {
-	font-size: 13px;
-	margin-bottom: 15px;
+	font-size: 90%;	
+	margin-bottom: 1.1em;		
+	padding: .68em;
+	color: #333;
+	font-family: Arial, Helvetica, sans-serif;
+	border: 2px solid #000;	
 }
 .nutritionLabel .title {
-	line-height: 28px;
-	font-size: 34px;
+	line-height: .83em;	
+	font-size: 2.7em;
 }
 .nutritionLabel .m {
-	font-size: 11px;
+	font-size: .9em;
 }
 .nutritionLabel .serving {
-	font-size: 14px;
-	line-height: 18px;
+		font-size: 1.1em;
+	line-height: 1.28em;
 }
 .nutritionLabel .name {
-	font-size: 14px;
-	line-height: 18px;
+	font-size: 1.1em;
+	line-height: 1.3em;
 }
 .nutritionLabel .dvCalorieDiet,
-.nutritionLabel #calcDisclaimer {
-	font-size: 11px;
+.nutritionLabel #calcDisclaimer {	
+	font-size: .9em;
 }
 .nutritionLabel .title {
 	font-family: 'Archivo Black';
 	white-space: nowrap;
 	letter-spacing: -2px;
-}
-.nutritionLabel {
-	padding: 8px;
-	color: #333;
-	font-family: Arial, Helvetica, sans-serif;
-	border: 2px solid #000;
 }
 .nutritionLabel .line {
 	border-top: 1px solid #333;
@@ -75,13 +73,13 @@
 	color: #777;
 }
 .nutritionLabel .calorieNote {
-	padding: 6px 0 6px 8px;
+	padding: .60em 0 0 .70em;
 }
 .nutritionLabel .star {
 	margin-left: -7px;
 }
-.nutritionLabel .tblCalorieDiet th {
-	font-size:  11px;
+.nutritionLabel .tblCalorieDiet th {	
+	font-size: .7em;	
 	border-bottom: 1px solid #333;
 	text-align: left;
 	color: #777;
@@ -91,26 +89,25 @@
 }
 .nutritionLabel .tblCalorieDiet td {
 	padding: 0;
-	line-height: normal;
-	font-size:  11px;
+	line-height: normal;	
+	font-size: .7em;
 	color: #777;
 }
 .ar { text-align: right; }
 .fr { float: right; }
 
 .nutritionLabel #calcDisclaimer {
-	padding-left: 6px;
-	padding-right: 6px;
+	padding-left: .58em;
+	padding-right: .58em;
 	color: #777;
 }
 
 .notApplicable{
 	color: gray;
-	font-weight: bold;
-	font-size: 15px;
+	font-weight: bold;	
+	font-size: 1.2em;
 	cursor: default;
 }
-
 .naTooltip{
 	position: absolute;
 	display: none;
@@ -123,5 +120,5 @@
 	z-index: 10000;
 }
 .spaceAbove {
- height: 10px;
+	 height: 10px;
 }
