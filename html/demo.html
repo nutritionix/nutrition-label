@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 	<link rel='stylesheet' type='text/css' media='screen' href='../bootstrap/css/bootstrap.min.css'>
-	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel-min.css'>
 
 	<!-- google webfont for nutrition label -->
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
@@ -123,6 +123,8 @@
 				<li><a href="#test11"><i class="icon-chevron-right"></i> Example 11</a></li>
 				<li><a href="#test12"><i class="icon-chevron-right"></i> Example 12</a></li>
 				<li><a href="#test13"><i class="icon-chevron-right"></i> Example 13</a></li>
+				<li><a href="#test14"><i class="icon-chevron-right"></i> Example 14</a></li>
+				<li><a href="#test15"><i class="icon-chevron-right"></i> Example 15</a></li>
 			</ul>
 		</div>
 		<div class="span9">
@@ -386,6 +388,10 @@ $('#test7').nutritionLabel({
 					<p>All values are text instead of numerical</p>
 <pre id="pre8">
 $('#test8').nutritionLabel({
+	'showServingsPerContainer' : true,
+	'valueServingSize' : '~12',
+	'valueServingPerContainer' : 'TBA',
+	'valueServingWeightGrams' : '<33',
 	'valueCalories' : '~100',
 	'valueFatCalories' : '<1',
 	'valueTotalFat' : '<1g',
@@ -447,7 +453,7 @@ $('#test9').nutritionLabel({
 				</div>
 				<div class="span5">
 					<h3>Example #10</h3>
-					<p>Similar to example #2 but with a few different settings - different calorie intake, decimal places for nutrition changed from 1 to 2, decimal places for the "% daily values" is changed from 0 to 1, showing the home page link at the bottom and customizing it</p>
+					<p>Similar to example #2 but with a few different settings - different calorie intake, decimal places for nutrition changed from 1 to 2, decimal places for the "% daily values" is changed from 0 to 2, showing the home page link at the bottom and customizing it</p>
 <pre id="pre10">
 $('#test10').nutritionLabel({
 	'calorieIntake' : 1222,
@@ -455,7 +461,7 @@ $('#test10').nutritionLabel({
 	'showIngredients' : false,
 	'itemName' : '1.00 x Bleu Cheese Dressing',
 	'decimalPlacesForNutrition' : 2,
-	'decimalPlacesForDailyValues' : 1,
+	'decimalPlacesForDailyValues' : 2,
 
 	'showBottomLink' : true,
 	'urlBottomLink' : 'http://facebook.com',
@@ -464,12 +470,12 @@ $('#test10').nutritionLabel({
 	'showPolyFat' : false,
 	'showMonoFat' : false,
 
-	'valueCalories' : 450,
-	'valueFatCalories' : 430,
+	'valueCalories' : 450.10,
+	'valueFatCalories' : 430.23,
 	'valueTotalFat' : 48,
-	'valueSatFat' : 6,
-	'valueTransFat' : 0,
-	'valueCholesterol' : 30,
+	'valueSatFat' : 6.12,
+	'valueTransFat' : 0.00,
+	'valueCholesterol' : 30.90,
 	'valueSodium' : 780,
 	'valueTotalCarb' : 3,
 	'valueFibers' : 0,
@@ -631,7 +637,44 @@ $('#test13').nutritionLabel({
 });
 </pre>
 				</div>
-			</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="span4">
+					<div id="test14"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #14</h3>
+					<p>Version 3.0.0 fix with the title being too close when the serving size and item name are hidden</p>
+<pre id="pre14">
+$('#test14').nutritionLabel({
+	'showServingSize' : false,
+	'showItemName' : false
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="span4">
+					<div id="test15"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #15</h3>
+					<p>Version 3.0.0 fix with the title being too close when the item name is hidden, showServingSize is true and both the serving size and servings per container are hidden</p>
+<pre id="pre15">
+$('#test15').nutritionLabel({
+	'showServingSize' : true,
+	'showServingsPerContainer' : true,
+	'valueServingSize' : '0',
+	'valueServingPerContainer' : '',
+	'showItemName' : false
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
 
 
 		</div>
@@ -656,6 +699,8 @@ $(document).ready(function(){
 	eval( eval( $('#pre11').html() ) );
 	eval( eval( $('#pre12').html() ) );
 	eval( eval( $('#pre13').html() ) );
+	eval( eval( $('#pre14').html() ) );
+	eval( eval( $('#pre15').html() ) );
 });
 </script>
 

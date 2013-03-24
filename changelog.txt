@@ -233,3 +233,20 @@ version 2.0.4 - mar 20, 2013
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
+
+version 3.0.0 - mar 23, 2013
+ - made a few code improvements
+ - found a limitation that the valueServingSize and valueServingPerContainer can't be text like the other nutrition values, solved that limitation
+ - hide the serving size when the value is zero, null or blank or '0' (text)
+ - improve the label when the showServingSize and showItemName are both set to false. Before, the bar was too close to the label title; now, we added a bit of a space to make the label more presentable in cases like this
+     - also solved the case where showItemName is set to false, showServingSize is set to true, but both the serving size and servings per container are hidden (see the above changes)
+ - automatically hide the serving size unit if it is null or blank
+ - added a new value 'valueServingWeightGrams'
+     - if the serving size is 1 and unit is Oz, the result is '1 Oz'
+     - if the serving weight grams is not zero, null, blank or '0':
+          - if the value is 85.33, the result will be (including the above example) '1 Oz (85.3g)' (still affected by decimalPlacesForNutrition - in this case, it is 1)
+          - if the value is '~99', the result will be (including the above example) '1 Oz (~99g)'
+ - created a minified version of the css and used it on the demo pages (to make sure it's working) to give other devs the option to use it too
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
