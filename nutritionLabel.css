@@ -25,13 +25,18 @@
 .nutritionLabel .title {
 	line-height: .83em;
 	font-size: 2.7em;
+	padding-bottom: 4px;
+	font-family: 'Archivo Black';
+	white-space: nowrap;
+	letter-spacing: -2px;	
 }
 .nutritionLabel .m {
 	font-size: .9em;
 }
 .nutritionLabel .serving {
-		font-size: 1.1em;
+	font-size: 1.1em;
 	line-height: 1.28em;
+	padding-bottom: 2px;
 }
 .nutritionLabel .name {
 	font-size: 1.1em;
@@ -41,20 +46,12 @@
 .nutritionLabel #calcDisclaimer {
 	font-size: .9em;
 }
-.nutritionLabel .title {
-	font-family: 'Archivo Black';
-	white-space: nowrap;
-	letter-spacing: -2px;
-}
 .nutritionLabel .line {
 	border-top: 1px solid #333;
 	padding: 1px 0
 }
 .nutritionLabel .line.last {
 	border-bottom: 1px solid #333;
-}
-.nutritionLabel .serving {
-	padding: 2px 0;
 }
 .nutritionLabel .line.indent {
 	margin-left: 15px;
