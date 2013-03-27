@@ -112,8 +112,8 @@
 	text-align: center;
 	height: 18px;
 	width: 120px;
-	background-color: white;
-	z-index: 10000;
+	background-color: #ffc;
+	z-index: 10000;	
 }
 .spaceAbove {
 	 height: 10px;

@@ -296,7 +296,7 @@
 					$('#'+$elem.attr('id')+' .naTooltip')
 						.css({
 							'top' : $(this).position().top+'px',
-							'left' : $(this).position().left+'px'
+							'left' : $(this).position().left+ 10 +'px'
 						})
 						.show();
 				},
@@ -310,7 +310,7 @@
 					$('.naTooltip')
 						.css({
 							'top' : $(this).position().top+'px',
-							'left' : $(this).position().left+'px'
+							'left' : $(this).position().left+ 10 +'px'
 						})
 						.show();
 				},
