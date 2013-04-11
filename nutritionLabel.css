@@ -9,7 +9,7 @@
  * @license			This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.           |
  * @link				http://www.nutritionix.com                                                                         |
  * @github			http://github.com/nutritionix/nutrition-label                                                      |
- * @version			3.0.0                                                                                              |
+ * @version			4.0.0                                                                                              |
  *                                                                                                                 |
  ******************************************************************************************************************+
 */
@@ -28,7 +28,7 @@
 	padding-bottom: 4px;
 	font-family: 'Archivo Black';
 	white-space: nowrap;
-	letter-spacing: -2px;	
+	letter-spacing: -2px;
 }
 .nutritionLabel .m {
 	font-size: .9em;
@@ -113,8 +113,36 @@
 	height: 18px;
 	width: 120px;
 	background-color: #ffc;
-	z-index: 10000;	
+	z-index: 10000;
 }
 .spaceAbove {
 	 height: 10px;
+}
+
+a.unitQuantityUp {
+	float: left;
+	display: block;
+	width: 9px;
+	height: 7px;
+	font-size: 1px;
+	line-height: 0em;
+	padding-bottom: 1px;
+	background: transparent url("images/up.png") left top no-repeat;
+}
+
+a.unitQuantityDown {
+	display: block;
+	width: 9px;
+	height: 7px;
+	font-size: 1px;
+	line-height: 0em;
+	padding-top: 1px;
+	background: transparent url("images/down.png") left bottom no-repeat;
+}
+
+input.unitQuantityBox{
+	margin-top:3px;
+	width:25px;
+	height: 15px;
+	padding:2px;
 }
