@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel.css'>
 	<style>
 	body{
 		font-size: 13px;
@@ -910,7 +910,7 @@
 </div>
 
 <script type="text/javascript" src="../js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="../nutritionLabel-min.js"></script>
+<script type="text/javascript" src="../nutritionLabel.js"></script>
 <script type="text/javascript">
 //check if the value is a positive number
 function regIsPosNumber(fData){
@@ -922,20 +922,23 @@ $(document).ready(function(){
 	$("#generate").click(function(e){
 		e.preventDefault();
 
+		$('div#generatedLabel div#label').html('');
 		$('div#generatedLabel div#label').nutritionLabel({
-			'allowCustomWidth' : $('#allowCustomWidth_yes').prop('checked') ?1 : 0,
-			'allowNoBorder' : $('#allowNoBorder_yes').prop('checked') ?1 : 0,
-			'allowFDARounding' : $('#allowFDARounding_yes').prop('checked') ?1 : 0,
-			'scrollLongIngredients' : $('#scrollLongIngredients_yes').prop('checked') ?1 : 0,
-			'showBottomLink' : $('#showBottomLink_yes').prop('checked') ?1 : 0,
+			'showServingUnitQuantityTextbox' : false,
 
-			'showAmountPerServing' : $('#showAmountPerServing_yes').prop('checked') ?1 : 0,
-			'showServingsPerContainer' : $('#showServingsPerContainer_yes').prop('checked') ?1 : 0,
-			'showItemName' : $('#showItemName_yes').prop('checked') ?1 : 0,
-			'showItemNameAtTheTop' : $('#showItemNameAtTheTop_yes').prop('checked') ?1 : 0,
-			'showBrandName' : $('#showBrandName_yes').prop('checked') ?1 : 0,
-			'showIngredients' : $('#showIngredients_yes').prop('checked') ?1 : 0,
-			'showCalorieDiet' : $('#showCalorieDiet_yes').prop('checked') ?1 : 0,
+			'allowCustomWidth' : $('#allowCustomWidth_yes').prop('checked') ? 1 : 0,
+			'allowNoBorder' : $('#allowNoBorder_yes').prop('checked') ? 1 : 0,
+			'allowFDARounding' : $('#allowFDARounding_yes').prop('checked') ? 1 : 0,
+			'scrollLongIngredients' : $('#scrollLongIngredients_yes').prop('checked') ? 1 : 0,
+			'showBottomLink' : $('#showBottomLink_yes').prop('checked') ? 1 : 0,
+
+			'showAmountPerServing' : $('#showAmountPerServing_yes').prop('checked') ? 1 : 0,
+			'showServingsPerContainer' : $('#showServingsPerContainer_yes').prop('checked') ? 1 : 0,
+			'showItemName' : $('#showItemName_yes').prop('checked') ? 1 : 0,
+			'showItemNameAtTheTop' : $('#showItemNameAtTheTop_yes').prop('checked') ? 1 : 0,
+			'showBrandName' : $('#showBrandName_yes').prop('checked') ? 1 : 0,
+			'showIngredients' : $('#showIngredients_yes').prop('checked') ? 1 : 0,
+			'showCalorieDiet' : $('#showCalorieDiet_yes').prop('checked') ? 1 : 0,
 
 			'showServingSize' : $('#showServingSize_yes').prop('checked') ? 1 : 0,
 			'showCalories' : $('#showCalories_yes').prop('checked') ? 1 : 0,
@@ -994,27 +997,27 @@ $(document).ready(function(){
 			'dailyValueCarb' : regIsPosNumber( $('#dailyValueCarb').val() ) ? parseFloat( $('#dailyValueCarb').val() ) : 300,
 			'dailyValueFiber' : regIsPosNumber( $('#dailyValueFiber').val() ) ? parseFloat( $('#dailyValueFiber').val() ) : 25,
 
-			'valueServingSize' : regIsPosNumber( $('#valueServingSize').val() ) ? parseFloat( $('#valueServingSize').val() ) : $('#valueServingSize').val() !== '' ? $('#valueServingSize').val() : 0,
-			'valueServingWeightGrams' : regIsPosNumber( $('#valueServingWeightGrams').val() ) ? parseFloat( $('#valueServingWeightGrams').val() ) : $('#valueServingWeightGrams').val() !== '' ? $('#valueServingWeightGrams').val() : 0,
+			'valueServingSize' : regIsPosNumber( $('#valueServingSize').val() ) ? parseFloat( $('#valueServingSize').val() ) : 0,
+			'valueServingWeightGrams' : regIsPosNumber( $('#valueServingWeightGrams').val() ) ? parseFloat( $('#valueServingWeightGrams').val() ) : 0,
 			'valueServingSizeUnit' : $('#valueServingSizeUnit').val(),
-			'valueServingPerContainer' : regIsPosNumber( $('#valueServingPerContainer').val() ) ? parseFloat( $('#valueServingPerContainer').val() ) : $('#valueServingPerContainer').val() !== '' ? $('#valueServingPerContainer').val() : 1,
-			'valueCalories' : regIsPosNumber( $('#valueCalories').val() ) ? parseFloat( $('#valueCalories').val() ) : $('#valueCalories').val() !== '' ? $('#valueCalories').val() : 0,
-			'valueFatCalories' : regIsPosNumber( $('#valueFatCalories').val() ) ? parseFloat( $('#valueFatCalories').val() ) : $('#valueFatCalories').val() !== '' ? $('#valueFatCalories').val() : 0,
-			'valueTotalFat' : regIsPosNumber( $('#valueTotalFat').val() ) ? parseFloat( $('#valueTotalFat').val() ) : $('#valueTotalFat').val() !== '' ? $('#valueTotalFat').val() : 0,
-			'valueSatFat' : regIsPosNumber( $('#valueSatFat').val() ) ? parseFloat( $('#valueSatFat').val() ) : $('#valueSatFat').val() !== '' ? $('#valueSatFat').val() : 0,
-			'valueTransFat' : regIsPosNumber( $('#valueTransFat').val() ) ? parseFloat( $('#valueTransFat').val() ) : $('#valueTransFat').val() !== '' ? $('#valueTransFat').val() : 0,
-			'valuePolyFat' : regIsPosNumber( $('#valuePolyFat').val() ) ? parseFloat( $('#valuePolyFat').val() ) : $('#valuePolyFat').val() !== '' ? $('#valuePolyFat').val() : 0,
-			'valueMonoFat' : regIsPosNumber( $('#valueMonoFat').val() ) ? parseFloat( $('#valueMonoFat').val() ) : $('#valueMonoFat').val() !== '' ? $('#valueMonoFat').val() : 0,
-			'valueCholesterol' : regIsPosNumber( $('#valueCholesterol').val() ) ? parseFloat( $('#valueCholesterol').val() ) : $('#valueCholesterol').val() !== '' ? $('#valueCholesterol').val() : 0,
-			'valueSodium' : regIsPosNumber( $('#valueSodium').val() ) ? parseFloat( $('#valueSodium').val() ) : $('#valueSodium').val() !== '' ? $('#valueSodium').val() : 0,
-			'valueTotalCarb' : regIsPosNumber( $('#valueTotalCarb').val() ) ? parseFloat( $('#valueTotalCarb').val() ) : $('#valueTotalCarb').val() !== '' ? $('#valueTotalCarb').val() : 0,
-			'valueFibers' : regIsPosNumber( $('#valueFibers').val() ) ? parseFloat( $('#valueFibers').val() ) : $('#valueFibers').val() !== '' ? $('#valueFibers').val() : 0,
-			'valueSugars' : regIsPosNumber( $('#valueSugars').val() ) ? parseFloat( $('#valueSugars').val() ) : $('#valueSugars').val() !== '' ? $('#valueSugars').val() : 0,
-			'valueProteins' : regIsPosNumber( $('#valueProteins').val() ) ? parseFloat( $('#valueProteins').val() ) : $('#valueProteins').val() !== '' ? $('#valueProteins').val() : 0,
-			'valueVitaminA' : regIsPosNumber( $('#valueVitaminA').val() ) ? parseFloat( $('#valueVitaminA').val() ) : $('#valueVitaminA').val() !== '' ? $('#valueVitaminA').val() : 0,
-			'valueVitaminC' : regIsPosNumber( $('#valueVitaminC').val() ) ? parseFloat( $('#valueVitaminC').val() ) : $('#valueVitaminC').val() !== '' ? $('#valueVitaminC').val() : 0,
-			'valueCalcium' : regIsPosNumber( $('#valueCalcium').val() ) ? parseFloat( $('#valueCalcium').val() ) : $('#valueCalcium').val() !== '' ? $('#valueCalcium').val() : 0,
-			'valueIron' : regIsPosNumber( $('#valueIron').val() ) ? parseFloat( $('#valueIron').val() ) : $('#valueIron').val() !== '' ? $('#valueIron').val() : 0,
+			'valueServingPerContainer' : regIsPosNumber( $('#valueServingPerContainer').val() ) ? parseFloat( $('#valueServingPerContainer').val() ) : 1,
+			'valueCalories' : regIsPosNumber( $('#valueCalories').val() ) ? parseFloat( $('#valueCalories').val() ) : 0,
+			'valueFatCalories' : regIsPosNumber( $('#valueFatCalories').val() ) ? parseFloat( $('#valueFatCalories').val() ) : 0,
+			'valueTotalFat' : regIsPosNumber( $('#valueTotalFat').val() ) ? parseFloat( $('#valueTotalFat').val() ) : 0,
+			'valueSatFat' : regIsPosNumber( $('#valueSatFat').val() ) ? parseFloat( $('#valueSatFat').val() ) : 0,
+			'valueTransFat' : regIsPosNumber( $('#valueTransFat').val() ) ? parseFloat( $('#valueTransFat').val() ) : 0,
+			'valuePolyFat' : regIsPosNumber( $('#valuePolyFat').val() ) ? parseFloat( $('#valuePolyFat').val() ) : 0,
+			'valueMonoFat' : regIsPosNumber( $('#valueMonoFat').val() ) ? parseFloat( $('#valueMonoFat').val() ) : 0,
+			'valueCholesterol' : regIsPosNumber( $('#valueCholesterol').val() ) ? parseFloat( $('#valueCholesterol').val() ) : 0,
+			'valueSodium' : regIsPosNumber( $('#valueSodium').val() ) ? parseFloat( $('#valueSodium').val() ) : 0,
+			'valueTotalCarb' : regIsPosNumber( $('#valueTotalCarb').val() ) ? parseFloat( $('#valueTotalCarb').val() ) : 0,
+			'valueFibers' : regIsPosNumber( $('#valueFibers').val() ) ? parseFloat( $('#valueFibers').val() ) : 0,
+			'valueSugars' : regIsPosNumber( $('#valueSugars').val() ) ? parseFloat( $('#valueSugars').val() ) : 0,
+			'valueProteins' : regIsPosNumber( $('#valueProteins').val() ) ? parseFloat( $('#valueProteins').val() ) : 0,
+			'valueVitaminA' : regIsPosNumber( $('#valueVitaminA').val() ) ? parseFloat( $('#valueVitaminA').val() ) : 0,
+			'valueVitaminC' : regIsPosNumber( $('#valueVitaminC').val() ) ? parseFloat( $('#valueVitaminC').val() ) : 0,
+			'valueCalcium' : regIsPosNumber( $('#valueCalcium').val() ) ? parseFloat( $('#valueCalcium').val() ) : 0,
+			'valueIron' : regIsPosNumber( $('#valueIron').val() ) ? parseFloat( $('#valueIron').val() ) : 0,
 
 			'unitCalories' : $('#unitCalories').val(),
 			'unitFatCalories' : $('#unitFatCalories').val(),
