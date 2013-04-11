@@ -42,7 +42,7 @@ widthCustom : 'auto',
 //to allow the label to have no border
 allowNoBorder : false,
 
-//to enable rounding of the numerical values based on the FDA rounding rules
+//to enable rounding of the nutritional values based on the FDA rounding rules
 //http://goo.gl/RMD2O
 allowFDARounding : false,
 
@@ -66,6 +66,15 @@ showBottomLink : false,
 urlBottomLink : 'http://www.nutritionix.com',
 //link name for the customizable link at the bottom
 nameBottomLink : 'Nutritionix',
+
+//this value can be changed and the value of the nutritions will be affected directly
+//the computation is "current nutrition value" * "value serving unit quantity" = "final nutrition value"
+//this can't be less than zero, all values less than zero is converted to zero
+//the textbox to change this is hidden by default
+//when enabled, user can change this value by clicking the arrow or changing the value on the textbox and
+	//pressing enter. the value on the label will be updated automatically
+valueServingUnitQuantity : 1.0,
+showServingUnitQuantityTextbox : true,
 
 //default calorie intake
 calorieIntake : 2000,
@@ -190,7 +199,6 @@ valueCol1DietaryTotalCarb : 0,
 valueCol2DietaryTotalCarb : 0,
 valueCol1Dietary : 0,
 valueCol2Dietary : 0,
-
 
 //these text settings is so you can create nutrition labels in different languages or to simply change them to your need
 textNutritionFacts : 'Nutrition Facts',

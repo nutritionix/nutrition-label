@@ -258,7 +258,18 @@ version 3.0.1 - mar 28, 2013
 ------------------------------------------------------------------------------------------------------
 
 version 4.0.0 - apr 11, 2013
-
+ - added a filter so that all settings that the plugin expects to be numeric will be checked and coverted to numeric if needed
+ - added a new feature to allow users to change the unit quantity of the label (default is 1.0)
+		- this value can be easily hidden by changing one of the settings (see below) (default is it is visible)
+		- the value can be adjusted by clicking the arrows or changing the value on the textbox and pressing enter or focusing on another element on the page
+			//this value can be changed and the value of the nutritions will be affected directly
+			//the computation is "current nutrition value" * "value serving unit quantity" = "final nutrition value"
+			//this can't be less than zero, all values less than zero is converted to zero
+			//the textbox to change this is hidden by default
+			//when enabled, user can change this value by clicking the arrow or changing the value on the textbox and
+				//pressing enter. the value on the label will be updated automatically
+			valueServingUnitQuantity : 1.0,
+			showServingUnitQuantityTextbox : true,
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------

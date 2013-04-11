@@ -76,7 +76,7 @@
 		//to allow the label to have no border
 		allowNoBorder : false,
 
-		//to enable rounding of the numerical values based on the FDA rounding rules
+		//to enable rounding of the nutritional values based on the FDA rounding rules
 		//http://goo.gl/RMD2O
 		allowFDARounding : false,
 
@@ -107,7 +107,7 @@
 		//the textbox to change this is hidden by default
 		//when enabled, user can change this value by clicking the arrow or changing the value on the textbox and
 			//pressing enter. the value on the label will be updated automatically
-		valueServingUnitQuantity : 1,
+		valueServingUnitQuantity : 1.0,
 		showServingUnitQuantityTextbox : true,
 
 		//default calorie intake
@@ -233,7 +233,6 @@
 		valueCol2DietaryTotalCarb : 0,
 		valueCol1Dietary : 0,
 		valueCol2Dietary : 0,
-
 
 		//these text settings is so you can create nutrition labels in different languages or to simply change them to your need
 		textNutritionFacts : 'Nutrition Facts',
@@ -598,7 +597,7 @@
 					nutritionLabel += tab2 + '<a href="Decrease the quantity" class="unitQuantityDown" rel="nofollow"></a>\n';
 				nutritionLabel += tab1 + '</div>\n';
 				nutritionLabel += tab1 + '<input type="text" value="'+ $this.settings.valueServingUnitQuantity.toFixed(1) +'" ';
-						nutritionLabel += 'class="unitQuantityBox" class="">\n';				
+						nutritionLabel += 'class="unitQuantityBox" class="">\n';
 			nutritionLabel += '</div>';
 		}
 

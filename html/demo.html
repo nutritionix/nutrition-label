@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 	<link rel='stylesheet' type='text/css' media='screen' href='../bootstrap/css/bootstrap.min.css'>
-	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel-min.css'>
 
 	<!-- google webfont for nutrition label -->
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
@@ -385,7 +385,7 @@ $('#test7').nutritionLabel({
 				</div>
 				<div class="span5">
 					<h3>Example #8</h3>
-					<p>All values are text instead of numerical</p>
+					<p>All non-numeric values are automatically filtered and converted to numeric to prevent errors</p>
 <pre id="pre8">
 $('#test8').nutritionLabel({
 	'showServingsPerContainer' : true,
@@ -683,7 +683,7 @@ $('#test15').nutritionLabel({
 
 
 <script type="text/javascript" src="../js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="../nutritionLabel.js"></script>
+<script type="text/javascript" src="../nutritionLabel-min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );

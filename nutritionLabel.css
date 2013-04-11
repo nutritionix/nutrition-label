@@ -13,7 +13,6 @@
  *                                                                                                                 |
  ******************************************************************************************************************+
 */
-
 .nutritionLabel {
 	font-size: 90%;
 	margin-bottom: 1.1em;
@@ -130,7 +129,7 @@
 	line-height: 0em;
 }
 
-a.unitQuantityUp {	
+a.unitQuantityUp {
 	padding-bottom: 1px;
 	background: transparent url("images/up.png") left top no-repeat;
 }
