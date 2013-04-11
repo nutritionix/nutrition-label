@@ -593,12 +593,12 @@
 
 		if ($this.settings.showServingUnitQuantityTextbox){
 			nutritionLabel += '<div>';
-				nutritionLabel += tab1 + '<input type="text" value="'+ $this.settings.valueServingUnitQuantity.toFixed(1) +'" ';
-						nutritionLabel += 'class="unitQuantityBox" class="">\n';
-				nutritionLabel += tab1 + '<span class="setter">\n';
+				nutritionLabel += tab1 + '<div class="setter">\n';
 					nutritionLabel += tab2 + '<a href="Increase the quantity" class="unitQuantityUp" rel="nofollow"></a>\n';
 					nutritionLabel += tab2 + '<a href="Decrease the quantity" class="unitQuantityDown" rel="nofollow"></a>\n';
-				nutritionLabel += tab1 + '</span>\n';
+				nutritionLabel += tab1 + '</div>\n';
+				nutritionLabel += tab1 + '<input type="text" value="'+ $this.settings.valueServingUnitQuantity.toFixed(1) +'" ';
+						nutritionLabel += 'class="unitQuantityBox" class="">\n';				
 			nutritionLabel += '</div>';
 		}
 

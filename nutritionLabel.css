@@ -118,31 +118,31 @@
 .spaceAbove {
 	 height: 10px;
 }
-
-a.unitQuantityUp {
+.setter {
 	float: left;
+	padding: 3px 6px 0 0;
+}
+.setter a {
 	display: block;
 	width: 9px;
 	height: 7px;
 	font-size: 1px;
 	line-height: 0em;
+}
+
+a.unitQuantityUp {	
 	padding-bottom: 1px;
 	background: transparent url("images/up.png") left top no-repeat;
 }
 
 a.unitQuantityDown {
-	display: block;
-	width: 9px;
-	height: 7px;
-	font-size: 1px;
-	line-height: 0em;
 	padding-top: 1px;
 	background: transparent url("images/down.png") left bottom no-repeat;
 }
 
 input.unitQuantityBox{
-	margin-top:3px;
 	width:25px;
 	height: 15px;
 	padding:2px;
+	font-size: .9em;
 }
