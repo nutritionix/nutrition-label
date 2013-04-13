@@ -101,13 +101,21 @@
 		//link name for the customizable link at the bottom
 		nameBottomLink : 'Nutritionix',
 
+		//xxx
 		//this value can be changed and the value of the nutritions will be affected directly
-		//the computation is "current nutrition value" * "value serving unit quantity" = "final nutrition value"
+		//the computation is "current nutrition value" * "serving unit quantity value" = "final nutrition value"
 		//this can't be less than zero, all values less than zero is converted to zero
-		//the textbox to change this is hidden by default
+		//the textbox to change this value is visible / enabled by default
 		//when enabled, user can change this value by clicking the arrow or changing the value on the textbox and
 			//pressing enter. the value on the label will be updated automatically
-		valueServingUnitQuantity : 1.0,
+		//when the "serving unit quantity" setting is greater than 0, it will be put before the name and the textbox's
+			//default value will be the same
+				//eg. 1.0 x Blueberry or 3.3 x Apple Pie
+		//if the "serving unit quantity" is less than equal zero, this will be hidden on the label (eg. Blueberry or Apple Pie)
+		//if the "show serving unit quantity textbox" is true and the "serving unit quantity value" is less than or equal to zero
+			//the textbox will have a default value of 1.0
+		valueServingUnitQuantity : 0,
+		valueServingUnitName : '',
 		showServingUnitQuantityTextbox : true,
 
 		//default calorie intake
