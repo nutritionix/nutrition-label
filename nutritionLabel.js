@@ -9,7 +9,7 @@
  * @license			This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.           |
  * @link				http://www.nutritionix.com                                                                         |
  * @github			http://github.com/nutritionix/nutrition-label                                                      |
- * @version			4.0.0                                                                                              |
+ * @version			4.0.1                                                                                              |
  *                                                                                                                 |
  ******************************************************************************************************************+
 */
@@ -114,7 +114,7 @@
 		//if the "serving unit quantity" is less than equal zero, this will be hidden on the label (eg. Blueberry or Apple Pie)
 		//if the "show serving unit quantity textbox" is true and the "serving unit quantity value" is less than or equal to zero
 			//the textbox will have a default value of 1.0
-		valueServingUnitQuantity : 0,
+		valueServingUnitQuantity : 1,
 		valueServingUnitName : '',
 		showServingUnitQuantityTextbox : true,
 
@@ -399,6 +399,8 @@
 			//the textbox unit quantity value is changed
 			$('#'+$elem.attr('id')).delegate('.unitQuantityBox', 'change', function(e){
 				e.preventDefault();
+				changeQuantityTextbox($(this), $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} ), nutritionLabel, $elem);
+			/*
 				var textBoxValue = parseFloat( $(this).val() );
 				textBoxValue = isNaN(textBoxValue) ? 1.0 : textBoxValue;
 				$(this).val(textBoxValue.toFixed(1));
@@ -409,11 +411,34 @@
 
 				nutritionLabel = new NutritionLabel($originalSettings, $elem);
 				$elem.html( nutritionLabel.generate() );
+			*/
 			});
+
+			//the textbox unit quantity value is changed
+			$('#'+$elem.attr('id')).delegate('.unitQuantityBox', 'keydown', function(e){
+				if (e.keyCode==13){
+					e.preventDefault();
+					changeQuantityTextbox($(this), $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} ), nutritionLabel, $elem);
+				}
+			});
+
 		}
 
 		// store the object for later reference
 		$elem.data('_nutritionLabel', nutritionLabel);
+	}
+
+
+	function changeQuantityTextbox($thisTextbox, $originalSettings, nutritionLabel, $elem){
+		var textBoxValue = parseFloat( $thisTextbox.val() );
+		textBoxValue = isNaN(textBoxValue) ? 1.0 : textBoxValue;
+		$thisTextbox.val( textBoxValue.toFixed(1) );
+
+		$originalSettings.valueServingUnitQuantity = textBoxValue;
+		$originalSettings = UpdateSettingsWithUnitQuantity($originalSettings);
+
+		nutritionLabel = new NutritionLabel($originalSettings, $elem);
+		$elem.html( nutritionLabel.generate() );
 	}
 
 

@@ -273,3 +273,17 @@ version 4.0.0 - apr 11, 2013
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
+
+version 4.0.1 - apr 14, 2013
+ - fixed the problem with internet explorer where the textbox changes aren't triggered when you press enter on the textbox
+ - preparing the code for more changes on the serving unit quantity feature
+ - NOTE: the demo files are using the non-minified version of the js and css file for the time being until the 'serving unit quantity' feature is completed
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+known bugs:
+ - the arrow links aren't clickable on IE8
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
