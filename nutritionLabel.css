@@ -9,7 +9,7 @@
  * @license			This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.           |
  * @link				http://www.nutritionix.com                                                                         |
  * @github			http://github.com/nutritionix/nutrition-label                                                      |
- * @version			4.0.1                                                                                              |
+ * @version			4.0.2                                                                                              |
  *                                                                                                                 |
  ******************************************************************************************************************+
 */
@@ -117,15 +117,15 @@
 .spaceAbove {
 	 height: 10px;
 }
-.setter {	
+.setter {
 	width:  12px;
-	padding: 3px 0 0 0;	
+	padding: 3px 0 0 0;
 	position: absolute;
 	left: 0;
-	top: 0;	
+	top: 0;
 	z-index: 100;
 }
-.setter a {	
+.setter a {
 	display: block;
 	width: 9px;
 	height: 7px;
@@ -153,5 +153,5 @@ input.unitQuantityBox{
 	margin-left: 15px;
 }
 .rel {
-	position: relative;	
+	position: relative;
 }
