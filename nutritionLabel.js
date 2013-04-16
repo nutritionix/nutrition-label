@@ -624,7 +624,7 @@
 
 
 		if ($this.settings.showServingUnitQuantityTextbox){
-			nutritionLabel += '<div>';
+			nutritionLabel += '<div class="rel">';
 				nutritionLabel += tab1 + '<div class="setter">\n';
 					nutritionLabel += tab2 + '<a href="Increase the quantity" class="unitQuantityUp" rel="nofollow"></a>\n';
 					nutritionLabel += tab2 + '<a href="Decrease the quantity" class="unitQuantityDown" rel="nofollow"></a>\n';

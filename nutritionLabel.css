@@ -117,11 +117,15 @@
 .spaceAbove {
 	 height: 10px;
 }
-.setter {
-	float: left;
-	padding: 3px 6px 0 0;
+.setter {	
+	width:  12px;
+	padding: 3px 0 0 0;	
+	position: absolute;
+	left: 0;
+	top: 0;	
+	z-index: 100;
 }
-.setter a {
+.setter a {	
 	display: block;
 	width: 9px;
 	height: 7px;
@@ -146,4 +150,8 @@ input.unitQuantityBox{
 	height: 15px;
 	padding:2px;
 	font-size: .9em;
+	margin-left: 15px;
+}
+.rel {
+	position: relative;	
 }
