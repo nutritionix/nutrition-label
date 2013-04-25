@@ -675,8 +675,27 @@
 		else
 			nutritionLabel += '<div class="nutritionLabel" style="' + borderCSS + ' width: '+ $this.settings.widthCustom + ';">\n';
 
-			if ($this.settings.showItemName && $this.settings.showItemNameAtTheTop)
+			if ($this.settings.showItemName && $this.settings.showItemNameAtTheTop){
+				if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingSize){
+					if (
+						($this.settings.valueServingSizeUnit == null || $this.settings.valueServingSizeUnit == '') ||
+						($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null &&
+							$this.settings.originalServingUnitQuantity <= 0)
+					){
+						//if (originalServingUnitQuantity <= 0)
+							//$this.settings.valueServingUnitQuantity = 1;
+					nutritionLabel += '<div class="rel">';
+						nutritionLabel += tab1 + '<div class="setter">\n';
+							nutritionLabel += tab2 + '<a href="Increase the quantity" class="unitQuantityUp" rel="nofollow"></a>\n';
+							nutritionLabel += tab2 + '<a href="Decrease the quantity" class="unitQuantityDown" rel="nofollow"></a>\n';
+						nutritionLabel += tab1 + '</div>\n';
+						nutritionLabel += tab1 + '<input type="text" value="'+ $this.settings.valueServingUnitQuantity.toFixed(1) +'" ';
+								nutritionLabel += 'class="unitQuantityBox" class="">\n';
+					nutritionLabel += '</div>';
+					}
+				}
 				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div>\n';
+			}
 
 			if ($this.settings.showBrandName)
 				nutritionLabel += tab1 + '<div class="brandname">' + $this.settings.brandName + '</div>\n';
@@ -687,14 +706,6 @@
 			var servingContainerIsHidden = false;
 			if ($this.settings.showServingSize){
 				nutritionLabel += tab1 + '<div class="serving">\n';
-
-			//zzz
-			//CASE 1a: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity >= 0 (AND NOT N/A)
-				//RESULT: textServingSize [valueServingUnitQuantity] valueServingSizeUnit
-			//CASE 2: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity is N/A
-				//RESULT: textServingSize - (dash for not applicable) valueServingSizeUnit
-			//CASE 3a: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity is N/A
-				//RESULT: textServingSize - (dash for not applicable)
 
 				if ($this.settings.originalServingUnitQuantity > 0 || $this.settings.naServingSize){
 					nutritionLabel += tab2 + '<div>' + $this.settings.textServingSize + ' ';
@@ -749,14 +760,6 @@
 			}
 
 
-			//CASE 1b: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
-				//RESULT: [valueServingUnitQuantity default to 1.0] itemName
-			//CASE 3b: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity > 0 (AND NOT N/A)
-				//RESULT: [valueServingUnitQuantity] itemName
-			//CASE 3c: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
-				//RESULT: [valueServingUnitQuantity default to 1.0] itemName
-
-		//xxx
 		if ($this.settings.showItemName && !$this.settings.showItemNameAtTheTop){
 			if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingSize){
 				if (

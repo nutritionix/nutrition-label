@@ -677,6 +677,45 @@ $('#test15').nutritionLabel({
 			</div><br /><br /><br />
 
 
+			<div class="row">
+				<div class="span4">
+					<div id="test16"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #16</h3>
+					<p>Giving specific nutrition label values and hiding some of the parts of the nutrition label</p>
+<pre id="pre16">
+$('#test16').nutritionLabel({
+	'showItemNameAtTheTop' : true,
+	'showServingSize' : false,
+	'itemName' : 'Bleu Cheese Dressing',
+	'ingredientList' : 'Bleu Cheese Dressing',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0
+});
+</pre>
+					<pre>http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing</pre>
+				</div>
+			</div><br /><br /><br />
+
+
 		</div>
 	</div>
 </div>
@@ -701,6 +740,7 @@ $(document).ready(function(){
 	eval( eval( $('#pre13').html() ) );
 	eval( eval( $('#pre14').html() ) );
 	eval( eval( $('#pre15').html() ) );
+	eval( eval( $('#pre16').html() ) );
 });
 </script>
 
