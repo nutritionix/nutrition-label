@@ -40,6 +40,7 @@
 .nutritionLabel .name {
 	font-size: 1.1em;
 	line-height: 1.3em;
+	padding-top: 5px;
 }
 .nutritionLabel .dvCalorieDiet,
 .nutritionLabel #calcDisclaimer {
@@ -151,7 +152,39 @@ input.unitQuantityBox{
 	padding:2px;
 	font-size: .9em;
 	margin-left: 15px;
+	margin-bottom: 0;
 }
 .rel {
 	position: relative;
+}
+
+.servingSizeField {
+	float: left;	
+	margin-top: 4px;
+	margin-bottom: 4px;
+	margin-right: 8px;
+}
+.servingUnit {
+	float: left;
+	padding: 2px 0 0 0;
+	margin-top: 4px;
+	margin-bottom: 4px;	
+}
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
 }

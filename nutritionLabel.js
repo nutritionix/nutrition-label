@@ -684,7 +684,7 @@
 					){
 						//if (originalServingUnitQuantity <= 0)
 							//$this.settings.valueServingUnitQuantity = 1;
-					nutritionLabel += '<div class="rel">';
+					nutritionLabel += '<div class="cf"><div class="rel servingSizeField">';
 						nutritionLabel += tab1 + '<div class="setter">\n';
 							nutritionLabel += tab2 + '<a href="Increase the quantity" class="unitQuantityUp" rel="nofollow"></a>\n';
 							nutritionLabel += tab2 + '<a href="Decrease the quantity" class="unitQuantityDown" rel="nofollow"></a>\n';
@@ -694,7 +694,7 @@
 					nutritionLabel += '</div>';
 					}
 				}
-				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div>\n';
+				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div></div>\n';
 			}
 
 			if ($this.settings.showBrandName)
@@ -708,7 +708,7 @@
 				nutritionLabel += tab1 + '<div class="serving">\n';
 
 				if ($this.settings.originalServingUnitQuantity > 0 || $this.settings.naServingSize){
-					nutritionLabel += tab2 + '<div>' + $this.settings.textServingSize + ' ';
+					nutritionLabel += tab2 + '<div class="cf">' + $this.settings.textServingSize + '';
 						nutritionLabel += $this.settings.naServingSize ?
 							naValue :
 							(
@@ -720,7 +720,7 @@
 						//xxx
 						if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingSize &&
 								$this.settings.valueServingSizeUnit != null && $this.settings.valueServingSizeUnit != ''){
-					nutritionLabel += '<div class="rel">';
+					nutritionLabel += '<div class="rel servingSizeField">';
 						nutritionLabel += tab1 + '<div class="setter">\n';
 							nutritionLabel += tab2 + '<a href="Increase the quantity" class="unitQuantityUp" rel="nofollow"></a>\n';
 							nutritionLabel += tab2 + '<a href="Decrease the quantity" class="unitQuantityDown" rel="nofollow"></a>\n';
@@ -730,7 +730,7 @@
 					nutritionLabel += '</div>';
 						}else if ($this.settings.originalServingUnitQuantity > 0)
 							nutritionLabel += ' '+ parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) );
-						nutritionLabel += ' '+ $this.settings.valueServingSizeUnit;
+						nutritionLabel += '<div class="servingUnit">'+ $this.settings.valueServingSizeUnit + '</div>';
 					}else if ($this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingUnitQuantityTextbox)
 							nutritionLabel += ' '+ parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) );
 
@@ -769,7 +769,7 @@
 				){
 					//if (originalServingUnitQuantity <= 0)
 						//$this.settings.valueServingUnitQuantity = 1;
-				nutritionLabel += '<div class="rel">';
+				nutritionLabel += '<div class="cf"><div class="rel servingSizeField">';
 					nutritionLabel += tab1 + '<div class="setter">\n';
 						nutritionLabel += tab2 + '<a href="Increase the quantity" class="unitQuantityUp" rel="nofollow"></a>\n';
 						nutritionLabel += tab2 + '<a href="Decrease the quantity" class="unitQuantityDown" rel="nofollow"></a>\n';
@@ -779,7 +779,7 @@
 				nutritionLabel += '</div>';
 				}
 			}
-				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div>\n';
+				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div></div>\n';
 		}
 
 			if ( (!$this.settings.showItemName && !$this.settings.showServingSize) ||
