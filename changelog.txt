@@ -287,3 +287,21 @@ version 4.0.2 - apr 15, 2013
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
+
+version 4.0.5 - apr 24, 2013
+ - fixed a bug where the scrolling ingredient is removed when the textbox value is changed
+ - fixed a bug where the not applicable tooltip stopped working when the textbox value is changed
+ - fixed a bug where the unit quantity textbox feature is not working properly when there are non numeric values on the settings.
+		- the system already filters this (see version 4.0.0 changes) but it still caused problems with the unit quantity textbox feature
+ - MAJOR CHANGE: removed valueServingSize and it is now replaced with valueServingUnitQuantity
+		- this means that all the previous pages where you have implemented the plugin needs to be updated.
+    - you just need to rename valueServingSize to valueServingUnitQuantity
+    - REASON: after some discussion, it is decided that SERVING SIZE means "valueServingUnitQuantity valueServingSizeUnit"
+          - eg. Serving Size 8 Cookie (valueServingUnitQuantity = 8; valueServingSizeUnit = Cookie)
+          - eg. Serving Size 1.0 (valueServingUnitQuantity = 1.0)
+ - MAJOR CHANGE: changes on the unit quantity textbox feature that was added on version 4.0.0
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+NEED TO IMPROVE THE DESCRIPTION OF THE NEW FEATURE SETTINGS

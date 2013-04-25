@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 	<link rel='stylesheet' type='text/css' media='screen' href='../bootstrap/css/bootstrap.min.css'>
-	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel.css'>
 
 	<!-- google webfont for nutrition label -->
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
@@ -138,7 +138,7 @@
 <pre id="pre2">
 $('#test2').nutritionLabel({
 	'showServingSize' : false,
-	'itemName' : '1.00 x Bleu Cheese Dressing',
+	'itemName' : 'Bleu Cheese Dressing',
 	'ingredientList' : 'Bleu Cheese Dressing',
 
 	'showPolyFat' : false,
@@ -173,6 +173,8 @@ $('#test2').nutritionLabel({
 				<div class="span5">
 					<h3>Example #3</h3>
 					<p>Similar to example #2 but with different plugin options. One thing to note is the use of serving size, serving size unit and showing the serving container to overwrite the default value (compare it to other examples to see the difference)</p>
+					<p>Also, an example where the serving size unit is present and the value serving size is greater than zero and not 'not applicable'</p>
+					<p>Another thing to note is that the serving unit quantity is not the default value (1.0)</p>
 <pre id="pre3">
 $('#test3').nutritionLabel({
 	'showItemName' : false,
@@ -188,6 +190,7 @@ $('#test3').nutritionLabel({
 	'showCalcium' : false,
 	'showIron' : false,
 
+	'valueServingUnitQuantity' : 2.3,
 	'valueServingSize' : 6,
 	'valueServingSizeUnit' : 'DONUTS',
 
@@ -208,19 +211,20 @@ $('#test3').nutritionLabel({
 
 
 			<div class="row">
-				<div class="span5">
+				<div class="span4">
 					<div id="test4"></div>
 				</div>
-				<div class="span4">
+				<div class="span5">
 					<h3>Example #4</h3>
 					<p>Similar to example #2 but with only a few visible values</p>
+					<p>Another thing to take note here is that the serving size unit is null or an empty string so the textbox appears before the item name</p>
 <pre id="pre4">
 $('#test4').nutritionLabel({
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
 	'showCalorieDiet' : true,
 	'ingredientList' : 'Balsamic Vinaigrette, BBQ Hickory, Steak Tips',
-	'itemName' : '1.00 x Fire Grilled Sirloin Tips',
+	'itemName' : 'Fire Grilled Sirloin Tips',
 
 	'showPolyFat' : false,
 	'showMonoFat' : false,
@@ -253,7 +257,7 @@ $('#test4').nutritionLabel({
 
 
 <script type="text/javascript" src="../js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="../nutritionLabel-min.js"></script>
+<script type="text/javascript" src="../nutritionLabel.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );

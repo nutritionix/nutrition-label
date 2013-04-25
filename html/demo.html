@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 	<link rel='stylesheet' type='text/css' media='screen' href='../bootstrap/css/bootstrap.min.css'>
-	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel.css'>
 
 	<!-- google webfont for nutrition label -->
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
@@ -150,7 +150,7 @@
 <pre id="pre2">
 $('#test2').nutritionLabel({
 	'showServingSize' : false,
-	'itemName' : '1.00 x Bleu Cheese Dressing',
+	'itemName' : 'Bleu Cheese Dressing',
 	'ingredientList' : 'Bleu Cheese Dressing',
 
 	'showPolyFat' : false,
@@ -200,7 +200,7 @@ $('#test3').nutritionLabel({
 	'showCalcium' : false,
 	'showIron' : false,
 
-	'valueServingSize' : 6,
+	'valueServingUnitQuantity' : 6,
 	'valueServingSizeUnit' : 'DONUTS',
 
 	'valueCalories' : 400,
@@ -242,7 +242,7 @@ $('#test4').nutritionLabel({
 	'showCalcium' : false,
 	'showIron' : false,
 
-	'valueServingSize' : 6,
+	'valueServingUnitQuantity' : 6,
 	'valueServingSizeUnit' : 'DONUTS',
 
 	'valueCalories' : 400,
@@ -274,7 +274,7 @@ $('#test5').nutritionLabel({
 	'showAmountPerServing' : false,
 	'showCalorieDiet' : true,
 	'ingredientList' : 'Balsamic Vinaigrette, BBQ Hickory, Steak Tips',
-	'itemName' : '1.00 x Fire Grilled Sirloin Tips',
+	'itemName' : 'Fire Grilled Sirloin Tips',
 
 	'showPolyFat' : false,
 	'showMonoFat' : false,
@@ -313,7 +313,7 @@ $('#test6').nutritionLabel({
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
 	'showIngredients' : false,
-	'itemName' : '1.00 x Olive Tapenade',
+	'itemName' : 'Olive Tapenade',
 
 	'naFatCalories' : true,
 	'naPolyFat' : true,
@@ -352,7 +352,7 @@ $('#test7').nutritionLabel({
 	'showServingSize' : false,
 	'showAmountPerServing' : false,
 	'showIngredients' : false,
-	'itemName' : '1.00 x Bar None Sliders Bison',
+	'itemName' : 'Bar None Sliders Bison',
 
 	'naFatCalories' : true,
 	'naTransFat' : true,
@@ -389,7 +389,7 @@ $('#test7').nutritionLabel({
 <pre id="pre8">
 $('#test8').nutritionLabel({
 	'showServingsPerContainer' : true,
-	'valueServingSize' : '~12',
+	'valueServingUnitQuantity' : '~12',
 	'valueServingPerContainer' : 'TBA',
 	'valueServingWeightGrams' : '<33',
 	'valueCalories' : '~100',
@@ -459,7 +459,7 @@ $('#test10').nutritionLabel({
 	'calorieIntake' : 1222,
 	'showServingSize' : false,
 	'showIngredients' : false,
-	'itemName' : '1.00 x Bleu Cheese Dressing',
+	'itemName' : 'Bleu Cheese Dressing',
 	'decimalPlacesForNutrition' : 2,
 	'decimalPlacesForDailyValues' : 2,
 
@@ -502,7 +502,7 @@ $('#test10').nutritionLabel({
 $('#test11').nutritionLabel({
 	'showServingSize' : false,
 	'showIngredients' : false,
-	'itemName' : '1.00 x Bleu Cheese Dressing',
+	'itemName' : 'Bleu Cheese Dressing',
 
 	'dailyValueTotalFat' : 32,
 	'dailyValueSatFat' : 10,
@@ -547,7 +547,7 @@ $('#test12').nutritionLabel({
 	'showServingSize' : false,
 	'showIngredients' : false,
 	'showCalorieDiet' : true,
-	'itemName' : '1.00 x Bleu Cheese Dressing',
+	'itemName' : 'Bleu Cheese Dressing',
 
 	'dailyValueTotalFat' : 32,
 	'dailyValueSatFat' : 10,
@@ -592,7 +592,7 @@ $('#test13').nutritionLabel({
 	'showServingSize' : false,
 	'showIngredients' : false,
 	'showCalorieDiet' : true,
-	'itemName' : '1.00 x Bleu Cheese Dressing',
+	'itemName' : 'Bleu Cheese Dressing',
 
 	'dailyValueTotalFat' : 32,
 	'dailyValueSatFat' : 10,
@@ -668,7 +668,7 @@ $('#test14').nutritionLabel({
 $('#test15').nutritionLabel({
 	'showServingSize' : true,
 	'showServingsPerContainer' : true,
-	'valueServingSize' : '0',
+	'valueServingUnitQuantity' : '0',
 	'valueServingPerContainer' : '',
 	'showItemName' : false
 });
@@ -683,7 +683,7 @@ $('#test15').nutritionLabel({
 
 
 <script type="text/javascript" src="../js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="../nutritionLabel-min.js"></script>
+<script type="text/javascript" src="../nutritionLabel.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );
