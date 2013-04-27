@@ -159,7 +159,7 @@ input.unitQuantityBox{
 }
 
 .servingSizeField {
-	float: left;	
+	float: left;
 	margin-top: 4px;
 	margin-bottom: 4px;
 	margin-right: 8px;
@@ -168,7 +168,7 @@ input.unitQuantityBox{
 	float: left;
 	padding: 2px 0 0 0;
 	margin-top: 4px;
-	margin-bottom: 4px;	
+	margin-bottom: 4px;
 }
 
 .cf:before,

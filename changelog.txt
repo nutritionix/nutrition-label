@@ -288,7 +288,7 @@ version 4.0.2 - apr 15, 2013
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
-version 4.0.5 - apr 24, 2013
+version 4.0.3 - apr 27, 2013
  - fixed a bug where the scrolling ingredient is removed when the textbox value is changed
  - fixed a bug where the not applicable tooltip stopped working when the textbox value is changed
  - fixed a bug where the unit quantity textbox feature is not working properly when there are non numeric values on the settings.
@@ -299,9 +299,47 @@ version 4.0.5 - apr 24, 2013
     - REASON: after some discussion, it is decided that SERVING SIZE means "valueServingUnitQuantity valueServingSizeUnit"
           - eg. Serving Size 8 Cookie (valueServingUnitQuantity = 8; valueServingSizeUnit = Cookie)
           - eg. Serving Size 1.0 (valueServingUnitQuantity = 1.0)
+ - MAJOR CHANGE: renamed naServingSize to naServingUnitQuantity
+ - MAJOR CHANGE: renamed showServingSize to showServingUnitQuantity
+    - REASON: this is so all servingUnitQuantity settings will have the same prefix like the others ('na', 'show' and 'value')
+          - valueServingUnitQuantity => value of the serving size unit
+          - showServingUnitQuantity => show / hide the serving size div
+          - naServingUnitQuantity => set the serving size unit to be 'not applicable' or not
  - MAJOR CHANGE: changes on the unit quantity textbox feature that was added on version 4.0.0
+			//this value can be changed and the value of the nutritions will be affected directly
+			//the computation is "current nutrition value" * "serving unit quantity value" = "final nutrition value"
+			//this can't be less than zero, all values less than zero is converted to zero
+			//the textbox to change this value is visible / enabled by default
+			//when enabled, user can change this value by clicking the arrow or changing the value on the textbox and
+				//pressing enter. the value on the label will be updated automatically
+			//different scenarios and the result if this feature is enabled
+				//NOTE 1: [ ] => means a textbox will be shown
+				//NOTE 2: on all cases below showServingUnitQuantityTextbox == true AND showServingUnitQuantity == true
+						//if showServingUnitQuantity == false, the values that should be on the 'serving size div' are empty or null
+				//CASE 1a: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity >= 0 (AND NOT N/A)
+					//RESULT: textServingSize [valueServingUnitQuantity] valueServingSizeUnit
+				//CASE 2: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity is N/A
+					//RESULT: textServingSize - (dash for not applicable) valueServingSizeUnit
+				//CASE 3a: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity is N/A
+					//RESULT: textServingSize - (dash for not applicable)
+
+				//NOTE 3: on all cases below showServingUnitQuantityTextbox == true AND showItemName == true
+						//if showItemName == false, the values that should be on the 'item name div' are empty or null
+				//CASE 1b: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
+					//RESULT: [valueServingUnitQuantity default to 1.0] itemName
+				//CASE 3b: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity > 0 (AND NOT N/A)
+					//RESULT: [valueServingUnitQuantity] itemName
+				//CASE 3c: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
+					//RESULT: [valueServingUnitQuantity default to 1.0] itemName
+
+				//NOTE 4: to see the different resulting labels, check the html/demo-texbox-case*.html files
+			valueServingUnitQuantity : 1.0,
+			valueServingSizeUnit : '',
+			showServingUnitQuantityTextbox : true,
+			//the name of the item for this label (eg. cheese burger or mayonnaise)
+			itemName : 'Item / Ingredient Name',
+			showServingUnitQuantity : true,
+			naServingUnitQuantity : false,
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
-
-NEED TO IMPROVE THE DESCRIPTION OF THE NEW FEATURE SETTINGS

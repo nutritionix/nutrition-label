@@ -149,7 +149,7 @@
 					<p>Giving specific nutrition label values and hiding some of the parts of the nutrition label</p>
 <pre id="pre2">
 $('#test2').nutritionLabel({
-	'showServingSize' : false,
+	'showServingUnitQuantity' : false,
 	'itemName' : 'Bleu Cheese Dressing',
 	'ingredientList' : 'Bleu Cheese Dressing',
 
@@ -270,7 +270,7 @@ $('#test4').nutritionLabel({
 					<p>Similar to example #2 but with only a few visible values</p>
 <pre id="pre5">
 $('#test5').nutritionLabel({
-	'showServingSize' : false,
+	'showServingUnitQuantity' : false,
 	'showAmountPerServing' : false,
 	'showCalorieDiet' : true,
 	'ingredientList' : 'Balsamic Vinaigrette, BBQ Hickory, Steak Tips',
@@ -310,7 +310,7 @@ $('#test5').nutritionLabel({
 					<p>Similar to example #2 but with different plugin options. Things to note are the use of 'not applicable' and text value instead of numerical value on sugar</p>
 <pre id="pre6">
 $('#test6').nutritionLabel({
-	'showServingSize' : false,
+	'showServingUnitQuantity' : false,
 	'showAmountPerServing' : false,
 	'showIngredients' : false,
 	'itemName' : 'Olive Tapenade',
@@ -349,7 +349,7 @@ $('#test6').nutritionLabel({
 					<p>Example where a few of the values are not applicable</p>
 <pre id="pre7">
 $('#test7').nutritionLabel({
-	'showServingSize' : false,
+	'showServingUnitQuantity' : false,
 	'showAmountPerServing' : false,
 	'showIngredients' : false,
 	'itemName' : 'Bar None Sliders Bison',
@@ -457,7 +457,7 @@ $('#test9').nutritionLabel({
 <pre id="pre10">
 $('#test10').nutritionLabel({
 	'calorieIntake' : 1222,
-	'showServingSize' : false,
+	'showServingUnitQuantity' : false,
 	'showIngredients' : false,
 	'itemName' : 'Bleu Cheese Dressing',
 	'decimalPlacesForNutrition' : 2,
@@ -500,7 +500,7 @@ $('#test10').nutritionLabel({
 					<p>Similar to example #2 but the "recommended daily intake values" are halved</p>
 <pre id="pre11">
 $('#test11').nutritionLabel({
-	'showServingSize' : false,
+	'showServingUnitQuantity' : false,
 	'showIngredients' : false,
 	'itemName' : 'Bleu Cheese Dressing',
 
@@ -544,7 +544,7 @@ $('#test11').nutritionLabel({
 					<p>Similar to example #11 but the calorie diet is enabled (default calorie diet values)</p>
 <pre id="pre12">
 $('#test12').nutritionLabel({
-	'showServingSize' : false,
+	'showServingUnitQuantity' : false,
 	'showIngredients' : false,
 	'showCalorieDiet' : true,
 	'itemName' : 'Bleu Cheese Dressing',
@@ -589,7 +589,7 @@ $('#test12').nutritionLabel({
 					<p>Similar to example #11 but the calorie diet is enabled (custom calorie diet values)</p>
 <pre id="pre13">
 $('#test13').nutritionLabel({
-	'showServingSize' : false,
+	'showServingUnitQuantity' : false,
 	'showIngredients' : false,
 	'showCalorieDiet' : true,
 	'itemName' : 'Bleu Cheese Dressing',
@@ -649,7 +649,7 @@ $('#test13').nutritionLabel({
 					<p>Version 3.0.0 fix with the title being too close when the serving size and item name are hidden</p>
 <pre id="pre14">
 $('#test14').nutritionLabel({
-	'showServingSize' : false,
+	'showServingUnitQuantity' : false,
 	'showItemName' : false
 });
 </pre>
@@ -663,10 +663,10 @@ $('#test14').nutritionLabel({
 				</div>
 				<div class="span5">
 					<h3>Example #15</h3>
-					<p>Version 3.0.0 fix with the title being too close when the item name is hidden, showServingSize is true and both the serving size and servings per container are hidden</p>
+					<p>Version 3.0.0 fix with the title being too close when the item name is hidden, showServingUnitQuantity is true and both the serving size and servings per container are hidden</p>
 <pre id="pre15">
 $('#test15').nutritionLabel({
-	'showServingSize' : true,
+	'showServingUnitQuantity' : true,
 	'showServingsPerContainer' : true,
 	'valueServingUnitQuantity' : '0',
 	'valueServingPerContainer' : '',
@@ -687,7 +687,7 @@ $('#test15').nutritionLabel({
 <pre id="pre16">
 $('#test16').nutritionLabel({
 	'showItemNameAtTheTop' : true,
-	'showServingSize' : false,
+	'showServingUnitQuantity' : false,
 	'itemName' : 'Bleu Cheese Dressing',
 	'ingredientList' : 'Bleu Cheese Dressing',
 

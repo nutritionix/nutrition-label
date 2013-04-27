@@ -290,10 +290,10 @@
 		<b class="note">Show/Hide Values</b><div class="h10"></div>
 		<div>
 			<b>Show Serving Size</b>
-			<input type="radio" id="showServingSize_yes" name="showServingSize" value="1" checked>
-			<label for="showServingSize_yes">Y</label>
-			<input type="radio" id="showServingSize_no" name="showServingSize" value="0">
-			<label for="showServingSize_no">N</label><div class="h10"></div>
+			<input type="radio" id="showServingUnitQuantity_yes" name="showServingUnitQuantity" value="1" checked>
+			<label for="showServingUnitQuantity_yes">Y</label>
+			<input type="radio" id="showServingUnitQuantity_no" name="showServingUnitQuantity" value="0">
+			<label for="showServingUnitQuantity_no">N</label><div class="h10"></div>
 		</div>
 
 		<div>
@@ -440,10 +440,10 @@
 		<b class="note">N/A Settings</b><div class="h10"></div>
 		<div>
 			<b>N/A Serving Size</b>
-			<input type="radio" id="naServingSize_yes" name="naServingSize" value="1">
-			<label for="naServingSize_yes">Y</label>
-			<input type="radio" id="naServingSize_no" name="naServingSize" value="0" checked>
-			<label for="naServingSize_no">N</label><div class="h10"></div>
+			<input type="radio" id="naServingUnitQuantity_yes" name="naServingUnitQuantity" value="1">
+			<label for="naServingUnitQuantity_yes">Y</label>
+			<input type="radio" id="naServingUnitQuantity_no" name="naServingUnitQuantity" value="0" checked>
+			<label for="naServingUnitQuantity_no">N</label><div class="h10"></div>
 		</div>
 
 		<div>
@@ -589,8 +589,8 @@
 	<div id="col4">
 		<b class="note">Nutrition => Value => Unit</b><div class="h10"></div>
 		<div>
-			<label for="valueServingSize">Serving Size</label>
-			<input type="text" id="valueServingSize" name="valueServingSize" value="0" class="nutriValue">
+			<label for="valueServingUnitQuantity">Serving Size</label>
+			<input type="text" id="valueServingUnitQuantity" name="valueServingUnitQuantity" value="0" class="nutriValue">
 			<input type="text" id="valueServingSizeUnit" name="valueServingSizeUnit" value="" class="nutriUnit"><div class="h10"></div>
 		</div>
 		<div>
@@ -940,7 +940,7 @@ $(document).ready(function(){
 			'showIngredients' : $('#showIngredients_yes').prop('checked') ? 1 : 0,
 			'showCalorieDiet' : $('#showCalorieDiet_yes').prop('checked') ? 1 : 0,
 
-			'showServingSize' : $('#showServingSize_yes').prop('checked') ? 1 : 0,
+			'showServingUnitQuantity' : $('#showServingUnitQuantity_yes').prop('checked') ? 1 : 0,
 			'showCalories' : $('#showCalories_yes').prop('checked') ? 1 : 0,
 			'showFatCalories' : $('#showFatCalories_yes').prop('checked') ? 1 : 0,
 			'showTotalFat' : $('#showTotalFat_yes').prop('checked') ? 1 : 0,
@@ -959,7 +959,7 @@ $(document).ready(function(){
 			'showCalcium' : $('#showCalcium_yes').prop('checked') ? 1 : 0,
 			'showIron' : $('#showIron_yes').prop('checked') ? 1 : 0,
 
-			'naServingSize' : $('#naServingSize_yes').prop('checked') ? 1 : 0,
+			'naServingUnitQuantity' : $('#naServingUnitQuantity_yes').prop('checked') ? 1 : 0,
 			'naCalories' : $('#naCalories_yes').prop('checked') ? 1 : 0,
 			'naFatCalories' : $('#naFatCalories_yes').prop('checked') ? 1 : 0,
 			'naTotalFat' : $('#naTotalFat_yes').prop('checked') ? 1 : 0,
@@ -997,7 +997,7 @@ $(document).ready(function(){
 			'dailyValueCarb' : regIsPosNumber( $('#dailyValueCarb').val() ) ? parseFloat( $('#dailyValueCarb').val() ) : 300,
 			'dailyValueFiber' : regIsPosNumber( $('#dailyValueFiber').val() ) ? parseFloat( $('#dailyValueFiber').val() ) : 25,
 
-			'valueServingSize' : regIsPosNumber( $('#valueServingSize').val() ) ? parseFloat( $('#valueServingSize').val() ) : 0,
+			'valueServingUnitQuantity' : regIsPosNumber( $('#valueServingUnitQuantity').val() ) ? parseFloat( $('#valueServingUnitQuantity').val() ) : 0,
 			'valueServingWeightGrams' : regIsPosNumber( $('#valueServingWeightGrams').val() ) ? parseFloat( $('#valueServingWeightGrams').val() ) : 0,
 			'valueServingSizeUnit' : $('#valueServingSizeUnit').val(),
 			'valueServingPerContainer' : regIsPosNumber( $('#valueServingPerContainer').val() ) ? parseFloat( $('#valueServingPerContainer').val() ) : 1,

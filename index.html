@@ -46,8 +46,6 @@ allowNoBorder : false,
 //http://goo.gl/RMD2O
 allowFDARounding : false,
 
-//the name of the item for this label (eg. cheese burger or mayonnaise)
-itemName : 'Item / Ingredient Name',
 //the brand name of the item for this label (eg. just salad)
 brandName : 'Brand where this item belongs to',
 //to scroll the ingredients if the innerheight is > scrollHeightComparison
@@ -68,13 +66,42 @@ urlBottomLink : 'http://www.nutritionix.com',
 nameBottomLink : 'Nutritionix',
 
 //this value can be changed and the value of the nutritions will be affected directly
-//the computation is "current nutrition value" * "value serving unit quantity" = "final nutrition value"
+//the computation is "current nutrition value" * "serving unit quantity value" = "final nutrition value"
 //this can't be less than zero, all values less than zero is converted to zero
-//the textbox to change this is hidden by default
+//the textbox to change this value is visible / enabled by default
 //when enabled, user can change this value by clicking the arrow or changing the value on the textbox and
 	//pressing enter. the value on the label will be updated automatically
+//different scenarios and the result if this feature is enabled
+	//NOTE 1: [ ] => means a textbox will be shown
+	//NOTE 2: on all cases below showServingUnitQuantityTextbox == true AND showServingUnitQuantity == true
+			//if showServingUnitQuantity == false, the values that should be on the 'serving size div' are empty or null
+	//CASE 1a: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity >= 0 (AND NOT N/A)
+		//RESULT: textServingSize [valueServingUnitQuantity] valueServingSizeUnit
+	//CASE 2: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity is N/A
+		//RESULT: textServingSize - (dash for not applicable) valueServingSizeUnit
+	//CASE 3a: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity is N/A
+		//RESULT: textServingSize - (dash for not applicable)
+
+	//NOTE 3: on all cases below showServingUnitQuantityTextbox == true AND showItemName == true
+			//if showItemName == false, the values that should be on the 'item name div' are empty or null
+	//CASE 1b: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
+		//RESULT: [valueServingUnitQuantity default to 1.0] itemName
+	//CASE 3b: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity > 0 (AND NOT N/A)
+		//RESULT: [valueServingUnitQuantity] itemName
+	//CASE 3c: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
+		//RESULT: [valueServingUnitQuantity default to 1.0] itemName
+
+	//NOTE 4: to see the different resulting labels, check the html/demo-texbox-case*.html files
 valueServingUnitQuantity : 1.0,
+valueServingSizeUnit : '',
 showServingUnitQuantityTextbox : true,
+//the name of the item for this label (eg. cheese burger or mayonnaise)
+itemName : 'Item / Ingredient Name',
+//this setting is used internally. this is just added here instead of a global variable to prevent a bug when there
+	//are multiple instances of the plugin like on the demo pages
+originalServingUnitQuantity : 0,
+showServingUnitQuantity : true,
+naServingUnitQuantity : false,
 
 //default calorie intake
 calorieIntake : 2000,
@@ -88,7 +115,6 @@ dailyValueCarb : 300,
 dailyValueFiber : 25,
 
 //these values can be change to hide some nutrition values
-showServingSize : true,
 showCalories : true,
 showFatCalories : true,
 showTotalFat : true,
@@ -123,7 +149,6 @@ showIngredients : true,
 showCalorieDiet : false,
 
 //the are to set some values as 'not applicable'. this means that the nutrition label will appear but the value will be a 'gray dash'
-naServingSize : false,
 naCalories : false,
 naFatCalories : false,
 naTotalFat : false,
@@ -143,9 +168,7 @@ naCalcium : false,
 naIron : false,
 
 //these are the default values for the nutrition info
-valueServingSize : 0,
 valueServingWeightGrams : 0,
-valueServingSizeUnit : '',
 valueServingPerContainer : 1,
 valueCalories : 0,
 valueFatCalories : 0,

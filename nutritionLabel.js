@@ -107,8 +107,8 @@
 			//pressing enter. the value on the label will be updated automatically
 		//different scenarios and the result if this feature is enabled
 			//NOTE 1: [ ] => means a textbox will be shown
-			//NOTE 2: on all cases below showServingUnitQuantityTextbox == true AND showServingSize == true
-					//if showServingSize == false, the values that should be on the 'serving size div' are empty or null
+			//NOTE 2: on all cases below showServingUnitQuantityTextbox == true AND showServingUnitQuantity == true
+					//if showServingUnitQuantity == false, the values that should be on the 'serving size div' are empty or null
 			//CASE 1a: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity >= 0 (AND NOT N/A)
 				//RESULT: textServingSize [valueServingUnitQuantity] valueServingSizeUnit
 			//CASE 2: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity is N/A
@@ -124,7 +124,8 @@
 				//RESULT: [valueServingUnitQuantity] itemName
 			//CASE 3c: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
 				//RESULT: [valueServingUnitQuantity default to 1.0] itemName
-		//yyy
+
+			//NOTE 4: to see the different resulting labels, check the html/demo-texbox-case*.html files
 		valueServingUnitQuantity : 1.0,
 		valueServingSizeUnit : '',
 		showServingUnitQuantityTextbox : true,
@@ -133,6 +134,8 @@
 		//this setting is used internally. this is just added here instead of a global variable to prevent a bug when there
 			//are multiple instances of the plugin like on the demo pages
 		originalServingUnitQuantity : 0,
+		showServingUnitQuantity : true,
+		naServingUnitQuantity : false,
 
 		//default calorie intake
 		calorieIntake : 2000,
@@ -146,7 +149,6 @@
 		dailyValueFiber : 25,
 
 		//these values can be change to hide some nutrition values
-		showServingSize : true,
 		showCalories : true,
 		showFatCalories : true,
 		showTotalFat : true,
@@ -181,7 +183,6 @@
 		showCalorieDiet : false,
 
 		//the are to set some values as 'not applicable'. this means that the nutrition label will appear but the value will be a 'gray dash'
-		naServingSize : false,
 		naCalories : false,
 		naFatCalories : false,
 		naTotalFat : false,
@@ -352,8 +353,9 @@
 
 		//update the settings with the value of the unit quantity
 		var $updatedsettings = UpdateSettingsWithUnitQuantity($settings);
-		//yyy
 		$settings.originalServingUnitQuantity = $updatedsettings.valueServingUnitQuantity;
+		if ($updatedsettings.valueServingUnitQuantity <= 0)
+			$updatedsettings.valueServingUnitQuantity = 1;
 
 		//initalize the nutrition label and create / recreate it
 		var nutritionLabel = new NutritionLabel($updatedsettings, $elem);
@@ -499,7 +501,7 @@
 		$elem.html( nutritionLabel.generate() );
 
 		//scroll the ingredients of the innerheight is > $settings.scrollHeightComparison
-		//and the settings showIngredients and scrollLongIngredients are true
+			//and the settings showIngredients and scrollLongIngredients are true
 		if ($settings.showIngredients && $settings.scrollLongIngredients)
 			updateScrollingFeature($elem, $settings);
 
@@ -666,7 +668,7 @@
 			if ($this.settings.allowNoBorder)
 				borderCSS = 'border: 0;';
 
-			//this is a straighforward code - creates the html code for the label based on the settings
+			//creates the html code for the label based on the settings
 			var nutritionLabel = '';
 
 
@@ -676,14 +678,12 @@
 			nutritionLabel += '<div class="nutritionLabel" style="' + borderCSS + ' width: '+ $this.settings.widthCustom + ';">\n';
 
 			if ($this.settings.showItemName && $this.settings.showItemNameAtTheTop){
-				if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingSize){
+				if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity){
 					if (
 						($this.settings.valueServingSizeUnit == null || $this.settings.valueServingSizeUnit == '') ||
 						($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null &&
 							$this.settings.originalServingUnitQuantity <= 0)
 					){
-						//if (originalServingUnitQuantity <= 0)
-							//$this.settings.valueServingUnitQuantity = 1;
 					nutritionLabel += '<div class="cf"><div class="rel servingSizeField">';
 						nutritionLabel += tab1 + '<div class="setter">\n';
 							nutritionLabel += tab2 + '<a href="Increase the quantity" class="unitQuantityUp" rel="nofollow"></a>\n';
@@ -694,7 +694,15 @@
 					nutritionLabel += '</div>';
 					}
 				}
-				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div></div>\n';
+				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div>\n';
+
+				if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity)
+					if (
+						($this.settings.valueServingSizeUnit == null || $this.settings.valueServingSizeUnit == '') ||
+						($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null &&
+							$this.settings.originalServingUnitQuantity <= 0)
+					)
+						nutritionLabel += tab1 + '</div>\n';
 			}
 
 			if ($this.settings.showBrandName)
@@ -704,12 +712,12 @@
 
 			var servingSizeIsHidden = false;
 			var servingContainerIsHidden = false;
-			if ($this.settings.showServingSize){
+			if ($this.settings.showServingUnitQuantity){
 				nutritionLabel += tab1 + '<div class="serving">\n';
 
-				if ($this.settings.originalServingUnitQuantity > 0 || $this.settings.naServingSize){
-					nutritionLabel += tab2 + '<div class="cf">' + $this.settings.textServingSize + '';
-						nutritionLabel += $this.settings.naServingSize ?
+				if ($this.settings.originalServingUnitQuantity > 0 || $this.settings.naServingUnitQuantity){
+					nutritionLabel += tab2 + '<div class="cf"><div class="servingSizeText">' + $this.settings.textServingSize + '</div>';
+						nutritionLabel += $this.settings.naServingUnitQuantity ?
 							naValue :
 							(
 								$this.settings.showServingUnitQuantityTextbox ?
@@ -717,8 +725,7 @@
 							);
 
 					if ($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null){
-						//xxx
-						if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingSize &&
+						if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity &&
 								$this.settings.valueServingSizeUnit != null && $this.settings.valueServingSizeUnit != ''){
 					nutritionLabel += '<div class="rel servingSizeField">';
 						nutritionLabel += tab1 + '<div class="setter">\n';
@@ -728,10 +735,10 @@
 						nutritionLabel += tab1 + '<input type="text" value="'+ $this.settings.valueServingUnitQuantity.toFixed(1) +'" ';
 								nutritionLabel += 'class="unitQuantityBox" class="">\n';
 					nutritionLabel += '</div>';
-						}else if ($this.settings.originalServingUnitQuantity > 0)
+						}else if ($this.settings.originalServingUnitQuantity > 0 && !$this.settings.naServingUnitQuantity && $this.settings.showServingUnitQuantityTextbox)
 							nutritionLabel += ' '+ parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) );
 						nutritionLabel += '<div class="servingUnit">'+ $this.settings.valueServingSizeUnit + '</div>';
-					}else if ($this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingUnitQuantityTextbox)
+					}else if ($this.settings.originalServingUnitQuantity > 0 && !$this.settings.naServingUnitQuantity && $this.settings.showServingUnitQuantityTextbox)
 							nutritionLabel += ' '+ parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) );
 
 					if ($this.settings.valueServingWeightGrams > 0)
@@ -739,7 +746,8 @@
 							parseFloat( $this.settings.valueServingWeightGrams.toFixed($this.settings.decimalPlacesForNutrition) )
 						+ 'g)';
 
-					nutritionLabel += '</div>\n';
+					if ($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null)
+						nutritionLabel += '</div>\n';
 				}else
 					servingSizeIsHidden = true;
 
@@ -756,19 +764,18 @@
 				}else
 					servingContainerIsHidden = true;
 
-				nutritionLabel += tab1 + '</div>\n';
+				if (!servingSizeIsHidden)
+					nutritionLabel += tab1 + '</div>\n';
 			}
 
 
 		if ($this.settings.showItemName && !$this.settings.showItemNameAtTheTop){
-			if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingSize){
+			if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity){
 				if (
 					($this.settings.valueServingSizeUnit == null || $this.settings.valueServingSizeUnit == '') ||
 					($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null &&
 						$this.settings.originalServingUnitQuantity <= 0)
 				){
-					//if (originalServingUnitQuantity <= 0)
-						//$this.settings.valueServingUnitQuantity = 1;
 				nutritionLabel += '<div class="cf"><div class="rel servingSizeField">';
 					nutritionLabel += tab1 + '<div class="setter">\n';
 						nutritionLabel += tab2 + '<a href="Increase the quantity" class="unitQuantityUp" rel="nofollow"></a>\n';
@@ -779,10 +786,17 @@
 				nutritionLabel += '</div>';
 				}
 			}
-				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div></div>\n';
+				nutritionLabel += tab1 + '<div class="name">' + $this.settings.itemName + '</div>\n';
+			if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity)
+				if (
+					($this.settings.valueServingSizeUnit == null || $this.settings.valueServingSizeUnit == '') ||
+					($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null &&
+						$this.settings.originalServingUnitQuantity <= 0)
+				)
+					nutritionLabel += tab1 + '</div>\n';
 		}
 
-			if ( (!$this.settings.showItemName && !$this.settings.showServingSize) ||
+			if ( (!$this.settings.showItemName && !$this.settings.showServingUnitQuantity) ||
 						(!$this.settings.showItemName && servingSizeIsHidden && servingContainerIsHidden) )
 				nutritionLabel += tab1 + '<div class="headerSpacer"></div>\n';
 
@@ -1200,17 +1214,6 @@
 
 			//returns the html for the nutrition label
 			return nutritionLabel;
-		},
-
-
-		destroy: function($this){
-			$this.html('');
-		},
-		hide: function($this){
-			$this.hide();
-		},
-		show: function($this){
-			$this.show();
 		}
 
 	};
