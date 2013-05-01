@@ -34,7 +34,7 @@
 }
 .nutritionLabel .serving {
 	font-size: 1.1em;
-	line-height: 1.28em;
+	 line-height: 1.28em;
 	padding-bottom: 2px;
 }
 .nutritionLabel .name {
@@ -94,8 +94,9 @@
 	font-size: .7em;
 	color: #777;
 }
-.ar { text-align: right; }
-.fr { float: right; }
+.nutritionLabel .ar { text-align: right; }
+.nutritionLabel .fr { float: right; }
+.nutritionLabel .fl { float: left; }
 
 .nutritionLabel #calcDisclaimer {
 	padding-left: .58em;
@@ -120,10 +121,10 @@
 	background-color: #ffc;
 	z-index: 10000;
 }
-.spaceAbove {
+.nutritionLabel .spaceAbove {
 	 height: 10px;
 }
-.setter {
+.nutritionLabel .setter {
 	width:  12px;
 	padding: 3px 0 0 0;
 	position: absolute;
@@ -131,7 +132,7 @@
 	top: 0;
 	z-index: 100;
 }
-.setter a {
+.nutritionLabel .setter a {
 	display: block;
 	width: 9px;
 	height: 7px;
@@ -139,13 +140,13 @@
 	line-height: 0em;
 }
 
-a.unitQuantityUp {
+.nutritionLabel a.unitQuantityUp {
 	padding-bottom: 1px;
 	background: transparent url("images/up.png") left top no-repeat;
 	z-index: 9999;
 }
 
-a.unitQuantityDown {
+.nutritionLabel a.unitQuantityDown {
 	padding-top: 1px;
 	background: transparent url("images/down.png") left bottom no-repeat;
 	z-index: 9999;
@@ -159,23 +160,30 @@ a.unitQuantityDown {
 	margin-left: 15px;
 	margin-bottom: 0;
 }
-.rel {
+.nutritionLabel .rel {
 	position: relative;
 }
 
-.servingSizeField {
+.nutritionLabel .servingSizeField {
 	float: left;
 	margin-top: .2em;
 	margin-bottom: .2em;
 	margin-right: .4em;
 }
-.servingUnit {
+.nutritionLabel .servingUnit {
 	float: left;
-	padding: .1em 0 0 0;
+	padding: .1em .3em 0 0;
 	margin-top: .3em;
 	margin-bottom: .2em;
 }
-
+.nutritionLabel .servingWeightGrams {
+	padding: .1em 0 0 0;
+	margin-top: .3em;
+	margin-bottom: .2em;	
+}
+.nutritionLabel .servingSizeText {	
+	padding-right: .3em;
+}
 .cf:before,
 .cf:after {
     content: " "; /* 1 */
@@ -192,4 +200,9 @@ a.unitQuantityDown {
  */
 .cf {
     *zoom: 1;
+}
+
+.nutritionLabel .servingSizeText,
+{
+	display: inline-block;
 }

@@ -678,7 +678,8 @@
 			nutritionLabel += '<div class="nutritionLabel" style="' + borderCSS + ' width: '+ $this.settings.widthCustom + ';">\n';
 
 
-			var tabTemp = tab1;
+			var tabTemp = tab1;			
+			var itemNameClass = '';
 			if ($this.settings.showItemName && $this.settings.showItemNameAtTheTop){
 				if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity){
 					if (
@@ -696,9 +697,11 @@
 									nutritionLabel += 'class="unitQuantityBox" class="">\n';
 						nutritionLabel += tab2 + '</div><!-- closing class="servingSizeField" -->\n';
 						tabTemp = tab2;
+						var itemNameClass = 'inline';
 					}
+					
 				}
-				nutritionLabel += tabTemp + '<div class="name">' + $this.settings.itemName + '</div>\n';
+				nutritionLabel += tabTemp + '<div class="name '+ itemNameClass +'">' + $this.settings.itemName + '</div>\n';
 
 				if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity)
 					if (
@@ -717,12 +720,17 @@
 
 			var servingSizeIsHidden = false;
 			var servingContainerIsHidden = false;
+			var servingSizeTextClass = '';
 			if ($this.settings.showServingUnitQuantity){
 				nutritionLabel += tab1 + '<div class="serving">\n';
 
+				if(( !$this.settings.showServingUnitQuantityTextbox )) {
+				 	servingSizeTextClass = ' fl';
+				}
+
 				if ($this.settings.originalServingUnitQuantity > 0 || $this.settings.naServingUnitQuantity){
 					nutritionLabel += tab2 + '<div class="cf">\n';
-						nutritionLabel += tab3 + '<div class="servingSizeText">' + $this.settings.textServingSize + '</div>\n';
+						nutritionLabel += tab3 + '<div class="servingSizeText'+ servingSizeTextClass +'">' + $this.settings.textServingSize + '</div>\n';
 						nutritionLabel += $this.settings.naServingUnitQuantity ?
 							tab3 + naValue + '\n':
 							(
@@ -774,7 +782,7 @@
 
 		if ($this.settings.showItemName && !$this.settings.showItemNameAtTheTop){
 			var tabTemp = tab1;
-
+			var itemNameClass = '';
 			if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity){
 				if (
 					($this.settings.valueServingSizeUnit == null || $this.settings.valueServingSizeUnit == '') ||
@@ -791,10 +799,11 @@
 								nutritionLabel += 'class="unitQuantityBox" class="">\n';
 					nutritionLabel += tab2 + '</div><!-- closing class="servingSizeField" -->\n';
 					tabTemp = tab2;
+					var itemNameClass = 'inline';
 				}
 			}
 
-				nutritionLabel += tabTemp + '<div class="name">' + $this.settings.itemName + '</div>\n';
+				nutritionLabel += tabTemp + '<div class="name '+ itemNameClass +'">' + $this.settings.itemName + '</div>\n';
 
 			if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity)
 				if (
