@@ -728,6 +728,7 @@
 				 	servingSizeTextClass = ' fl';
 				}
 
+
 				if ($this.settings.originalServingUnitQuantity > 0 || $this.settings.naServingUnitQuantity){
 					nutritionLabel += tab2 + '<div class="cf">\n';
 						nutritionLabel += tab3 + '<div class="servingSizeText'+ servingSizeTextClass +'">' + $this.settings.textServingSize + '</div>\n';
@@ -752,7 +753,7 @@
 					}else if ($this.settings.originalServingUnitQuantity > 0 && !$this.settings.naServingUnitQuantity && $this.settings.showServingUnitQuantityTextbox)
 							nutritionLabel += tab3 + '<div class="servingUnitQuantity">' + parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) ) + '</div>\n';
 						nutritionLabel += tab3 + '<div class="servingUnit">'+ $this.settings.valueServingSizeUnit + '</div>\n';
-				}else if ($this.settings.originalServingUnitQuantity > 0 && !$this.settings.naServingUnitQuantity && $this.settings.showServingUnitQuantityTextbox)
+				}else if ($this.settings.originalServingUnitQuantity > 0 && !$this.settings.naServingUnitQuantity && $this.settings.showServingUnitQuantityTextbox)						
 						nutritionLabel += tab3 + '<div class="servingUnitQuantity">' + parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) ) + '</div>\n';
 
 				if ($this.settings.valueServingWeightGrams > 0)
