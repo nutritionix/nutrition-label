@@ -343,3 +343,14 @@ version 4.0.3 - apr 27, 2013
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
+
+version 4.0.4 - may 4, 2013
+ - removed the showItemNameAtTheTop settings
+ - made more js and css fixes for the new textbox feature mentioned on 4.0.0 and 4.0.3
+ - changes on showBrandName and brandName. before, this is shown at the top before the 'title', now it is shown on the same line as the 'item name'
+		- the show brand name will now appear after the item name if the setting showBrandName is true and brandName is not null
+    - "ITEM NAME" dash (-) "BRAND NAME"
+ - the item name will also now appear right after the 'title'
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
