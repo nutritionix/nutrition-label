@@ -109,6 +109,7 @@
 	font-weight: bold;
 	font-size: 1.2em;
 	cursor: default;
+	margin-top:  .2em;
 }
 .naTooltip{
 	position: absolute;
@@ -172,17 +173,21 @@
 }
 .nutritionLabel .servingUnit {
 	float: left;
-	padding: .1em .3em 0 0;
+	padding: 0 0 0 .3em;
 	margin-top: .3em;
 	margin-bottom: .2em;
 }
 .nutritionLabel .servingWeightGrams {
-	padding: .1em 0 0 0;
+	padding: 0 0 0 .3em;
 	margin-top: .3em;
 	margin-bottom: .2em;
 }
 .nutritionLabel .servingSizeText {
 	padding-right: .3em;
+	margin-top: .3em;
+}
+.nutritionLabel .servingUnitQuantity {
+	margin-top: .3em;	
 }
 .cf:before,
 .cf:after {
