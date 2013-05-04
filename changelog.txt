@@ -332,7 +332,7 @@ version 4.0.3 - apr 27, 2013
 				//CASE 3c: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
 					//RESULT: [valueServingUnitQuantity default to 1.0] itemName
 
-				//NOTE 4: to see the different resulting labels, check the html/demo-texbox-case*.html files
+				//NOTE 4: to see the different resulting labels, check the html/demo-texbox-case*.html files to see different settings and the resulting label
 			valueServingUnitQuantity : 1.0,
 			valueServingSizeUnit : '',
 			showServingUnitQuantityTextbox : true,

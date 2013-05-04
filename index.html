@@ -9,29 +9,46 @@
  * @license			This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.           |
  * @link				http://www.nutritionix.com                                                                         |
  * @github			http://github.com/nutritionix/nutrition-label                                                      |
- * @version			4.0.1                                                                                              |
+ * @version			4.0.4                                                                                              |
  *                                                                                                                 |
  ******************************************************************************************************************+
  -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
- 	<link rel='stylesheet' type='text/css' media='screen' href='bootstrap/css/bootstrap.min.css'>
- 	<style type="text/css">
- 		body {
- 			padding: 20px 0;
- 		}
- 	</style>
- </head>
- <body>
+<head>
+	<link rel='stylesheet' type='text/css' media='screen' href='bootstrap/css/bootstrap.min.css'>
+	<style type="text/css">
+		body {
+			padding: 20px 0;
+		}
+	</style>
+</head>
+<body>
 <div class="container">
-<div class="hero-unit">
-        <h1>Nutrition Label</h1>
-        <h4>from Nutritionix</h4>
-        <p>This plugin can be used to create customized nutrition labels like the ones that can be seen on <a href="http://www.nutritionix.com">http://www.nutritionix.com</a></p>
-      </div>
-<p>These are the default values on the plugin that you need to change to create a customized nutrition label.</p>
-	<pre>
+	<div class="hero-unit">
+		<h1>Nutrition Label version 4.0.4</h1>
+		<h4>from Nutritionix</h4>
+		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
+		<p>
+			This plugin can be used to create customized nutrition labels like the ones that can be seen on
+			<a href="http://www.nutritionix.com" target="_newDemo">http://www.nutritionix.com</a> for normal html page labels and
+			<a href="http:m.nutritionix.com" target="_newDemo">http://m.nutritionix.com</a> for mobile html page labels.<br/><br/>
+
+			You can read more about this on this
+			<a href="http://blog.nutritionix.com/2013/03/08/introducing-open-nutrition-label-project/" target="_newDemo">blog post</a><br/><br/>
+
+			Demo Pages:<br/>
+			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/html/demo.html" target="_newDemo">Main Demo Page</a><br/>
+			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/html/demo-texbox-case1-a.html" target="_newDemo">Textbox Demo Case 1a</a><br/>
+			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/html/demo-texbox-case1-b.html" target="_newDemo">Textbox Demo Case 1b</a><br/>
+			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/html/demo-texbox-case2-a.html" target="_newDemo">Textbox Demo Case 2a</a><br/>
+			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/html/demo-texbox-case2-b.html" target="_newDemo">Textbox Demo Case 2b</a><br/>
+			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/html/demo-texbox-case3-a.html" target="_newDemo">Textbox Demo Case 3a</a><br/>
+			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/html/demo-texbox-case3-b.html" target="_newDemo">Textbox Demo Case 3b</a><br/>
+		</p>
+	</div>
+	<p>These are the default values on the plugin that you need to change to create a customized nutrition label.</p>
+	<pre style="padding: 20px 40px; font-size: 14px;">
 //default fixedWidth of the nutrition label
 width : 260,
 
@@ -97,9 +114,6 @@ valueServingSizeUnit : '',
 showServingUnitQuantityTextbox : true,
 //the name of the item for this label (eg. cheese burger or mayonnaise)
 itemName : 'Item / Ingredient Name',
-//this setting is used internally. this is just added here instead of a global variable to prevent a bug when there
-	//are multiple instances of the plugin like on the demo pages
-originalServingUnitQuantity : 0,
 showServingUnitQuantity : true,
 naServingUnitQuantity : false,
 
@@ -139,8 +153,6 @@ showAmountPerServing : true,
 showServingsPerContainer : false,
 //to show the item name. there are special cases where the item name is replaced with 'servings per container' value
 showItemName : true,
-//to show the item name at the top of the page
-showItemNameAtTheTop : false,
 //show the brand where this item belongs to
 showBrandName : false,
 //to show the ingredients value or not
@@ -250,10 +262,8 @@ ingredientLabel : 'INGREDIENTS:',
 ingredientList : 'None',
 textPercentDailyPart1 : 'Percent Daily Values are based on a',
 textPercentDailyPart2 : 'calorie diet'
-</pre>
-<p>
-	There are a lot of sample on our <a href="html/demo.html">demo page</a> on how the plugin can be used
-</p>
+	</pre>
+	<p>There are a lot of sample on our <a href="html/demo.html">demo page</a> on how the plugin can be used</p>
 </div>
- </body>
- </html>
+</body>
+</html>

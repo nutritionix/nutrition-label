@@ -700,7 +700,7 @@
 					tabTemp = tab2;
 					var itemNameClass = 'inline';
 				}
-			}
+			}//end of => if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity){
 
 				nutritionLabel += tabTemp + '<div class="name '+ itemNameClass +'">';
 					nutritionLabel += $this.settings.itemName;
@@ -715,7 +715,7 @@
 						$this.settings.originalServingUnitQuantity <= 0)
 				)
 					nutritionLabel += tab1 + '</div><!-- closing class="cf" -->\n';
-		}//end of if ($this.settings.showItemName)
+		}//end of => if ($this.settings.showItemName)
 
 
 			var servingSizeIsHidden = false;
@@ -752,6 +752,7 @@
 
 					}else if ($this.settings.originalServingUnitQuantity > 0 && !$this.settings.naServingUnitQuantity && $this.settings.showServingUnitQuantityTextbox)
 							nutritionLabel += tab3 + '<div class="servingUnitQuantity fl">' + parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) ) + '</div>\n';
+					//end of => if ($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null){
 
 					if ($this.settings.valueServingWeightGrams > 0)
 							nutritionLabel += tab3 + '<div class="servingWeightGrams fl">('+
@@ -761,6 +762,8 @@
 				nutritionLabel += tab2 + '</div><!-- closing class="cf" -->\n';
 			}else
 				servingSizeIsHidden = true;
+			//end of => if ($this.settings.originalServingUnitQuantity > 0 || $this.settings.naServingUnitQuantity){
+
 
 			if ($this.settings.showServingsPerContainer){
 				// Serving per container
@@ -776,7 +779,7 @@
 				servingContainerIsHidden = true;
 
 			nutritionLabel += tab1 + '</div><!-- closing class="serving" -->\n';
-		}//end of if ($this.settings.showServingUnitQuantity)
+		}//end of => if ($this.settings.showServingUnitQuantity)
 
 
 			if ( (!$this.settings.showItemName && !$this.settings.showServingUnitQuantity) ||
@@ -793,6 +796,7 @@
 			}
 
 				nutritionLabel += tab1 + '<div class="line">\n';
+
 
 				if ($this.settings.showFatCalories){
 					nutritionLabel += tab2 + '<div class="fr">';
@@ -829,6 +833,7 @@
 					nutritionLabel += '<b>% ' + $this.settings.textDailyValues + '<sup>*</sup></b>';
 				nutritionLabel += '</div>\n';
 
+
 			if ($this.settings.showTotalFat){
 				nutritionLabel += tab1 + '<div class="line">\n';
 					nutritionLabel += tab2 + '<div class="dv">';
@@ -856,7 +861,8 @@
 								) + $this.settings.unitTotalFat
 							) + '\n';
 				nutritionLabel += tab1 + '</div>\n';
-			}
+			}//end of => if ($this.settings.showTotalFat){
+
 
 			if ($this.settings.showSatFat){
 				nutritionLabel += tab1 + '<div class="line indent">\n';
@@ -885,7 +891,8 @@
 								) + $this.settings.unitSatFat
 							) + '\n';
 				nutritionLabel += tab1 + '</div>\n';
-			}
+			}//end of => if ($this.settings.showSatFat){
+
 
 			if ($this.settings.showTransFat){
 				nutritionLabel += tab1 + '<div class="line indent">\n';
@@ -903,6 +910,7 @@
 				nutritionLabel += tab1 + '</div>\n';
 			}
 
+
 			if ($this.settings.showPolyFat){
 				nutritionLabel += tab1 + '<div class="line indent">';
 					nutritionLabel += $this.settings.textPolyFat + ' ';
@@ -916,6 +924,7 @@
 				nutritionLabel += '</div>\n';
 			}
 
+
 			if ($this.settings.showMonoFat){
 				nutritionLabel += tab1 + '<div class="line indent">';
 					nutritionLabel += $this.settings.textMonoFat + ' ';
@@ -928,6 +937,7 @@
 							) + $this.settings.unitMonoFat;
 				nutritionLabel += tab1 + '</div>\n';
 			}
+
 
 			if ($this.settings.showCholesterol){
 				nutritionLabel += tab1 + '<div class="line">\n';
@@ -956,7 +966,8 @@
 								) + $this.settings.unitCholesterol
 							) + '\n';
 				nutritionLabel += tab1 + '</div>\n';
-			}
+			}//end of => if ($this.settings.showCholesterol){
+
 
 			if ($this.settings.showSodium){
 				nutritionLabel += tab1 + '<div class="line">\n';
@@ -985,7 +996,8 @@
 								) + $this.settings.unitSodium
 							) + '\n';
 				nutritionLabel += tab1 + '</div>\n';
-			}
+			}//end of => if ($this.settings.showSodium){
+
 
 			if ($this.settings.showTotalCarb){
 				nutritionLabel += tab1 + '<div class="line">\n';
@@ -1014,7 +1026,8 @@
 								) + $this.settings.unitTotalCarb
 							) + '\n';
 				nutritionLabel += tab1 + '</div>\n';
-			}
+			}//end of => if ($this.settings.showTotalCarb){
+
 
 			if ($this.settings.showFibers){
 				nutritionLabel += tab1 + '<div class="line indent">\n';
@@ -1043,7 +1056,8 @@
 								) + $this.settings.unitFibers
 							) + '\n';
 				nutritionLabel += tab1 + '</div>\n';
-			}
+			}//end of => if ($this.settings.showFibers){
+
 
 			if ($this.settings.showSugars){
 				nutritionLabel += tab1 + '<div class="line indent">';
@@ -1058,6 +1072,7 @@
 				nutritionLabel += '</div>\n';
 			}
 
+
 			if ($this.settings.showProteins){
 				nutritionLabel += tab1 + '<div class="line">';
 					nutritionLabel += '<b>' + $this.settings.textProteins + '</b> ';
@@ -1071,7 +1086,9 @@
 				nutritionLabel += '</div>\n';
 			}
 
+
 			nutritionLabel += tab1 + '<div class="bar1"></div>\n';
+
 
 			if ($this.settings.showVitaminA){
 				nutritionLabel += tab1 + '<div class="line">\n';
@@ -1085,6 +1102,7 @@
 				nutritionLabel += tab1 + '</div>\n';
 			}
 
+
 			if ($this.settings.showVitaminC){
 				nutritionLabel += tab1 + '<div class="line">\n';
 					nutritionLabel += tab2 + '<div class="dv">';
@@ -1096,6 +1114,7 @@
 					nutritionLabel += tab2 + $this.settings.textVitaminC + '\n';
 				nutritionLabel += tab1 + '</div>\n';
 			}
+
 
 			if ($this.settings.showCalcium){
 				nutritionLabel += tab1 + '<div class="line">\n';
@@ -1109,6 +1128,7 @@
 				nutritionLabel += tab1 + '</div>\n';
 			}
 
+
 			if ($this.settings.showIron){
 				nutritionLabel += tab1 + '<div class="line">\n';
 					nutritionLabel += tab2 + '<div class="dv">';
@@ -1121,6 +1141,7 @@
 				nutritionLabel += tab1 + '</div>\n';
 			}
 
+
 				nutritionLabel += tab1 + '<div class="dvCalorieDiet line">\n';
 					nutritionLabel += tab2 + '<div class="calorieNote">\n';
 						nutritionLabel += tab3 + '<span class="star">*</span> ' + $this.settings.textPercentDailyPart1 + ' ' + $this.settings.calorieIntake + ' ' + $this.settings.textPercentDailyPart2 + '.\n';
@@ -1132,6 +1153,7 @@
 						nutritionLabel += tab3 + '</div><!-- closing class="ingredientListDiv" -->\n';
 					}
 					nutritionLabel += tab2 + '</div><!-- closing class="calorieNote" -->\n';
+
 
 				if ($this.settings.showCalorieDiet){
 			  		nutritionLabel += tab2 + '<table class="tblCalorieDiet">\n';
@@ -1182,14 +1204,16 @@
 			            nutritionLabel += tab4 + '</tr>\n';
 			          nutritionLabel += tab3 + '</tbody>\n';
 			        nutritionLabel += tab2 + '</table>\n';
-			  	}
+			  	}//end of => if ($this.settings.showCalorieDiet){
 				nutritionLabel += tab1 + '</div><!-- closing class="dvCalorieDiet line" -->\n';
+
 
 			if ($this.settings.showBottomLink){
 				nutritionLabel += tab1 + '<div class="spaceAbove"></div>\n';
 				nutritionLabel += tab1 + '<a href="' + $this.settings.urlBottomLink + '" target="_newSite" class="homeLinkPrint">' + $this.settings.nameBottomLink + '</a>\n';
 				nutritionLabel += tab1 + '<div class="spaceBelow"></div>\n';
 			}
+
 
 			nutritionLabel += '</div><!-- closing class="nutritionLabel" -->\n';
 
