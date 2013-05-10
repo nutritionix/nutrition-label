@@ -213,3 +213,8 @@
 {
 	display: inline-block;
 }
+
+.ingredientListDiv.scroll {
+	height: 95px;
+	overflow-y: scroll !important;	
+}

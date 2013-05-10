@@ -461,11 +461,15 @@
 		else
 			$ingredientListParent = $('#ingredientList').parent();
 		if ($ingredientListParent.innerHeight() > $settings.scrollHeightComparison)
+			$ingredientListParent.addClass('scroll');
+
+			/*
 			$ingredientListParent.css({
 				'height' : $settings.scrollHeightPixel+'px',
 				'width' : '100%',
 				'overflow-y' : 'scroll'
 			});
+			*/
 	}
 
 
