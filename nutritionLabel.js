@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     4.0.4                                                                                      |
- * @stable version      4.0.4                                                                                      |
+ * @current version     4.0.5                                                                                      |
+ * @stable version      4.0.5                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -348,14 +348,23 @@
 	function init(settings, $elem){
 		//merge the default settins with the user supplied settings
 		var $settings = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
+		var $originalCleanSettings = cleanSettings($.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} ));
+
 		//clean the settings and make sure that all numeric settings are really numeric, if not, force them to be
 		$settings = cleanSettings($settings);
+		$originalCleanSettings = cleanSettings($originalCleanSettings);
 
 		//update the settings with the value of the unit quantity
 		var $updatedsettings = UpdateSettingsWithUnitQuantity($settings);
 		$settings.originalServingUnitQuantity = $updatedsettings.valueServingUnitQuantity;
-		if ($updatedsettings.valueServingUnitQuantity <= 0)
+
+		//if the original value is <= 0, set it to 1.0
+		if ($updatedsettings.valueServingUnitQuantity <= 0){
+			$originalCleanSettings.valueServingUnitQuantity = 1;
+			$updatedsettings = UpdateSettingsWithUnitQuantity($originalCleanSettings);
 			$updatedsettings.valueServingUnitQuantity = 1;
+		}
+
 
 		//initalize the nutrition label and create / recreate it
 		var nutritionLabel = new NutritionLabel($updatedsettings, $elem);
