@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     4.0.5                                                                                      |
+ * @current version     4.0.6                                                                                      |
  * @stable version      4.0.5                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
@@ -88,26 +88,23 @@ nameBottomLink : 'Nutritionix',
 //the computation is "current nutrition value" * "serving unit quantity value" = "final nutrition value"
 //this can't be less than zero, all values less than zero is converted to zero
 //the textbox to change this value is visible / enabled by default
+//if the initial value of the serving size unit quantity is less than or equal to zero, it is converted to 1.0
 //when enabled, user can change this value by clicking the arrow or changing the value on the textbox and
 	//pressing enter. the value on the label will be updated automatically
 //different scenarios and the result if this feature is enabled
 	//NOTE 1: [ ] => means a textbox will be shown
 	//NOTE 2: on all cases below showServingUnitQuantityTextbox == true AND showServingUnitQuantity == true
 			//if showServingUnitQuantity == false, the values that should be on the 'serving size div' are empty or null
-	//CASE 1a: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity >= 0 (AND NOT N/A)
+	//CASE 1a: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity >= 0
 		//RESULT: textServingSize [valueServingUnitQuantity] valueServingSizeUnit
-	//CASE 2: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity is N/A
-		//RESULT: textServingSize - (dash for not applicable) valueServingSizeUnit
-	//CASE 3a: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity is N/A
-		//RESULT: textServingSize - (dash for not applicable)
 
 	//NOTE 3: on all cases below showServingUnitQuantityTextbox == true AND showItemName == true
 			//if showItemName == false, the values that should be on the 'item name div' are empty or null
-	//CASE 1b: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
+	//CASE 1b: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity <= 0
 		//RESULT: [valueServingUnitQuantity default to 1.0] itemName
-	//CASE 3b: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity > 0 (AND NOT N/A)
+	//CASE 3a: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity > 0
 		//RESULT: [valueServingUnitQuantity] itemName
-	//CASE 3c: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
+	//CASE 3b: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity <= 0
 		//RESULT: [valueServingUnitQuantity default to 1.0] itemName
 
 	//NOTE 4: to see the different resulting labels, check the html/demo-texbox-case*.html files
@@ -117,7 +114,8 @@ showServingUnitQuantityTextbox : true,
 //the name of the item for this label (eg. cheese burger or mayonnaise)
 itemName : 'Item / Ingredient Name',
 showServingUnitQuantity : true,
-naServingUnitQuantity : false,
+//allow hiding of the textbox arrows
+hideTextboxArrows : false,
 
 //default calorie intake
 calorieIntake : 2000,

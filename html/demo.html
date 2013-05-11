@@ -126,6 +126,8 @@
 				<li><a href="#test14"><i class="icon-chevron-right"></i> Example 14</a></li>
 				<li><a href="#test15"><i class="icon-chevron-right"></i> Example 15</a></li>
 				<li><a href="#test16"><i class="icon-chevron-right"></i> Example 16</a></li>
+				<li><a href="#test17"><i class="icon-chevron-right"></i> Example 17</a></li>
+				<li><a href="#test18"><i class="icon-chevron-right"></i> Example 18</a></li>
 			</ul>
 		</div>
 		<div class="span9">
@@ -226,9 +228,10 @@ $('#test3').nutritionLabel({
 				</div>
 				<div class="span5">
 					<h3>Example #4</h3>
-					<p>Similar to example #3 but the very tall ingredient list has a scroll to prevent a very tall nutrition label</p>
+					<p>Similar to example #3 but the very tall ingredient list has a scroll to prevent a very tall nutrition label. The scroll height is customized too</p>
 <pre id="pre4">
 $('#test4').nutritionLabel({
+	'scrollHeightPixel' : 200,
 	'scrollLongIngredients' : true,
 	'showItemName' : false,
 	'showServingsPerContainer' : true,
@@ -717,6 +720,85 @@ $('#test16').nutritionLabel({
 			</div><br /><br /><br />
 
 
+			<div class="row">
+				<div class="span4">
+					<div id="test17"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #17</h3>
+					<p>Similar to Example #2 but the arrows are hidden</p>
+<pre id="pre17">
+$('#test17').nutritionLabel({
+	'hideTextboxArrows' : true,
+	'showServingUnitQuantity' : false,
+	'itemName' : 'Bleu Cheese Dressing',
+	'ingredientList' : 'Bleu Cheese Dressing',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="span4">
+					<div id="test18"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #18</h3>
+					<p>Similar to Example #3 but the arrows are hidden</p>
+<pre id="pre18">
+$('#test18').nutritionLabel({
+	'hideTextboxArrows' : true,
+	'showItemName' : false,
+	'showServingsPerContainer' : true,
+	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showFibers' : false,
+	'showVitaminA' : false,
+	'showVitaminC' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+
+	'valueServingUnitQuantity' : 6,
+	'valueServingSizeUnit' : 'DONUTS',
+
+	'valueCalories' : 400,
+	'valueFatCalories' : 220,
+	'valueTotalFat' : 24,
+	'valueSatFat' : 15,
+	'valueCholesterol' : 25,
+	'valueSodium' : 430,
+	'valueTotalCarb' : 44,
+	'valueSugars' : 24,
+	'valueProteins' : 4
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
 		</div>
 	</div>
 </div>
@@ -742,6 +824,8 @@ $(document).ready(function(){
 	eval( eval( $('#pre14').html() ) );
 	eval( eval( $('#pre15').html() ) );
 	eval( eval( $('#pre16').html() ) );
+	eval( eval( $('#pre17').html() ) );
+	eval( eval( $('#pre18').html() ) );
 });
 </script>
 

@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     4.0.6                                                                                      |
+ * @current version     4.0.5                                                                                      |
  * @stable version      4.0.5                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
@@ -105,23 +105,26 @@
 		//the computation is "current nutrition value" * "serving unit quantity value" = "final nutrition value"
 		//this can't be less than zero, all values less than zero is converted to zero
 		//the textbox to change this value is visible / enabled by default
-		//if the initial value of the serving size unit quantity is less than or equal to zero, it is converted to 1.0
 		//when enabled, user can change this value by clicking the arrow or changing the value on the textbox and
 			//pressing enter. the value on the label will be updated automatically
 		//different scenarios and the result if this feature is enabled
 			//NOTE 1: [ ] => means a textbox will be shown
 			//NOTE 2: on all cases below showServingUnitQuantityTextbox == true AND showServingUnitQuantity == true
 					//if showServingUnitQuantity == false, the values that should be on the 'serving size div' are empty or null
-			//CASE 1a: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity >= 0
+			//CASE 1a: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity >= 0 (AND NOT N/A)
 				//RESULT: textServingSize [valueServingUnitQuantity] valueServingSizeUnit
+			//CASE 2: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity is N/A
+				//RESULT: textServingSize - (dash for not applicable) valueServingSizeUnit
+			//CASE 3a: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity is N/A
+				//RESULT: textServingSize - (dash for not applicable)
 
 			//NOTE 3: on all cases below showServingUnitQuantityTextbox == true AND showItemName == true
 					//if showItemName == false, the values that should be on the 'item name div' are empty or null
-			//CASE 1b: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity <= 0
+			//CASE 1b: valueServingSizeUnit != '' (AND NOT null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
 				//RESULT: [valueServingUnitQuantity default to 1.0] itemName
-			//CASE 3a: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity > 0
+			//CASE 3b: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity > 0 (AND NOT N/A)
 				//RESULT: [valueServingUnitQuantity] itemName
-			//CASE 3b: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity <= 0
+			//CASE 3c: valueServingSizeUnit == '' (OR null) && valueServingUnitQuantity <= 0 (AND NOT N/A)
 				//RESULT: [valueServingUnitQuantity default to 1.0] itemName
 
 			//NOTE 4: to see the different resulting labels, check the html/demo-texbox-case*.html files
@@ -134,8 +137,7 @@
 			//are multiple instances of the plugin like on the demo pages
 		originalServingUnitQuantity : 0,
 		showServingUnitQuantity : true,
-		//allow hiding of the textbox arrows
-		hideTextboxArrows : false,
+		naServingUnitQuantity : false,
 
 		//default calorie intake
 		calorieIntake : 2000,
@@ -458,10 +460,11 @@
 			$ingredientListParent = $('#'+$elem.attr('id')+' #ingredientList').parent();
 		else
 			$ingredientListParent = $('#ingredientList').parent();
-
 		if ($ingredientListParent.innerHeight() > $settings.scrollHeightComparison)
-			$ingredientListParent.addClass('scroll').css({
-				'height' : $settings.scrollHeightPixel+'px'
+			$ingredientListParent.css({
+				'height' : $settings.scrollHeightPixel+'px',
+				'width' : '100%',
+				'overflow-y' : 'scroll'
 			});
 	}
 
@@ -690,7 +693,7 @@
 		if ($this.settings.showItemName){
 			var tabTemp = tab1;
 			var itemNameClass = '';
-			if ($this.settings.showServingUnitQuantityTextbox){
+			if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity){
 				if (
 					($this.settings.valueServingSizeUnit == null || $this.settings.valueServingSizeUnit == '') ||
 					($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null &&
@@ -698,23 +701,17 @@
 				){
 				nutritionLabel += tab1 + '<div class="cf">\n';
 					nutritionLabel += tab2 + '<div class="rel servingSizeField">\n';
-
-					var textboxClass = 'unitQuantityBox';
-					if (!$this.settings.hideTextboxArrows){
 						nutritionLabel += tab3 + '<div class="setter">\n';
 							nutritionLabel += tab4 + '<a href="Increase the quantity" class="unitQuantityUp" rel="nofollow"></a>\n';
 							nutritionLabel += tab4 + '<a href="Decrease the quantity" class="unitQuantityDown" rel="nofollow"></a>\n';
 						nutritionLabel += tab3 + '</div><!-- closing class="setter" -->\n';
-					}else
-						textboxClass = 'unitQuantityBox arrowsAreHidden';
-
 						nutritionLabel += tab3 + '<input type="text" value="'+ $this.settings.valueServingUnitQuantity.toFixed(1) +'" ';
-								nutritionLabel += 'class="'+textboxClass+'">\n';
+								nutritionLabel += 'class="unitQuantityBox" class="">\n';
 					nutritionLabel += tab2 + '</div><!-- closing class="servingSizeField" -->\n';
 					tabTemp = tab2;
 					var itemNameClass = 'inline';
 				}
-			}//end of => if ($this.settings.showServingUnitQuantityTextbox){
+			}//end of => if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity){
 
 				nutritionLabel += tabTemp + '<div class="name '+ itemNameClass +'">';
 					nutritionLabel += $this.settings.itemName;
@@ -722,7 +719,7 @@
 					nutritionLabel += ' - ' + $this.settings.brandName;
 				nutritionLabel += '</div>\n';
 
-			if ($this.settings.showServingUnitQuantityTextbox)
+			if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity)
 				if (
 					($this.settings.valueServingSizeUnit == null || $this.settings.valueServingSizeUnit == '') ||
 					($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null &&
@@ -738,35 +735,33 @@
 			if ($this.settings.showServingUnitQuantity){
 				nutritionLabel += tab1 + '<div class="serving">\n';
 
-				if ($this.settings.originalServingUnitQuantity > 0){
+				if ($this.settings.originalServingUnitQuantity > 0 || $this.settings.naServingUnitQuantity){
 					nutritionLabel += tab2 + '<div class="cf">\n';
 						nutritionLabel += tab3 + '<div class="servingSizeText fl">' + $this.settings.textServingSize + '</div>\n';
-							nutritionLabel += $this.settings.showServingUnitQuantityTextbox ?
-								'' : tab3 + '<div class="servingUnitQuantity fl">' + parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) ) + '</div>\n';
+							nutritionLabel += $this.settings.naServingUnitQuantity ?
+								tab3 + '<div class="notApplicable fl">-&nbsp;</div>' + '\n':
+								(
+									$this.settings.showServingUnitQuantityTextbox ?
+									'' : tab3 + '<div class="servingUnitQuantity fl">' + parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) ) + '</div>\n'
+								);
 
 					if ($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null){
-						if ($this.settings.showServingUnitQuantityTextbox && $this.settings.valueServingSizeUnit != null &&
-									$this.settings.valueServingSizeUnit != ''){
+						if ($this.settings.showServingUnitQuantityTextbox && !$this.settings.naServingUnitQuantity &&
+								$this.settings.valueServingSizeUnit != null && $this.settings.valueServingSizeUnit != ''){
 							nutritionLabel += tab3 + '<div class="rel servingSizeField fl">\n';
-
-							var textboxClass = 'unitQuantityBox';
-							if (!$this.settings.hideTextboxArrows){
 								nutritionLabel += tab4 + '<div class="setter">\n';
 									nutritionLabel += tab5 + '<a href="Increase the quantity" class="unitQuantityUp" rel="nofollow"></a>\n';
 									nutritionLabel += tab5 + '<a href="Decrease the quantity" class="unitQuantityDown" rel="nofollow"></a>\n';
 								nutritionLabel += tab4 + '</div><!-- closing class="setter" -->\n';
-							}else
-								textboxClass = 'unitQuantityBox arrowsAreHidden';
-
 								nutritionLabel += tab4 + '<input type="text" value="'+ $this.settings.valueServingUnitQuantity.toFixed(1) +'" ';
-										nutritionLabel += 'class="'+textboxClass+'">\n';
+										nutritionLabel += 'class="unitQuantityBox" class="">\n';
 							nutritionLabel += tab3 + '</div><!-- closing class="servingSizeField" -->\n';
-						}else if ($this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingUnitQuantityTextbox)
+						}else if ($this.settings.originalServingUnitQuantity > 0 && !$this.settings.naServingUnitQuantity && $this.settings.showServingUnitQuantityTextbox)
 								nutritionLabel += tab3 + '<div class="servingUnitQuantity">' + parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) ) + '</div>\n';
 
 							nutritionLabel += tab3 + '<div class="servingUnit fl">'+ $this.settings.valueServingSizeUnit + '</div>\n';
 
-					}else if ($this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingUnitQuantityTextbox)
+					}else if ($this.settings.originalServingUnitQuantity > 0 && !$this.settings.naServingUnitQuantity && $this.settings.showServingUnitQuantityTextbox)
 							nutritionLabel += tab3 + '<div class="servingUnitQuantity fl">' + parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) ) + '</div>\n';
 					//end of => if ($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null){
 
@@ -778,7 +773,7 @@
 				nutritionLabel += tab2 + '</div><!-- closing class="cf" -->\n';
 			}else
 				servingSizeIsHidden = true;
-			//end of => if ($this.settings.originalServingUnitQuantity > 0){
+			//end of => if ($this.settings.originalServingUnitQuantity > 0 || $this.settings.naServingUnitQuantity){
 
 
 			if ($this.settings.showServingsPerContainer){

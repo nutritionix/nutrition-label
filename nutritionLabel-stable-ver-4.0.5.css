@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     4.0.6                                                                                      |
+ * @current version     4.0.5                                                                                      |
  * @stable version      4.0.5                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
@@ -209,10 +209,7 @@
     *zoom: 1;
 }
 
-.nutritionLabel .servingSizeText {
+.nutritionLabel .servingSizeText,
+{
 	display: inline-block;
-}
-
-.ingredientListDiv.scroll {
-	overflow-y: scroll !important;
 }
