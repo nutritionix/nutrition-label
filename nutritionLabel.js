@@ -386,7 +386,7 @@
 				e.preventDefault();
 				$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
 				$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
-				changeQuantity($(this), 1, $settingsHolder, nutritionLabel, $elem);
+				changeQuantityByArrow($(this), 1, $settingsHolder, nutritionLabel, $elem);
 			});
 
 			//decrease the unit quantity by clicking the down arrow
@@ -394,7 +394,7 @@
 				e.preventDefault();
 				$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
 				$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
-				changeQuantity($(this), -1, $settingsHolder, nutritionLabel, $elem);
+				changeQuantityByArrow($(this), -1, $settingsHolder, nutritionLabel, $elem);
 			});
 
 			//the textbox unit quantity value is changed
@@ -488,13 +488,24 @@
 	}
 
 
-	function changeQuantity($thisQuantity, changeValueBy, $settings, nutritionLabel, $elem){
+	function changeQuantityByArrow($thisQuantity, changeValueBy, $settings, nutritionLabel, $elem){
 		//get the current user quantity of the item
 		var currentQuantity = parseFloat( $thisQuantity.parent().parent().find('input.unitQuantityBox').val() );
 		if ( isNaN(currentQuantity) )
 			currentQuantity = 1.0;
 
-		currentQuantity += changeValueBy;
+		//see https://github.com/nutritionix/nutrition-label/issues/14 for an explanation on this part
+		if (currentQuantity <= 1 && changeValueBy == -1){
+			changeValueBy = -0.5;
+			currentQuantity += changeValueBy;
+		}else if (currentQuantity < 1 && changeValueBy == 1){
+			changeValueBy = 0.5;
+			currentQuantity += changeValueBy;
+		}else if (currentQuantity <= 2 && currentQuantity > 1 && changeValueBy == -1)
+			currentQuantity = 1;
+		else
+			currentQuantity += changeValueBy;
+
 		if (currentQuantity < 0)
 			currentQuantity = 0;
 

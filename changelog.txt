@@ -1,10 +1,11 @@
 
-version 4.0.6 - may 11, 2013
+version 4.0.6 - may 12, 2013
  - fixed the scroll not appearing on chrome mac
  - removed the setting naServingUnitQuantity. Serving size cannot be "N/A", it will either have a value, or not appear at all
  - added a new setting to allow hiding of the textbox arrows
 		//allow hiding of the textbox arrows
-		hideTextboxArrows : false,
+		hideTextboxArrows : false
+ - worked on a feature about how the up and down arrow works when the value is between 0 to 2. see https://github.com/nutritionix/nutrition-label/issues/14
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
@@ -77,7 +78,7 @@ version 4.0.3 - apr 27, 2013
 			//the name of the item for this label (eg. cheese burger or mayonnaise)
 			itemName : 'Item / Ingredient Name',
 			showServingUnitQuantity : true,
-			naServingUnitQuantity : false,
+			naServingUnitQuantity : false
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
@@ -108,7 +109,7 @@ version 4.0.0 - apr 11, 2013
 			//when enabled, user can change this value by clicking the arrow or changing the value on the textbox and
 				//pressing enter. the value on the label will be updated automatically
 			valueServingUnitQuantity : 1.0,
-			showServingUnitQuantityTextbox : true,
+			showServingUnitQuantityTextbox : true
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
@@ -160,12 +161,12 @@ version 2.0.1 - mar 6, 2013
  - improve the width feature by changing this setting
 		//to allow percentage width - usually needed for mobile sites
 		allowPercentageWidth : false,
-		percentageWidth : 99,
+		percentageWidth : 99
 
   to:
 		//to allow custom width - usually needed for mobile sites
 		allowCustomWidth : false,
-		widthCustom : 'auto',
+		widthCustom : 'auto'
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
@@ -210,7 +211,7 @@ version 2.0.0 - mar 3, 2013
 
 		//to enable rounding of the numerical values based on the FDA rounding rules
 		//http://goo.gl/RMD2O
-		allowFDARounding : false,
+		allowFDARounding : false
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------

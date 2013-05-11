@@ -113,6 +113,9 @@ valueServingSizeUnit : '',
 showServingUnitQuantityTextbox : true,
 //the name of the item for this label (eg. cheese burger or mayonnaise)
 itemName : 'Item / Ingredient Name',
+//this setting is used internally. this is just added here instead of a global variable to prevent a bug when there
+	//are multiple instances of the plugin like on the demo pages
+originalServingUnitQuantity : 0,
 showServingUnitQuantity : true,
 //allow hiding of the textbox arrows
 hideTextboxArrows : false,
