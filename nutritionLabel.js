@@ -755,9 +755,13 @@
 							nutritionLabel += $this.settings.showServingUnitQuantityTextbox ?
 								'' : tab3 + '<div class="servingUnitQuantity fl">' + parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) ) + '</div>\n';
 
+					var unitAddedClass = '';
+					var gramsAddedClass = '';
 					if ($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null){
 						if ($this.settings.showServingUnitQuantityTextbox && $this.settings.valueServingSizeUnit != null &&
 									$this.settings.valueServingSizeUnit != ''){
+							unitAddedClass = 'unitHasTextbox';
+							gramsAddedClass = 'gramsHasTextbox';
 							nutritionLabel += tab3 + '<div class="rel servingSizeField fl">\n';
 
 							var textboxClass = 'unitQuantityBox';
@@ -775,14 +779,14 @@
 						}else if ($this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingUnitQuantityTextbox)
 								nutritionLabel += tab3 + '<div class="servingUnitQuantity">' + parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) ) + '</div>\n';
 
-							nutritionLabel += tab3 + '<div class="servingUnit fl">'+ $this.settings.valueServingSizeUnit + '</div>\n';
+							nutritionLabel += tab3 + '<div class="servingUnit fl '+unitAddedClass+'">'+ $this.settings.valueServingSizeUnit + '</div>\n';
 
 					}else if ($this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingUnitQuantityTextbox)
 							nutritionLabel += tab3 + '<div class="servingUnitQuantity fl">' + parseFloat( $this.settings.originalServingUnitQuantity.toFixed($this.settings.decimalPlacesForNutrition) ) + '</div>\n';
 					//end of => if ($this.settings.valueServingSizeUnit !== '' && $this.settings.valueServingSizeUnit !== null){
 
 					if ($this.settings.valueServingWeightGrams > 0)
-							nutritionLabel += tab3 + '<div class="servingWeightGrams fl">('+
+							nutritionLabel += tab3 + '<div class="servingWeightGrams fl '+gramsAddedClass+'">('+
 								parseFloat( $this.settings.valueServingWeightGrams.toFixed($this.settings.decimalPlacesForNutrition) )
 							+ 'g)</div>\n';
 
