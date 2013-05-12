@@ -1,11 +1,12 @@
 
-version 4.0.6 - may 12, 2013
+version 4.0.6 - may 13, 2013
  - fixed the scroll not appearing on chrome mac
  - removed the setting naServingUnitQuantity. Serving size cannot be "N/A", it will either have a value, or not appear at all
  - added a new setting to allow hiding of the textbox arrows
 		//allow hiding of the textbox arrows
 		hideTextboxArrows : false
  - worked on a feature about how the up and down arrow works when the value is between 0 to 2. see https://github.com/nutritionix/nutrition-label/issues/14
+ - minor improvement - reduce the extra space between the textbox (if shown) and the serving unit name https://github.com/nutritionix/nutrition-label/issues/17
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
