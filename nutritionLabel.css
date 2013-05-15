@@ -47,6 +47,7 @@
 
 .nutritionLabel .name.inline {
 	padding-top: .2em;
+	padding-top: .25em \9;
 }
 
 .nutritionLabel .dvCalorieDiet,
@@ -162,6 +163,7 @@
 	font-size: .9em !important;
 	margin-left: 15px;
 	margin-bottom: 0;
+	line-height: 15px \9;
 }
 .nutritionLabel input.unitQuantityBox.arrowsAreHidden {
 	margin-left: 0;
@@ -175,6 +177,7 @@
 	margin-top: .2em;
 	margin-bottom: .2em;
 	margin-right: .4em;
+
 }
 .nutritionLabel .servingUnit {
 	float: left;
