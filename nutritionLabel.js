@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     4.0.6                                                                                      |
+ * @current version     4.0.7                                                                                      |
  * @stable version      4.0.5                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
@@ -130,12 +130,15 @@
 		showServingUnitQuantityTextbox : true,
 		//the name of the item for this label (eg. cheese burger or mayonnaise)
 		itemName : 'Item / Ingredient Name',
-		//this setting is used internally. this is just added here instead of a global variable to prevent a bug when there
-			//are multiple instances of the plugin like on the demo pages
-		originalServingUnitQuantity : 0,
 		showServingUnitQuantity : true,
 		//allow hiding of the textbox arrows
 		hideTextboxArrows : false,
+
+		//these 2 settings are used internally.
+		//this is just added here instead of a global variable to prevent a bug when there are multiple instances of the plugin like on the demo pages
+		originalServingUnitQuantity : 0,
+		//this is used to fix the computation issue on the textbox
+		nutritionValueMultiplier : 1,
 
 		//default calorie intake
 		calorieIntake : 2000,
@@ -323,7 +326,7 @@
 	}
 
 
-	function UpdateSettingsWithUnitQuantity(settings){
+	function UpdateNutritionValueWithMultiplier(settings){
 		var nutritionIndex = [
 			'valueCalories','valueFatCalories','valueTotalFat','valueSatFat','valueTransFat','valuePolyFat','valueMonoFat',
 			'valueCholesterol','valueSodium','valueTotalCarb','valueFibers','valueSugars','valueProteins','valueVitaminA',
@@ -335,7 +338,7 @@
 				settings[index] = parseFloat(settings[index]);
 				if (isNaN(settings[index]) || settings[index] === undefined)
 					settings[index] = 0;
-				settings[index] = parseFloat(settings[index]) * parseFloat(settings['valueServingUnitQuantity']);
+				settings[index] = parseFloat(settings[index]) * parseFloat(settings['valueServingUnitQuantity']) * parseFloat(settings['nutritionValueMultiplier']);
 			}
 		});
 
@@ -352,14 +355,16 @@
 		$settings = cleanSettings($settings);
 		$originalCleanSettings = cleanSettings($originalCleanSettings);
 
-		//update the settings with the value of the unit quantity
-		var $updatedsettings = UpdateSettingsWithUnitQuantity($settings);
+		$settings.nutritionValueMultiplier = $settings.valueServingUnitQuantity <= 0 ? 1 : 1 / $settings.valueServingUnitQuantity;
+
+		//update the nutrition values with the multiplier
+		var $updatedsettings = UpdateNutritionValueWithMultiplier($settings);
 		$settings.originalServingUnitQuantity = $updatedsettings.valueServingUnitQuantity;
 
 		//if the original value is <= 0, set it to 1.0
 		if ($updatedsettings.valueServingUnitQuantity <= 0){
 			$originalCleanSettings.valueServingUnitQuantity = 1;
-			$updatedsettings = UpdateSettingsWithUnitQuantity($originalCleanSettings);
+			$updatedsettings = UpdateNutritionValueWithMultiplier($originalCleanSettings);
 			$updatedsettings.valueServingUnitQuantity = 1;
 		}
 
@@ -386,6 +391,7 @@
 				e.preventDefault();
 				$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
 				$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
+				$settingsHolder.nutritionValueMultiplier = $settingsHolder.valueServingUnitQuantity <= 0 ? 1 : 1 / $settingsHolder.valueServingUnitQuantity;
 				changeQuantityByArrow($(this), 1, $settingsHolder, nutritionLabel, $elem);
 			});
 
@@ -394,6 +400,7 @@
 				e.preventDefault();
 				$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
 				$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
+				$settingsHolder.nutritionValueMultiplier = $settingsHolder.valueServingUnitQuantity <= 0 ? 1 : 1 / $settingsHolder.valueServingUnitQuantity;
 				changeQuantityByArrow($(this), -1, $settingsHolder, nutritionLabel, $elem);
 			});
 
@@ -402,6 +409,7 @@
 				e.preventDefault();
 				$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
 				$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
+				$settingsHolder.nutritionValueMultiplier = $settingsHolder.valueServingUnitQuantity <= 0 ? 1 : 1 / $settingsHolder.valueServingUnitQuantity;
 				changeQuantityTextbox($(this), $settingsHolder, nutritionLabel, $elem);
 			});
 
@@ -411,6 +419,7 @@
 					e.preventDefault();
 					$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
 					$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
+					$settingsHolder.nutritionValueMultiplier = $settingsHolder.valueServingUnitQuantity <= 0 ? 1 : 1 / $settingsHolder.valueServingUnitQuantity;
 					changeQuantityTextbox($(this), $settingsHolder, nutritionLabel, $elem);
 				}
 			});
@@ -473,7 +482,7 @@
 		$thisTextbox.val( textBoxValue.toFixed(1) );
 
 		$originalSettings.valueServingUnitQuantity = textBoxValue;
-		$originalSettings = UpdateSettingsWithUnitQuantity($originalSettings);
+		$originalSettings = UpdateNutritionValueWithMultiplier($originalSettings);
 
 		nutritionLabel = new NutritionLabel($originalSettings, $elem);
 		$elem.html( nutritionLabel.generate() );
@@ -512,7 +521,7 @@
 		$thisQuantity.parent().parent().find('input.unitQuantityBox').val( currentQuantity.toFixed(1) );
 
 		$settings.valueServingUnitQuantity = currentQuantity;
-		$settings = UpdateSettingsWithUnitQuantity($settings);
+		$settings = UpdateNutritionValueWithMultiplier($settings);
 
 		nutritionLabel = new NutritionLabel($settings, $elem);
 		$elem.html( nutritionLabel.generate() );
