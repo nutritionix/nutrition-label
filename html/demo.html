@@ -128,6 +128,8 @@
 				<li><a href="#test16"><i class="icon-chevron-right"></i> Example 16</a></li>
 				<li><a href="#test17"><i class="icon-chevron-right"></i> Example 17</a></li>
 				<li><a href="#test18"><i class="icon-chevron-right"></i> Example 18</a></li>
+				<li><a href="#test19"><i class="icon-chevron-right"></i> Example 19</a></li>
+				<li><a href="#test20"><i class="icon-chevron-right"></i> Example 20</a></li>
 			</ul>
 		</div>
 		<div class="span9">
@@ -799,6 +801,94 @@ $('#test18').nutritionLabel({
 			</div><br /><br /><br />
 
 
+			<div class="row">
+				<div class="span4">
+					<div id="test19"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #19</h3>
+					<p>Similar to example #3 but the disclaimer is shown and the calorie diet is enabled (default calorie diet values)</p>
+					<p>there is no scroll because the disclaimer div height is not greater than 100px</p>
+<pre id="pre19">
+$('#test19').nutritionLabel({
+	'showItemName' : false,
+	'showServingsPerContainer' : true,
+	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+	'showDisclaimer' : true,
+	'showCalorieDiet' : true,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showFibers' : false,
+	'showVitaminA' : false,
+	'showVitaminC' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+
+	'valueServingUnitQuantity' : 6,
+	'valueServingSizeUnit' : 'DONUTS',
+
+	'valueCalories' : 400,
+	'valueFatCalories' : 220,
+	'valueTotalFat' : 24,
+	'valueSatFat' : 15,
+	'valueCholesterol' : 25,
+	'valueSodium' : 430,
+	'valueTotalCarb' : 44,
+	'valueSugars' : 24,
+	'valueProteins' : 4
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="span4">
+					<div id="test20"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #20</h3>
+					<p>Similar to example #4 but the disclaimer is shown and customized. The calorie diet is also enabled (default calorie diet values)</p>
+					<p>Another difference is that the scrollHeightPixel is the default value</p>
+<pre id="pre20">
+$('#test20').nutritionLabel({
+	'scrollLongIngredients' : true,
+	'showItemName' : false,
+	'showServingsPerContainer' : true,
+	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+	'showDisclaimer' : true,
+	'valueDisclaimer' : 'Although efforts are made to avoid cross-contact of allergens, Mellow Mushroom does not guarantee that cross-contact with allergens will not occur. Before placing your order, please inform your server if you or anyone in your party has a food allergy<br/><br/>Unless otherwise specified, any food in our establishment may come into contact with surfaces or utensils that have previously contacted wheat, dairy, gluten, fish, eggs, shellfish, soybeans, tree nuts, or peanuts.<br/><br/>This nutrition and allergen information is provided for information purposes only, and they do not constitute medical or dietary advice of any kind.  Please always consult your healthcare practitioner for questions regarding your diet.<br/><br/>Mellow Mushroom, its franchisees, and employees, do not assume responsibility for a person’s sensitivity or allergy to any food item provided in our restaurants.<br/><br/>We rely on our suppliers’ statements of ingredients to determine which products do not contain certain allergens. Suppliers may change the ingredients in their products or the way they prepare their products, so please check this list frequently to make sure that the menu item you like still meets your dietary requirements.<br/><br/>From time to time we may substitute products due to inventory shortages. We can’t be sure that the substitute products will be free of the allergen you wish to avoid.<br/><br/>Please note that these nutrition values are estimated based on our standard serving portions.  As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal.  If you have any questions about our nutrition calculator, please contact Nutritionix.',
+	'showCalorieDiet' : true,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showFibers' : false,
+	'showVitaminA' : false,
+	'showVitaminC' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+
+	'valueServingUnitQuantity' : 6,
+	'valueServingSizeUnit' : 'DONUTS',
+
+	'valueCalories' : 400,
+	'valueFatCalories' : 220,
+	'valueTotalFat' : 24,
+	'valueSatFat' : 15,
+	'valueCholesterol' : 25,
+	'valueSodium' : 430,
+	'valueTotalCarb' : 44,
+	'valueSugars' : 24,
+	'valueProteins' : 4
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
 		</div>
 	</div>
 </div>
@@ -826,6 +916,8 @@ $(document).ready(function(){
 	eval( eval( $('#pre16').html() ) );
 	eval( eval( $('#pre17').html() ) );
 	eval( eval( $('#pre18').html() ) );
+	eval( eval( $('#pre19').html() ) );
+	eval( eval( $('#pre20').html() ) );
 });
 </script>
 

@@ -1,4 +1,15 @@
 
+version 4.0.8 - may 19, 2013
+ - bring back the disclaimer text feature but have it scroll like the long ingredients when scrollLongIngredients is true
+		//to show the disclaimer text or not
+		showDisclaimer : false,
+		//the height in px of the disclaimer div
+		scrollDisclaimer : 95,
+		valueDisclaimer : 'Please note that these nutrition values are estimated based on our standard serving portions.  As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal.  If you have any questions about our nutrition calculator, please contact Nutritionix.',		ingredientLabel : 'INGREDIENTS:',
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 4.0.7 - may 17, 2013
  - fix the issue with the computation and the initial serving size unit value
 		- "nutrition multiplier" = 1.0 IF "original serving size quantity" is equal to or less than zero

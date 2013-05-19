@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     4.0.8                                                                                      |
+ * @current version     4.0.7                                                                                      |
  * @stable version      4.0.7                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
@@ -102,6 +102,8 @@
 .nutritionLabel .fl { float: left; }
 
 .nutritionLabel #calcDisclaimer {
+	padding-left: .58em;
+	padding-right: .58em;
 	color: #777;
 }
 
@@ -219,9 +221,5 @@
 }
 
 .ingredientListDiv.scroll {
-	overflow-y: scroll !important;
-}
-
-#calcDisclaimer.scroll {
 	overflow-y: scroll !important;
 }
