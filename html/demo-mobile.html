@@ -7,7 +7,7 @@
 		
 		<link rel='stylesheet' type='text/css' media='screen' href='../css/mobile/jqm1.2.0.min.css'>		
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />    
-    
+
     <link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel.css'>
 		<!-- google webfont for nutrition label -->
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />		
@@ -21,6 +21,10 @@
 }
 .nutritionLabel .title {
 	padding-top: 0;
+}
+.truncate {
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 		</style>
 	</head>
@@ -61,7 +65,7 @@
 					<h2>View Code</h2>
 					<ul data-role="listview">
 						<li>
-<pre id="pre1">
+<pre id="pre1" class="truncate">
 $('#label1').nutritionLabel({
   'allowCustomWidth' : true,
   'allowNoBorder' : true,
