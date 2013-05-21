@@ -1,3 +1,8 @@
+version 4.0.9 - may 21, 2013
+- fixed iOS css bugs on serving quantity textbox
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
 
 version 4.0.8 - may 19, 2013
  - bring back the disclaimer text feature but have it scroll like the long ingredients when scrollLongIngredients is true

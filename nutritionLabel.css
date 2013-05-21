@@ -15,6 +15,22 @@
  *                                                                                                                 |
  ******************************************************************************************************************+
 */
+
+.nutritionLabel input.unitQuantityBox.ui-input-text {
+	margin-top: 0;
+	border-radius: 0;
+	height: auto;
+	box-sizing: content-box;		
+	-webkit-box-sizing: content-box;		
+	-moz-box-sizing: content-box;		
+}
+
+.nutritionLabel input.unitQuantityBox.ui-shadow-inset {
+	box-shadow: none;
+}
+
+
+
 .nutritionLabel {
 	font-size: 90%;
 	margin-bottom: 1.1em;
@@ -154,7 +170,7 @@
 	z-index: 9999;
 }
 
-.nutritionLabel input.unitQuantityBox{
+.nutritionLabel input.unitQuantityBox {
 	width:25px;
 	height: 15px;
 	padding:2px;
@@ -225,3 +241,4 @@
 #calcDisclaimer.scroll {
 	overflow-y: scroll !important;
 }
+
