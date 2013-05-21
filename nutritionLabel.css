@@ -38,6 +38,7 @@
 	color: #333;
 	font-family: Arial, Helvetica, sans-serif;
 	border: 2px solid #000;
+	line-height: normal;
 }
 .nutritionLabel .title {
 	line-height: .83em;
@@ -242,3 +243,6 @@
 	overflow-y: scroll !important;
 }
 
+#calcDisclaimer {
+	line-height: normal;
+}
