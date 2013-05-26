@@ -1162,7 +1162,7 @@
 
 
 			if ($this.settings.showVitaminA){
-				nutritionLabel += tab1 + '<div class="line">\n';
+				nutritionLabel += tab1 + '<div class="line vitaminA">\n';
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naVitaminA ?
 							naValue :
@@ -1175,7 +1175,7 @@
 
 
 			if ($this.settings.showVitaminC){
-				nutritionLabel += tab1 + '<div class="line">\n';
+				nutritionLabel += tab1 + '<div class="line vitaminC">\n';
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naVitaminC ?
 							naValue :
@@ -1188,7 +1188,7 @@
 
 
 			if ($this.settings.showCalcium){
-				nutritionLabel += tab1 + '<div class="line">\n';
+				nutritionLabel += tab1 + '<div class="line calcium">\n';
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naCalcium ?
 							naValue :
@@ -1201,7 +1201,7 @@
 
 
 			if ($this.settings.showIron){
-				nutritionLabel += tab1 + '<div class="line">\n';
+				nutritionLabel += tab1 + '<div class="line iron">\n';
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naIron ?
 							naValue :
