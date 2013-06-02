@@ -9,12 +9,28 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     4.0.7                                                                                      |
- * @stable version      4.0.7                                                                                      |
+ * @current version     4.0.10                                                                                     |
+ * @stable version      4.0.10                                                                                     |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
 */
+
+.nutritionLabel input.unitQuantityBox.ui-input-text {
+	margin-top: 0;
+	border-radius: 0;
+	height: auto;
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+}
+
+.nutritionLabel input.unitQuantityBox.ui-shadow-inset {
+	box-shadow: none;
+}
+
+
+
 .nutritionLabel {
 	font-size: 90%;
 	margin-bottom: 1.1em;
@@ -22,6 +38,7 @@
 	color: #333;
 	font-family: Arial, Helvetica, sans-serif;
 	border: 2px solid #000;
+	line-height: normal;
 }
 .nutritionLabel .title {
 	line-height: .83em;
@@ -102,8 +119,6 @@
 .nutritionLabel .fl { float: left; }
 
 .nutritionLabel #calcDisclaimer {
-	padding-left: .58em;
-	padding-right: .58em;
 	color: #777;
 }
 
@@ -156,7 +171,7 @@
 	z-index: 9999;
 }
 
-.nutritionLabel input.unitQuantityBox{
+.nutritionLabel input.unitQuantityBox {
 	width:25px;
 	height: 15px;
 	padding:2px;
@@ -222,4 +237,12 @@
 
 .ingredientListDiv.scroll {
 	overflow-y: scroll !important;
+}
+
+#calcDisclaimer.scroll {
+	overflow-y: scroll !important;
+}
+
+#calcDisclaimer {
+	line-height: normal;
 }

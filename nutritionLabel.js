@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     4.0.8                                                                                      |
- * @stable version      4.0.7                                                                                      |
+ * @current version     4.0.10                                                                                     |
+ * @stable version      4.0.10                                                                                     |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
