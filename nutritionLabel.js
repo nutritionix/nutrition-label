@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     4.0.10                                                                                     |
+ * @current version     5.0.0                                                                                      |
  * @stable version      4.0.10                                                                                     |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
@@ -81,6 +81,9 @@
 		//to enable rounding of the nutritional values based on the FDA rounding rules
 		//http://goo.gl/RMD2O
 		allowFDARounding : false,
+
+		//when set to true, this will hide the values if they are not applicable
+		hideNotAppicableValues : false,
 
 		//the brand name of the item for this label (eg. just salad)
 		brandName : 'Brand where this item belongs to',
@@ -294,7 +297,7 @@
 	};
 
 
-	// this will store the unique individual properties for each instance of the plugin
+	//this will store the unique individual properties for each instance of the plugin
 	function NutritionLabel(settings, $elem){
 		this.nutritionLabel = null;
 		this.settings = settings;
@@ -434,7 +437,7 @@
 			});
 		}
 
-		// store the object for later reference
+		//store the object for later reference
 		$elem.data('_nutritionLabel', nutritionLabel);
 	}
 
@@ -701,9 +704,29 @@
 			//this is the function that returns the html code for the nutrition label based on the settings that is supplied by the user
 			var $this = this;
 
-			// return the plugin incase it has already been created
+			//return the plugin incase it has already been created
 			if ($this.nutritionLabel)
 				return $this.nutritionLabel;
+
+			if ($this.settings.hideNotAppicableValues){
+				$this.settings.showCalories = $this.settings.naCalories ? false : $this.settings.showCalories;
+				$this.settings.showFatCalories = $this.settings.naFatCalories ? false : $this.settings.showFatCalories;
+				$this.settings.showTotalFat = $this.settings.naTotalFat ? false : $this.settings.showTotalFat;
+				$this.settings.showSatFat = $this.settings.naSatFat ? false : $this.settings.showSatFat;
+				$this.settings.showTransFat = $this.settings.naTransFat ? false : $this.settings.showTransFat;
+				$this.settings.showPolyFat = $this.settings.naPolyFat ? false : $this.settings.showPolyFat;
+				$this.settings.showMonoFat = $this.settings.naMonoFat ? false : $this.settings.showMonoFat;
+				$this.settings.showCholesterol = $this.settings.naCholesterol ? false : $this.settings.showCholesterol;
+				$this.settings.showSodium = $this.settings.naSodium ? false : $this.settings.showSodium;
+				$this.settings.showTotalCarb = $this.settings.naTotalCarb ? false : $this.settings.showTotalCarb;
+				$this.settings.showFibers = $this.settings.naFibers ? false : $this.settings.showFibers;
+				$this.settings.showSugars = $this.settings.naSugars ? false : $this.settings.showSugars;
+				$this.settings.showProteins = $this.settings.naProteins ? false : $this.settings.showProteins;
+				$this.settings.showVitaminA = $this.settings.naVitaminA ? false : $this.settings.showVitaminA;
+				$this.settings.showVitaminC = $this.settings.naVitaminC ? false : $this.settings.showVitaminC;
+				$this.settings.showCalcium = $this.settings.naCalcium ? false : $this.settings.showCalcium;
+				$this.settings.showIron = $this.settings.naIron ? false : $this.settings.showIron;
+			}
 
 			//initializing the tab variables
 			//tab variables are used to make the printing of the html code readable when you copy the code using
@@ -837,7 +860,7 @@
 
 
 			if ($this.settings.showServingsPerContainer){
-				// Serving per container
+				//Serving per container
 				if ($this.settings.valueServingPerContainer > 0){
 					nutritionLabel += tab2 + '<div>' + $this.settings.textServingsPerContainer + ' ';
 						nutritionLabel += parseFloat(

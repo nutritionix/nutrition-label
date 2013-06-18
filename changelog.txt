@@ -1,4 +1,10 @@
 
+version 5.0.00 - june 19, 2013
+ - added a new setting hideNotAppicableValues (default false). When set to true, this will hide the values if they are not applicable https://github.com/nutritionix/nutrition-label/issues/25
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 4.0.10 - may 26, 2013
  - added class names to vitamins, calcium and iron
 
@@ -12,7 +18,7 @@ version 4.0.9 - may 21, 2013
 ------------------------------------------------------------------------------------------------------
 
 version 4.0.8 - may 19, 2013
- - bring back the disclaimer text feature but have it scroll like the long ingredients when scrollLongIngredients is true
+ - bring back the disclaimer text feature but have it scroll like the long ingredients when scrollLongIngredients is true https://github.com/nutritionix/nutrition-label/issues/20
 		//to show the disclaimer text or not
 		showDisclaimer : false,
 		//the height in px of the disclaimer div
@@ -23,7 +29,7 @@ version 4.0.8 - may 19, 2013
 ------------------------------------------------------------------------------------------------------
 
 version 4.0.7 - may 17, 2013
- - fix the issue with the computation and the initial serving size unit value
+ - fix the issue with the computation and the initial serving size unit value https://github.com/nutritionix/nutrition-label/issues/19
 		- "nutrition multiplier" = 1.0 IF "original serving size quantity" is equal to or less than zero
 			- ELSE "nutrition multiplier" = 1 / "original serving size quantity"
 		- the new computation is "final nutrition value" = "initial nutrition value" x "current serving size quantity" x "nutrition multiplier"
@@ -33,8 +39,8 @@ version 4.0.7 - may 17, 2013
 
 version 4.0.6 - may 13, 2013
  - fixed the scroll not appearing on chrome mac
- - removed the setting naServingUnitQuantity. Serving size cannot be "N/A", it will either have a value, or not appear at all
- - added a new setting to allow hiding of the textbox arrows
+ - removed the setting naServingUnitQuantity. Serving size cannot be "N/A", it will either have a value, or not appear at all https://github.com/nutritionix/nutrition-label/issues/15
+ - added a new setting to allow hiding of the textbox arrows https://github.com/nutritionix/nutrition-label/issues/13
 		//allow hiding of the textbox arrows
 		hideTextboxArrows : false
  - worked on a feature about how the up and down arrow works when the value is between 0 to 2. see https://github.com/nutritionix/nutrition-label/issues/14
@@ -50,12 +56,13 @@ version 4.0.5 - may 10, 2013
 ------------------------------------------------------------------------------------------------------
 
 version 4.0.4 - may 4, 2013
- - removed the showItemNameAtTheTop settings
- - made more js and css fixes for the new textbox feature mentioned on 4.0.0 and 4.0.3
- - changes on showBrandName and brandName. before, this is shown at the top before the 'title', now it is shown on the same line as the 'item name'
-		- the show brand name will now appear after the item name if the setting showBrandName is true and brandName is not null
-    - "ITEM NAME" dash (-) "BRAND NAME"
- - the item name will also now appear right after the 'title'
+ - https://github.com/nutritionix/nutrition-label/issues/10
+		- removed the showItemNameAtTheTop settings
+		- made more js and css fixes for the new textbox feature mentioned on 4.0.0 and 4.0.3
+		- changes on showBrandName and brandName. before, this is shown at the top before the 'title', now it is shown on the same line as the 'item name'
+			- the show brand name will now appear after the item name if the setting showBrandName is true and brandName is not null
+			- "ITEM NAME" dash (-) "BRAND NAME"
+		- the item name will also now appear right after the 'title'
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
@@ -69,14 +76,14 @@ version 4.0.3 - apr 27, 2013
 		- this means that all the previous pages where you have implemented the plugin needs to be updated.
     - you just need to rename valueServingSize to valueServingUnitQuantity
     - REASON: after some discussion, it is decided that SERVING SIZE means "valueServingUnitQuantity valueServingSizeUnit"
-          - eg. Serving Size 8 Cookie (valueServingUnitQuantity = 8; valueServingSizeUnit = Cookie)
-          - eg. Serving Size 1.0 (valueServingUnitQuantity = 1.0)
+			- eg. Serving Size 8 Cookie (valueServingUnitQuantity = 8; valueServingSizeUnit = Cookie)
+			- eg. Serving Size 1.0 (valueServingUnitQuantity = 1.0)
  - MAJOR CHANGE: renamed naServingSize to naServingUnitQuantity
  - MAJOR CHANGE: renamed showServingSize to showServingUnitQuantity
     - REASON: this is so all servingUnitQuantity settings will have the same prefix like the others ('na', 'show' and 'value')
-          - valueServingUnitQuantity => value of the serving size unit
-          - showServingUnitQuantity => show / hide the serving size div
-          - naServingUnitQuantity => set the serving size unit to be 'not applicable' or not
+			- valueServingUnitQuantity => value of the serving size unit
+			- showServingUnitQuantity => show / hide the serving size div
+			- naServingUnitQuantity => set the serving size unit to be 'not applicable' or not
  - MAJOR CHANGE: changes on the unit quantity textbox feature that was added on version 4.0.0
 			//this value can be changed and the value of the nutritions will be affected directly
 			//the computation is "current nutrition value" * "serving unit quantity value" = "final nutrition value"
@@ -132,7 +139,7 @@ version 4.0.1 - apr 14, 2013
 
 version 4.0.0 - apr 11, 2013
  - added a filter so that all settings that the plugin expects to be numeric will be checked and coverted to numeric if needed
- - added a new feature to allow users to change the unit quantity of the label (default is 1.0)
+ - added a new feature to allow users to change the unit quantity of the label (default is 1.0) https://github.com/nutritionix/nutrition-label/issues/3
 		- this value can be easily hidden by changing one of the settings (see below) (default is it is visible)
 		- the value can be adjusted by clicking the arrows or changing the value on the textbox and pressing enter or focusing on another element on the page
 			//this value can be changed and the value of the nutritions will be affected directly

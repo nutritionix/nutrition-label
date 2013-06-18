@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     4.0.10                                                                                     |
+ * @current version     5.0.0                                                                                      |
  * @stable version      4.0.10                                                                                     |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
@@ -28,7 +28,7 @@
 <body>
 <div class="container">
 	<div class="hero-unit">
-		<h1>Nutrition Label version 4.0.4</h1>
+		<h1>Nutrition Label version 5.0.0</h1>
 		<h4>from Nutritionix</h4>
 		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
 		<p>
@@ -61,6 +61,9 @@ allowNoBorder : false,
 //to enable rounding of the nutritional values based on the FDA rounding rules
 //http://goo.gl/RMD2O
 allowFDARounding : false,
+
+//when set to true, this will hide the values if they are not applicable
+hideNotAppicableValues : false,
 
 //the brand name of the item for this label (eg. just salad)
 brandName : 'Brand where this item belongs to',
@@ -110,12 +113,15 @@ valueServingSizeUnit : '',
 showServingUnitQuantityTextbox : true,
 //the name of the item for this label (eg. cheese burger or mayonnaise)
 itemName : 'Item / Ingredient Name',
-//this setting is used internally. this is just added here instead of a global variable to prevent a bug when there
-	//are multiple instances of the plugin like on the demo pages
-originalServingUnitQuantity : 0,
 showServingUnitQuantity : true,
 //allow hiding of the textbox arrows
 hideTextboxArrows : false,
+
+//these 2 settings are used internally.
+//this is just added here instead of a global variable to prevent a bug when there are multiple instances of the plugin like on the demo pages
+originalServingUnitQuantity : 0,
+//this is used to fix the computation issue on the textbox
+nutritionValueMultiplier : 1,
 
 //default calorie intake
 calorieIntake : 2000,
@@ -159,6 +165,13 @@ showBrandName : false,
 showIngredients : true,
 //to show the calorie diet info at the bottom of the label
 showCalorieDiet : false,
+
+//to show the disclaimer text or not
+showDisclaimer : false,
+//the height in px of the disclaimer div
+scrollDisclaimerHeightComparison : 100,
+scrollDisclaimer : 95,
+valueDisclaimer : 'Please note that these nutrition values are estimated based on our standard serving portions.  As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal.  If you have any questions about our nutrition calculator, please contact Nutritionix.',		ingredientLabel : 'INGREDIENTS:',
 
 //the are to set some values as 'not applicable'. this means that the nutrition label will appear but the value will be a 'gray dash'
 naCalories : false,
@@ -258,7 +271,6 @@ textVitaminA : 'Vitamin A',
 textVitaminC : 'Vitamin C',
 textCalcium : 'Calcium',
 textIron : 'Iron',
-ingredientLabel : 'INGREDIENTS:',
 ingredientList : 'None',
 textPercentDailyPart1 : 'Percent Daily Values are based on a',
 textPercentDailyPart2 : 'calorie diet'
