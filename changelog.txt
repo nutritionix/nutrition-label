@@ -1,7 +1,8 @@
 
 version 5.0.0 - june 19, 2013
  - added a new setting hideNotAppicableValues (default false). When set to true, this will hide the values if they are not applicable https://github.com/nutritionix/nutrition-label/issues/25
-- added scrollbar when item name is too long
+ - added scrollbar when item name is too long https://github.com/nutritionix/nutrition-label/issues/16
+
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
