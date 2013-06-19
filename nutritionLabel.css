@@ -65,6 +65,10 @@
 .nutritionLabel .name.inline {
 	padding-top: .2em;
 	padding-top: .25em \9;
+	margin-left: 3.90em;
+	
+	height: 35px;
+	overflow-y: auto;
 }
 
 .nutritionLabel .dvCalorieDiet,
