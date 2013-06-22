@@ -89,8 +89,6 @@
 		brandName : 'Brand where this item belongs to',
 		//to scroll the ingredients if the innerheight is > scrollHeightComparison
 		scrollLongIngredients : false,
-		//to scroll the item name if the qQuery.height() is > 36
-		scrollLongItemName : true,
 		scrollHeightComparison : 100,
 		//the height in px of the ingredients div
 		scrollHeightPixel : 95,
@@ -98,6 +96,10 @@
 		decimalPlacesForNutrition : 1,
 		//this is to set how many decimal places will be shown for the "% daily values*"
 		decimalPlacesForDailyValues : 0,
+
+		//to scroll the item name if the qQuery.height() is > scrollLongItemNamePixel
+		scrollLongItemName : true,
+		scrollLongItemNamePixel : 36,
 
 		//show the customizable link at the bottom
 		showBottomLink : false,
@@ -319,7 +321,8 @@
 			'valueCalcium','valueIron','valueCol1CalorieDiet','valueCol2CalorieDiet','valueCol1DietaryTotalFat',
 			'valueCol2DietaryTotalFat','valueCol1DietarySatFat','valueCol2DietarySatFat','valueCol1DietaryCholesterol',
 			'valueCol2DietaryCholesterol','valueCol1DietarySodium','valueCol2DietarySodium','valueCol1DietaryTotalCarb',
-			'valueCol2DietaryTotalCarb','valueCol1Dietary','valueCol2Dietary', 'valueServingUnitQuantity'
+			'valueCol2DietaryTotalCarb','valueCol1Dietary','valueCol2Dietary', 'valueServingUnitQuantity',
+			'scrollLongItemNamePixel'
 		];
 
 		$.each(settings, function(index, value){
@@ -399,7 +402,7 @@
 
 		//add a scroll on long item names
 		if ($settings.scrollLongItemName)
-			addScrollToItemDiv($elem);
+			addScrollToItemDiv($elem, $settings);
 
 		//if the text box for the unit quantity is shown
 		if ($settings.showServingUnitQuantityTextbox){
@@ -447,13 +450,21 @@
 	}
 
 
-	function addScrollToItemDiv($elem){
-		if ( $('#'+$elem.attr('id')+' .name.inline').height() > 37 )
-			$('#'+$elem.attr('id')+' .name.inline').css({
-				'margin-left' : '3.90em',
-				'height' : '36px',
-				'overflow-y' : 'auto'
-			});
+	function addScrollToItemDiv($elem, $settings){
+		if ( $('#'+$elem.attr('id')+' .name.inline').val() != undefined ){
+			if ( $('#'+$elem.attr('id')+' .name.inline').height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) )
+				$('#'+$elem.attr('id')+' .name.inline').css({
+					'margin-left' : '3.90em',
+					'height' : parseInt($settings.scrollLongItemNamePixel)+'px',
+					'overflow-y' : 'auto'
+				});
+		}else{
+			if ( $('#'+$elem.attr('id')+' .name').height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) )
+				$('#'+$elem.attr('id')+' .name').css({
+					'height' : parseInt($settings.scrollLongItemNamePixel)+'px',
+					'overflow-y' : 'auto'
+				});
+		}
 	}
 
 
@@ -542,7 +553,7 @@
 
 		//add a scroll on long item names
 		if ($settings.scrollLongItemName)
-			addScrollToItemDiv($elem);
+			addScrollToItemDiv($elem, $originalSettings);
 	}
 
 
@@ -589,7 +600,7 @@
 
 		//add a scroll on long item names
 		if ($settings.scrollLongItemName)
-			addScrollToItemDiv($elem);
+			addScrollToItemDiv($elem, $settings);
 	}
 
 

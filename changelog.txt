@@ -1,7 +1,16 @@
 
+version 5.0.1 - june 23, 2013
+ - fixed a bug where the scroll isn't showing on long item names when that item name has no textbox https://github.com/nutritionix/nutrition-label/issues/16#issuecomment-19864016
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 5.0.0 - june 19, 2013
  - added a new setting hideNotAppicableValues (default false). When set to true, this will hide the values if they are not applicable https://github.com/nutritionix/nutrition-label/issues/25
- - added scrollbar when item name is too long https://github.com/nutritionix/nutrition-label/issues/16
+ - added scrollbar when item name is too long. this feature can be turned off using the setting below https://github.com/nutritionix/nutrition-label/issues/16
+		//to scroll the item name if the qQuery.height() is > scrollLongItemNamePixel
+		scrollLongItemName : true,
+		scrollLongItemNamePixel : 36,
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
