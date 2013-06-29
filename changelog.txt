@@ -1,4 +1,10 @@
 
+version 5.0.2 - june 30, 2013
+ - fixed a minor bug on the FDA rounding rule https://github.com/nutritionix/nutrition-label/issues/27
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 5.0.1 - june 23, 2013
  - fixed a bug where the scroll isn't showing on long item names when that item name has no textbox https://github.com/nutritionix/nutrition-label/issues/16#issuecomment-19864016
 

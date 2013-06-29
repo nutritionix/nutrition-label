@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     5.0.0                                                                                      |
- * @stable version      4.0.10                                                                                     |
+ * @current version     5.0.2                                                                                      |
+ * @stable version      5.0.2                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -724,7 +724,7 @@
 	function roundCarbFiberSugarProteinRule(toRound){
 		if (toRound < .5)
 			return 0;
-		else if (toRound <= 1)
+		else if (toRound < 1)
 			//< 1 g - express as "Contains less than 1g" or "less than 1g"
 			return false;
 		else
