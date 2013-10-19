@@ -1,4 +1,10 @@
 
+version 5.0.3 - october 20, 2013
+ - fixed a minor bug on the on the display when the fat calories is present but the calories isn't https://github.com/nutritionix/nutrition-label/issues/28
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 5.0.2 - june 30, 2013
  - fixed a minor bug on the FDA rounding rule https://github.com/nutritionix/nutrition-label/issues/27
 

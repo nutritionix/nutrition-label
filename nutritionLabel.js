@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     5.0.2                                                                                      |
- * @stable version      5.0.2                                                                                      |
+ * @current version     5.0.3                                                                                      |
+ * @stable version      5.0.3                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -951,7 +951,8 @@
 								parseFloat( $this.settings.valueCalories.toFixed($this.settings.decimalPlacesForNutrition) )
 							) + $this.settings.unitCalories;
 					nutritionLabel += '</div>\n';
-				}
+				}else if ($this.settings.showFatCalories)
+					nutritionLabel += tab2 + '<div>&nbsp;</div>\n';
 
 
 				nutritionLabel += tab1 + '</div>\n';
