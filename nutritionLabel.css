@@ -16,6 +16,8 @@
  ******************************************************************************************************************+
 */
 
+@import url("http://fonts.googleapis.com/css?family=Archivo+Black");
+
 .nutritionLabel input.unitQuantityBox.ui-input-text {
 	margin-top: 0;
 	border-radius: 0;
