@@ -9,12 +9,14 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     5.0.4                                                                                      |
- * @stable version      5.0.4                                                                                      |
+ * @current version     5.0.5                                                                                      |
+ * @stable version      5.0.5                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
 */
+
+@import url("http://fonts.googleapis.com/css?family=Archivo+Black");
 
 .nutritionLabel input.unitQuantityBox.ui-input-text {
 	margin-top: 0;

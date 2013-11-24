@@ -1,7 +1,13 @@
 
-version 5.0.4 - november 25, 2013
+version 5.0.5 - november 25, 2013
  - added a new customizable setting decimalPlacesForQuantityTextbox and also drop unnecessary zeroes on the textbox https://github.com/nutritionix/nutrition-label/issues/30
  - fixed a bug when changing the quantity by entering different values using the keyboard https://github.com/nutritionix/nutrition-label/issues/31
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+version 5.0.4 - october 31, 2013
+ - fixed google font Archivo Black
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
