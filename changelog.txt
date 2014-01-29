@@ -1,4 +1,10 @@
 
+version 6.0.0 - january 29, 2014
+ - changes on the rounding rules of Vitamins A and C, Calcium and Iron https://github.com/nutritionix/nutrition-label/issues/33
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 5.0.5 - november 25, 2013
  - added a new customizable setting decimalPlacesForQuantityTextbox and also drop unnecessary zeroes on the textbox https://github.com/nutritionix/nutrition-label/issues/30
  - fixed a bug when changing the quantity by entering different values using the keyboard https://github.com/nutritionix/nutrition-label/issues/31

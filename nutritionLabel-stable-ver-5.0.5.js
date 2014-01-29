@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.0                                                                                      |
- * @stable version      6.0.0                                                                                      |
+ * @current version     5.0.5                                                                                      |
+ * @stable version      5.0.5                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -705,7 +705,7 @@
 			//5 - 140 mg - express to nearest 5 mg increment
 			return roundToNearestNum(toRound, 5);
 		else
-			//>= 5 g - express to nearest 10 g increment
+			//>= 5 g - express to nearest 1 g increment
 			return roundToNearestNum(toRound, 10);
 	}
 
@@ -732,23 +732,6 @@
 		else
 			//> 1 mg - express to nearest 1 g increment
 			return roundToNearestNum(toRound, 1);
-	}
-
-
-	//Total Carbohydrate, Dietary Fiber, Sugar and Protein rounding rule
-	function roundVitaminsCalciumIron(toRound){
-		if (toRound > 0){
-			if (toRound < 10)
-				//< 10 - round to nearest even number
-				return roundToNearestNum(toRound, 1);
-			else if (toRound < 50)
-				//between 10 and 50, round to the nearest 5 increment
-				return roundToNearestNum(toRound, 5);
-			else
-				//else, round to the nearest 10 increment
-				return roundToNearestNum(toRound, 10);
-		}else
-			return 0;
 	}
 
 
@@ -1243,11 +1226,7 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naVitaminA ?
 							naValue :
-							(
-							$this.settings.allowFDARounding ?
-								roundVitaminsCalciumIron($this.settings.valueVitaminA) :
-								parseFloat( $this.settings.valueVitaminA.toFixed($this.settings.decimalPlacesForNutrition) )
-							) + $this.settings.unitVitaminA;
+							parseFloat( $this.settings.valueVitaminA.toFixed($this.settings.decimalPlacesForNutrition) ) + $this.settings.unitVitaminA;
 					nutritionLabel += '</div>\n';
 
 					nutritionLabel += tab2 + $this.settings.textVitaminA + '\n';
@@ -1260,11 +1239,7 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naVitaminC ?
 							naValue :
-							(
-							$this.settings.allowFDARounding ?
-								roundVitaminsCalciumIron($this.settings.valueVitaminC) :
-								parseFloat( $this.settings.valueVitaminC.toFixed($this.settings.decimalPlacesForNutrition) )
-							) + $this.settings.unitVitaminC;
+							parseFloat( $this.settings.valueVitaminC.toFixed($this.settings.decimalPlacesForNutrition) ) + $this.settings.unitVitaminC;
 					nutritionLabel += '</div>\n';
 
 					nutritionLabel += tab2 + $this.settings.textVitaminC + '\n';
@@ -1277,11 +1252,7 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naCalcium ?
 							naValue :
-							(
-							$this.settings.allowFDARounding ?
-								roundVitaminsCalciumIron($this.settings.valueCalcium) :
-								parseFloat( $this.settings.valueCalcium.toFixed($this.settings.decimalPlacesForNutrition) )
-							) + $this.settings.unitCalcium;
+							parseFloat( $this.settings.valueCalcium.toFixed($this.settings.decimalPlacesForNutrition) ) + $this.settings.unitCalcium;
 					nutritionLabel += '</div>\n';
 
 					nutritionLabel += tab2 + $this.settings.textCalcium + '\n';
@@ -1294,11 +1265,7 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naIron ?
 							naValue :
-							(
-							$this.settings.allowFDARounding ?
-								roundVitaminsCalciumIron($this.settings.valueIron) :
-								parseFloat( $this.settings.valueIron.toFixed($this.settings.decimalPlacesForNutrition) )
-							) + $this.settings.unitIron;
+							parseFloat( $this.settings.valueIron.toFixed($this.settings.decimalPlacesForNutrition) ) + $this.settings.unitIron;
 					nutritionLabel += '</div>\n';
 
 					nutritionLabel += tab2 + $this.settings.textIron + '\n';
