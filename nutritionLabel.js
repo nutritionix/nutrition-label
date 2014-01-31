@@ -740,7 +740,7 @@
 		if (toRound > 0){
 			if (toRound < 10)
 				//< 10 - round to nearest even number
-				return roundToNearestNum(toRound, 1);
+				return roundToNearestNum(toRound, 2);
 			else if (toRound < 50)
 				//between 10 and 50, round to the nearest 5 increment
 				return roundToNearestNum(toRound, 5);
