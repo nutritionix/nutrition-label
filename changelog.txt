@@ -1,4 +1,10 @@
 
+version 6.0.1 - february 1, 2014
+ - new feature - allow html and js values to be added on the footer https://github.com/nutritionix/nutrition-label/issues/34
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.0 - january 29, 2014
  - changes on the rounding rules of Vitamins A and C, Calcium and Iron https://github.com/nutritionix/nutrition-label/issues/33
 

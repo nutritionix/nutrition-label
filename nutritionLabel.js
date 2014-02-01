@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.0                                                                                      |
- * @stable version      6.0.0                                                                                      |
+ * @current version     6.0.1                                                                                      |
+ * @stable version      5.0.5                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -191,6 +191,8 @@
 		showIngredients : true,
 		//to show the calorie diet info at the bottom of the label
 		showCalorieDiet : false,
+		//to show the customizable footer which can contain html and js codes
+		showCustomFooter : false,
 
 		//to show the disclaimer text or not
 		showDisclaimer : false,
@@ -198,6 +200,7 @@
 		scrollDisclaimerHeightComparison : 100,
 		scrollDisclaimer : 95,
 		valueDisclaimer : 'Please note that these nutrition values are estimated based on our standard serving portions.  As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal.  If you have any questions about our nutrition calculator, please contact Nutritionix.',		ingredientLabel : 'INGREDIENTS:',
+		valueCustomFooter : '',
 
 		//the are to set some values as 'not applicable'. this means that the nutrition label will appear but the value will be a 'gray dash'
 		naCalories : false,
@@ -1387,6 +1390,8 @@
 				nutritionLabel += tab1 + '<div class="spaceBelow"></div>\n';
 			}
 
+			if ($this.settings.showCustomFooter)
+				nutritionLabel += tab1 + '<div class="customFooter">' + $this.settings.valueCustomFooter + '</div>\n';
 
 			nutritionLabel += '</div><!-- closing class="nutritionLabel" -->\n';
 
