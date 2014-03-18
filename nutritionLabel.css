@@ -248,3 +248,7 @@
 #calcDisclaimer {
 	line-height: normal;
 }
+.nutritionLabel .ingredientListDiv {
+	padding-top: 10px;
+}
+
