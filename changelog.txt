@@ -1,5 +1,9 @@
+
 version 6.0.2 - March 18, 2014
  - Added spacing above ingredients list https://github.com/nutritionix/nutrition-label/issues/35
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
 
 version 6.0.1 - february 1, 2014
  - new feature - allow html and js values to be added on the footer https://github.com/nutritionix/nutrition-label/issues/34
