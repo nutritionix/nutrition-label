@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.2                                                                                      |
- * @stable version      5.0.5                                                                                      |
+ * @current version     6.0.3                                                                                      |
+ * @stable version      6.0.2                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -191,6 +191,8 @@
 		showIngredients : true,
 		//to show the calorie diet info at the bottom of the label
 		showCalorieDiet : false,
+		//to show the customizable footer which can contain html and js codes
+		showCustomFooter : false,
 
 		//to show the disclaimer text or not
 		showDisclaimer : false,
@@ -198,6 +200,7 @@
 		scrollDisclaimerHeightComparison : 100,
 		scrollDisclaimer : 95,
 		valueDisclaimer : 'Please note that these nutrition values are estimated based on our standard serving portions.  As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal.  If you have any questions about our nutrition calculator, please contact Nutritionix.',		ingredientLabel : 'INGREDIENTS:',
+		valueCustomFooter : '',
 
 		//the are to set some values as 'not applicable'. this means that the nutrition label will appear but the value will be a 'gray dash'
 		naCalories : false,
@@ -705,7 +708,7 @@
 			//5 - 140 mg - express to nearest 5 mg increment
 			return roundToNearestNum(toRound, 5);
 		else
-			//>= 5 g - express to nearest 1 g increment
+			//>= 5 g - express to nearest 10 g increment
 			return roundToNearestNum(toRound, 10);
 	}
 
@@ -732,6 +735,23 @@
 		else
 			//> 1 mg - express to nearest 1 g increment
 			return roundToNearestNum(toRound, 1);
+	}
+
+
+	//Total Carbohydrate, Dietary Fiber, Sugar and Protein rounding rule
+	function roundVitaminsCalciumIron(toRound){
+		if (toRound > 0){
+			if (toRound < 10)
+				//< 10 - round to nearest even number
+				return roundToNearestNum(toRound, 2);
+			else if (toRound < 50)
+				//between 10 and 50, round to the nearest 5 increment
+				return roundToNearestNum(toRound, 5);
+			else
+				//else, round to the nearest 10 increment
+				return roundToNearestNum(toRound, 10);
+		}else
+			return 0;
 	}
 
 
@@ -1226,7 +1246,11 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naVitaminA ?
 							naValue :
-							parseFloat( $this.settings.valueVitaminA.toFixed($this.settings.decimalPlacesForNutrition) ) + $this.settings.unitVitaminA;
+							(
+							$this.settings.allowFDARounding ?
+								roundVitaminsCalciumIron($this.settings.valueVitaminA) :
+								parseFloat( $this.settings.valueVitaminA.toFixed($this.settings.decimalPlacesForNutrition) )
+							) + $this.settings.unitVitaminA;
 					nutritionLabel += '</div>\n';
 
 					nutritionLabel += tab2 + $this.settings.textVitaminA + '\n';
@@ -1239,7 +1263,11 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naVitaminC ?
 							naValue :
-							parseFloat( $this.settings.valueVitaminC.toFixed($this.settings.decimalPlacesForNutrition) ) + $this.settings.unitVitaminC;
+							(
+							$this.settings.allowFDARounding ?
+								roundVitaminsCalciumIron($this.settings.valueVitaminC) :
+								parseFloat( $this.settings.valueVitaminC.toFixed($this.settings.decimalPlacesForNutrition) )
+							) + $this.settings.unitVitaminC;
 					nutritionLabel += '</div>\n';
 
 					nutritionLabel += tab2 + $this.settings.textVitaminC + '\n';
@@ -1252,7 +1280,11 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naCalcium ?
 							naValue :
-							parseFloat( $this.settings.valueCalcium.toFixed($this.settings.decimalPlacesForNutrition) ) + $this.settings.unitCalcium;
+							(
+							$this.settings.allowFDARounding ?
+								roundVitaminsCalciumIron($this.settings.valueCalcium) :
+								parseFloat( $this.settings.valueCalcium.toFixed($this.settings.decimalPlacesForNutrition) )
+							) + $this.settings.unitCalcium;
 					nutritionLabel += '</div>\n';
 
 					nutritionLabel += tab2 + $this.settings.textCalcium + '\n';
@@ -1265,7 +1297,11 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naIron ?
 							naValue :
-							parseFloat( $this.settings.valueIron.toFixed($this.settings.decimalPlacesForNutrition) ) + $this.settings.unitIron;
+							(
+							$this.settings.allowFDARounding ?
+								roundVitaminsCalciumIron($this.settings.valueIron) :
+								parseFloat( $this.settings.valueIron.toFixed($this.settings.decimalPlacesForNutrition) )
+							) + $this.settings.unitIron;
 					nutritionLabel += '</div>\n';
 
 					nutritionLabel += tab2 + $this.settings.textIron + '\n';
@@ -1354,6 +1390,8 @@
 				nutritionLabel += tab1 + '<div class="spaceBelow"></div>\n';
 			}
 
+			if ($this.settings.showCustomFooter)
+				nutritionLabel += tab1 + '<div class="customFooter">' + $this.settings.valueCustomFooter + '</div>\n';
 
 			nutritionLabel += '</div><!-- closing class="nutritionLabel" -->\n';
 

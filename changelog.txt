@@ -1,4 +1,10 @@
 
+version 6.0.3 - October 18, 2014
+ - Added changes on the serving per container so it is now affected by the current quantity https://github.com/nutritionix/nutrition-label/issues/36
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.2 - March 18, 2014
  - Added spacing above ingredients list https://github.com/nutritionix/nutrition-label/issues/35
 

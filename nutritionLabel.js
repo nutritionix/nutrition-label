@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.2                                                                                      |
- * @stable version      5.0.5                                                                                      |
+ * @current version     6.0.3                                                                                      |
+ * @stable version      6.0.2                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -148,6 +148,8 @@
 		originalServingUnitQuantity : 0,
 		//this is used to fix the computation issue on the textbox
 		nutritionValueMultiplier : 1,
+		//this is used for the computation of the servings per container
+		totalContainerQuantity : 1,
 
 		//default calorie intake
 		calorieIntake : 2000,
@@ -361,6 +363,9 @@
 			}
 		});
 
+		if (!isNaN(settings['valueServingPerContainer']) && settings['valueServingPerContainer'] != undefined)
+			settings['valueServingPerContainer'] = parseFloat(settings.totalContainerQuantity) / parseFloat(settings['valueServingUnitQuantity']);
+
 		return settings;
 	}
 
@@ -368,7 +373,10 @@
 	function init(settings, $elem){
 		//merge the default settins with the user supplied settings
 		var $settings = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
+		$settings.totalContainerQuantity = parseFloat($settings.valueServingPerContainer) * parseFloat($settings['valueServingUnitQuantity']);
+
 		var $originalCleanSettings = cleanSettings($.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} ));
+		$originalCleanSettings.totalContainerQuantity = parseFloat($originalCleanSettings.valueServingPerContainer) * parseFloat($originalCleanSettings['valueServingUnitQuantity']);
 
 		//clean the settings and make sure that all numeric settings are really numeric, if not, force them to be
 		$settings = cleanSettings($settings);
@@ -425,6 +433,7 @@
 				e.preventDefault();
 				$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
 				$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
+				$settingsHolder.totalContainerQuantity = $settings.totalContainerQuantity;
 				$settingsHolder.nutritionValueMultiplier = $settingsHolder.valueServingUnitQuantity <= 0 ? 1 : 1 / $settingsHolder.valueServingUnitQuantity;
 				changeQuantityByArrow($(this), -1, $settingsHolder, nutritionLabel, $elem);
 			});
@@ -434,6 +443,7 @@
 				e.preventDefault();
 				$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
 				$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
+				$settingsHolder.totalContainerQuantity = $settings.totalContainerQuantity;
 				$settingsHolder.nutritionValueMultiplier = $settingsHolder.valueServingUnitQuantity <= 0 ? 1 : 1 / $settingsHolder.valueServingUnitQuantity;
 				changeQuantityTextbox($(this), $settingsHolder, nutritionLabel, $elem);
 			});
@@ -444,6 +454,7 @@
 					e.preventDefault();
 					$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
 					$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
+					$settingsHolder.totalContainerQuantity = $settings.totalContainerQuantity;
 					$settingsHolder.nutritionValueMultiplier = $settingsHolder.valueServingUnitQuantity <= 0 ? 1 : 1 / $settingsHolder.valueServingUnitQuantity;
 					changeQuantityTextbox($(this), $settingsHolder, nutritionLabel, $elem);
 				}
@@ -808,10 +819,10 @@
 			var nutritionLabel = '';
 
 
-		if (!$this.settings.allowCustomWidth)
-			nutritionLabel += '<div class="nutritionLabel" style="' + borderCSS + ' width: '+ $this.settings.width + 'px;">\n';
-		else
-			nutritionLabel += '<div class="nutritionLabel" style="' + borderCSS + ' width: '+ $this.settings.widthCustom + ';">\n';
+			if (!$this.settings.allowCustomWidth)
+				nutritionLabel += '<div class="nutritionLabel" style="' + borderCSS + ' width: '+ $this.settings.width + 'px;">\n';
+			else
+				nutritionLabel += '<div class="nutritionLabel" style="' + borderCSS + ' width: '+ $this.settings.widthCustom + ';">\n';
 
 
 				nutritionLabel += tab1 + '<div class="title">' + $this.settings.textNutritionFacts + '</div>\n';
