@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.3                                                                                      |
+ * @current version     6.0.4                                                                                      |
  * @stable version      6.0.2                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
@@ -363,7 +363,9 @@
 			}
 		});
 
-		if (!isNaN(settings['valueServingPerContainer']) && settings['valueServingPerContainer'] != undefined)
+		if (parseFloat(settings['valueServingUnitQuantity']) == 0)
+			settings['valueServingPerContainer'] = 0;
+		else if (!isNaN(settings['valueServingPerContainer']) && settings['valueServingPerContainer'] != undefined)
 			settings['valueServingPerContainer'] = parseFloat(settings.totalContainerQuantity) / parseFloat(settings['valueServingUnitQuantity']);
 
 		return settings;
@@ -423,6 +425,7 @@
 			$('#'+$elem.attr('id')).delegate('.unitQuantityUp', 'click', function(e){
 				e.preventDefault();
 				$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
+				$settingsHolder.totalContainerQuantity = $settings.totalContainerQuantity;
 				$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
 				$settingsHolder.nutritionValueMultiplier = $settingsHolder.valueServingUnitQuantity <= 0 ? 1 : 1 / $settingsHolder.valueServingUnitQuantity;
 				changeQuantityByArrow($(this), 1, $settingsHolder, nutritionLabel, $elem);

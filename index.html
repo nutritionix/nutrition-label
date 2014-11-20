@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.2                                                                                      |
- * @stable version      5.0.5                                                                                      |
+ * @current version     6.0.4                                                                                      |
+ * @stable version      6.0.2                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -28,7 +28,7 @@
 <body>
 <div class="container">
 	<div class="hero-unit">
-		<h1>Nutrition Label version 6.0.1</h1>
+		<h1>Nutrition Label version 6.0.4</h1>
 		<h4>from Nutritionix</h4>
 		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
 		<p>
@@ -69,8 +69,6 @@ hideNotAppicableValues : false,
 brandName : 'Brand where this item belongs to',
 //to scroll the ingredients if the innerheight is > scrollHeightComparison
 scrollLongIngredients : false,
-//to scroll the item name if the qQuery.height() is > 36
-scrollLongItemName : true,
 scrollHeightComparison : 100,
 //the height in px of the ingredients div
 scrollHeightPixel : 95,
@@ -80,6 +78,10 @@ decimalPlacesForNutrition : 1,
 decimalPlacesForDailyValues : 0,
 //this is to set how many decimal places will be shown for the serving unit quantity textbox
 decimalPlacesForQuantityTextbox : 1,
+
+//to scroll the item name if the jQuery.height() is > scrollLongItemNamePixel
+scrollLongItemName : true,
+scrollLongItemNamePixel : 36,
 
 //show the customizable link at the bottom
 showBottomLink : false,
@@ -126,6 +128,8 @@ hideTextboxArrows : false,
 originalServingUnitQuantity : 0,
 //this is used to fix the computation issue on the textbox
 nutritionValueMultiplier : 1,
+//this is used for the computation of the servings per container
+totalContainerQuantity : 1,
 
 //default calorie intake
 calorieIntake : 2000,

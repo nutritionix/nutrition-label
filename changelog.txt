@@ -1,6 +1,12 @@
 
+version 6.0.4 - November 20, 2014
+ - Fixed the bug - Servings Per Container disappears when the Serving Size is decreased https://github.com/nutritionix/nutrition-label/issues/36
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.3 - October 18, 2014
- - Added changes on the serving per container so it is now affected by the current quantity https://github.com/nutritionix/nutrition-label/issues/36
+ - Added changes on the serving per container so it is now affected by the current quantity https://github.com/nutritionix/nutrition-label/issues/32
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
