@@ -282,7 +282,7 @@
 		//these text settings is so you can create nutrition labels in different languages or to simply change them to your need
 		textNutritionFacts : 'Nutrition Facts',
 		textDailyValues : 'Daily Value',
-		textServingSize : 'Serving Size',
+		textServingSize : 'Serving Size:',
 		textServingsPerContainer : 'Servings Per Container',
 		textAmountPerServing : 'Amount Per Serving',
 		textCalories : 'Calories',
