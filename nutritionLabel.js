@@ -351,7 +351,7 @@
 		var nutritionIndex = [
 			'valueCalories','valueFatCalories','valueTotalFat','valueSatFat','valueTransFat','valuePolyFat','valueMonoFat',
 			'valueCholesterol','valueSodium','valueTotalCarb','valueFibers','valueSugars','valueProteins','valueVitaminA',
-			'valueVitaminC','valueCalcium','valueIron'
+			'valueVitaminC','valueCalcium','valueIron','valueServingWeightGrams'
 		];
 
 		$.each(settings, function(index, value){
