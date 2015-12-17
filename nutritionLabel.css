@@ -16,7 +16,7 @@
  ******************************************************************************************************************+
 */
 
-@import url("http://fonts.googleapis.com/css?family=Archivo+Black");
+@import url("//fonts.googleapis.com/css?family=Archivo+Black");
 
 .nutritionLabel input.unitQuantityBox.ui-input-text {
 	margin-top: 0;
@@ -180,7 +180,7 @@
 	font-size: .9em !important;
 	margin-left: 15px;
 	margin-bottom: 0;
-	line-height: 15px \9;
+	line-height: 15px;
 }
 .nutritionLabel input.unitQuantityBox.arrowsAreHidden {
 	margin-left: 0;
