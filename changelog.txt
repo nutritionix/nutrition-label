@@ -1,4 +1,10 @@
 
+version 6.0.5 - December 16, 2014
+ - Added Micro data
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.4 - November 20, 2014
  - Fixed the bug - Servings Per Container disappears when the Serving Size is decreased https://github.com/nutritionix/nutrition-label/issues/36
 
