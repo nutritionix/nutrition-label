@@ -1080,8 +1080,8 @@
 
 
 				if ($this.settings.showCalories){
-					nutritionLabel += tab2 + '<div itemprop="calories">';
-						nutritionLabel += '<b>' + $this.settings.textCalories + '</b> ';
+					nutritionLabel += tab2 + '<div>';
+						nutritionLabel += '<b>' + $this.settings.textCalories + '</b> <span itemprop="calories"';
 						nutritionLabel += $this.settings.naCalories ?
 							naValue :
 							(
@@ -1089,7 +1089,7 @@
 									roundCalories($this.settings.valueCalories, $this.settings.decimalPlacesForNutrition) :
 									parseFloat( $this.settings.valueCalories.toFixed($this.settings.decimalPlacesForNutrition) )
 							) + $this.settings.unitCalories;
-					nutritionLabel += '</div>\n';
+					nutritionLabel += '</span></div>\n';
 				}else if ($this.settings.showFatCalories){
 					nutritionLabel += tab2 + '<div>&nbsp;</div>\n';
 				}
