@@ -1081,7 +1081,7 @@
 
 				if ($this.settings.showCalories){
 					nutritionLabel += tab2 + '<div>';
-						nutritionLabel += '<b>' + $this.settings.textCalories + '</b> <span itemprop="calories"';
+						nutritionLabel += '<b>' + $this.settings.textCalories + '</b> <span itemprop="calories">';
 						nutritionLabel += $this.settings.naCalories ?
 							naValue :
 							(
