@@ -14,14 +14,11 @@
     "url": "git+https://github.com/nutritionix/nutrition-label.git"
   },
   "keywords": [
+    "nutritionix",
     "nutrition",
-    "nutrition-label",
     "jquery",
     "plugin",
-    "jquery-plugin",
-    "fda",
-    "label",
-    "food-label"
+    "label"
   ],
   "author": "Leo Joseph Gajitos <leejay22@gmail.com> (http://geekygamerdad.com/)",
   "license": "MIT",
