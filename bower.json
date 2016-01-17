@@ -28,17 +28,13 @@
   "private": false,
   "ignore": [
     "**/.*",
-    "./css",
-    "./demo",
-    "./images",
-    "./js",
-    "./nutritionLabel.css",
-    "./nutritionLabel-min.css",
-    "./nutritionLabel-stable-ver-6.0.4.css",
-    "./nutritionLabel.js",
-    "./nutritionLabel-min.js",
-    "./nutritionLabel-stable-ver-6.0.4.js",
-    "bootstrap",
+    "bootstrap/",
+    "css/",
+    "demo/",
+    "images/",
+    "js/",
+    "/*.css",
+    "/*.js",
     "bower_components",
     "nbproject",
     "node_modules",
@@ -46,7 +42,7 @@
     "tests",
 		"bower.json"
   ],
-  "devDependencies": {
+  "dependencies": {
     "jquery": "1.8.0",
     "bootstrap": "2.3.0"
   }
