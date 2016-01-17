@@ -9,14 +9,14 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.6                                                                                      |
+ * @current version     6.0.7                                                                                      |
  * @stable version      6.0.4                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
 */
 
-@import url("//fonts.googleapis.com/css?family=Archivo+Black");
+@import url("http://fonts.googleapis.com/css?family=Archivo+Black");
 
 .nutritionLabel input.unitQuantityBox.ui-input-text {
 	margin-top: 0;
@@ -180,7 +180,7 @@
 	font-size: .9em !important;
 	margin-left: 15px;
 	margin-bottom: 0;
-	line-height: 15px;
+	line-height: 15px \9;
 }
 .nutritionLabel input.unitQuantityBox.arrowsAreHidden {
 	margin-left: 0;

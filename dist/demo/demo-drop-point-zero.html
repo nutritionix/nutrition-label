@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<link rel='stylesheet' type='text/css' media='screen' href='../../bower_components/bootstrap/docs/assets/css/bootstrap.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='../css/nutritionLabel-min.css'>
+
+	<!-- google webfont for nutrition label -->
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
+
+	<style>
+		body{
+			padding: 15px;
+			margin: 0;
+			font-family:Arial, Helvetica, sans-serif;
+			line-height:	normal;
+		}
+		h1,h2,h3,h4,h5,h6 {
+			line-height: normal;
+			margin-top: 0;
+		}
+
+		p { line-height: 18px; }
+		textarea{
+			width: 600px;
+			padding: 5px;
+		}
+
+		input{
+			width: 400px;
+			padding: 3px;
+		}
+
+		/* Sidenav for Docs
+		-------------------------------------------------- */
+
+		.bs-docs-sidenav {
+			width: 228px;
+			margin: 0;
+			padding: 0;
+
+			background-color: #fff;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+			-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+			-moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+			box-shadow: 0 1px 4px rgba(0,0,0,.065);
+		}
+		.bs-docs-sidenav > li > a {
+			display: block;
+			width: 190px \9;
+			margin: 0 0 -1px;
+			padding: 8px 14px;
+			border: 1px solid #e5e5e5;
+		}
+		.bs-docs-sidenav > li:first-child > a {
+			-webkit-border-radius: 6px 6px 0 0;
+			-moz-border-radius: 6px 6px 0 0;
+			border-radius: 6px 6px 0 0;
+		}
+		.bs-docs-sidenav > li:last-child > a {
+			-webkit-border-radius: 0 0 6px 6px;
+			-moz-border-radius: 0 0 6px 6px;
+			border-radius: 0 0 6px 6px;
+		}
+		.bs-docs-sidenav > .active > a {
+			position: relative;
+			z-index: 2;
+			padding: 9px 15px;
+			border: 0;
+			text-shadow: 0 1px 0 rgba(0,0,0,.15);
+			-webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+			-moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+			box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+		}
+		/* Chevrons */
+		.bs-docs-sidenav .icon-chevron-right {
+			float: right;
+			margin-top: 2px;
+			margin-right: -6px;
+			opacity: .25;
+		}
+		.bs-docs-sidenav > li > a:hover {
+			background-color: #f5f5f5;
+		}
+		.bs-docs-sidenav a:hover .icon-chevron-right {
+			opacity: .5;
+		}
+		.bs-docs-sidenav .active .icon-chevron-right,
+		.bs-docs-sidenav .active a:hover .icon-chevron-right {
+			background-image: url(../images/glyphicons-halflings-white.png);
+			opacity: 1;
+		}
+		.bs-docs-sidenav.affix {
+			top: 40px;
+		}
+		.bs-docs-sidenav.affix-bottom {
+			position: absolute;
+			top: auto;
+			bottom: 270px;
+		}
+
+		.nav-list.affix-top {
+			position: fixed;
+		}
+
+		.nutritionLabel a.unitQuantityUp {
+			background: transparent url("../images/up.png") left top no-repeat;
+		}
+
+		.nutritionLabel a.unitQuantityDown {
+			background: transparent url("../images/down.png") left bottom no-repeat;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="span3 bs-docs-sidenav">
+			<ul class="nav nav-list bs-docs-sidenav affix-top">
+				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
+				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
+			</ul>
+		</div>
+		<div class="span9">
+
+
+			<div class="row">
+				<div class="span4">
+					<div id="test1"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #1 - FDA Rounding Off</h3>
+					<p></p>
+<pre id="pre1">
+$('#test1').nutritionLabel({
+	'calorieIntake' : 1222,
+	'showServingUnitQuantity' : false,
+	'showIngredients' : false,
+	'itemName' : 'Bleu Cheese Dressing',
+	'decimalPlacesForNutrition' : 2,
+	'decimalPlacesForDailyValues' : 2,
+	'allowFDARounding' : false,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450.10,
+	'valueFatCalories' : 430.23,
+	'valueTotalFat' : 48.0,
+	'valueSatFat' : 6.12,
+	'valueTransFat' : 0.00,
+	'valueCholesterol' : 30.90,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3.2,
+	'valueFibers' : 0.3,
+	'valueSugars' : 3.0,
+	'valueProteins' : 3,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 2.0,
+	'valueCalcium' : 0,
+	'valueIron' : 0
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="span4">
+					<div id="test2"></div>
+				</div>
+				<div class="span5">
+					<h3>Example #2 - FDA Rounding On</h3>
+					<p></p>
+<pre id="pre2">
+$('#test2').nutritionLabel({
+	'calorieIntake' : 1222,
+	'showServingUnitQuantity' : false,
+	'showIngredients' : false,
+	'itemName' : 'Bleu Cheese Dressing',
+	'decimalPlacesForNutrition' : 2,
+	'decimalPlacesForDailyValues' : 2,
+	'allowFDARounding' : true,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450.10,
+	'valueFatCalories' : 430.23,
+	'valueTotalFat' : 48.0,
+	'valueSatFat' : 6.12,
+	'valueTransFat' : 0.00,
+	'valueCholesterol' : 30.90,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3.2,
+	'valueFibers' : 0.3,
+	'valueSugars' : 3.0,
+	'valueProteins' : 3,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 2.0,
+	'valueCalcium' : 0,
+	'valueIron' : 0
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="../../bower_components/jquery/jquery.js"></script>
+<script type="text/javascript" src="../js/nutritionLabel-min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	eval( eval( $('#pre1').html() ) );
+	eval( eval( $('#pre2').html() ) );
+});
+</script>
+
+</body>
+</html>

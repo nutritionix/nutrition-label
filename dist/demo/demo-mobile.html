@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nutrition Label</title>
+
+	<link rel='stylesheet' type='text/css' media='screen' href='../css/mobile/jqm1.2.0.min.css'>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
+
+	<link rel='stylesheet' type='text/css' media='screen' href='../css/nutritionLabel-min.css'>
+	<!-- google webfont for nutrition label -->
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
+	<style type="text/css">
+    .nutritionLabel {
+    	border-bottom: 2px solid #333 !important;
+	   margin-bottom: 0;
+	   font-size: 13px;
+	   background: #fff;
+	   line-height: normal;
+    }
+    .nutritionLabel .title {
+	   padding-top: 0;
+    }
+    .truncate {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .nutritionLabel a.unitQuantityUp {
+      background: transparent url("../images/up.png") left top no-repeat;
+    }
+
+    .nutritionLabel a.unitQuantityDown {
+      background: transparent url("../images/down.png") left bottom no-repeat;
+    }
+	</style>
+</head>
+<body>
+	<div data-role="page" id="home" data-theme="a">
+		<div data-role="content" data-theme="a">
+
+			<h1>
+				Nutrition Label v 4.0.4
+			</h1>
+			<h5>
+				from Nutritionix
+			</h5>
+
+			<ul data-role="listview" data-inset="true">
+				<li><a href="#ex1" data-transition="slide">Example 1</a></li>
+				<li><a href="#ex2" data-transition="slide">Example 2</a></li>
+				<li><a href="#ex3" data-transition="slide">Example 3</a></li>
+				<li><a href="#ex4" data-transition="slide">Example 4</a></li>
+			</ul>
+    	</div>
+	</div>
+
+<!-- example 1 -->
+<div data-role="page" id="ex1" data-theme="a">
+	<div data-role="header" data-theme="a">
+    	<a href="#" data-rel="back">Back</a>
+     	<h1>Example 1</h1>
+    </div>
+
+	<div id="label1"></div>
+
+	<div data-role="content" data-theme="a">
+			<div data-role="collapsible-set" data-theme="a">
+				<div data-role="collapsible">
+					<h2>View Code</h2>
+					<ul data-role="listview">
+						<li>
+<pre id="pre1" class="truncate">
+$('#label1').nutritionLabel({
+  'allowCustomWidth' : true,
+  'allowNoBorder' : true,
+  'showServingUnitQuantity' : false,
+  'itemName' : 'Bleu Cheese Dressing',
+  'ingredientList' : 'Bleu Cheese Dressing',
+  'showPolyFat' : false,
+  'showMonoFat' : false,
+  'valueCalories' : 450,
+  'valueFatCalories' : 430,
+  'valueTotalFat' : 48,
+  'valueSatFat' : 6,
+  'valueTransFat' : 0,
+  'valueCholesterol' : 30,
+  'valueSodium' : 780,
+  'valueTotalCarb' : 3,
+  'valueFibers' : 0,
+  'valueSugars' : 3,
+  'valueProteins' : 3,
+  'valueVitaminA' : 0,
+  'valueVitaminC' : 0,
+  'valueCalcium' : 0,
+  'valueIron' : 0
+});
+</pre>
+						</li>
+					</ul>
+				</div>
+			</div>
+	</div>
+</div>
+
+
+<!-- example 2 -->
+<div data-role="page" id="ex2" data-theme="a">
+	<div data-role="header" data-theme="a">
+    	<a href="#" data-rel="back">Back</a>
+     	<h1>Example 2</h1>
+    </div>
+
+	<div id="label2"></div>
+
+	<div data-role="content" data-theme="a">
+			<div data-role="collapsible-set" data-theme="a">
+				<div data-role="collapsible">
+					<h2>View Code</h2>
+					<ul data-role="listview">
+						<li>
+<pre id="pre2" class="truncate">
+$('#label2').nutritionLabel({
+  'allowCustomWidth' : true,
+  'allowNoBorder' : true,
+
+  'valueServingPerContainer' : 1.33,
+  'valueServingWeightGrams' : 2.56,
+
+  'showServingsPerContainer' : true,
+
+  'valueServingUnitQuantity' : 0,
+  'valueServingSizeUnit' : 'DONUTS',
+
+  'naPolyFat' : true,
+  'naFibers' : true,
+
+  'showMonoFat' : false,
+  'showTransFat' : false,
+  'showVitaminA' : false,
+  'showVitaminC' : false,
+  'showCalcium' : false,
+  'showIron' : false,
+
+  'valueCalories' : 400,
+  'valueFatCalories' : 220,
+  'valueTotalFat' : 24,
+  'valueSatFat' : 15,
+  'valueCholesterol' : 25,
+  'valueSodium' : 430,
+  'valueTotalCarb' : 44,
+  'valueSugars' : 24,
+  'valueProteins' : 4,
+
+  'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour)'
+});
+</pre>
+						</li>
+					</ul>
+				</div>
+			</div>
+	</div>
+</div>
+
+<!-- example 3 -->
+<div data-role="page" id="ex3" data-theme="a">
+	<div data-role="header" data-theme="a">
+    	<a href="#" data-rel="back">Back</a>
+     	<h1>Example 3</h1>
+    </div>
+
+	<div id="label3"></div>
+
+	<div data-role="content" data-theme="a">
+			<div data-role="collapsible-set" data-theme="a">
+				<div data-role="collapsible">
+					<h2>View Code</h2>
+					<ul data-role="listview">
+						<li>
+<pre id="pre3" class="truncate">
+$('#label3').nutritionLabel({
+  'allowCustomWidth' : true,
+  'allowNoBorder' : true,
+
+  'valueServingPerContainer' : 1.33,
+  'valueServingWeightGrams' : 2.56,
+
+  'showServingsPerContainer' : true,
+  'showServingUnitQuantity' : false,
+
+  'valueServingUnitQuantity' : 6,
+  'valueServingSizeUnit' : 'DONUTS',
+
+  'naPolyFat' : true,
+  'naFibers' : true,
+
+  'showMonoFat' : false,
+  'showTransFat' : false,
+  'showVitaminA' : false,
+  'showVitaminC' : false,
+  'showCalcium' : false,
+  'showIron' : false,
+
+  'valueCalories' : 400,
+  'valueFatCalories' : 220,
+  'valueTotalFat' : 24,
+  'valueSatFat' : 15,
+  'valueCholesterol' : 25,
+  'valueSodium' : 430,
+  'valueTotalCarb' : 44,
+  'valueSugars' : 24,
+  'valueProteins' : 4,
+
+  'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour)'
+});
+</pre>
+						</li>
+					</ul>
+				</div>
+			</div>
+	</div>
+</div>
+
+<!-- example 4 -->
+<div data-role="page" id="ex4" data-theme="a">
+	<div data-role="header" data-theme="a">
+    	<a href="#" data-rel="back">Back</a>
+     	<h1>Example 4</h1>
+    </div>
+
+	<div id="label4"></div>
+
+	<div data-role="content" data-theme="a">
+			<div data-role="collapsible-set" data-theme="a">
+				<div data-role="collapsible">
+					<h2>View Code</h2>
+					<ul data-role="listview">
+						<li>
+<pre id="pre4" class="truncate">
+$('#label4').nutritionLabel({
+  'allowCustomWidth' : true,
+  'allowNoBorder' : true,
+
+  'valueServingPerContainer' : 1.33,
+  'valueServingWeightGrams' : 2.56,
+
+  'showServingsPerContainer' : true,
+  'showItemName' : false,
+
+  'valueServingUnitQuantity' : 0,
+  'valueServingSizeUnit' : 'DONUTS',
+
+  'naPolyFat' : true,
+  'naFibers' : true,
+
+  'showMonoFat' : false,
+  'showTransFat' : false,
+  'showVitaminA' : false,
+  'showVitaminC' : false,
+  'showCalcium' : false,
+  'showIron' : false,
+
+  'valueCalories' : 400,
+  'valueFatCalories' : 220,
+  'valueTotalFat' : 24,
+  'valueSatFat' : 15,
+  'valueCholesterol' : 25,
+  'valueSodium' : 430,
+  'valueTotalCarb' : 44,
+  'valueSugars' : 24,
+  'valueProteins' : 4,
+
+  'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour)'
+});
+</pre>
+						</li>
+					</ul>
+				</div>
+			</div>
+	</div>
+</div>
+
+
+
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  <script type="text/javascript" src="../js/nutritionLabel-min.js"></script>
+
+    <script>
+
+		$(function(){
+			eval( eval( $('#pre1').html() ) );
+			eval( eval( $('#pre2').html() ) );
+			eval( eval( $('#pre3').html() ) );
+			eval( eval( $('#pre4').html() ) );
+		});
+
+    </script>
+
+    </body>
+</html>

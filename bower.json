@@ -1,6 +1,6 @@
 {
   "name": "nutrition-label-jquery-plugin",
-	"version": "6.0.7",
+  "version": "6.0.6",
   "homepage": "https://github.com/nutritionix/nutrition-label",
   "authors": [
     "Leo Joseph Gajitos <leejay22@gmail.com>",
@@ -28,16 +28,26 @@
   "private": false,
   "ignore": [
     "**/.*",
-    "node_modules",
+    "bootstrap",
     "bower_components",
+    "css",
+    "demo",
+    "images",
+    "js",
+    "nbproject",
+    "node_modules",
     "test",
     "tests",
-    "bootstrap",
-    "nbproject"
+    "nutritionLabel.css",
+    "nutritionLabel-min.css",
+    "nutritionLabel-stable-ver-6.0.4.css",
+    "nutritionLabel.js",
+    "nutritionLabel-min.js",
+    "nutritionLabel-stable-ver-6.0.4.js",
+		"bower.json"
   ],
-  "dependencies": {
-    "jQuery": "~1.8.0",
-    "bootstrap": "~3.3.6",
-    "archivoBlack": "https://google-fonts.azurewebsites.net/googleFonts/archivoBlack?family=Archivo+Black"
+  "devDependencies": {
+    "jquery": "1.8.0",
+    "bootstrap": "2.3.0"
   }
 }
