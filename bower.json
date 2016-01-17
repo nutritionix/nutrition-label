@@ -33,6 +33,7 @@
     "demo/",
     "images/",
     "js/",
+    "/index.html",
     "/*.css",
     "/*.js",
     "bower_components",
