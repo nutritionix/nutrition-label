@@ -1,0 +1,14 @@
+.nutritionLabel {
+	border-bottom: 2px solid #333 !important;
+	margin-bottom: 0;
+	font-size: 13px;
+	background: #fff;
+	line-height: normal;
+}
+.nutritionLabel .title {
+	padding-top: 0;
+}
+.truncate {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
