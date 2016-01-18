@@ -112,90 +112,50 @@
 		<div class="span3 bs-docs-sidenav">
 			<ul class="nav nav-list bs-docs-sidenav affix-top">
 				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
-				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
 			</ul>
 		</div>
 		<div class="span9">
-
-
 			<div class="row">
 				<div class="span4">
 					<div id="test1"></div>
 				</div>
 				<div class="span5">
-					<h3>Example #1 - FDA Rounding Off</h3>
-					<p></p>
+					<h3>Example #1</h3>
+					<p>Giving specific nutrition label values and hiding some of the parts of the nutrition label</p>
 <pre id="pre1">
 $('#test1').nutritionLabel({
-	'calorieIntake' : 1222,
 	'showServingUnitQuantity' : false,
-	'showIngredients' : false,
 	'itemName' : 'Bleu Cheese Dressing',
-	'decimalPlacesForNutrition' : 2,
-	'decimalPlacesForDailyValues' : 2,
-	'allowFDARounding' : false,
+	'ingredientList' : 'Bleu Cheese Dressing',
 
-	'showPolyFat' : false,
-	'showMonoFat' : false,
+	'decimalPlacesForQuantityTextbox' : 2,
+	'valueServingUnitQuantity' : 1,
 
-	'valueCalories' : 450.10,
-	'valueFatCalories' : 430.23,
-	'valueTotalFat' : 48.0,
-	'valueSatFat' : 6.12,
-	'valueTransFat' : 0.00,
-	'valueCholesterol' : 30.90,
-	'valueSodium' : 780,
-	'valueTotalCarb' : 3.2,
-	'valueFibers' : 0.3,
-	'valueSugars' : 3.0,
-	'valueProteins' : 3,
-	'valueVitaminA' : 0,
-	'valueVitaminC' : 2.0,
-	'valueCalcium' : 0,
-	'valueIron' : 0
-});
-</pre>
-				</div>
-			</div><br /><br /><br />
-
-
-			<div class="row">
-				<div class="span4">
-					<div id="test2"></div>
-				</div>
-				<div class="span5">
-					<h3>Example #2 - FDA Rounding On</h3>
-					<p></p>
-<pre id="pre2">
-$('#test2').nutritionLabel({
-	'calorieIntake' : 1222,
-	'showServingUnitQuantity' : false,
-	'showIngredients' : false,
-	'itemName' : 'Bleu Cheese Dressing',
-	'decimalPlacesForNutrition' : 2,
-	'decimalPlacesForDailyValues' : 2,
 	'allowFDARounding' : true,
+	'decimalPlacesForNutrition' : 2,
 
 	'showPolyFat' : false,
 	'showMonoFat' : false,
 
-	'valueCalories' : 450.10,
-	'valueFatCalories' : 430.23,
-	'valueTotalFat' : 48.0,
-	'valueSatFat' : 6.12,
-	'valueTransFat' : 0.00,
-	'valueCholesterol' : 30.90,
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
 	'valueSodium' : 780,
-	'valueTotalCarb' : 3.2,
-	'valueFibers' : 0.3,
-	'valueSugars' : 3.0,
+	'valuePotassium' : 210,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
 	'valueProteins' : 3,
-	'valueVitaminA' : 0,
-	'valueVitaminC' : 2.0,
-	'valueCalcium' : 0,
-	'valueIron' : 0
+	'valueVitaminA' : 1.22,
+	'valueVitaminC' : 4.22,
+	'valueCalcium' : 7.22,
+	'valueIron' : 11.22
 });
 </pre>
+					<pre>http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing</pre>
 				</div>
 			</div><br /><br /><br />
 
@@ -208,11 +168,10 @@ $('#test2').nutritionLabel({
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript" src="../nutritionLabel-min.js"></script>
+<script type="text/javascript" src="../nutritionLabel.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );
-	eval( eval( $('#pre2').html() ) );
 });
 </script>
 
