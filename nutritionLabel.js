@@ -498,7 +498,7 @@
 	function addScrollToItemDiv($elem, $settings){
 		if ( $('#' + $elem.attr('id') + ' .name.inline').val() != undefined ){
 			if ( $('#' + $elem.attr('id') + ' .name.inline').height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) ){
-				$('# ' +$elem.attr('id') + ' .name.inline').css({
+				$('#' +$elem.attr('id') + ' .name.inline').css({
 					'margin-left' : '3.90em',
 					'height' : parseInt($settings.scrollLongItemNamePixel) + 'px',
 					'overflow-y' : 'auto'
