@@ -9,22 +9,22 @@
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
-		<div class="span3 bs-docs-sidenav">
-			<ul class="nav nav-list bs-docs-sidenav affix-top">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<ul class="nav nav-sidebar">
 				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
 				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
 				<li><a href="#test3"><i class="icon-chevron-right"></i> Example 3</a></li>
 				<li><a href="#test4"><i class="icon-chevron-right"></i> Example 4</a></li>
 			</ul>
 		</div>
-		<div class="span9">
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test1"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Example #1</h3>
 					<p>Most basic use of the plugin</p>
 					<pre id="pre1">$('#test1').nutritionLabel();</pre>
@@ -33,10 +33,10 @@
 
 
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test2"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Example #2</h3>
 					<p>Giving specific nutrition label values and hiding some of the parts of the nutrition label</p>
 <pre id="pre2">
@@ -71,10 +71,10 @@ $('#test2').nutritionLabel({
 
 
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test3"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Example #3</h3>
 					<p>Similar to example #2 but with different plugin options. One thing to note is the use of serving size, serving size unit and showing the serving container to overwrite the default value (compare it to other examples to see the difference)</p>
 					<p>Also, an example where the serving size unit is present and the value serving size is greater than zero and not 'not applicable'</p>
@@ -115,10 +115,10 @@ $('#test3').nutritionLabel({
 
 
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test4"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Example #4</h3>
 					<p>Similar to example #2 but with only a few visible values</p>
 					<p>Another thing to take note here is that the serving size unit is null or an empty string so the textbox appears before the item name</p>
