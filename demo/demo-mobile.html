@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
 
 	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel.css'>
-	<link rel='stylesheet' type='text/css' media='screen' href='./css/demo.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='./css/demo-mobile.css'>
 
 	<!-- google webfont for nutrition label -->
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
@@ -255,6 +255,13 @@ $('#label4').nutritionLabel({
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script>
+      $(document).bind('mobileinit',function(){
+          $.mobile.changePage.defaults.changeHash = false;
+          $.mobile.hashListeningEnabled = false;
+          $.mobile.pushStateEnabled = false;
+      });
+  </script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
 <script type="text/javascript" src="../nutritionLabel-min.js"></script>
 <script type="text/javascript">
