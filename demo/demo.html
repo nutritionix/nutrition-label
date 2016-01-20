@@ -57,6 +57,7 @@
 					<p>Giving specific nutrition label values and hiding some of the parts of the nutrition label</p>
 <pre id="pre2">
 $('#test2').nutritionLabel({
+	'width' : 280,
 	'showServingUnitQuantity' : false,
 	'itemName' : 'Bleu Cheese Dressing',
 	'ingredientList' : 'Bleu Cheese Dressing',
@@ -101,6 +102,7 @@ $('#test2').nutritionLabel({
 					<p>Similar to example #2 but with different plugin options. One thing to note is the use of serving size, serving size unit and showing the serving container to overwrite the default value (compare it to other examples to see the difference)</p>
 <pre id="pre3">
 $('#test3').nutritionLabel({
+	'width' : 280,
 	'showItemName' : false,
 	'showServingsPerContainer' : true,
 	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
@@ -142,6 +144,7 @@ $('#test3').nutritionLabel({
 					<p>Similar to example #3 but the very tall ingredient list has a scroll to prevent a very tall nutrition label. The scroll height is customized too</p>
 <pre id="pre4">
 $('#test4').nutritionLabel({
+	'width' : 280,
 	'scrollHeightPixel' : 200,
 	'scrollLongIngredients' : true,
 	'showItemName' : false,
@@ -185,6 +188,7 @@ $('#test4').nutritionLabel({
 					<p>Similar to example #2 but with only a few visible values</p>
 <pre id="pre5">
 $('#test5').nutritionLabel({
+	'width' : 280,
 	'showServingUnitQuantity' : false,
 	'showAmountPerServing' : false,
 	'showCalorieDiet' : true,
@@ -225,6 +229,7 @@ $('#test5').nutritionLabel({
 					<p>Similar to example #2 but with different plugin options. Things to note are the use of 'not applicable' and text value instead of numerical value on sugar</p>
 <pre id="pre6">
 $('#test6').nutritionLabel({
+	'width' : 280,
 	'showServingUnitQuantity' : false,
 	'showAmountPerServing' : false,
 	'showIngredients' : false,
@@ -264,6 +269,7 @@ $('#test6').nutritionLabel({
 					<p>Example where a few of the values are not applicable</p>
 <pre id="pre7">
 $('#test7').nutritionLabel({
+	'width' : 280,
 	'showServingUnitQuantity' : false,
 	'showAmountPerServing' : false,
 	'showIngredients' : false,
@@ -303,6 +309,7 @@ $('#test7').nutritionLabel({
 					<p>All non-numeric values are automatically filtered and converted to numeric to prevent errors</p>
 <pre id="pre8">
 $('#test8').nutritionLabel({
+	'width' : 280,
 	'showServingsPerContainer' : true,
 	'valueServingUnitQuantity' : '~12',
 	'valueServingPerContainer' : 'TBA',
@@ -339,6 +346,7 @@ $('#test8').nutritionLabel({
 					<p>all values are not applicable and the N/A</p>
 <pre id="pre9">
 $('#test9').nutritionLabel({
+	'width' : 280,
 	'naCalories' : true,
 	'naFatCalories' : true,
 	'naTotalFat' : true,
@@ -371,6 +379,7 @@ $('#test9').nutritionLabel({
 					<p>Similar to example #2 but with a few different settings - different calorie intake, decimal places for nutrition changed from 1 to 2, decimal places for the "% daily values" is changed from 0 to 2, showing the home page link at the bottom and customizing it</p>
 <pre id="pre10">
 $('#test10').nutritionLabel({
+	'width' : 280,
 	'calorieIntake' : 1222,
 	'showServingUnitQuantity' : false,
 	'showIngredients' : false,
@@ -415,6 +424,7 @@ $('#test10').nutritionLabel({
 					<p>Similar to example #2 but the "recommended daily intake values" are halved</p>
 <pre id="pre11">
 $('#test11').nutritionLabel({
+	'width' : 280,
 	'showServingUnitQuantity' : false,
 	'showIngredients' : false,
 	'itemName' : 'Bleu Cheese Dressing',
@@ -459,6 +469,7 @@ $('#test11').nutritionLabel({
 					<p>Similar to example #11 but the calorie diet is enabled (default calorie diet values)</p>
 <pre id="pre12">
 $('#test12').nutritionLabel({
+	'width' : 280,
 	'showServingUnitQuantity' : false,
 	'showIngredients' : false,
 	'showCalorieDiet' : true,
@@ -504,6 +515,7 @@ $('#test12').nutritionLabel({
 					<p>Similar to example #11 but the calorie diet is enabled (custom calorie diet values)</p>
 <pre id="pre13">
 $('#test13').nutritionLabel({
+	'width' : 280,
 	'showServingUnitQuantity' : false,
 	'showIngredients' : false,
 	'showCalorieDiet' : true,
@@ -564,6 +576,7 @@ $('#test13').nutritionLabel({
 					<p>Version 3.0.0 fix with the title being too close when the serving size and item name are hidden</p>
 <pre id="pre14">
 $('#test14').nutritionLabel({
+	'width' : 280,
 	'showServingUnitQuantity' : false,
 	'showItemName' : false
 });
@@ -581,6 +594,7 @@ $('#test14').nutritionLabel({
 					<p>Version 3.0.0 fix with the title being too close when the item name is hidden, showServingUnitQuantity is true and both the serving size and servings per container are hidden</p>
 <pre id="pre15">
 $('#test15').nutritionLabel({
+	'width' : 280,
 	'showServingUnitQuantity' : true,
 	'showServingsPerContainer' : true,
 	'valueServingUnitQuantity' : '0',
@@ -601,6 +615,7 @@ $('#test15').nutritionLabel({
 					<p>Giving specific nutrition label values and hiding some of the parts of the nutrition label. also there is a brand name and it is shown</p>
 <pre id="pre16">
 $('#test16').nutritionLabel({
+	'width' : 280,
 	'showServingUnitQuantity' : false,
 	'itemName' : 'Bleu Cheese Dressing',
 	'ingredientList' : 'Bleu Cheese Dressing',
@@ -640,6 +655,7 @@ $('#test16').nutritionLabel({
 					<p>Similar to Example #2 but the arrows are hidden</p>
 <pre id="pre17">
 $('#test17').nutritionLabel({
+	'width' : 280,
 	'hideTextboxArrows' : true,
 	'showServingUnitQuantity' : false,
 	'itemName' : 'Bleu Cheese Dressing',
@@ -678,6 +694,7 @@ $('#test17').nutritionLabel({
 					<p>Similar to Example #3 but the arrows are hidden</p>
 <pre id="pre18">
 $('#test18').nutritionLabel({
+	'width' : 280,
 	'hideTextboxArrows' : true,
 	'showItemName' : false,
 	'showServingsPerContainer' : true,
@@ -721,6 +738,7 @@ $('#test18').nutritionLabel({
 					<p>there is no scroll because the disclaimer div height is not greater than 100px</p>
 <pre id="pre19">
 $('#test19').nutritionLabel({
+	'width' : 280,
 	'showItemName' : false,
 	'showServingsPerContainer' : true,
 	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
@@ -764,6 +782,7 @@ $('#test19').nutritionLabel({
 					<p>Another difference is that the scrollHeightPixel is the default value</p>
 <pre id="pre20">
 $('#test20').nutritionLabel({
+	'width' : 280,
 	'scrollLongIngredients' : true,
 	'showItemName' : false,
 	'showServingsPerContainer' : true,

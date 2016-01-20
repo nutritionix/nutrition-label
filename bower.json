@@ -33,7 +33,6 @@
     "demo/",
     "images/",
     "js/",
-    "/index.html",
     "/*.css",
     "/*.js",
     "bower_components",
@@ -41,10 +40,8 @@
     "node_modules",
     "test",
     "tests",
-		"bower.json"
+    "bower.json"
   ],
   "dependencies": {
-    "jquery": "1.8.0",
-    "bootstrap": "2.3.0"
   }
 }

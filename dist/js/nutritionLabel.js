@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.6                                                                                      |
- * @stable version      6.0.4                                                                                      |
+ * @current version     6.0.8                                                                                      |
+ * @stable version      6.0.6                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -87,7 +87,7 @@
 		allowFDARounding : false,
 
 		//when set to true, this will hide the values if they are not applicable
-		hideNotAppicableValues : false,
+		hideNotApplicableValues : false,
 
 		//the brand name of the item for this label (eg. just salad)
 		brandName : 'Brand where this item belongs to',
@@ -165,6 +165,7 @@
 		dailyValueSatFat : 20,
 		dailyValueCholesterol : 300,
 		dailyValueSodium : 2400,
+		dailyValuePotassium: 3500,
 		dailyValueCarb : 300,
 		dailyValueFiber : 25,
 
@@ -178,6 +179,7 @@
 		showMonoFat : true,
 		showCholesterol : true,
 		showSodium : true,
+		showPotassium: true,
 		showTotalCarb : true,
 		showFibers : true,
 		showSugars : true,
@@ -223,6 +225,7 @@
 		naMonoFat : false,
 		naCholesterol : false,
 		naSodium : false,
+		naPotassium: false,
 		naTotalCarb : false,
 		naFibers : false,
 		naSugars : false,
@@ -244,6 +247,7 @@
 		valueMonoFat : 0,
 		valueCholesterol : 0,
 		valueSodium : 0,
+		valuePotassium: 0,
 		valueTotalCarb : 0,
 		valueFibers : 0,
 		valueSugars : 0,
@@ -263,6 +267,7 @@
 		unitMonoFat : 'g',
 		unitCholesterol : 'mg',
 		unitSodium : 'mg',
+		unitPotassium: 'mg',
 		unitTotalCarb : 'g',
 		unitFibers : 'g',
 		unitSugars : 'g',
@@ -283,6 +288,8 @@
 		valueCol2DietaryCholesterol : 0,
 		valueCol1DietarySodium : 0,
 		valueCol2DietarySodium : 0,
+		valueCol1DietaryPotassium: 0,
+		valueCol2DietaryPotassium: 0,
 		valueCol1DietaryTotalCarb : 0,
 		valueCol2DietaryTotalCarb : 0,
 		valueCol1Dietary : 0,
@@ -303,6 +310,7 @@
 		textMonoFat : 'Monounsaturated Fat',
 		textCholesterol : 'Cholesterol',
 		textSodium : 'Sodium',
+		textPotassium: 'Potassium',
 		textTotalCarb : 'Total Carbohydrates',
 		textFibers : 'Dietary Fiber',
 		textSugars : 'Sugars',
@@ -328,16 +336,17 @@
 
 	function cleanSettings(settings){
 		var numericIndex = [
-			'width','scrollHeightComparison','scrollHeightPixel','decimalPlacesForNutrition','decimalPlacesForDailyValues',
-			'calorieIntake','dailyValueTotalFat','dailyValueSatFat','dailyValueCholesterol','dailyValueSodium','dailyValueCarb',
-			'dailyValueFiber','valueServingSize','valueServingWeightGrams','valueServingPerContainer','valueCalories',
-			'valueFatCalories','valueTotalFat','valueSatFat','valueTransFat','valuePolyFat','valueMonoFat','valueCholesterol',
-			'valueSodium','valueTotalCarb','valueFibers','valueSugars','valueProteins','valueVitaminA','valueVitaminC',
-			'valueCalcium','valueIron','valueCol1CalorieDiet','valueCol2CalorieDiet','valueCol1DietaryTotalFat',
-			'valueCol2DietaryTotalFat','valueCol1DietarySatFat','valueCol2DietarySatFat','valueCol1DietaryCholesterol',
-			'valueCol2DietaryCholesterol','valueCol1DietarySodium','valueCol2DietarySodium','valueCol1DietaryTotalCarb',
-			'valueCol2DietaryTotalCarb','valueCol1Dietary','valueCol2Dietary', 'valueServingUnitQuantity',
-			'scrollLongItemNamePixel, decimalPlacesForQuantityTextbox'
+			'width', 'scrollHeightComparison', 'scrollHeightPixel', 'decimalPlacesForNutrition', 'decimalPlacesForDailyValues',
+			'calorieIntake', 'dailyValueTotalFat', 'dailyValueSatFat', 'dailyValueCholesterol', 'dailyValueSodium',
+			'dailyValuePotassium', 'dailyValueCarb', 'dailyValueFiber','valueServingSize', 'valueServingWeightGrams',
+			'valueServingPerContainer', 'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat', 'valueTransFat',
+			'valuePolyFat', 'valueMonoFat', 'valueCholesterol', 'valueSodium', 'valuePotassium', 'valueTotalCarb', 'valueFibers',
+			'valueSugars', 'valueProteins', 'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueCol1CalorieDiet',
+			'valueCol2CalorieDiet', 'valueCol1DietaryTotalFat', 'valueCol2DietaryTotalFat', 'valueCol1DietarySatFat',
+			'valueCol2DietarySatFat', 'valueCol1DietaryCholesterol', 'valueCol2DietaryCholesterol', 'valueCol1DietarySodium',
+			'valueCol2DietarySodium', 'valueCol1DietaryPotassium', 'valueCol2DietaryPotassium', 'valueCol1DietaryTotalCarb',
+			'valueCol2DietaryTotalCarb', 'valueCol1Dietary', 'valueCol2Dietary', 'valueServingUnitQuantity',
+			'scrollLongItemNamePixel', 'decimalPlacesForQuantityTextbox'
 		];
 
 		$.each(settings, function(index, value){
@@ -360,8 +369,8 @@
 	function UpdateNutritionValueWithMultiplier(settings){
 		var nutritionIndex = [
 			'valueCalories','valueFatCalories','valueTotalFat','valueSatFat','valueTransFat','valuePolyFat','valueMonoFat',
-			'valueCholesterol','valueSodium','valueTotalCarb','valueFibers','valueSugars','valueProteins','valueVitaminA',
-			'valueVitaminC','valueCalcium','valueIron','valueServingWeightGrams'
+			'valueCholesterol','valueSodium','valuePotassium','valueTotalCarb','valueFibers','valueSugars','valueProteins',
+			'valueVitaminA','valueVitaminC','valueCalcium','valueIron','valueServingWeightGrams'
 		];
 
 		$.each(settings, function(index, value){
@@ -498,7 +507,7 @@
 	function addScrollToItemDiv($elem, $settings){
 		if ( $('#' + $elem.attr('id') + ' .name.inline').val() != undefined ){
 			if ( $('#' + $elem.attr('id') + ' .name.inline').height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) ){
-				$('# ' +$elem.attr('id') + ' .name.inline').css({
+				$('#' +$elem.attr('id') + ' .name.inline').css({
 					'margin-left' : '3.90em',
 					'height' : parseInt($settings.scrollLongItemNamePixel) + 'px',
 					'overflow-y' : 'auto'
@@ -702,6 +711,15 @@
 	}
 
 
+	function roundPotassium(toRound, decimalPlace){
+		toRound = roundPotassiumRule(toRound);
+		if (toRound > 0){
+			toRound = parseFloat( toRound.toFixed(decimalPlace) );
+		}
+		return toRound;
+	}
+
+
 	function roundCholesterol(toRound, decimalPlace){
 		var normalVersion = true;
 		var roundResult = roundCholesterolRule(toRound);
@@ -782,6 +800,20 @@
 	}
 
 
+	//Potassium rounding rule
+	function roundPotassiumRule(toRound) {
+		if (toRound < 5){
+			return 0;
+		}else if (toRound <= 140){
+			//5 - 140 mg - express to nearest 5 mg increment
+			return roundToNearestNum(toRound, 5);
+		}else{
+			//>= 5 g - express to nearest 10 g increment
+			return roundToNearestNum(toRound, 10);
+		}
+	}
+
+
 	//Cholesterol rounding rule
 	function roundCholesterolRule(toRound){
 		if (toRound < 2){
@@ -839,7 +871,7 @@
 				return $this.nutritionLabel;
 			}
 
-			if ($this.settings.hideNotAppicableValues){
+			if ($this.settings.hideNotApplicableValues){
 				$this.settings.showCalories = $this.settings.naCalories ? false : $this.settings.showCalories;
 				$this.settings.showFatCalories = $this.settings.naFatCalories ? false : $this.settings.showFatCalories;
 				$this.settings.showTotalFat = $this.settings.naTotalFat ? false : $this.settings.showTotalFat;
@@ -849,6 +881,7 @@
 				$this.settings.showMonoFat = $this.settings.naMonoFat ? false : $this.settings.showMonoFat;
 				$this.settings.showCholesterol = $this.settings.naCholesterol ? false : $this.settings.showCholesterol;
 				$this.settings.showSodium = $this.settings.naSodium ? false : $this.settings.showSodium;
+				$this.settings.showPotassium = $this.settings.naPotassium ? false : $this.settings.showPotassium;
 				$this.settings.showTotalCarb = $this.settings.naTotalCarb ? false : $this.settings.showTotalCarb;
 				$this.settings.showFibers = $this.settings.naFibers ? false : $this.settings.showFibers;
 				$this.settings.showSugars = $this.settings.naSugars ? false : $this.settings.showSugars;
@@ -1115,7 +1148,10 @@
 										(
 											$this.settings.allowFDARounding ?
 													roundFatRule($this.settings.valueTotalFat) : $this.settings.valueTotalFat
-										) / ($this.settings.dailyValueTotalFat * calorieIntakeMod)
+										) / (
+											$this.settings.dailyValueTotalFat == 0 ?
+												1 : $this.settings.dailyValueTotalFat * calorieIntakeMod
+										)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
 							) + '</b>%';
@@ -1148,7 +1184,10 @@
 										(
 											$this.settings.allowFDARounding ?
 													roundFatRule($this.settings.valueSatFat) : $this.settings.valueSatFat
-										) / ($this.settings.dailyValueSatFat * calorieIntakeMod)
+										) / (
+											$this.settings.dailyValueSatFat == 0 ?
+												1 : $this.settings.dailyValueSatFat * calorieIntakeMod
+										)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
 							) + '</b>%';
@@ -1226,7 +1265,10 @@
 										(
 											$this.settings.allowFDARounding ?
 													roundCholesterolRule($this.settings.valueCholesterol) : $this.settings.valueCholesterol
-										) / ($this.settings.dailyValueCholesterol * calorieIntakeMod)
+										) / (
+											$this.settings.dailyValueCholesterol == 0 ?
+												1 : $this.settings.dailyValueCholesterol * calorieIntakeMod
+										)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
 							) + '</b>%';
@@ -1259,7 +1301,10 @@
 										(
 											$this.settings.allowFDARounding ?
 													roundSodiumRule($this.settings.valueSodium) : $this.settings.valueSodium
-										) / ($this.settings.dailyValueSodium * calorieIntakeMod)
+										) / (
+											$this.settings.dailyValueSodium == 0 ?
+												1 : $this.settings.dailyValueSodium * calorieIntakeMod
+										)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
 							) + '</b>%';
@@ -1280,6 +1325,42 @@
 			}//end of => if ($this.settings.showSodium){
 
 
+			if ($this.settings.showPotassium){
+				nutritionLabel += tab1 + '<div class="line">\n';
+					nutritionLabel += tab2 + '<div class="dv">';
+						nutritionLabel += $this.settings.naPotassium ?
+							naValue :
+							'<b>' +
+							parseFloat(
+								parseFloat(
+									(
+										(
+											$this.settings.allowFDARounding ?
+													roundPotassiumRule($this.settings.valuePotassium) : $this.settings.valuePotassium
+										) / (
+											$this.settings.dailyValuePotassium == 0 ?
+												1 : $this.settings.dailyValuePotassium * calorieIntakeMod
+										)
+									) * 100
+								).toFixed($this.settings.decimalPlacesForDailyValues)
+							) + '</b>%';
+					nutritionLabel += '</div>\n';
+
+					nutritionLabel += tab2 + '<b>' + $this.settings.textPotassium + '</b> <span itemprop="potassiumContent">';
+						nutritionLabel +=
+							(
+								$this.settings.naPotassium ?
+									naValue :
+									(
+										$this.settings.allowFDARounding ?
+											roundPotassium($this.settings.valuePotassium, $this.settings.decimalPlacesForNutrition) :
+											parseFloat( $this.settings.valuePotassium.toFixed($this.settings.decimalPlacesForNutrition) )
+									) + $this.settings.unitPotassium
+							) + '\n';
+				nutritionLabel += tab1 + '</div>\n';
+			}//end of => if ($this.settings.showPotassium){
+
+
 			if ($this.settings.showTotalCarb){
 				nutritionLabel += tab1 + '<div class="line">\n';
 					nutritionLabel += tab2 + '<div class="dv">';
@@ -1292,7 +1373,10 @@
 										(
 											$this.settings.allowFDARounding ?
 													roundCarbFiberSugarProteinRule($this.settings.valueTotalCarb) : $this.settings.valueTotalCarb
-											) / ($this.settings.dailyValueCarb * calorieIntakeMod)
+											) / (
+												$this.settings.dailyValueCarb == 0 ?
+													1 : $this.settings.dailyValueCarb * calorieIntakeMod
+											)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
 							) + '</b>%';
@@ -1504,6 +1588,12 @@
 										nutritionLabel += tab5 + '<td>Less than</td>\n';
 										nutritionLabel += tab5 + '<td>' + $this.settings.valueCol1DietarySodium + 'mg</td>\n';
 										nutritionLabel += tab5 + '<td>' + $this.settings.valueCol2DietarySodium + 'mg</td>\n';
+									nutritionLabel += tab4 + '</tr>\n';
+									nutritionLabel += tab4 + '<tr>\n';
+										nutritionLabel += tab5 + '<td>Potassium</td>\n';
+										nutritionLabel += tab5 + '<td>Less than</td>\n';
+										nutritionLabel += tab5 + '<td>' + $this.settings.valueCol1DietaryPotassium + 'mg</td>\n';
+										nutritionLabel += tab5 + '<td>' + $this.settings.valueCol2DietaryPotassium + 'mg</td>\n';
 									nutritionLabel += tab4 + '</tr>\n';
 									nutritionLabel += tab4 + '<tr>\n';
 										nutritionLabel += tab5 + '<td>Total Carbohydrate</td>\n';

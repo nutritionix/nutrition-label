@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.6                                                                                      |
- * @stable version      6.0.4                                                                                      |
+ * @current version     6.0.8                                                                                      |
+ * @stable version      6.0.6                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -18,7 +18,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel='stylesheet' type='text/css' media='screen' href='bootstrap/css/bootstrap.min.css'>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
 		body {
 			padding: 20px 0;
@@ -28,7 +28,7 @@
 <body>
 <div class="container">
 	<div class="hero-unit">
-		<h1>Nutrition Label version 6.0.6</h1>
+		<h1>Nutrition Label version 6.0.8</h1>
 		<h4>from Nutritionix</h4>
 		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
 		<p>
@@ -63,7 +63,7 @@ allowNoBorder : false,
 allowFDARounding : false,
 
 //when set to true, this will hide the values if they are not applicable
-hideNotAppicableValues : false,
+hideNotApplicableValues : false,
 
 //the brand name of the item for this label (eg. just salad)
 brandName : 'Brand where this item belongs to',
@@ -72,7 +72,8 @@ scrollLongIngredients : false,
 scrollHeightComparison : 100,
 //the height in px of the ingredients div
 scrollHeightPixel : 95,
-//this is to set how many decimal places will be shown on the nutrition values (calories, fat, protein, vitamin a, iron, etc)
+//this is to set how many decimal places will be shown on the nutrition values
+	//(calories, fat, protein, vitamin a, iron, etc)
 decimalPlacesForNutrition : 1,
 //this is to set how many decimal places will be shown for the "% daily values*"
 decimalPlacesForDailyValues : 0,
@@ -124,7 +125,8 @@ showServingUnitQuantity : true,
 hideTextboxArrows : false,
 
 //these 2 settings are used internally.
-//this is just added here instead of a global variable to prevent a bug when there are multiple instances of the plugin like on the demo pages
+//this is just added here instead of a global variable to prevent a bug when there are multiple instances
+	//of the plugin like on the demo pages
 originalServingUnitQuantity : 0,
 //this is used to fix the computation issue on the textbox
 nutritionValueMultiplier : 1,
@@ -139,6 +141,7 @@ dailyValueTotalFat : 65,
 dailyValueSatFat : 20,
 dailyValueCholesterol : 300,
 dailyValueSodium : 2400,
+dailyValuePotassium: 3500,
 dailyValueCarb : 300,
 dailyValueFiber : 25,
 
@@ -152,6 +155,7 @@ showPolyFat : true,
 showMonoFat : true,
 showCholesterol : true,
 showSodium : true,
+showPotassium: true,
 showTotalCarb : true,
 showFibers : true,
 showSugars : true,
@@ -163,7 +167,8 @@ showIron : true,
 
 //to show the 'amount per serving' text
 showAmountPerServing : true,
-//to show the 'servings per container' data and replace the default 'Serving Size' value (without unit and servings per container text and value)
+//to show the 'servings per container' data and replace the default 'Serving Size' value
+	//(without unit and servings per container text and value)
 showServingsPerContainer : false,
 //to show the item name. there are special cases where the item name is replaced with 'servings per container' value
 showItemName : true,
@@ -181,10 +186,12 @@ showDisclaimer : false,
 //the height in px of the disclaimer div
 scrollDisclaimerHeightComparison : 100,
 scrollDisclaimer : 95,
-valueDisclaimer : 'Please note that these nutrition values are estimated based on our standard serving portions.  As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal.  If you have any questions about our nutrition calculator, please contact Nutritionix.',		ingredientLabel : 'INGREDIENTS:',
+valueDisclaimer : 'Please note that these nutrition values are estimated based on our standard serving portions. As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal. If you have any questions about our nutrition calculator, please contact Nutritionix.',
+ingredientLabel : 'INGREDIENTS:',
 valueCustomFooter : '',
 
-//the are to set some values as 'not applicable'. this means that the nutrition label will appear but the value will be a 'gray dash'
+//the are to set some values as 'not applicable'. this means that the nutrition label will appear
+	//but the value will be a 'gray dash'
 naCalories : false,
 naFatCalories : false,
 naTotalFat : false,
@@ -194,6 +201,7 @@ naPolyFat : false,
 naMonoFat : false,
 naCholesterol : false,
 naSodium : false,
+naPotassium: false,
 naTotalCarb : false,
 naFibers : false,
 naSugars : false,
@@ -215,6 +223,7 @@ valuePolyFat : 0,
 valueMonoFat : 0,
 valueCholesterol : 0,
 valueSodium : 0,
+valuePotassium: 0,
 valueTotalCarb : 0,
 valueFibers : 0,
 valueSugars : 0,
@@ -234,6 +243,7 @@ unitPolyFat : 'g',
 unitMonoFat : 'g',
 unitCholesterol : 'mg',
 unitSodium : 'mg',
+unitPotassium: 'mg',
 unitTotalCarb : 'g',
 unitFibers : 'g',
 unitSugars : 'g',
@@ -254,6 +264,8 @@ valueCol1DietaryCholesterol : 0,
 valueCol2DietaryCholesterol : 0,
 valueCol1DietarySodium : 0,
 valueCol2DietarySodium : 0,
+valueCol1DietaryPotassium: 0,
+valueCol2DietaryPotassium: 0,
 valueCol1DietaryTotalCarb : 0,
 valueCol2DietaryTotalCarb : 0,
 valueCol1Dietary : 0,
@@ -262,7 +274,7 @@ valueCol2Dietary : 0,
 //these text settings is so you can create nutrition labels in different languages or to simply change them to your need
 textNutritionFacts : 'Nutrition Facts',
 textDailyValues : 'Daily Value',
-textServingSize : 'Serving Size',
+textServingSize : 'Serving Size:',
 textServingsPerContainer : 'Servings Per Container',
 textAmountPerServing : 'Amount Per Serving',
 textCalories : 'Calories',
@@ -274,6 +286,7 @@ textPolyFat : 'Polyunsaturated Fat',
 textMonoFat : 'Monounsaturated Fat',
 textCholesterol : 'Cholesterol',
 textSodium : 'Sodium',
+textPotassium: 'Potassium',
 textTotalCarb : 'Total Carbohydrates',
 textFibers : 'Dietary Fiber',
 textSugars : 'Sugars',

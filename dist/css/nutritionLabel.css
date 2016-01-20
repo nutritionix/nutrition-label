@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.6                                                                                      |
- * @stable version      6.0.4                                                                                      |
+ * @current version     6.0.8                                                                                      |
+ * @stable version      6.0.6                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -44,7 +44,7 @@
 }
 .nutritionLabel .title {
 	line-height: .83em;
-	font-size: 2.7em;
+	font-size: 2.6em;
 	padding-bottom: 4px;
 	font-family: 'Archivo Black';
 	white-space: nowrap;
