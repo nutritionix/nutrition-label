@@ -78,7 +78,7 @@ input{
 }
 .bs-docs-sidenav .active .icon-chevron-right,
 .bs-docs-sidenav .active a:hover .icon-chevron-right {
-	background-image: url(../img/glyphicons-halflings-white.png);
+	background-image: url(../images/glyphicons-halflings-white.png);
 	opacity: 1;
 }
 .bs-docs-sidenav.affix {
@@ -211,3 +211,14 @@ body {
   border-radius: 50%;
 }
 
+
+/*
+ * default style override for the demo pages
+ */
+.nutritionLabel a.unitQuantityUp {
+	background: transparent url("../images/up.png") left top no-repeat;
+}
+
+.nutritionLabel a.unitQuantityDown {
+	background: transparent url("../images/down.png") left bottom no-repeat;
+}

@@ -26,3 +26,15 @@
     -moz-box-shadow: none;
     box-shadow: none;
 }
+
+
+/*
+ * default style override for the demo pages
+ */
+.nutritionLabel a.unitQuantityUp {
+	background: transparent url("../images/up.png") left top no-repeat;
+}
+
+.nutritionLabel a.unitQuantityDown {
+	background: transparent url("../images/down.png") left bottom no-repeat;
+}
