@@ -183,7 +183,14 @@ body {
 .main .page-header {
   margin-top: 0;
 }
+.notApplicable {
+	font-size: 1em;
+}
 
+.nutritionLabel input.unitQuantityBox {
+	height: 1.8em;
+	text-align: center;
+}
 
 /*
  * Placeholder dashboard ideas
@@ -203,3 +210,4 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
