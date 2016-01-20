@@ -8,7 +8,21 @@
 .nutritionLabel .title {
 	padding-top: 0;
 }
+.nutritionLabel .name.inline {
+	padding-top: .4em;
+}
 .truncate {
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.servingSizeField .ui-input-text {
+	margin: 0 0 0 15px;
+}
+.servingSizeField .ui-input-text input {
+	min-height: 2em;
+}
+.ui-shadow-inset {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }

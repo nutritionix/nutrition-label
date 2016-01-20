@@ -1,123 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<link rel='stylesheet' type='text/css' media='screen' href='../../../../bower_components/bootstrap/docs/assets/css/bootstrap.css'>
-	<link rel='stylesheet' type='text/css' media='screen' href='../css/nutritionLabel-min.css'>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+	<link rel='stylesheet' type='text/css' media='screen' href='../nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='./css/demo.css'>
 
 	<!-- google webfont for nutrition label -->
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
-
-	<style>
-		body{
-			padding: 15px;
-			margin: 0;
-			font-family:Arial, Helvetica, sans-serif;
-			line-height:	normal;
-		}
-		h1,h2,h3,h4,h5,h6 {
-			line-height: normal;
-			margin-top: 0;
-		}
-
-		p { line-height: 18px; }
-		textarea{
-			width: 600px;
-			padding: 5px;
-		}
-
-		input{
-			width: 400px;
-			padding: 3px;
-		}
-
-		/* Sidenav for Docs
-		-------------------------------------------------- */
-
-		.bs-docs-sidenav {
-			width: 228px;
-			margin: 0;
-			padding: 0;
-
-			background-color: #fff;
-			-webkit-border-radius: 6px;
-			-moz-border-radius: 6px;
-			border-radius: 6px;
-			-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
-			-moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
-			box-shadow: 0 1px 4px rgba(0,0,0,.065);
-		}
-		.bs-docs-sidenav > li > a {
-			display: block;
-			width: 190px \9;
-			margin: 0 0 -1px;
-			padding: 8px 14px;
-			border: 1px solid #e5e5e5;
-		}
-		.bs-docs-sidenav > li:first-child > a {
-			-webkit-border-radius: 6px 6px 0 0;
-			-moz-border-radius: 6px 6px 0 0;
-			border-radius: 6px 6px 0 0;
-		}
-		.bs-docs-sidenav > li:last-child > a {
-			-webkit-border-radius: 0 0 6px 6px;
-			-moz-border-radius: 0 0 6px 6px;
-			border-radius: 0 0 6px 6px;
-		}
-		.bs-docs-sidenav > .active > a {
-			position: relative;
-			z-index: 2;
-			padding: 9px 15px;
-			border: 0;
-			text-shadow: 0 1px 0 rgba(0,0,0,.15);
-			-webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
-			-moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
-			box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
-		}
-		/* Chevrons */
-		.bs-docs-sidenav .icon-chevron-right {
-			float: right;
-			margin-top: 2px;
-			margin-right: -6px;
-			opacity: .25;
-		}
-		.bs-docs-sidenav > li > a:hover {
-			background-color: #f5f5f5;
-		}
-		.bs-docs-sidenav a:hover .icon-chevron-right {
-			opacity: .5;
-		}
-		.bs-docs-sidenav .active .icon-chevron-right,
-		.bs-docs-sidenav .active a:hover .icon-chevron-right {
-			background-image: url(../images/glyphicons-halflings-white.png);
-			opacity: 1;
-		}
-		.bs-docs-sidenav.affix {
-			top: 40px;
-		}
-		.bs-docs-sidenav.affix-bottom {
-			position: absolute;
-			top: auto;
-			bottom: 270px;
-		}
-
-		.nav-list.affix-top {
-			position: fixed;
-		}
-
-    .nutritionLabel a.unitQuantityUp {
-      background: transparent url("../images/up.png") left top no-repeat;
-    }
-
-    .nutritionLabel a.unitQuantityDown {
-      background: transparent url("../images/down.png") left bottom no-repeat;
-    }
-	</style>
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Archivo+Black" />
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
-		<div class="span3 bs-docs-sidenav">
-			<ul class="nav nav-list bs-docs-sidenav affix-top">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<ul class="nav nav-sidebar">
 				<li><a href="#test1"><i class="icon-chevron-right"></i>Case #1-A-1-a-2</a></li>
 				<li><a href="#test2"><i class="icon-chevron-right"></i>Case #1-B-1-a-2</a></li>
 				<li><a href="#test3"><i class="icon-chevron-right"></i>Case #1-C-1-a-2</a></li>
@@ -129,7 +24,7 @@
 				<li><a href="#test8"><i class="icon-chevron-right"></i>Case #1-D-2-a-2</a></li>
 			</ul>
 		</div>
-		<div class="span9">
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 <!--------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------->
@@ -138,10 +33,10 @@
 <!--------------------------------------------------------------------------------------------------------------------->
 
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test1"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Case #1-A-1-a-2</h3>
 					<p>
 showServingUnitQuantityTextbox == true<br/>
@@ -152,6 +47,7 @@ valueServingWeightGrams > 0 (making this part hidden)
 					</p>
 <pre id="pre1">
 $('#test1').nutritionLabel({
+	'width' : 280,
 	'valueServingPerContainer' : 1.33,
 	'valueServingWeightGrams' : 0,
 
@@ -189,10 +85,10 @@ $('#test1').nutritionLabel({
 <!--------------------------------------------------------------------------------------------------------------------->
 
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test2"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Case #1-B-1-a-2</h3>
 					<p>
 showServingUnitQuantityTextbox == true<br/>
@@ -204,6 +100,7 @@ valueServingWeightGrams > 0 (making this part hidden)
 					</p>
 <pre id="pre2">
 $('#test2').nutritionLabel({
+	'width' : 280,
 	'valueServingPerContainer' : 1.33,
 	'valueServingWeightGrams' : 0,
 
@@ -241,10 +138,10 @@ $('#test2').nutritionLabel({
 <!--------------------------------------------------------------------------------------------------------------------->
 
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test3"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Case #1-C-1-a-2</h3>
 					<p>
 showServingUnitQuantityTextbox == true<br/>
@@ -255,6 +152,7 @@ valueServingWeightGrams > 0 (making this part hidden)
 					</p>
 <pre id="pre3">
 $('#test3').nutritionLabel({
+	'width' : 280,
 	'valueServingPerContainer' : 1.33,
 	'valueServingWeightGrams' : 0,
 
@@ -293,10 +191,10 @@ $('#test3').nutritionLabel({
 <!--------------------------------------------------------------------------------------------------------------------->
 
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test4"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Case #1-D-1-a-2</h3>
 					<p>
 showServingUnitQuantityTextbox == true<br/>
@@ -308,6 +206,7 @@ valueServingWeightGrams > 0 (making this part hidden)
 					</p>
 <pre id="pre4">
 $('#test4').nutritionLabel({
+	'width' : 280,
 	'valueServingPerContainer' : 1.33,
 	'valueServingWeightGrams' : 0,
 
@@ -350,10 +249,10 @@ $('#test4').nutritionLabel({
 <!--------------------------------------------------------------------------------------------------------------------->
 
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test5"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Case #1-A-2-a-2</h3>
 					<p>
 showServingUnitQuantityTextbox == false<br/>
@@ -364,6 +263,7 @@ valueServingWeightGrams > 0 (making this part hidden)
 					</p>
 <pre id="pre5">
 $('#test5').nutritionLabel({
+	'width' : 280,
 	'valueServingPerContainer' : 1.33,
 	'valueServingWeightGrams' : 0,
 
@@ -402,10 +302,10 @@ $('#test5').nutritionLabel({
 <!--------------------------------------------------------------------------------------------------------------------->
 
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test6"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Case #1-B-2-a-2</h3>
 					<p>
 showServingUnitQuantityTextbox == false<br/>
@@ -417,6 +317,7 @@ valueServingWeightGrams > 0 (making this part hidden)
 					</p>
 <pre id="pre6">
 $('#test6').nutritionLabel({
+	'width' : 280,
 	'valueServingPerContainer' : 1.33,
 	'valueServingWeightGrams' : 0,
 
@@ -455,10 +356,10 @@ $('#test6').nutritionLabel({
 <!--------------------------------------------------------------------------------------------------------------------->
 
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test7"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Case #1-C-2-a-2</h3>
 					<p>
 showServingUnitQuantityTextbox == false<br/>
@@ -469,6 +370,7 @@ valueServingWeightGrams > 0 (making this part hidden)
 					</p>
 <pre id="pre7">
 $('#test7').nutritionLabel({
+	'width' : 280,
 	'valueServingPerContainer' : 1.33,
 	'valueServingWeightGrams' : 0,
 
@@ -508,10 +410,10 @@ $('#test7').nutritionLabel({
 <!--------------------------------------------------------------------------------------------------------------------->
 
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<div id="test8"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-8">
 					<h3>Case #1-D-2-a-2</h3>
 					<p>
 showServingUnitQuantityTextbox == false<br/>
@@ -523,6 +425,7 @@ valueServingWeightGrams > 0 (making this part hidden)
 					</p>
 <pre id="pre8">
 $('#test8').nutritionLabel({
+	'width' : 280,
 	'valueServingPerContainer' : 1.33,
 	'valueServingWeightGrams' : 0,
 
@@ -570,8 +473,8 @@ $('#test8').nutritionLabel({
 </div>
 
 
-<script type="text/javascript" src="../../../../bower_components/jquery/jquery.js"></script>
-<script type="text/javascript" src="../js/nutritionLabel-min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="../nutritionLabel-min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );
