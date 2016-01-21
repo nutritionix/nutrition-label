@@ -5,7 +5,6 @@ Nutrition Label jQuery Plugin by Nutritionix
 
 Summary: Create a FDA-style nutrition label with any nutrition data source (even the [Nutritionix API](http://www.nutritionix.com/api)!)
 
-Note: This will probably work with the latest jQuery and Bootstrap version without any issue but it's not yet tested using those versions.
 
 Installation
 ------------
@@ -18,8 +17,6 @@ git clone git@github.com:nutritionix/nutrition-label.git
 ```html
 <!-- include the needed font from google api -->
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
-<!-- include the bootstrap css file from maxcdn -->
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/2.3.0/css/bootstrap.min.css">
 <!-- include the nutrition label plugin css file -->
 <link rel="stylesheet" type="text/css" href="/bower_components/nutrition-label-jquery-plugin/dist/css/nutritionLabel-min.css">
 <!-- include the jquery library from the google cdn -->
@@ -38,8 +35,6 @@ bower install --save nutrition-label-jquery-plugin
 ```html
 <!-- include the needed font from google api -->
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Archivo+Black" />
-<!-- include the bootstrap css file -->
-<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
 <!-- include the nutrition label plugin css file -->
 <link rel="stylesheet" type="text/css" href="/bower_components/nutrition-label-jquery-plugin/dist/css/nutritionLabel-min.css">
 <!-- include the jquery library -->
