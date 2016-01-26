@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.8                                                                                      |
+ * @current version     6.0.10                                                                                     |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -72,7 +72,7 @@
 
 	$.fn.nutritionLabel.defaultSettings = {
 		//default fixedWidth of the nutrition label
-		width : 260,
+		width : 280,
 
 		//to allow custom width - usually needed for mobile sites
 		allowCustomWidth : false,
@@ -454,7 +454,7 @@
 			//increase the unit quantity by clicking the up arrow
 			$('#' + $elem.attr('id') ).delegate('.unitQuantityUp', 'click', function(e){
 				e.preventDefault();
-				$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
+				$settingsHolder = cleanSettings( $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} ) );
 				$settingsHolder.totalContainerQuantity = $settings.totalContainerQuantity;
 				$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
 				$settingsHolder.nutritionValueMultiplier =
@@ -465,7 +465,7 @@
 			//decrease the unit quantity by clicking the down arrow
 			$('#' + $elem.attr('id') ).delegate('.unitQuantityDown', 'click', function(e){
 				e.preventDefault();
-				$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
+				$settingsHolder = cleanSettings( $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} ) );
 				$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
 				$settingsHolder.totalContainerQuantity = $settings.totalContainerQuantity;
 				$settingsHolder.nutritionValueMultiplier =
@@ -476,7 +476,7 @@
 			//the textbox unit quantity value is changed
 			$('#' + $elem.attr('id') ).delegate('.unitQuantityBox', 'change', function(e){
 				e.preventDefault();
-				$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
+				$settingsHolder = cleanSettings( $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} ) );
 				$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
 				$settingsHolder.totalContainerQuantity = $settings.totalContainerQuantity;
 				$settingsHolder.nutritionValueMultiplier =
@@ -488,7 +488,7 @@
 			$('#' + $elem.attr('id') ).delegate('.unitQuantityBox', 'keydown', function(e){
 				if (e.keyCode == 13){
 					e.preventDefault();
-					$settingsHolder = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
+					$settingsHolder = cleanSettings( $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} ) );
 					$settingsHolder.originalServingUnitQuantity = $settings.originalServingUnitQuantity;
 					$settingsHolder.totalContainerQuantity = $settings.totalContainerQuantity;
 					$settingsHolder.nutritionValueMultiplier =

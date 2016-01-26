@@ -1,4 +1,16 @@
 
+version 6.0.10 - January 26, 2016
+ - fixed a bug when the user input a non numeric value https://github.com/nutritionix/nutrition-label/issues/49
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+version 6.0.9 - January 26, 2016
+ - minor change: changing the default width and updating the demo pages https://github.com/nutritionix/nutrition-label/issues/50
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.8 - January 18, 2016
  - prevent a "division by zero" and added the ability to use potassium on the label https://github.com/nutritionix/nutrition-label/issues/39
 
