@@ -1,4 +1,10 @@
 
+version 6.0.12 - May 1, 2016
+ - Add a way to fire google analytics event when changing the quantities https://github.com/nutritionix/nutrition-label/issues/51
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.11 - March 4, 2016
  - set the default value of showPotassium to be false as it's not commonly used by brands on their labels
 

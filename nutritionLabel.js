@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.11                                                                                     |
- * @stable version      6.0.10                                                                                     |
+ * @current version     6.0.12                                                                                     |
+ * @stable version      6.0.11                                                                                     |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -85,6 +85,10 @@
 		//to enable rounding of the nutritional values based on the FDA rounding rules
 		//http://goo.gl/RMD2O
 		allowFDARounding : false,
+
+		//to enabled the google analytics event logging
+		allowGoogleAnalyticsEventLog : false,
+		gooleAnalyticsFunctionName : 'ga',
 
 		//when set to true, this will hide the values if they are not applicable
 		hideNotApplicableValues : false,
@@ -321,7 +325,11 @@
 		textIron : 'Iron',
 		ingredientList : 'None',
 		textPercentDailyPart1 : 'Percent Daily Values are based on a',
-		textPercentDailyPart2 : 'calorie diet'
+		textPercentDailyPart2 : 'calorie diet',
+		textGoogleAnalyticsEventCategory : 'Nutrition Label',
+		textGoogleAnalyticsEventActionUpArrow : 'Quantity Up Arrow Clicked',
+		textGoogleAnalyticsEventActionDownArrow : 'Quantity Down Arrow Clicked',
+		textGoogleAnalyticsEventActionTextbox : 'Quantity Textbox Changed'
 	};
 
 
@@ -618,6 +626,10 @@
 		if ($originalSettings.scrollLongItemName){
 			addScrollToItemDiv($elem, $originalSettings);
 		}
+
+		if ($originalSettings.allowGoogleAnalyticsEventLog){
+			eval($originalSettings.gooleAnalyticsFunctionName + '("send", "event", $originalSettings.textGoogleAnalyticsEventCategory, $originalSettings.textGoogleAnalyticsEventActionTextbox);');
+		}
 	}
 
 
@@ -670,6 +682,14 @@
 		//add a scroll on long item names
 		if ($settings.scrollLongItemName){
 			addScrollToItemDiv($elem, $settings);
+		}
+
+		if ($settings.allowGoogleAnalyticsEventLog){
+			if (changeValueBy > 0){
+				eval($settings.gooleAnalyticsFunctionName + '("send", "event", $settings.textGoogleAnalyticsEventCategory, $settings.textGoogleAnalyticsEventActionUpArrow);');
+			}else{
+				eval($settings.gooleAnalyticsFunctionName + '("send", "event", $settings.textGoogleAnalyticsEventCategory, $settings.textGoogleAnalyticsEventActionDownArrow);');
+			}
 		}
 	}
 
