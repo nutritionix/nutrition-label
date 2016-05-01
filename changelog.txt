@@ -1,6 +1,17 @@
 
+version 6.0.13 - May 2, 2016
+ - Adding a new feature to trigger a user function when a quantity is changed and passing 3 values to it,
+    kind (input/arrows), old value, new value
+    https://github.com/nutritionix/nutrition-label/issues/51#issuecomment-216072925
+ - New Feature: when a user enters an invalid value on the quantity textbox, the label now replace it with the previous
+    valid value and not "1.0"
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.12 - May 1, 2016
- - Add a way to fire google analytics event when changing the quantities https://github.com/nutritionix/nutrition-label/issues/51
+ - Add a way to fire google analytics event when changing the quantities
+    https://github.com/nutritionix/nutrition-label/issues/51
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
@@ -12,25 +23,29 @@ version 6.0.11 - March 4, 2016
 ------------------------------------------------------------------------------------------------------
 
 version 6.0.10 - January 26, 2016
- - fixed a bug when the user input a non numeric value https://github.com/nutritionix/nutrition-label/issues/49
+ - fixed a bug when the user input a non numeric value
+    https://github.com/nutritionix/nutrition-label/issues/49
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 6.0.9 - January 26, 2016
- - minor change: changing the default width and updating the demo pages https://github.com/nutritionix/nutrition-label/issues/50
+ - minor change: changing the default width and updating the demo pages
+    https://github.com/nutritionix/nutrition-label/issues/50
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 6.0.8 - January 18, 2016
- - prevent a "division by zero" and added the ability to use potassium on the label https://github.com/nutritionix/nutrition-label/issues/39
+ - prevent a "division by zero" and added the ability to use potassium on the label
+    https://github.com/nutritionix/nutrition-label/issues/39
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 6.0.7 - January 18, 2016
- - fixed the css issue with labels where the item name is long https://github.com/nutritionix/nutrition-label/issues/44
+ - fixed the css issue with labels where the item name is long
+    https://github.com/nutritionix/nutrition-label/issues/44
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
@@ -48,38 +63,45 @@ version 6.0.5 - December 16, 2015
 ------------------------------------------------------------------------------------------------------
 
 version 6.0.4 - November 20, 2014
- - Fixed the bug - Servings Per Container disappears when the Serving Size is decreased https://github.com/nutritionix/nutrition-label/issues/36
+ - Fixed the bug - Servings Per Container disappears when the Serving Size is decreased
+    https://github.com/nutritionix/nutrition-label/issues/36
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 6.0.3 - October 18, 2014
- - Added changes on the serving per container so it is now affected by the current quantity https://github.com/nutritionix/nutrition-label/issues/32
+ - Added changes on the serving per container so it is now affected by the current quantity
+    https://github.com/nutritionix/nutrition-label/issues/32
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 6.0.2 - March 18, 2014
- - Added spacing above ingredients list https://github.com/nutritionix/nutrition-label/issues/35
+ - Added spacing above ingredients list
+    https://github.com/nutritionix/nutrition-label/issues/35
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 6.0.1 - february 1, 2014
- - new feature - allow html and js values to be added on the footer https://github.com/nutritionix/nutrition-label/issues/34
+ - new feature - allow html and js values to be added on the footer
+    https://github.com/nutritionix/nutrition-label/issues/34
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 6.0.0 - january 29, 2014
- - changes on the rounding rules of Vitamins A and C, Calcium and Iron https://github.com/nutritionix/nutrition-label/issues/33
+ - changes on the rounding rules of Vitamins A and C, Calcium and Iron
+    https://github.com/nutritionix/nutrition-label/issues/33
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 5.0.5 - november 25, 2013
- - added a new customizable setting decimalPlacesForQuantityTextbox and also drop unnecessary zeroes on the textbox https://github.com/nutritionix/nutrition-label/issues/30
- - fixed a bug when changing the quantity by entering different values using the keyboard https://github.com/nutritionix/nutrition-label/issues/31
+ - added a new customizable setting decimalPlacesForQuantityTextbox and also drop unnecessary zeroes on the textbox
+    https://github.com/nutritionix/nutrition-label/issues/30
+ - fixed a bug when changing the quantity by entering different values using the keyboard
+    https://github.com/nutritionix/nutrition-label/issues/31
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
@@ -91,26 +113,31 @@ version 5.0.4 - october 31, 2013
 ------------------------------------------------------------------------------------------------------
 
 version 5.0.3 - october 20, 2013
- - fixed a minor bug on the on the display when the fat calories is present but the calories isn't https://github.com/nutritionix/nutrition-label/issues/28
+ - fixed a minor bug on the on the display when the fat calories is present but the calories isn't
+    https://github.com/nutritionix/nutrition-label/issues/28
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 5.0.2 - june 30, 2013
- - fixed a minor bug on the FDA rounding rule https://github.com/nutritionix/nutrition-label/issues/27
+ - fixed a minor bug on the FDA rounding rule
+    https://github.com/nutritionix/nutrition-label/issues/27
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 5.0.1 - june 23, 2013
- - fixed a bug where the scroll isn't showing on long item names when that item name has no textbox https://github.com/nutritionix/nutrition-label/issues/16#issuecomment-19864016
+ - fixed a bug where the scroll isn't showing on long item names when that item name has no textbox
+    https://github.com/nutritionix/nutrition-label/issues/16#issuecomment-19864016
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 5.0.0 - june 19, 2013
- - added a new setting hideNotAppicableValues (default false). When set to true, this will hide the values if they are not applicable https://github.com/nutritionix/nutrition-label/issues/25
- - added scrollbar when item name is too long. this feature can be turned off using the setting below https://github.com/nutritionix/nutrition-label/issues/16
+ - added a new setting hideNotAppicableValues (default false). When set to true, this will hide the values
+    if they are not applicable https://github.com/nutritionix/nutrition-label/issues/25
+ - added scrollbar when item name is too long. this feature can be turned off using the setting below
+    https://github.com/nutritionix/nutrition-label/issues/16
 		//to scroll the item name if the qQuery.height() is > scrollLongItemNamePixel
 		scrollLongItemName : true,
 		scrollLongItemNamePixel : 36,
@@ -131,7 +158,8 @@ version 4.0.9 - may 21, 2013
 ------------------------------------------------------------------------------------------------------
 
 version 4.0.8 - may 19, 2013
- - bring back the disclaimer text feature but have it scroll like the long ingredients when scrollLongIngredients is true https://github.com/nutritionix/nutrition-label/issues/20
+ - bring back the disclaimer text feature but have it scroll like the long ingredients when scrollLongIngredients is true
+    https://github.com/nutritionix/nutrition-label/issues/20
 		//to show the disclaimer text or not
 		showDisclaimer : false,
 		//the height in px of the disclaimer div
@@ -142,28 +170,35 @@ version 4.0.8 - may 19, 2013
 ------------------------------------------------------------------------------------------------------
 
 version 4.0.7 - may 17, 2013
- - fix the issue with the computation and the initial serving size unit value https://github.com/nutritionix/nutrition-label/issues/19
+ - fix the issue with the computation and the initial serving size unit value
+    https://github.com/nutritionix/nutrition-label/issues/19
 		- "nutrition multiplier" = 1.0 IF "original serving size quantity" is equal to or less than zero
 			- ELSE "nutrition multiplier" = 1 / "original serving size quantity"
-		- the new computation is "final nutrition value" = "initial nutrition value" x "current serving size quantity" x "nutrition multiplier"
+		- the new computation is
+       "final nutrition value" = "initial nutrition value" x "current serving size quantity" x "nutrition multiplier"
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 4.0.6 - may 13, 2013
  - fixed the scroll not appearing on chrome mac
- - removed the setting naServingUnitQuantity. Serving size cannot be "N/A", it will either have a value, or not appear at all https://github.com/nutritionix/nutrition-label/issues/15
- - added a new setting to allow hiding of the textbox arrows https://github.com/nutritionix/nutrition-label/issues/13
+ - removed the setting naServingUnitQuantity. Serving size cannot be "N/A", it will either have a value, or not appear at all
+   https://github.com/nutritionix/nutrition-label/issues/15
+ - added a new setting to allow hiding of the textbox arrows
+    https://github.com/nutritionix/nutrition-label/issues/13
 		//allow hiding of the textbox arrows
 		hideTextboxArrows : false
- - worked on a feature about how the up and down arrow works when the value is between 0 to 2. see https://github.com/nutritionix/nutrition-label/issues/14
- - minor improvement - reduce the extra space between the textbox (if shown) and the serving unit name https://github.com/nutritionix/nutrition-label/issues/17
+ - worked on a feature about how the up and down arrow works when the value is between 0 to 2. see
+    https://github.com/nutritionix/nutrition-label/issues/14
+ - minor improvement - reduce the extra space between the textbox (if shown) and the serving unit name
+    https://github.com/nutritionix/nutrition-label/issues/17
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 4.0.5 - may 10, 2013
- - fixed the bug where on the serving unit quantity when the initial value is 0 (zero) https://github.com/nutritionix/nutrition-label/issues/12
+ - fixed the bug where on the serving unit quantity when the initial value is 0 (zero)
+    https://github.com/nutritionix/nutrition-label/issues/12
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
@@ -172,7 +207,8 @@ version 4.0.4 - may 4, 2013
  - https://github.com/nutritionix/nutrition-label/issues/10
 		- removed the showItemNameAtTheTop settings
 		- made more js and css fixes for the new textbox feature mentioned on 4.0.0 and 4.0.3
-		- changes on showBrandName and brandName. before, this is shown at the top before the 'title', now it is shown on the same line as the 'item name'
+		- changes on showBrandName and brandName. before, this is shown at the top before the 'title',
+       now it is shown on the same line as the 'item name'
 			- the show brand name will now appear after the item name if the setting showBrandName is true and brandName is not null
 			- "ITEM NAME" dash (-) "BRAND NAME"
 		- the item name will also now appear right after the 'title'
@@ -184,7 +220,8 @@ version 4.0.3 - apr 27, 2013
  - fixed a bug where the scrolling ingredient is removed when the textbox value is changed
  - fixed a bug where the not applicable tooltip stopped working when the textbox value is changed
  - fixed a bug where the unit quantity textbox feature is not working properly when there are non numeric values on the settings.
-		- the system already filters this (see version 4.0.0 changes) but it still caused problems with the unit quantity textbox feature
+		- the system already filters this (see version 4.0.0 changes) but it still caused problems with the unit
+       quantity textbox feature
  - MAJOR CHANGE: removed valueServingSize and it is now replaced with valueServingUnitQuantity
 		- this means that all the previous pages where you have implemented the plugin needs to be updated.
     - you just need to rename valueServingSize to valueServingUnitQuantity
@@ -245,16 +282,19 @@ version 4.0.2 - apr 15, 2013
 version 4.0.1 - apr 14, 2013
  - fixed the problem with internet explorer where the textbox changes aren't triggered when you press enter on the textbox
  - preparing the code for more changes on the serving unit quantity feature
- - NOTE: the demo files are using the non-minified version of the js and css file for the time being until the 'serving unit quantity' feature is completed
+ - NOTE: the demo files are using the non-minified version of the js and css file for the time being until
+    the 'serving unit quantity' feature is completed
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 
 version 4.0.0 - apr 11, 2013
  - added a filter so that all settings that the plugin expects to be numeric will be checked and coverted to numeric if needed
- - added a new feature to allow users to change the unit quantity of the label (default is 1.0) https://github.com/nutritionix/nutrition-label/issues/3
+ - added a new feature to allow users to change the unit quantity of the label (default is 1.0)
+    https://github.com/nutritionix/nutrition-label/issues/3
 		- this value can be easily hidden by changing one of the settings (see below) (default is it is visible)
-		- the value can be adjusted by clicking the arrows or changing the value on the textbox and pressing enter or focusing on another element on the page
+		- the value can be adjusted by clicking the arrows or changing the value on the textbox and pressing enter or
+       focusing on another element on the page
 			//this value can be changed and the value of the nutritions will be affected directly
 			//the computation is "current nutrition value" * "value serving unit quantity" = "final nutrition value"
 			//this can't be less than zero, all values less than zero is converted to zero
@@ -275,17 +315,22 @@ version 3.0.1 - mar 28, 2013
 
 version 3.0.0 - mar 23, 2013
  - made a few code improvements
- - found a limitation that the valueServingSize and valueServingPerContainer can't be text like the other nutrition values, solved that limitation
+ - found a limitation that the valueServingSize and valueServingPerContainer can't be text like the other
+    nutrition values, solved that limitation
  - hide the serving size when the value is zero, null or blank or '0' (text)
- - improve the label when the showServingSize and showItemName are both set to false. Before, the bar was too close to the label title; now, we added a bit of a space to make the label more presentable in cases like this
-     - also solved the case where showItemName is set to false, showServingSize is set to true, but both the serving size and servings per container are hidden (see the above changes)
+ - improve the label when the showServingSize and showItemName are both set to false. Before, the bar was too
+    close to the label title; now, we added a bit of a space to make the label more presentable in cases like this
+     - also solved the case where showItemName is set to false, showServingSize is set to true, but both the
+        serving size and servings per container are hidden (see the above changes)
  - automatically hide the serving size unit if it is null or blank
  - added a new value 'valueServingWeightGrams'
      - if the serving size is 1 and unit is Oz, the result is '1 Oz'
      - if the serving weight grams is not zero, null, blank or '0':
-          - if the value is 85.33, the result will be (including the above example) '1 Oz (85.3g)' (still affected by decimalPlacesForNutrition - in this case, it is 1)
+          - if the value is 85.33, the result will be (including the above example) '1 Oz (85.3g)'
+             (still affected by decimalPlacesForNutrition - in this case, it is 1)
           - if the value is '~99', the result will be (including the above example) '1 Oz (~99g)'
- - created a minified version of the css and used it on the demo pages (to make sure it's working) to give other devs the option to use it too
+ - created a minified version of the css and used it on the demo pages (to make sure it's working)
+    to give other devs the option to use it too
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
@@ -325,9 +370,12 @@ version 2.0.1 - mar 6, 2013
 ------------------------------------------------------------------------------------------------------
 
 version 2.0.0 - mar 3, 2013
- - some fixes on the showCalorieDiet - the ingredients and calorie daily intake text was included in this block so when it is hidden, these 2 values are hidden too
- - made some css fix - added a line class on the div with a class dvCalorieDiet (contains the ingredients, calorie daily intake text and calorie diet)
- - added more customizable values and added a feature to round the values based on FDA rounding rules (taken from the default setting)
+ - some fixes on the showCalorieDiet - the ingredients and calorie daily intake text was included
+    in this block so when it is hidden, these 2 values are hidden too
+ - made some css fix - added a line class on the div with a class dvCalorieDiet
+    (contains the ingredients, calorie daily intake text and calorie diet)
+ - added more customizable values and added a feature to round the values based on FDA rounding rules
+    (taken from the default setting)
 		//to allow percentage width - usually needed for mobile sites
 		allowPercentageWidth : false,
 		percentageWidth : 99,

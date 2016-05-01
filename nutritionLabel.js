@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.12                                                                                     |
+ * @current version     6.0.13                                                                                     |
  * @stable version      6.0.11                                                                                     |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
@@ -89,6 +89,10 @@
 		//to enabled the google analytics event logging
 		allowGoogleAnalyticsEventLog : false,
 		gooleAnalyticsFunctionName : 'ga',
+
+		//enable triggering of user function on quantity change
+		allowTriggerOfUserFunctionOnQuantityChange : false,
+		userFunctionNameOnQuantityChange : 'quantityChangeTriggered',
 
 		//when set to true, this will hide the values if they are not applicable
 		hideNotApplicableValues : false,
@@ -598,8 +602,9 @@
 
 	function changeQuantityTextbox($thisTextbox, $originalSettings, nutritionLabel, $elem){
 		var textBoxValue = parseFloat( $thisTextbox.val() );
+		var previousValue = parseFloat( $('#' +$elem.attr('id') + ' #nixLabelBeforeQuantity').val() );
 
-		textBoxValue = isNaN(textBoxValue) ? 1.0 : textBoxValue;
+		textBoxValue = isNaN(textBoxValue) ? previousValue : textBoxValue;
 		$thisTextbox.val( textBoxValue.toFixed(1) );
 
 		$originalSettings.valueServingUnitQuantity = textBoxValue;
@@ -628,7 +633,16 @@
 		}
 
 		if ($originalSettings.allowGoogleAnalyticsEventLog){
-			eval($originalSettings.gooleAnalyticsFunctionName + '("send", "event", $originalSettings.textGoogleAnalyticsEventCategory, $originalSettings.textGoogleAnalyticsEventActionTextbox);');
+			window[$originalSettings.gooleAnalyticsFunctionName](
+				'send',
+				'event',
+				$originalSettings.textGoogleAnalyticsEventCategory,
+				$originalSettings.textGoogleAnalyticsEventActionTextbox
+			);
+		}
+
+		if ($originalSettings.allowTriggerOfUserFunctionOnQuantityChange){
+			window[$originalSettings.userFunctionNameOnQuantityChange]( 'textbox', previousValue.toFixed(1), textBoxValue.toFixed(1) );
 		}
 	}
 
@@ -639,6 +653,7 @@
 		if ( isNaN(currentQuantity) ){
 			currentQuantity = 1.0;
 		}
+		var beforeCurrentQuantityWasChanged = currentQuantity;
 
 		//see https://github.com/nutritionix/nutrition-label/issues/14 for an explanation on this part
 		if (currentQuantity <= 1 && changeValueBy == -1){
@@ -686,9 +701,27 @@
 
 		if ($settings.allowGoogleAnalyticsEventLog){
 			if (changeValueBy > 0){
-				eval($settings.gooleAnalyticsFunctionName + '("send", "event", $settings.textGoogleAnalyticsEventCategory, $settings.textGoogleAnalyticsEventActionUpArrow);');
+				window[$settings.gooleAnalyticsFunctionName](
+					'send',
+					'event',
+					$settings.textGoogleAnalyticsEventCategory,
+					$settings.textGoogleAnalyticsEventActionUpArrow
+				);
 			}else{
-				eval($settings.gooleAnalyticsFunctionName + '("send", "event", $settings.textGoogleAnalyticsEventCategory, $settings.textGoogleAnalyticsEventActionDownArrow);');
+				window[$settings.gooleAnalyticsFunctionName](
+					'send',
+					'event',
+					$settings.textGoogleAnalyticsEventCategory,
+					$settings.textGoogleAnalyticsEventActionDownArrow
+				);
+			}
+		}
+
+		if ($settings.allowTriggerOfUserFunctionOnQuantityChange){
+			if (changeValueBy > 0){
+				window[$settings.userFunctionNameOnQuantityChange]('up arrow', beforeCurrentQuantityWasChanged, currentQuantity);
+			}else{
+				window[$settings.userFunctionNameOnQuantityChange]('down arrow', beforeCurrentQuantityWasChanged, currentQuantity);
 			}
 		}
 	}
@@ -979,6 +1012,13 @@
 										$this.settings.valueServingUnitQuantity.toFixed($this.settings.decimalPlacesForQuantityTextbox)
 									) + '" ';
 								nutritionLabel += 'class="' + textboxClass + '">\n';
+
+							nutritionLabel += tab3 + '<input type="hidden" value="' +
+									parseFloat(
+										$this.settings.valueServingUnitQuantity.toFixed($this.settings.decimalPlacesForQuantityTextbox)
+									) + '" ';
+								nutritionLabel += 'id="nixLabelBeforeQuantity">\n';
+
 						nutritionLabel += tab2 + '</div><!-- closing class="servingSizeField" -->\n';
 						tabTemp = tab2;
 						var itemNameClass = 'inline';
@@ -1049,6 +1089,13 @@
 											$this.settings.valueServingUnitQuantity.toFixed($this.settings.decimalPlacesForQuantityTextbox)
 										) + '" ';
 									nutritionLabel += 'class="' + textboxClass + '">\n';
+
+								nutritionLabel += tab4 + '<input type="hidden" value="' +
+										parseFloat(
+											$this.settings.valueServingUnitQuantity.toFixed($this.settings.decimalPlacesForQuantityTextbox)
+										) + '" ';
+									nutritionLabel += 'id="nixLabelBeforeQuantity">\n';
+
 							nutritionLabel += tab3 + '</div><!-- closing class="servingSizeField" -->\n';
 						}else if ($this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingUnitQuantityTextbox){
 								nutritionLabel += tab3 + '<div class="servingUnitQuantity">' +
