@@ -91,8 +91,7 @@
 		gooleAnalyticsFunctionName : 'ga',
 
 		//enable triggering of user function on quantity change
-		allowTriggerOfUserFunctionOnQuantityChange : false,
-		userFunctionNameOnQuantityChange : 'quantityChangeTriggered',
+		userFunctionNameOnQuantityChange: null,
 
 		//when set to true, this will hide the values if they are not applicable
 		hideNotApplicableValues : false,
@@ -641,8 +640,12 @@
 			);
 		}
 
-		if ($originalSettings.allowTriggerOfUserFunctionOnQuantityChange){
-			window[$originalSettings.userFunctionNameOnQuantityChange]( 'textbox', previousValue.toFixed(1), textBoxValue.toFixed(1) );
+		if (typeof $originalSettings.userFunctionNameOnQuantityChange === 'function') {
+			$originalSettings.userFunctionNameOnQuantityChange(
+				'textbox',
+				previousValue.toFixed(1),
+				textBoxValue.toFixed(1)
+			);
 		}
 	}
 
@@ -717,12 +720,12 @@
 			}
 		}
 
-		if ($settings.allowTriggerOfUserFunctionOnQuantityChange){
-			if (changeValueBy > 0){
-				window[$settings.userFunctionNameOnQuantityChange]('up arrow', beforeCurrentQuantityWasChanged, currentQuantity);
-			}else{
-				window[$settings.userFunctionNameOnQuantityChange]('down arrow', beforeCurrentQuantityWasChanged, currentQuantity);
-			}
+		if (typeof $settings.userFunctionNameOnQuantityChange === 'function') {
+			$settings.userFunctionNameOnQuantityChange(
+				changeValueBy > 0 ? 'up arrow' : 'down arrow',
+				beforeCurrentQuantityWasChanged,
+				currentQuantity
+			);
 		}
 	}
 
