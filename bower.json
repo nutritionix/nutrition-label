@@ -1,10 +1,11 @@
 {
   "name": "nutrition-label-jquery-plugin",
-  "version": "6.0.13",
+  "version": "6.0.14",
   "homepage": "https://github.com/nutritionix/nutrition-label",
   "authors": [
     "Leo Joseph Gajitos <leejay22@gmail.com>",
-    "Rommel Malang <genesis23rd@gmail.com>"
+    "Rommel Malang <genesis23rd@gmail.com>",
+    "Yurko Fedoriv <yurko.fedoriv@gmail.com >"
   ],
   "description": "To be able to create a FDA-style nutrition label with any nutrition data source",
   "main": [

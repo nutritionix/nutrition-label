@@ -1,4 +1,11 @@
 
+version 6.0.14 - May 11, 2016
+ - changed the way userFunctionNameOnQuantityChange works
+    https://github.com/nutritionix/nutrition-label/pull/52
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.13 - May 2, 2016
  - Adding a new feature to trigger a user function when a quantity is changed and passing 3 values to it,
     kind (input/arrows), old value, new value
