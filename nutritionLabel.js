@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.14                                                                                     |
+ * @current version     6.0.15                                                                                     |
  * @stable version      6.0.11                                                                                     |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
@@ -600,11 +600,10 @@
 
 
 	function changeQuantityTextbox($thisTextbox, $originalSettings, nutritionLabel, $elem){
-		var textBoxValue = parseFloat( $thisTextbox.val() );
 		var previousValue = parseFloat( $('#' +$elem.attr('id') + ' #nixLabelBeforeQuantity').val() );
 
-		textBoxValue = isNaN(textBoxValue) ? previousValue : textBoxValue;
-		$thisTextbox.val( textBoxValue.toFixed(1) );
+		textBoxValue = !regIsPosNumber( $thisTextbox.val() ) ? previousValue : parseFloat( $thisTextbox.val() );
+		$thisTextbox.val( textBoxValue.toFixed($originalSettings.decimalPlacesForQuantityTextbox) );
 
 		$originalSettings.valueServingUnitQuantity = textBoxValue;
 		$originalSettings = UpdateNutritionValueWithMultiplier($originalSettings);
@@ -643,8 +642,8 @@
 		if (typeof $originalSettings.userFunctionNameOnQuantityChange === 'function') {
 			$originalSettings.userFunctionNameOnQuantityChange(
 				'textbox',
-				previousValue.toFixed(1),
-				textBoxValue.toFixed(1)
+				previousValue.toFixed($originalSettings.decimalPlacesForQuantityTextbox),
+				textBoxValue.toFixed($originalSettings.decimalPlacesForQuantityTextbox)
 			);
 		}
 	}
@@ -675,7 +674,9 @@
 			currentQuantity = 0;
 		}
 
-		$thisQuantity.parent().parent().find('input.unitQuantityBox').val( currentQuantity.toFixed(1) );
+		$thisQuantity.parent().parent().find('input.unitQuantityBox').val(
+			currentQuantity.toFixed($settings.decimalPlacesForQuantityTextbox)
+		);
 
 		$settings.valueServingUnitQuantity = currentQuantity;
 		$settings = UpdateNutritionValueWithMultiplier($settings);
@@ -913,6 +914,12 @@
 		}else{
 			return 0;
 		}
+	}
+
+
+	//check if the value is a positive number
+	function regIsPosNumber(fData){
+		return new RegExp('(^[0-9]+[\.]?[0-9]+$)|(^[0-9]+$)').test(fData);
 	}
 
 

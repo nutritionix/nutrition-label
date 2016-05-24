@@ -1,4 +1,11 @@
 
+version 6.0.15 - May 22, 2016
+ - changed the way userFunctionNameOnQuantityChange works
+    https://github.com/nutritionix/nutrition-label/pull/52
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.14 - May 11, 2016
  - changed the way userFunctionNameOnQuantityChange works
     https://github.com/nutritionix/nutrition-label/pull/52
