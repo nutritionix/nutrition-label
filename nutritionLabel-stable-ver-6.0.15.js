@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.15                                                                                     |
- * @stable version      6.0.11                                                                                     |
+ * @current version     6.0.16                                                                                     |
+ * @stable version      6.0.15                                                                                     |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -85,6 +85,13 @@
 		//to enable rounding of the nutritional values based on the FDA rounding rules
 		//http://goo.gl/RMD2O
 		allowFDARounding : false,
+
+		//to enabled the google analytics event logging
+		allowGoogleAnalyticsEventLog : false,
+		gooleAnalyticsFunctionName : 'ga',
+
+		//enable triggering of user function on quantity change
+		userFunctionNameOnQuantityChange: null,
 
 		//when set to true, this will hide the values if they are not applicable
 		hideNotApplicableValues : false,
@@ -321,7 +328,11 @@
 		textIron : 'Iron',
 		ingredientList : 'None',
 		textPercentDailyPart1 : 'Percent Daily Values are based on a',
-		textPercentDailyPart2 : 'calorie diet'
+		textPercentDailyPart2 : 'calorie diet',
+		textGoogleAnalyticsEventCategory : 'Nutrition Label',
+		textGoogleAnalyticsEventActionUpArrow : 'Quantity Up Arrow Clicked',
+		textGoogleAnalyticsEventActionDownArrow : 'Quantity Down Arrow Clicked',
+		textGoogleAnalyticsEventActionTextbox : 'Quantity Textbox Changed'
 	};
 
 
@@ -589,10 +600,10 @@
 
 
 	function changeQuantityTextbox($thisTextbox, $originalSettings, nutritionLabel, $elem){
-		var textBoxValue = parseFloat( $thisTextbox.val() );
+		var previousValue = parseFloat( $('#' +$elem.attr('id') + ' #nixLabelBeforeQuantity').val() );
 
-		textBoxValue = isNaN(textBoxValue) ? 1.0 : textBoxValue;
-		$thisTextbox.val( textBoxValue.toFixed(1) );
+		textBoxValue = !regIsPosNumber( $thisTextbox.val() ) ? previousValue : parseFloat( $thisTextbox.val() );
+		$thisTextbox.val( textBoxValue.toFixed($originalSettings.decimalPlacesForQuantityTextbox) );
 
 		$originalSettings.valueServingUnitQuantity = textBoxValue;
 		$originalSettings = UpdateNutritionValueWithMultiplier($originalSettings);
@@ -618,6 +629,23 @@
 		if ($originalSettings.scrollLongItemName){
 			addScrollToItemDiv($elem, $originalSettings);
 		}
+
+		if ($originalSettings.allowGoogleAnalyticsEventLog){
+			window[$originalSettings.gooleAnalyticsFunctionName](
+				'send',
+				'event',
+				$originalSettings.textGoogleAnalyticsEventCategory,
+				$originalSettings.textGoogleAnalyticsEventActionTextbox
+			);
+		}
+
+		if (typeof $originalSettings.userFunctionNameOnQuantityChange === 'function') {
+			$originalSettings.userFunctionNameOnQuantityChange(
+				'textbox',
+				previousValue.toFixed($originalSettings.decimalPlacesForQuantityTextbox),
+				textBoxValue.toFixed($originalSettings.decimalPlacesForQuantityTextbox)
+			);
+		}
 	}
 
 
@@ -627,6 +655,7 @@
 		if ( isNaN(currentQuantity) ){
 			currentQuantity = 1.0;
 		}
+		var beforeCurrentQuantityWasChanged = currentQuantity;
 
 		//see https://github.com/nutritionix/nutrition-label/issues/14 for an explanation on this part
 		if (currentQuantity <= 1 && changeValueBy == -1){
@@ -645,7 +674,9 @@
 			currentQuantity = 0;
 		}
 
-		$thisQuantity.parent().parent().find('input.unitQuantityBox').val( currentQuantity.toFixed(1) );
+		$thisQuantity.parent().parent().find('input.unitQuantityBox').val(
+			currentQuantity.toFixed($settings.decimalPlacesForQuantityTextbox)
+		);
 
 		$settings.valueServingUnitQuantity = currentQuantity;
 		$settings = UpdateNutritionValueWithMultiplier($settings);
@@ -670,6 +701,32 @@
 		//add a scroll on long item names
 		if ($settings.scrollLongItemName){
 			addScrollToItemDiv($elem, $settings);
+		}
+
+		if ($settings.allowGoogleAnalyticsEventLog){
+			if (changeValueBy > 0){
+				window[$settings.gooleAnalyticsFunctionName](
+					'send',
+					'event',
+					$settings.textGoogleAnalyticsEventCategory,
+					$settings.textGoogleAnalyticsEventActionUpArrow
+				);
+			}else{
+				window[$settings.gooleAnalyticsFunctionName](
+					'send',
+					'event',
+					$settings.textGoogleAnalyticsEventCategory,
+					$settings.textGoogleAnalyticsEventActionDownArrow
+				);
+			}
+		}
+
+		if (typeof $settings.userFunctionNameOnQuantityChange === 'function') {
+			$settings.userFunctionNameOnQuantityChange(
+				changeValueBy > 0 ? 'up arrow' : 'down arrow',
+				beforeCurrentQuantityWasChanged,
+				currentQuantity
+			);
 		}
 	}
 
@@ -860,6 +917,12 @@
 	}
 
 
+	//check if the value is a positive number
+	function regIsPosNumber(fData){
+		return new RegExp('(^[0-9]+[\.]?[0-9]+$)|(^[0-9]+$)').test(fData);
+	}
+
+
 	NutritionLabel.prototype = {
 		generate: function(){
 			//this is the function that returns the html code for the nutrition label based on the settings
@@ -919,10 +982,10 @@
 
 
 			if (!$this.settings.allowCustomWidth){
-				nutritionLabel += '<div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation"';
+				nutritionLabel += '<div itemscope itemtype="http://schema.org/NutritionInformation"';
 					nutritionLabel += ' class="nutritionLabel" style="' + borderCSS + ' width: ' + $this.settings.width + 'px;">\n';
 			}else{
-				nutritionLabel += '<div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation"';
+				nutritionLabel += '<div itemscope itemtype="http://schema.org/NutritionInformation"';
 					nutritionLabel += ' class="nutritionLabel" style="' + borderCSS + ' width: ' + $this.settings.widthCustom + ';">\n';
 			}
 
@@ -959,6 +1022,13 @@
 										$this.settings.valueServingUnitQuantity.toFixed($this.settings.decimalPlacesForQuantityTextbox)
 									) + '" ';
 								nutritionLabel += 'class="' + textboxClass + '">\n';
+
+							nutritionLabel += tab3 + '<input type="hidden" value="' +
+									parseFloat(
+										$this.settings.valueServingUnitQuantity.toFixed($this.settings.decimalPlacesForQuantityTextbox)
+									) + '" ';
+								nutritionLabel += 'id="nixLabelBeforeQuantity">\n';
+
 						nutritionLabel += tab2 + '</div><!-- closing class="servingSizeField" -->\n';
 						tabTemp = tab2;
 						var itemNameClass = 'inline';
@@ -1029,6 +1099,13 @@
 											$this.settings.valueServingUnitQuantity.toFixed($this.settings.decimalPlacesForQuantityTextbox)
 										) + '" ';
 									nutritionLabel += 'class="' + textboxClass + '">\n';
+
+								nutritionLabel += tab4 + '<input type="hidden" value="' +
+										parseFloat(
+											$this.settings.valueServingUnitQuantity.toFixed($this.settings.decimalPlacesForQuantityTextbox)
+										) + '" ';
+									nutritionLabel += 'id="nixLabelBeforeQuantity">\n';
+
 							nutritionLabel += tab3 + '</div><!-- closing class="servingSizeField" -->\n';
 						}else if ($this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingUnitQuantityTextbox){
 								nutritionLabel += tab3 + '<div class="servingUnitQuantity">' +

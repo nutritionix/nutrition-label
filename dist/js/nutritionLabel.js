@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.15                                                                                     |
- * @stable version      6.0.11                                                                                     |
+ * @current version     6.0.16                                                                                     |
+ * @stable version      6.0.15                                                                                     |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -982,10 +982,10 @@
 
 
 			if (!$this.settings.allowCustomWidth){
-				nutritionLabel += '<div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation"';
+				nutritionLabel += '<div itemscope itemtype="http://schema.org/NutritionInformation"';
 					nutritionLabel += ' class="nutritionLabel" style="' + borderCSS + ' width: ' + $this.settings.width + 'px;">\n';
 			}else{
-				nutritionLabel += '<div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation"';
+				nutritionLabel += '<div itemscope itemtype="http://schema.org/NutritionInformation"';
 					nutritionLabel += ' class="nutritionLabel" style="' + borderCSS + ' width: ' + $this.settings.widthCustom + ';">\n';
 			}
 
