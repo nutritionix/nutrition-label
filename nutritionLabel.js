@@ -919,10 +919,10 @@
 
 
 			if (!$this.settings.allowCustomWidth){
-				nutritionLabel += '<div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation"';
+				nutritionLabel += '<div itemscope itemtype="http://schema.org/NutritionInformation"';
 					nutritionLabel += ' class="nutritionLabel" style="' + borderCSS + ' width: ' + $this.settings.width + 'px;">\n';
 			}else{
-				nutritionLabel += '<div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation"';
+				nutritionLabel += '<div itemscope itemtype="http://schema.org/NutritionInformation"';
 					nutritionLabel += ' class="nutritionLabel" style="' + borderCSS + ' width: ' + $this.settings.widthCustom + ';">\n';
 			}
 
