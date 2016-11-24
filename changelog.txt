@@ -1,4 +1,11 @@
 
+version 6.0.17 - November 11, 2016
+ - change <b> to <strong> for WCAG 2.0 compliance
+    https://github.com/nutritionix/nutrition-label/pull/56
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.16 - July 6, 2016
  - updating the schema
 
