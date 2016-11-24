@@ -1168,7 +1168,7 @@
 
 			if ($this.settings.showAmountPerServing){
 				nutritionLabel += tab1 + '<div class="line m">';
-					nutritionLabel += '<b>' + $this.settings.textAmountPerServing + '</strong>';
+					nutritionLabel += '<strong>' + $this.settings.textAmountPerServing + '</strong>';
 				nutritionLabel += '</div>\n';
 			}
 
