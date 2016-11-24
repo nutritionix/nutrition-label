@@ -1615,7 +1615,7 @@
 					if ($this.settings.showIngredients){
 						nutritionLabel += tab3 + '<br />\n';
 						nutritionLabel += tab3 + '<div class="ingredientListDiv">\n';
-							nutritionLabel += tab4 + '<b class="active" id="ingredientList">' + $this.settings.ingredientLabel + '</strong>\n';
+							nutritionLabel += tab4 + '<strong class="active" id="ingredientList">' + $this.settings.ingredientLabel + '</strong>\n';
 							nutritionLabel += tab4 + $this.settings.ingredientList + '\n';
 						nutritionLabel += tab3 + '</div><!-- closing class="ingredientListDiv" -->\n';
 					}
