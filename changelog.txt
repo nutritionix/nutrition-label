@@ -1,4 +1,11 @@
 
+version 6.0.18 - November 28, 2016
+ - change <i> to <em> for WCAG 2.0 compliance
+    https://github.com/nutritionix/nutrition-label/pull/57
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.17 - November 11, 2016
  - change <b> to <strong> for WCAG 2.0 compliance
     https://github.com/nutritionix/nutrition-label/pull/56

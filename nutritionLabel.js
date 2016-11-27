@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
  * @link                http://www.nutritionix.com                                                                 |
  * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.16                                                                                     |
- * @stable version      6.0.15                                                                                     |
+ * @current version     6.0.18                                                                                     |
+ * @stable version      6.0.16                                                                                     |
  * @supported browser   Firefox, Chrome, IE8+                                                                      |
  *                                                                                                                 |
  ******************************************************************************************************************+
@@ -312,7 +312,7 @@
 		textFatCalories : 'Calories from Fat',
 		textTotalFat : 'Total Fat',
 		textSatFat : 'Saturated Fat',
-		textTransFat : '<i>Trans</i> Fat',
+		textTransFat : '<em>Trans</em> Fat',
 		textPolyFat : 'Polyunsaturated Fat',
 		textMonoFat : 'Monounsaturated Fat',
 		textCholesterol : 'Cholesterol',
