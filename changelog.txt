@@ -1,4 +1,20 @@
 
+version 7.0.01 - January 23, 2017
+ - improvement on the code to prepare for the feature to allow the plugin to display the legacy version (current version) or the 2018 version
+    https://github.com/nutritionix/nutrition-label/issues/62
+
+ - bug fixes
+    - fixed a missing </span> on the sodium div
+    - fixed a bug on the fiber value where if the result of the formula [ daily fiber value * (calorie intake / 2000) ] is zero
+        (eg. there was an error in the input where the daily fiber value is set to zero), it will result to division by zero.
+        this possible error is caught on all other instances where if the result is zero, it is changed to 1 to prevent the "division by zero" error
+
+ - add an option for the user to choose to show the legacy label or the 2018 label
+    https://github.com/nutritionix/nutrition-label/issues/61
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 6.0.18 - November 28, 2016
  - change <i> to <em> for WCAG 2.0 compliance
     https://github.com/nutritionix/nutrition-label/pull/57

@@ -1,19 +1,20 @@
 <!--
- ******************************************************************************************************************+
- * NUTRITIONIX.com                                                                                                 |
- *                                                                                                                 |
- * This plugin allows you to create a fully customizable nutrition label                                           |
- *                                                                                                                 |
- * @authors             majin22 (js) and genesis23rd (css and html)                                                |
- * @copyright           Copyright (c) 2016 Nutritionix.                                                            |
- * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
- * @link                http://www.nutritionix.com                                                                 |
- * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.18                                                                                     |
- * @stable version      6.0.16                                                                                     |
- * @supported browser   Firefox, Chrome, IE8+                                                                      |
- *                                                                                                                 |
- ******************************************************************************************************************+
+ ***************************************************************************************************************************************************+
+ * NUTRITIONIX.com                                                                                                                                  |
+ *                                                                                                                                                  |
+ * This plugin allows you to create a fully customizable nutrition label                                                                            |
+ *                                                                                                                                                  |
+ * @authors             Leo Joseph Gajitos <leejay22@gmail.com, Rommel Malang <genesis23rd@gmail.com> and Yurko Fedoriv <yurko.fedoriv@gmail.com>   |
+ * @copyright           Copyright (c) 2016 Nutritionix.                                                                                             |
+ * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
+ * @link                http://www.nutritionix.com                                                                                                  |
+ * @github              http://github.com/nutritionix/nutrition-label                                                                               |
+ * @current version     7.0.01                                                                                                                      |
+ * @stable version      6.0.18                                                                                                                      |
+ * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
+ * @description         To be able to create a FDA-style nutrition label with any nutrition data source"                                            |
+ *                                                                                                                                                  |
+ ***************************************************************************************************************************************************+
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +29,7 @@
 <body>
 <div class="container">
 	<div class="hero-unit">
-		<h1>Nutrition Label version 6.0.16</h1>
+		<h1>Nutrition Label version 7.0.01</h1>
 		<h4>from Nutritionix</h4>
 		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
 		<p>
@@ -58,8 +59,7 @@ widthCustom : 'auto',
 //to allow the label to have no border
 allowNoBorder : false,
 
-//to enable rounding of the nutritional values based on the FDA rounding rules
-//http://goo.gl/RMD2O
+//to enable rounding of the nutritional values based on the FDA rounding rules http://goo.gl/RMD2O
 allowFDARounding : false,
 
 //to enabled the google analytics event logging
@@ -79,8 +79,7 @@ scrollLongIngredients : false,
 scrollHeightComparison : 100,
 //the height in px of the ingredients div
 scrollHeightPixel : 95,
-//this is to set how many decimal places will be shown on the nutrition values
-	//(calories, fat, protein, vitamin a, iron, etc)
+//this is to set how many decimal places will be shown on the nutrition values (calories, fat, protein, vitamin a, iron, etc)
 decimalPlacesForNutrition : 1,
 //this is to set how many decimal places will be shown for the "% daily values*"
 decimalPlacesForDailyValues : 0,
@@ -132,8 +131,7 @@ showServingUnitQuantity : true,
 hideTextboxArrows : false,
 
 //these 2 settings are used internally.
-//this is just added here instead of a global variable to prevent a bug when there are multiple instances
-	//of the plugin like on the demo pages
+//this is just added here instead of a global variable to prevent a bug when there are multiple instances of the plugin like on the demo pages
 originalServingUnitQuantity : 0,
 //this is used to fix the computation issue on the textbox
 nutritionValueMultiplier : 1,
@@ -174,8 +172,7 @@ showIron : true,
 
 //to show the 'amount per serving' text
 showAmountPerServing : true,
-//to show the 'servings per container' data and replace the default 'Serving Size' value
-	//(without unit and servings per container text and value)
+//to show the 'servings per container' data and replace the default 'Serving Size' value (without unit and servings per container text and value)
 showServingsPerContainer : false,
 //to show the item name. there are special cases where the item name is replaced with 'servings per container' value
 showItemName : true,
@@ -193,12 +190,13 @@ showDisclaimer : false,
 //the height in px of the disclaimer div
 scrollDisclaimerHeightComparison : 100,
 scrollDisclaimer : 95,
-valueDisclaimer : 'Please note that these nutrition values are estimated based on our standard serving portions. As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal. If you have any questions about our nutrition calculator, please contact Nutritionix.',
+valueDisclaimer : 'Please note that these nutrition values are estimated based on our standard serving portions. ' +
+	'As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal. ' +
+	'If you have any questions about our nutrition calculator, please contact Nutritionix.',
 ingredientLabel : 'INGREDIENTS:',
 valueCustomFooter : '',
 
-//the are to set some values as 'not applicable'. this means that the nutrition label will appear
-	//but the value will be a 'gray dash'
+//the are to set some values as 'not applicable'. this means that the nutrition label will appear but the value will be a 'gray dash'
 naCalories : false,
 naFatCalories : false,
 naTotalFat : false,
@@ -288,7 +286,7 @@ textCalories : 'Calories',
 textFatCalories : 'Calories from Fat',
 textTotalFat : 'Total Fat',
 textSatFat : 'Saturated Fat',
-textTransFat : '<i>Trans</i> Fat',
+textTransFat : '<em>Trans</em> Fat',
 textPolyFat : 'Polyunsaturated Fat',
 textMonoFat : 'Monounsaturated Fat',
 textCholesterol : 'Cholesterol',
@@ -308,7 +306,9 @@ textPercentDailyPart2 : 'calorie diet',
 textGoogleAnalyticsEventCategory : 'Nutrition Label',
 textGoogleAnalyticsEventActionUpArrow : 'Quantity Up Arrow Clicked',
 textGoogleAnalyticsEventActionDownArrow : 'Quantity Down Arrow Clicked',
-textGoogleAnalyticsEventActionTextbox : 'Quantity Textbox Changed'
+textGoogleAnalyticsEventActionTextbox : 'Quantity Textbox Changed',
+
+showLegacyVersion: true
 	</pre>
 	<p>There are a lot of sample on our <a href="demo/demo.html">demo page</a> on how the plugin can be used</p>
 </div>

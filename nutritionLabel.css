@@ -1,23 +1,26 @@
 /*
- ******************************************************************************************************************+
- * NUTRITIONIX.com                                                                                                 |
- *                                                                                                                 |
- * This plugin allows you to create a fully customizable nutrition label                                           |
- *                                                                                                                 |
- * @authors             majin22 (js) and genesis23rd (css and html)                                                |
- * @copyright           Copyright (c) 2016 Nutritionix.                                                            |
- * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
- * @link                http://www.nutritionix.com                                                                 |
- * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.18                                                                                     |
- * @stable version      6.0.16                                                                                     |
- * @supported browser   Firefox, Chrome, IE8+                                                                      |
- *                                                                                                                 |
- ******************************************************************************************************************+
+ ***************************************************************************************************************************************************+
+ * NUTRITIONIX.com                                                                                                                                  |
+ *                                                                                                                                                  |
+ * This plugin allows you to create a fully customizable nutrition label                                                                            |
+ *                                                                                                                                                  |
+ * @authors             Leo Joseph Gajitos <leejay22@gmail.com, Rommel Malang <genesis23rd@gmail.com> and Yurko Fedoriv <yurko.fedoriv@gmail.com>   |
+ * @copyright           Copyright (c) 2016 Nutritionix.                                                                                             |
+ * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
+ * @link                http://www.nutritionix.com                                                                                                  |
+ * @github              http://github.com/nutritionix/nutrition-label                                                                               |
+ * @current version     7.0.01                                                                                                                      |
+ * @stable version      6.0.18                                                                                                                      |
+ * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
+ * @description         To be able to create a FDA-style nutrition label with any nutrition data source"                                            |
+ *                                                                                                                                                  |
+ ***************************************************************************************************************************************************+
 */
-
 @import url("//fonts.googleapis.com/css?family=Archivo+Black");
 
+/*******************************************************************************************************************
+***********************************START OF THE LEGACY RELATED STYLES**********************************************
+******************************************************************************************************************/
 .nutritionLabel input.unitQuantityBox.ui-input-text {
 	margin-top: 0;
 	border-radius: 0;
@@ -44,7 +47,7 @@
 }
 .nutritionLabel .title {
 	line-height: .83em;
-	font-size: 2.6em;
+    font-size: 2.7em;
 	padding-bottom: 4px;
 	font-family: 'Archivo Black';
 	white-space: nowrap;
@@ -89,8 +92,18 @@
 .nutritionLabel .dv:before {
 	content: '\0000a0';
 }
-.nutritionLabel .bar1 { height: 10px; line-height:0; font-size:1px; background: #333;}
-.nutritionLabel .bar2 { height: 5px; line-height:0; font-size:1px; background: #333;}
+.nutritionLabel .bar1 {
+	height: 10px;
+	line-height:0;
+	font-size:1px;
+	background: #333;
+}
+.nutritionLabel .bar2 {
+	height: 5px;
+	line-height:0;
+	font-size:1px;
+	background: #333;
+}
 
 .nutritionLabel .dvCalorieDiet {
 	color: #777;
@@ -116,9 +129,15 @@
 	font-size: .7em;
 	color: #777;
 }
-.nutritionLabel .ar { text-align: right; }
-.nutritionLabel .fr { float: right; }
-.nutritionLabel .fl { float: left; }
+.nutritionLabel .ar {
+	text-align: right;
+}
+.nutritionLabel .fr {
+	float: right;
+}
+.nutritionLabel .fl {
+	float: left;
+}
 
 .nutritionLabel #calcDisclaimer {
 	color: #777;
@@ -129,7 +148,7 @@
 	font-weight: bold;
 	font-size: 1.2em;
 	cursor: default;
-	margin-top:  .2em;
+	margin-top: .2em;
 }
 .naTooltip{
 	position: absolute;
@@ -194,7 +213,6 @@
 	margin-top: .2em;
 	margin-bottom: .2em;
 	margin-right: .4em;
-
 }
 .nutritionLabel .servingUnit {
 	float: left;
@@ -251,3 +269,135 @@
 .nutritionLabel .ingredientListDiv {
 	padding-top: 10px;
 }
+/*******************************************************************************************************************
+*************************************END OF THE LEGACY RELATED STYLES**********************************************
+******************************************************************************************************************/
+
+
+/*******************************************************************************************************************
+***********************************START OF THE 2018 LABEL RELATED STYLES******************************************
+******************************************************************************************************************/
+.nf {
+    border: 1px solid #000;
+    max-width: 230px;
+    padding: 6px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.nf-line {
+    border-top: 1px solid #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-size: .94em;
+}
+
+.nf-title,
+.nf-highlight,
+.nf-serving,
+.nf-amount-per-serving,
+.nf-calories {
+    font-family: 'Archivo Black', sans-serif;
+}
+
+.nf-title {
+    font-size: 2.15em;
+    line-height: 1.15em;
+    margin-top: -6px;
+}
+
+.nf-per-container {
+    font-size: 1.15em;
+    line-height: normal;
+}
+
+.nf-serving {
+    font-size: 1.2em;
+    line-height: normal;
+}
+
+.nf-amount-per-serving {
+    font-size: .94em;
+}
+
+.nf-calories {
+    font-size: 2em;
+    line-height: 1em;
+}
+
+.nf-percent-dv {
+    font-size: .84em;
+}
+
+.nf-indent2 {
+    margin-left: 28px;
+}
+
+.nf-indent {
+    padding-left: 16px;
+}
+
+.nf-vitamin-column {
+    width: 50%;
+    float: left;
+}
+
+.nf-vitamin-column:nth-child(even) {
+    text-align: right;
+}
+
+.nf-vitamin-column:nth-child(even):before {
+    content: '\00b7';
+    float: left;
+    font-weight: bold;
+    margin-left: -5px;
+}
+
+.nf-footnote {
+    padding-top: 4px;
+    margin-left: 5px;
+    font-size: .85em;
+    line-height: 1em;
+}
+
+.nf-footnote:before {
+    content: "*";
+    float: left;
+    margin-left: -5px;
+}
+
+.nf-text-right {
+    text-align: right;
+}
+
+.nf-pr {
+    float: right;
+}
+
+.nf-bar1 {
+    height: 5px;
+}
+
+.nf-bar2 {
+    height: 10px;
+}
+
+.nf-bar1,
+.nf-bar2 {
+    background-color: #000;
+}
+
+.clear:before,
+.clear:after {
+    content: " ";
+    display: table;
+}
+
+.clear:after {
+    clear: both;
+}
+/*******************************************************************************************************************
+*************************************END OF THE 2018 LABEL RELATED STYLES******************************************
+******************************************************************************************************************/

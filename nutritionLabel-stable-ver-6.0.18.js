@@ -1,19 +1,20 @@
 /*
- ******************************************************************************************************************+
- * NUTRITIONIX.com                                                                                                 |
- *                                                                                                                 |
- * This plugin allows you to create a fully customizable nutrition label                                           |
- *                                                                                                                 |
- * @authors             majin22 (js) and genesis23rd (css and html)                                                |
- * @copyright           Copyright (c) 2016 Nutritionix.                                                            |
- * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.   |
- * @link                http://www.nutritionix.com                                                                 |
- * @github              http://github.com/nutritionix/nutrition-label                                              |
- * @current version     6.0.18                                                                                     |
- * @stable version      6.0.16                                                                                     |
- * @supported browser   Firefox, Chrome, IE8+                                                                      |
- *                                                                                                                 |
- ******************************************************************************************************************+
+ ***************************************************************************************************************************************************+
+ * NUTRITIONIX.com                                                                                                                                  |
+ *                                                                                                                                                  |
+ * This plugin allows you to create a fully customizable nutrition label                                                                            |
+ *                                                                                                                                                  |
+ * @authors             Leo Joseph Gajitos <leejay22@gmail.com, Rommel Malang <genesis23rd@gmail.com> and Yurko Fedoriv <yurko.fedoriv@gmail.com>   |
+ * @copyright           Copyright (c) 2016 Nutritionix.                                                                                             |
+ * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
+ * @link                http://www.nutritionix.com                                                                                                  |
+ * @github              http://github.com/nutritionix/nutrition-label                                                                               |
+ * @current version     7.0.01                                                                                                                      |
+ * @stable version      6.0.18                                                                                                                      |
+ * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
+ * @description         To be able to create a FDA-style nutrition label with any nutrition data source"                                            |
+ *                                                                                                                                                  |
+ ***************************************************************************************************************************************************+
 */
 ;(function($){
 	$.fn.nutritionLabel = function(option, settings){
@@ -312,7 +313,7 @@
 		textFatCalories : 'Calories from Fat',
 		textTotalFat : 'Total Fat',
 		textSatFat : 'Saturated Fat',
-		textTransFat : '<i>Trans</i> Fat',
+		textTransFat : '<em>Trans</em> Fat',
 		textPolyFat : 'Polyunsaturated Fat',
 		textMonoFat : 'Monounsaturated Fat',
 		textCholesterol : 'Cholesterol',
@@ -1168,7 +1169,7 @@
 
 			if ($this.settings.showAmountPerServing){
 				nutritionLabel += tab1 + '<div class="line m">';
-					nutritionLabel += '<b>' + $this.settings.textAmountPerServing + '</b>';
+					nutritionLabel += '<strong>' + $this.settings.textAmountPerServing + '</strong>';
 				nutritionLabel += '</div>\n';
 			}
 
@@ -1191,7 +1192,7 @@
 
 				if ($this.settings.showCalories){
 					nutritionLabel += tab2 + '<div>';
-						nutritionLabel += '<b>' + $this.settings.textCalories + '</b> <span itemprop="calories">';
+						nutritionLabel += '<strong>' + $this.settings.textCalories + '</strong> <span itemprop="calories">';
 						nutritionLabel += $this.settings.naCalories ?
 							naValue :
 							(
@@ -1209,7 +1210,7 @@
 				nutritionLabel += tab1 + '<div class="bar2"></div>\n';
 
 				nutritionLabel += tab1 + '<div class="line ar">';
-					nutritionLabel += '<b>% ' + $this.settings.textDailyValues + '<sup>*</sup></b>';
+					nutritionLabel += '<strong>% ' + $this.settings.textDailyValues + '<sup>*</sup></strong>';
 				nutritionLabel += '</div>\n';
 
 
@@ -1218,7 +1219,7 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naTotalFat ?
 							naValue :
-							'<b>' +
+							'<strong>' +
 							parseFloat(
 								parseFloat(
 									(
@@ -1231,10 +1232,10 @@
 										)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
-							) + '</b>%';
+							) + '</strong>%';
 					nutritionLabel += '</div>\n';
 
-					nutritionLabel += tab2 + '<b>' + $this.settings.textTotalFat + '</b> <span itemprop="fatContent">';
+					nutritionLabel += tab2 + '<strong>' + $this.settings.textTotalFat + '</strong> <span itemprop="fatContent">';
 						nutritionLabel +=
 							(
 								$this.settings.naTotalFat ?
@@ -1254,7 +1255,7 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naSatFat ?
 							naValue :
-							'<b>' +
+							'<strong>' +
 							parseFloat(
 								parseFloat(
 									(
@@ -1267,7 +1268,7 @@
 										)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
-							) + '</b>%';
+							) + '</strong>%';
 					nutritionLabel += '</div>\n';
 
 					nutritionLabel += tab2 + $this.settings.textSatFat + ' <span itemprop="saturatedFatContent">';
@@ -1335,7 +1336,7 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naCholesterol ?
 							naValue :
-							'<b>' +
+							'<strong>' +
 							parseFloat(
 								parseFloat(
 									(
@@ -1348,10 +1349,10 @@
 										)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
-							) + '</b>%';
+							) + '</strong>%';
 					nutritionLabel += '</div>\n';
 
-					nutritionLabel += tab2 + '<b>' + $this.settings.textCholesterol + '</b> <span itemprop="cholesterolContent">';
+					nutritionLabel += tab2 + '<strong>' + $this.settings.textCholesterol + '</strong> <span itemprop="cholesterolContent">';
 						nutritionLabel +=
 							(
 								$this.settings.naCholesterol ?
@@ -1371,7 +1372,7 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naSodium ?
 							naValue :
-							'<b>' +
+							'<strong>' +
 							parseFloat(
 								parseFloat(
 									(
@@ -1384,10 +1385,10 @@
 										)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
-							) + '</b>%';
+							) + '</strong>%';
 					nutritionLabel += '</div>\n';
 
-					nutritionLabel += tab2 + '<b>' + $this.settings.textSodium + '</b> <span itemprop="sodiumContent">';
+					nutritionLabel += tab2 + '<strong>' + $this.settings.textSodium + '</strong> <span itemprop="sodiumContent">';
 						nutritionLabel +=
 							(
 								$this.settings.naSodium ?
@@ -1407,7 +1408,7 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naPotassium ?
 							naValue :
-							'<b>' +
+							'<strong>' +
 							parseFloat(
 								parseFloat(
 									(
@@ -1420,10 +1421,10 @@
 										)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
-							) + '</b>%';
+							) + '</strong>%';
 					nutritionLabel += '</div>\n';
 
-					nutritionLabel += tab2 + '<b>' + $this.settings.textPotassium + '</b> <span itemprop="potassiumContent">';
+					nutritionLabel += tab2 + '<strong>' + $this.settings.textPotassium + '</strong> <span itemprop="potassiumContent">';
 						nutritionLabel +=
 							(
 								$this.settings.naPotassium ?
@@ -1443,7 +1444,7 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naTotalCarb ?
 							naValue :
-							'<b>' +
+							'<strong>' +
 							parseFloat(
 								parseFloat(
 									(
@@ -1456,10 +1457,10 @@
 											)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
-							) + '</b>%';
+							) + '</strong>%';
 					nutritionLabel += '</div>\n';
 
-					nutritionLabel += tab2 + '<b>' + $this.settings.textTotalCarb + '</b> <span itemprop="carbohydrateContent">';
+					nutritionLabel += tab2 + '<strong>' + $this.settings.textTotalCarb + '</strong> <span itemprop="carbohydrateContent">';
 						nutritionLabel +=
 							(
 								$this.settings.naTotalCarb ?
@@ -1479,7 +1480,7 @@
 					nutritionLabel += tab2 + '<div class="dv">';
 						nutritionLabel += $this.settings.naFibers ?
 							naValue :
-							'<b>' +
+							'<strong>' +
 							parseFloat(
 								parseFloat(
 									(
@@ -1489,7 +1490,7 @@
 										) / ($this.settings.dailyValueFiber * calorieIntakeMod)
 									) * 100
 								).toFixed($this.settings.decimalPlacesForDailyValues)
-							) + '</b>%';
+							) + '</strong>%';
 					nutritionLabel += '</div>\n';
 
 					nutritionLabel += tab2 + $this.settings.textFibers + ' <span itemprop="fiberContent">';
@@ -1523,7 +1524,7 @@
 
 			if ($this.settings.showProteins){
 				nutritionLabel += tab1 + '<div class="line">';
-					nutritionLabel += '<b>' + $this.settings.textProteins + '</b> <span itemprop="proteinContent">';
+					nutritionLabel += '<strong>' + $this.settings.textProteins + '</strong> <span itemprop="proteinContent">';
 						nutritionLabel += $this.settings.naProteins ?
 							naValue :
 							(
@@ -1615,7 +1616,7 @@
 					if ($this.settings.showIngredients){
 						nutritionLabel += tab3 + '<br />\n';
 						nutritionLabel += tab3 + '<div class="ingredientListDiv">\n';
-							nutritionLabel += tab4 + '<b class="active" id="ingredientList">' + $this.settings.ingredientLabel + '</b>\n';
+							nutritionLabel += tab4 + '<strong class="active" id="ingredientList">' + $this.settings.ingredientLabel + '</strong>\n';
 							nutritionLabel += tab4 + $this.settings.ingredientList + '\n';
 						nutritionLabel += tab3 + '</div><!-- closing class="ingredientListDiv" -->\n';
 					}
