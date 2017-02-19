@@ -1,4 +1,11 @@
 
+version 7.0.02 - February 19, 2017
+ - added itemprop="servingSize" on the serving size element for the legacy version
+ - some code improvements for the legacy version
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 7.0.01 - January 23, 2017
  - improvement on the code to prepare for the feature to allow the plugin to display the legacy version (current version) or the 2018 version
     https://github.com/nutritionix/nutrition-label/issues/62
@@ -9,7 +16,7 @@ version 7.0.01 - January 23, 2017
         (eg. there was an error in the input where the daily fiber value is set to zero), it will result to division by zero.
         this possible error is caught on all other instances where if the result is zero, it is changed to 1 to prevent the "division by zero" error
 
- - add an option for the user to choose to show the legacy label or the 2018 label
+ - add an option for the user to choose to show the legacy label or the 2018 label (take note that the 2018 label isn't coded yet)
     https://github.com/nutritionix/nutrition-label/issues/61
 
 ------------------------------------------------------------------------------------------------------
