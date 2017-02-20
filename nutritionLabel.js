@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.02                                                                                                                      |
+ * @current version     7.0.1                                                                                                                       |
  * @stable version      6.0.18                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source"                                            |
@@ -173,6 +173,9 @@
 		dailyValuePotassium: 3500,
 		dailyValueCarb : 300,
 		dailyValueFiber : 25,
+		dailyValueCalcium : 1000,
+		dailyValueIron : 18,
+		dailyValueVitaminD : 400,
 
 		//these values can be change to hide some nutrition values
 		showCalories : true,
@@ -184,13 +187,16 @@
 		showMonoFat : true,
 		showCholesterol : true,
 		showSodium : true,
-		showPotassium: false,
+		showPotassium: false, //this is for the legacy version, this is the only value that is default to be hidden
+		showPotassium_2018: true, //this is for the 2018 version
 		showTotalCarb : true,
 		showFibers : true,
 		showSugars : true,
+		showAddedSugars : true,
 		showProteins : true,
 		showVitaminA : true,
 		showVitaminC : true,
+		showVitaminD : true,
 		showCalcium : true,
 		showIron : true,
 
@@ -230,13 +236,16 @@
 		naMonoFat : false,
 		naCholesterol : false,
 		naSodium : false,
-		naPotassium: false,
+		naPotassium: false, //this is for the legacy version
+		naPotassium_2018: false, //this is for the 2018 version
 		naTotalCarb : false,
 		naFibers : false,
 		naSugars : false,
+		naAddedSugars : false,
 		naProteins : false,
 		naVitaminA : false,
 		naVitaminC : false,
+		naVitaminD : false,
 		naCalcium : false,
 		naIron : false,
 
@@ -252,13 +261,16 @@
 		valueMonoFat : 0,
 		valueCholesterol : 0,
 		valueSodium : 0,
-		valuePotassium: 0,
+		valuePotassium : 0, //this is for the legacy version
+		valuePotassium_2018: 0, //this is for the 2018 version
 		valueTotalCarb : 0,
 		valueFibers : 0,
 		valueSugars : 0,
+		valueAddedSugars : 0,
 		valueProteins : 0,
 		valueVitaminA : 0,
 		valueVitaminC : 0,
+		valueVitaminD : 0,
 		valueCalcium : 0,
 		valueIron : 0,
 
@@ -272,15 +284,24 @@
 		unitMonoFat : 'g',
 		unitCholesterol : 'mg',
 		unitSodium : 'mg',
-		unitPotassium: 'mg',
+		unitPotassium: 'mg', //this is for the legacy version
+		unitPotassium_base: 'mg', //this is for the 2018 version
+		unitPotassium_percent: '%', //this is for the 2018 version
 		unitTotalCarb : 'g',
 		unitFibers : 'g',
 		unitSugars : 'g',
+		unitAddedSugars : 'g',
 		unitProteins : 'g',
 		unitVitaminA : '%',
 		unitVitaminC : '%',
+		unitVitaminD_base : 'mcg', //this is for the 2018 version
+		unitVitaminD_percent : '%', //this is for the 2018 version
 		unitCalcium : '%',
+		unitCalcium_base : 'mg', //this is for the 2018 version
+		unitCalcium_percent : '%', //this is for the 2018 version
 		unitIron : '%',
+		unitIron_base : 'mg', //this is for the 2018 version
+		unitIron_percent : '%', //this is for the 2018 version
 
 		//these are the values for the optional calorie diet
 		valueCol1CalorieDiet : 2000,
@@ -315,18 +336,24 @@
 		textMonoFat : 'Monounsaturated Fat',
 		textCholesterol : 'Cholesterol',
 		textSodium : 'Sodium',
-		textPotassium: 'Potassium',
+		textPotassium : 'Potassium', //this is for the legacy version
+		textPotassium_2018 : 'Potas.', //this is for the 2018 version
 		textTotalCarb : 'Total Carbohydrates',
 		textFibers : 'Dietary Fiber',
 		textSugars : 'Sugars',
+		textAddedSugars1 : 'Includes ',
+		textAddedSugars2 : ' Added Sugars',
 		textProteins : 'Protein',
 		textVitaminA : 'Vitamin A',
 		textVitaminC : 'Vitamin C',
+		textVitaminD : 'Vit. D',
 		textCalcium : 'Calcium',
 		textIron : 'Iron',
 		ingredientList : 'None',
 		textPercentDailyPart1 : 'Percent Daily Values are based on a',
 		textPercentDailyPart2 : 'calorie diet',
+		textPercentDaily2018VersionPart1 : 'The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. ',
+		textPercentDaily2018VersionPart2 : ' calories a day is used for general nutrition advice.',
 		textGoogleAnalyticsEventCategory : 'Nutrition Label',
 		textGoogleAnalyticsEventActionUpArrow : 'Quantity Up Arrow Clicked',
 		textGoogleAnalyticsEventActionDownArrow : 'Quantity Down Arrow Clicked',
@@ -348,12 +375,12 @@
 	function cleanSettings(settings){
 		var numericIndex = [
 			'width', 'scrollHeightComparison', 'scrollHeightPixel', 'decimalPlacesForNutrition', 'decimalPlacesForDailyValues', 'calorieIntake', 'dailyValueTotalFat', 'dailyValueSatFat',
-			'dailyValueCholesterol', 'dailyValueSodium', 'dailyValuePotassium', 'dailyValueCarb', 'dailyValueFiber','valueServingSize', 'valueServingWeightGrams',
-			'valueServingPerContainer', 'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat', 'valueTransFat', 'valuePolyFat', 'valueMonoFat', 'valueCholesterol',
-			'valueSodium', 'valuePotassium', 'valueTotalCarb', 'valueFibers', 'valueSugars', 'valueProteins', 'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueCol1CalorieDiet',
-			'valueCol2CalorieDiet', 'valueCol1DietaryTotalFat', 'valueCol2DietaryTotalFat', 'valueCol1DietarySatFat', 'valueCol2DietarySatFat', 'valueCol1DietaryCholesterol',
-			'valueCol2DietaryCholesterol', 'valueCol1DietarySodium', 'valueCol2DietarySodium', 'valueCol1DietaryPotassium', 'valueCol2DietaryPotassium', 'valueCol1DietaryTotalCarb',
-			'valueCol2DietaryTotalCarb', 'valueCol1Dietary', 'valueCol2Dietary', 'valueServingUnitQuantity', 'scrollLongItemNamePixel', 'decimalPlacesForQuantityTextbox'
+			'dailyValueCholesterol', 'dailyValueSodium', 'dailyValuePotassium', 'dailyValueCarb', 'dailyValueFiber','valueServingSize', 'valueServingWeightGrams', 'valueServingPerContainer',
+			'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat', 'valueTransFat', 'valuePolyFat', 'valueMonoFat', 'valueCholesterol', 'valueSodium', 'valuePotassium', 'valueTotalCarb',
+			'valueFibers', 'valueSugars', 'valueProteins', 'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueCol1CalorieDiet', 'valueCol2CalorieDiet', 'valueCol1DietaryTotalFat',
+			'valueCol2DietaryTotalFat', 'valueCol1DietarySatFat', 'valueCol2DietarySatFat', 'valueCol1DietaryCholesterol', 'valueCol2DietaryCholesterol', 'valueCol1DietarySodium',
+			'valueCol2DietarySodium', 'valueCol1DietaryPotassium', 'valueCol2DietaryPotassium', 'valueCol1DietaryTotalCarb', 'valueCol2DietaryTotalCarb', 'valueCol1Dietary', 'valueCol2Dietary',
+			'valueServingUnitQuantity', 'scrollLongItemNamePixel', 'decimalPlacesForQuantityTextbox', 'valueAddedSugars', 'dailyValueVitaminD', 'dailyValueCalcium', 'dailyValueIron', 'valueVitaminD'
 		];
 
 		$.each(settings, function(index, value){
@@ -375,8 +402,9 @@
 
 	function UpdateNutritionValueWithMultiplier(settings){
 		var nutritionIndex = [
-			'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat', 'valueTransFat', 'valuePolyFat', 'valueMonoFat', 'valueCholesterol', 'valueSodium', 'valuePotassium',
-			'valueTotalCarb','valueFibers','valueSugars','valueProteins', 'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueServingWeightGrams'
+			'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat', 'valueTransFat', 'valuePolyFat', 'valueMonoFat', 'valueCholesterol', 'valueSodium', 'valuePotassium', 'valueTotalCarb',
+			'valueFibers','valueSugars','valueProteins', 'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueServingWeightGrams', 'valueAddedSugars', 'valueVitaminD',
+			'valuePotassium_2018'
 		];
 
 		$.each(settings, function(index, value){
@@ -435,16 +463,16 @@
 
 			//scroll the ingredients of the innerheight is > $settings.scrollHeightComparison and the settings showIngredients and scrollLongIngredients are true
 			if ($settings.showIngredients && $settings.scrollLongIngredients){
-				updateScrollingFeatureLegacy($elem, $settings);
+				updateScrollingFeature($elem, $settings, 'ingredientList');
 			}
 
 			//scroll the disclaimer if the height of the disclaimer div is greater than scrollDisclaimerHeightComparison
 			if ($settings.showDisclaimer){
-				updateScrollingFeatureDisclaimerLegacy($elem, $settings);
+				updateScrollingFeature($elem, $settings, 'calcDisclaimerText');
 			}
 
 			//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
-			notApplicableHoverLegacy($elem);
+			notApplicableHover($elem);
 
 			//add a scroll on long item names
 			if ($settings.scrollLongItemName){
@@ -500,6 +528,19 @@
 			//xxx
 			//this part is for the 2018 version
 			$elem.html( nutritionLabel.generate2018() );
+
+			//scroll the ingredients of the innerheight is > $settings.scrollHeightComparison and the settings showIngredients and scrollLongIngredients are true
+			if ($settings.showIngredients && $settings.scrollLongIngredients){
+				updateScrollingFeature($elem, $settings, 'nf-ingredientList');
+			}
+
+			//scroll the disclaimer if the height of the disclaimer div is greater than scrollDisclaimerHeightComparison
+			if ($settings.showDisclaimer){
+				updateScrollingFeatureDisclaimer($elem, $settings, 'nf-calcDisclaimerText');
+			}
+
+			//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
+			notApplicableHover($elem);
 		}
 
 		//store the object for later reference
@@ -527,7 +568,7 @@
 	}
 
 
-	function notApplicableHoverLegacy($elem){
+	function notApplicableHover($elem){
 		//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
 		if ($elem.attr('id') !== undefined && $elem.attr('id') !== ''){
 			$('#' + $elem.attr('id') + ' .notApplicable').hover(
@@ -559,12 +600,12 @@
 	}
 
 
-	function updateScrollingFeatureLegacy($elem, $settings){
+	function updateScrollingFeature($elem, $settings, localIngredientListID){
 		if ($elem.attr('id') !== undefined && $elem.attr('id') !== ''){
 			//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
-			$ingredientListParent = $('#' + $elem.attr('id') + ' #ingredientList').parent();
+			$ingredientListParent = $('#' + $elem.attr('id') + ' #' + localIngredientListID).parent();
 		}else{
-			$ingredientListParent = $('#ingredientList').parent();
+			$ingredientListParent = $('#' + localIngredientListID).parent();
 		}
 
 		if ($ingredientListParent.innerHeight() > $settings.scrollHeightComparison){
@@ -575,12 +616,12 @@
 	}
 
 
-	function updateScrollingFeatureDisclaimerLegacy($elem, $settings){
+	function updateScrollingFeatureDisclaimer($elem, $settings, localCalcDisclaimerTextID){
 		if ($elem.attr('id') !== undefined && $elem.attr('id') !== ''){
 			//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
-			$disclaimerParent = $('#' + $elem.attr('id') + ' #calcDisclaimerText').parent();
+			$disclaimerParent = $('#' + $elem.attr('id') + ' #' + localCalcDisclaimerTextID).parent();
 		}else{
-			$disclaimerParent = $('#calcDisclaimerText').parent();
+			$disclaimerParent = $('#' + localCalcDisclaimerTextID).parent();
 		}
 
 		if ($disclaimerParent.innerHeight() > $settings.scrollDisclaimerHeightComparison){
@@ -614,7 +655,7 @@
 		}
 
 		//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
-		notApplicableHoverLegacy($elem);
+		notApplicableHover($elem);
 
 		//add a scroll on long item names
 		if ($originalSettings.scrollLongItemName){
@@ -686,7 +727,7 @@
 		}
 
 		//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
-		notApplicableHoverLegacy($elem);
+		notApplicableHover($elem);
 
 		//add a scroll on long item names
 		if ($settings.scrollLongItemName){
@@ -1118,8 +1159,7 @@
 			eval('var localTab' + x + ' = "' + tab + '";');
 		}
 
-		localNutritionLabel = '';
-		localNutritionLabel += localTab2 + '<table class="tblCalorieDiet">\n';
+		var localNutritionLabel = localTab2 + '<table class="tblCalorieDiet">\n';
 			localNutritionLabel += localTab3 + '<thead>\n';
 				localNutritionLabel += localTab4 + '<tr>\n';
 					localNutritionLabel += localTab5 + '<th>&nbsp;</th>\n';
@@ -1189,8 +1229,7 @@
 			eval('var localTab' + x + ' = "' + tab + '";');
 		}
 
-		localNutritionLabel = '';
-		localNutritionLabel += localTab3 + '<br/>\n';
+		var localNutritionLabel = localTab3 + '<br/>\n';
 		localNutritionLabel += localTab3 + '<div class="ingredientListDiv">\n';
 			localNutritionLabel += localTab4 + '<strong class="active" id="ingredientList">' + $localSettings.ingredientLabel + '</strong>\n';
 			localNutritionLabel += localTab4 + $localSettings.ingredientList + '\n';
@@ -1211,8 +1250,7 @@
 			eval('var localTab' + x + ' = "' + tab + '";');
 		}
 
-		localNutritionLabel = '';
-		localNutritionLabel += localTab3 + '<br/>';
+		var localNutritionLabel = localTab3 + '<br/>';
 		localNutritionLabel += localTab3 + '<div id="calcDisclaimer">\n';
 			localNutritionLabel += localTab4 + '<span id="calcDisclaimerText">' + $localSettings.valueDisclaimer + '</span>\n';
 		localNutritionLabel += localTab3 + '</div>\n';
@@ -1222,8 +1260,7 @@
 
 	//generate and return the html code for the bottom link area
 	function bottomLinkHtmlLegacy($localSettings, localTab1){
-		localNutritionLabel = '';
-		localNutritionLabel += localTab1 + '<div class="spaceAbove"></div>\n';
+		var localNutritionLabel = localTab1 + '<div class="spaceAbove"></div>\n';
 		localNutritionLabel += localTab1 + '<a href="' +
 			$localSettings.urlBottomLink +
 			'" target="_newSite" class="homeLinkPrint">' +
@@ -1248,7 +1285,7 @@
 		//initialize the not applicable image icon in case we need to use it
 		var localNaValue = '<font class="notApplicable">-&nbsp;</font>';
 
-		localNutritionLabel = localTabValue + '<div class="' + lineClass + '">';
+		var localNutritionLabel = localTabValue + '<div class="' + lineClass + '">';
 
 		if (attributeDisplayType == 1){
 			localNutritionLabel += '<strong>' + $localSettings[attributeText] + '</strong> <span itemprop="' + itemPropValue + '">';
@@ -1308,7 +1345,7 @@
 		var localNaValue = '<font class="notApplicable">-&nbsp;</font>';
 
 		//TODO LATER: for improvement - add notes on why the computation is this way
-		localNutritionLabel = localTab1 + '<div class="' + lineClass + '">\n';
+		var localNutritionLabel = localTab1 + '<div class="' + lineClass + '">\n';
 			localNutritionLabel += localTab2 + '<div class="dv">';
 				localNutritionLabel += $localSettings[naIndex] ?
 					localNaValue :
@@ -1342,8 +1379,268 @@
 					) + $localSettings[unitIndex]
 			) + '\n';
 		return localNutritionLabel += localTab1 + '</span></div>\n';
-	}//end of => function generateAttributeWithPercentageHtmlLegacy($localSettings, valueIndex, dailyValueIndex, unitIndex, naIndex, attributeTexts,
+	}//end of => function generateAttributeWithPercentageHtmlLegacy($localSettings, valueIndex, dailyValueIndex, unitIndex, naIndex, attributeTexts, localNaValue,
 																																//lineClass, itemPropValue, roundFunctionName, roundFunctionRuleName, boldName)
+
+
+	/*
+	 * generate and return the html code for these areas that share similar html format for the 2018 version of the label:
+	 *    calories, total fat, saturated fat, trans fat, poly fat, mono fat, cholesterol, sodium, total carb, fibers, sugars, added sugar, proteins
+	 */
+	function generateAttributeHtml2018Version(
+			$localSettings, valueIndex, unitIndex, naIndex, attributeText, itemPropValue, topDivClass, showPercentageCode, roundFunctionName, roundFunctionRuleName, labelClass, valueClass, dailyValueIndex
+	){
+		//initializing the tab variables
+		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
+		//for debugging and editing purposes
+		for (x = 1; x < 3; x++){
+			var tab = '';
+			for (y = 1; y <= x; y++){
+				tab += '\t';
+			}
+			eval('var localTab' + x + ' = "' + tab + '";');
+		}
+
+		//initialize the not applicable image icon in case we need to use it
+		var localNaValue = '<font class="notApplicable">-&nbsp;</font>';
+
+		var localNutritionLabel = localTab1 + '<div class="' + topDivClass +'">\n';
+
+		if (showPercentageCode){
+			localNutritionLabel += localTab2 + '<span class="nf-highlight nf-pr">';
+				//TODO LATER: for improvement - add notes on why the computation is this way
+				localNutritionLabel += $localSettings[naIndex] ?
+					localNaValue :
+					parseFloat(
+						parseFloat(
+							(
+								(
+									$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
+								) / (
+									$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * (parseFloat($localSettings.calorieIntake) / 2000).toFixed(2)
+								)
+							) * 100
+						).toFixed($localSettings.decimalPlacesForDailyValues)
+					) + '%';
+			localNutritionLabel += '</span>\n';
+		}
+
+		//this is for everything else
+		if (valueIndex != 'valueAddedSugars'){
+			localNutritionLabel += localTab2 + '<span class="' + labelClass + '">';
+				localNutritionLabel += $localSettings[attributeText];
+			localNutritionLabel += '</span>\n';
+
+			localNutritionLabel += localTab2 + '<span class="' + valueClass + '" itemprop="' + itemPropValue + '">';
+				localNutritionLabel += $localSettings[naIndex] ?
+					localNaValue :
+					(
+						$localSettings.allowFDARounding ?
+							eval(roundFunctionName)($localSettings[valueIndex], $localSettings.decimalPlacesForNutrition) :
+							parseFloat( $localSettings[valueIndex].toFixed($localSettings.decimalPlacesForNutrition) )
+					) + $localSettings[unitIndex];
+			localNutritionLabel += '</span>\n';
+		//special case for added sugars
+		}else{
+			localNutritionLabel += localTab2 + '<span class="' + labelClass + '">';
+				localNutritionLabel += $localSettings['textAddedSugars1'];
+				localNutritionLabel += localTab2 + '<span class="' + valueClass + '" itemprop="' + itemPropValue + '">';
+					localNutritionLabel += $localSettings[naIndex] ?
+						localNaValue :
+						(
+							$localSettings.allowFDARounding ?
+								eval(roundFunctionName)($localSettings[valueIndex], $localSettings.decimalPlacesForNutrition) :
+								parseFloat( $localSettings[valueIndex].toFixed($localSettings.decimalPlacesForNutrition) )
+						) + $localSettings[unitIndex];
+				localNutritionLabel += '</span>\n';
+				localNutritionLabel += $localSettings['textAddedSugars2'];
+			localNutritionLabel += '</span>\n';
+		}
+
+		return localNutritionLabel += localTab1 + '</div>\n';
+	}//end of =. function generateAttributeHtml2018Version($localSettings, valueIndex, unitIndex, naIndex, attributeText, itemPropValue, topDivClass, showPercentageCode,
+																														//roundFunctionName, roundFunctionRuleName, labelClass, valueClass, dailyValueIndex)
+
+
+	function generateServingsHtml2018Version($localSettings, localTab1, localTab2, localTab3){
+		var localNutritionLabel = localTab1 + '<div class="nf-line">\n';
+
+		if ($localSettings.showServingsPerContainer){
+			localNutritionLabel += localTab2 + '<div class="nf-per-container">\n';
+				localNutritionLabel += localTab3 + parseFloat(
+					$localSettings.valueServingPerContainer.toFixed($localSettings.decimalPlacesForNutrition)
+				);
+				localNutritionLabel += ' servings per container\n';
+			localNutritionLabel += localTab2 + '</div>\n';
+		}
+
+			localNutritionLabel += localTab2 + '<div class="nf-serving">\n';
+				//xxx
+				localNutritionLabel += localTab3 + '<span class="nf-pr">';
+					localNutritionLabel += '2/3';
+				if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null){
+					localNutritionLabel += ' ' + $localSettings.valueServingSizeUnit;
+				}
+				if ($localSettings.valueServingWeightGrams > 0){
+					localNutritionLabel += '(<span itemprop="servingSize">' +
+							parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) ) +
+						'g</span>)';
+				}
+				localNutritionLabel += '</span>\n';
+
+				localNutritionLabel += localTab3 + $localSettings.textServingSize + '\n';
+
+			localNutritionLabel += localTab2 + '</div>\n';
+		return localNutritionLabel + localTab1 + '</div>\n';
+	}//end of => function generateServingsHtml2018Version($localSettings, localTab1, localTab2, localTab3)
+
+
+	//generate and return the html code for the ingredients area
+	function ingredientsHtml2018Version($localSettings){
+		//initializing the tab variables
+		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
+		//for debugging and editing purposes
+		for (x = 3; x < 5; x++){
+			var tab = '';
+			for (y = 1; y <= x; y++){
+				tab += '\t';
+			}
+			eval('var localTab' + x + ' = "' + tab + '";');
+		}
+
+		var localNutritionLabel = localTab3 + '<br/>\n';
+		localNutritionLabel += localTab3 + '<div class="nf-ingredientListDiv">\n';
+			localNutritionLabel += localTab4 + '<strong class="active" id="nf-ingredientList">' + $localSettings.ingredientLabel + '</strong>\n';
+			localNutritionLabel += localTab4 + $localSettings.ingredientList + '\n';
+		return localNutritionLabel += localTab3 + '</div><!-- closing class="nf-ingredientListDiv" -->\n';
+	}
+
+
+	//generate and return the html code for the disclaimer area
+	function disclaimerHtml2018Version($localSettings){
+		//initializing the tab variables
+		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
+		//for debugging and editing purposes
+		for (x = 3; x < 5; x++){
+			var tab = '';
+			for (y = 1; y <= x; y++){
+				tab += '\t';
+			}
+			eval('var localTab' + x + ' = "' + tab + '";');
+		}
+
+		var localNutritionLabel = localTab3 + '<br/>';
+		localNutritionLabel += localTab3 + '<div id="nf-calcDisclaimer">\n';
+			localNutritionLabel += localTab4 + '<span id="nf-calcDisclaimerText">' + $localSettings.valueDisclaimer + '</span>\n';
+		localNutritionLabel += localTab3 + '</div>\n';
+		return localNutritionLabel += localTab3 + '<br/>';
+	}
+
+
+	//generate and return the html code for the calorie diets area
+	function calorieDietHtml2018Version($localSettings){
+		//initializing the tab variables
+		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
+		//for debugging and editing purposes
+		for (x = 2; x < 6; x++){
+			var tab = '';
+			for (y = 1; y <= x; y++){
+				tab += '\t';
+			}
+			eval('var localTab' + x + ' = "' + tab + '";');
+		}
+
+		var localNutritionLabel = localTab2 + '<table class="nf-tblCalorieDiet">\n';
+			localNutritionLabel += localTab3 + '<thead>\n';
+				localNutritionLabel += localTab4 + '<tr>\n';
+					localNutritionLabel += localTab5 + '<th>&nbsp;</th>\n';
+					localNutritionLabel += localTab5 + '<th>Calories</th>\n';
+					localNutritionLabel += localTab5 + '<th>' + $localSettings.valueCol1CalorieDiet + '</th>\n';
+					localNutritionLabel += localTab5 + '<th>' + $localSettings.valueCol2CalorieDiet + '</th>\n';
+				localNutritionLabel += localTab4 + '</tr>\n';
+			localNutritionLabel += localTab3 + '</thead>\n';
+			localNutritionLabel += localTab3 + '<tbody>\n';
+				localNutritionLabel += localTab4 + '<tr>\n';
+					localNutritionLabel += localTab5 + '<td>Total Fat</td>\n';
+					localNutritionLabel += localTab5 + '<td>Less than</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryTotalFat + 'g</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryTotalFat + 'g</td>\n';
+				localNutritionLabel += localTab4 + '</tr>\n';
+				localNutritionLabel += localTab4 + '<tr>\n';
+					localNutritionLabel += localTab5 + '<td>&nbsp;&nbsp; Saturated Fat</td>\n';
+					localNutritionLabel += localTab5 + '<td>Less than</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietarySatFat + 'g</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietarySatFat + 'g</td>\n';
+				localNutritionLabel += localTab4 + '</tr>\n';
+				localNutritionLabel += localTab4 + '<tr>\n';
+					localNutritionLabel += localTab5 + '<td>Cholesterol</td>\n';
+					localNutritionLabel += localTab5 + '<td>Less than</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryCholesterol + 'mg</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryCholesterol + 'mg</td>\n';
+				localNutritionLabel += localTab4 + '</tr>\n';
+				localNutritionLabel += localTab4 + '<tr>\n';
+					localNutritionLabel += localTab5 + '<td>Sodium</td>\n';
+					localNutritionLabel += localTab5 + '<td>Less than</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietarySodium + 'mg</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietarySodium + 'mg</td>\n';
+				localNutritionLabel += localTab4 + '</tr>\n';
+				localNutritionLabel += localTab4 + '<tr>\n';
+					localNutritionLabel += localTab5 + '<td>Potassium</td>\n';
+					localNutritionLabel += localTab5 + '<td>Less than</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryPotassium + 'mg</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryPotassium + 'mg</td>\n';
+				localNutritionLabel += localTab4 + '</tr>\n';
+				localNutritionLabel += localTab4 + '<tr>\n';
+					localNutritionLabel += localTab5 + '<td>Total Carbohydrate</td>\n';
+					localNutritionLabel += localTab5 + '<td>&nbsp;</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryTotalCarb + 'g</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryTotalCarb + 'g</td>\n';
+				localNutritionLabel += localTab4 + '</tr>\n';
+				localNutritionLabel += localTab4 + '<tr>\n';
+					localNutritionLabel += localTab5 + '<td>&nbsp;&nbsp; Dietary</td>\n';
+					localNutritionLabel += localTab5 + '<td>&nbsp;</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1Dietary + 'g</td>\n';
+					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2Dietary + 'g</td>\n';
+				localNutritionLabel += localTab4 + '</tr>\n';
+			localNutritionLabel += localTab3 + '</tbody>\n';
+		return localNutritionLabel += localTab2 + '</table>\n';
+	}//end of => calorieDietHtml2018Version($localSettings)
+
+
+	//generate and return the html code for the bottom link area
+	function bottomLinkHtml2018Version($localSettings, localTab1){
+		var localNutritionLabel = localTab1 + '<div class="nf-spaceAbove"></div>\n';
+		localNutritionLabel += localTab1 + '<a href="' +
+			$localSettings.urlBottomLink +
+			'" target="_newSite" class="nf-homeLinkPrint">' +
+			$localSettings.nameBottomLink + '</a>\n';
+		return localNutritionLabel += localTab1 + '<div class="nf-spaceBelow"></div>\n';
+	}
+
+
+	/*
+	 * generate and return the html code for these areas that share similar html format: vitamin d, calcium, iron and potassium
+	 */
+	function generateHtmlAndComputeValueGivenThePercentage($localSettings, valueIndex, dailyValueIndex, unitIndex_base, unitIndex_percent, naIndex, attributeTexts){
+		//initialize the not applicable image icon in case we need to use it
+		var localNaValue = '<font class="notApplicable">-&nbsp;</font>';
+
+		var localNutritionLabel = '<div class="nf-vitamin-column">\n';
+			localNutritionLabel += $localSettings[attributeTexts] + ' ';
+
+			localNutritionLabel += (
+				$localSettings[naIndex] ?
+					localNaValue : (
+						parseFloat(
+							//percentage / 100 * daily value
+							($localSettings[valueIndex] / 100) * $localSettings[dailyValueIndex]
+						).toFixed($localSettings.decimalPlacesForDailyValues) +
+						$localSettings[unitIndex_base] + ' ' + $localSettings[valueIndex] + $localSettings[unitIndex_percent]
+					)
+			) + '\n';
+
+		return localNutritionLabel += '</div>\n';
+	}
 
 
 	NutritionLabel.prototype = {
@@ -1380,7 +1677,7 @@
 			//initializing the tab variables
 			//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
 			//for debugging and editing purposes
-			for (x = 1; x < 6; x++){
+			for (x = 1; x < 9; x++){
 				var tab = '';
 				for (y = 1; y <= x; y++){
 					tab += '\t';
@@ -1498,6 +1795,7 @@
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
 					//$localSetting,  valueIndex,    dailyValueIndex,    unitIndex,    naIndex,    attributeTexts,  lineClass,  itemPropValue,   roundFunctionName, roundFunctionRuleName, boldName
 					$this.settings,  'valueSodium', 'dailyValueSodium', 'unitSodium', 'naSodium', 'textSodium',    'line',     'sodiumContent', 'roundSodium',     'roundSodiumRule',      true
+
 				);
 			}
 
@@ -1598,17 +1896,282 @@
 			}
 
 			nutritionLabel += '</div><!-- closing class="nutritionLabel" -->\n';
-			nutritionLabel += '<div class="naTooltip">Data not available</div>\n';
-
 			//returns the html for the nutrition label
-			return nutritionLabel;
+			return nutritionLabel += '<div class="naTooltip">Data not available</div>\n';
 		},//end of => generateLegacy: function()
 
 
 		generate2018: function(){
-			return '';
-		}//end of => generate2018
+			//this is the function that returns the html code for the nutrition label based on the settings that is supplied by the user
+			var $this = this;
 
+			//return the plugin incase it has already been created
+			if ($this.nutritionLabel){
+				return $this.nutritionLabel;
+			}
+
+			if ($this.settings.hideNotApplicableValues){
+				$this.settings.showCalories = $this.settings.naCalories ? false : $this.settings.showCalories;
+				$this.settings.showFatCalories = $this.settings.naFatCalories ? false : $this.settings.showFatCalories;
+				$this.settings.showTotalFat = $this.settings.naTotalFat ? false : $this.settings.showTotalFat;
+				$this.settings.showSatFat = $this.settings.naSatFat ? false : $this.settings.showSatFat;
+				$this.settings.showTransFat = $this.settings.naTransFat ? false : $this.settings.showTransFat;
+				$this.settings.showPolyFat = $this.settings.naPolyFat ? false : $this.settings.showPolyFat;
+				$this.settings.showMonoFat = $this.settings.naMonoFat ? false : $this.settings.showMonoFat;
+				$this.settings.showCholesterol = $this.settings.naCholesterol ? false : $this.settings.showCholesterol;
+				$this.settings.showSodium = $this.settings.naSodium ? false : $this.settings.showSodium;
+				$this.settings.showPotassium = $this.settings.naPotassium ? false : $this.settings.showPotassium;
+				$this.settings.showTotalCarb = $this.settings.naTotalCarb ? false : $this.settings.showTotalCarb;
+				$this.settings.showFibers = $this.settings.naFibers ? false : $this.settings.showFibers;
+				$this.settings.showSugars = $this.settings.naSugars ? false : $this.settings.showSugars;
+				$this.settings.showAddedSugars = $this.settings.naAddedSugars ? false : $this.settings.showAddedSugars;
+				$this.settings.showProteins = $this.settings.naProteins ? false : $this.settings.showProteins;
+				$this.settings.showVitaminD = $this.settings.naVitaminD ? false : $this.settings.showVitaminD;
+				$this.settings.showCalcium = $this.settings.naCalcium ? false : $this.settings.showCalcium;
+				$this.settings.showIron = $this.settings.naIron ? false : $this.settings.showIron;
+			}
+
+			//initializing the tab variables
+			//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
+			//for debugging and editing purposes
+			for (x = 1; x < 9; x++){
+				var tab = '';
+				for (y = 1; y <= x; y++){
+					tab += '\t';
+				}
+				eval('var tab' + x + ' = "' + tab + '";');
+			}
+
+		/*
+			//initialize the not applicable image icon in case we need to use it
+			var naValue = '<font class="notApplicable">-&nbsp;</font>';
+		*/
+
+			var borderCSS = '';
+			if ($this.settings.allowNoBorder){
+				borderCSS = 'border: 0;';
+			}
+
+			//creates the html code for the label based on the settings
+			var nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="nf" style="' + borderCSS;
+				if (!$this.settings.allowCustomWidth){
+					nutritionLabel += ' width: ' + $this.settings.width + 'px;">\n';
+				}else{
+					nutritionLabel += ' width: ' + $this.settings.widthCustom + ';">\n';
+				}
+
+				nutritionLabel += tab1 + '<div class="nf-title">' + $this.settings.textNutritionFacts + '</div>\n';
+
+				nutritionLabel += generateServingsHtml2018Version($this.settings, tab1, tab2, tab3);
+
+				nutritionLabel += tab1 + '<div class="nf-bar2"></div>\n';
+				nutritionLabel += tab1 + '<div class="nf-amount-per-serving">Amount per serving</div>\n';
+
+				if ($this.settings.showCalories){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings,  valueIndex,      unitIndex,      naIndex,      attributeText,  itemPropValue,  topDivClass,
+						$this.settings,   'valueCalories', 'unitCalories', 'naCalories', 'textCalories', 'calories',     'nf-calories',
+						//showPercentageCode,  roundFunctionName, roundFunctionRuleName, labelClass,  valueClass, dailyValueIndex
+						false,                'roundCalories',    '',                    '',          'nf-pr',     ''
+					);
+				}
+
+				nutritionLabel += tab1 + '<div class="nf-bar1"></div>\n';
+				nutritionLabel += tab1 + '<div class="nf-line nf-text-right">\n';
+					nutritionLabel += tab2 + '<span class="nf-highlight nf-percent-dv">% Daily Value*</span>\n';
+				nutritionLabel += tab1 + '</div>\n';
+
+				if ($this.settings.showTotalFat){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings, valueIndex,      unitIndex,      naIndex,      attributeText,  itemPropValue,  topDivClass,
+						$this.settings,  'valueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'fatContent',   'nf-line',
+						//showPercentageCode,  roundFunctionName,  roundFunctionRuleName,  labelClass,    valueClass,  dailyValueIndex
+						true,                 'roundFat',         'roundFatRule',         'nf-highlight', '',         'dailyValueTotalFat'
+					);
+				}
+
+				if ($this.settings.showSatFat){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings, valueIndex,    unitIndex,    naIndex,    attributeText,  itemPropValue,         topDivClass,
+						$this.settings,  'valueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',   'saturatedFatContent', 'nf-line nf-indent',
+						//showPercentageCode,  roundFunctionName,  roundFunctionRuleName, labelClass, valueClass,  dailyValueIndex
+						true,                 'roundFat',         'roundFatRule',         '',         '',         'dailyValueSatFat'
+					);
+				}
+
+				if ($this.settings.showTransFat){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings,  valueIndex,      unitIndex,      naIndex,      attributeText,  itemPropValue,     topDivClass,
+						$this.settings,   'valueTransFat', 'unitTransFat', 'naTransFat', 'textTransFat', 'transFatContent', 'nf-line nf-indent',
+						//showPercentageCode,  roundFunctionName,  roundFunctionRuleName, labelClass, valueClass,  dailyValueIndex
+						false,                'roundFat',         '',                     '',         '',         ''
+					);
+				}
+
+				if ($this.settings.showPolyFat){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings,  valueIndex,     unitIndex,     naIndex,     attributeText,  itemPropValue,  topDivClass,
+						$this.settings,   'valuePolyFat', 'unitPolyFat', 'naPolyFat', 'textPolyFat',   '',            'nf-line nf-indent',
+						//showPercentageCode,  roundFunctionName,  roundFunctionRuleName, labelClass, valueClass,  dailyValueIndex
+						false,                'roundFat',          '',                    '',         '',          ''
+					);
+				}
+
+				if ($this.settings.showMonoFat){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings,  valueIndex,     unitIndex,     naIndex,     attributeText,  itemPropValue,  topDivClass,
+						$this.settings,   'valueMonoFat', 'unitMonoFat', 'naMonoFat', 'textMonoFat',   '',            'nf-line nf-indent',
+						//showPercentageCode,  roundFunctionName,  roundFunctionRuleName, labelClass, valueClass,  dailyValueIndex
+						false,                'roundFat',          '',                    '',         '',          ''
+					);
+				}
+
+				if ($this.settings.showCholesterol){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings, valueIndex,         unitIndex,         naIndex,         attributeText,     itemPropValue,        topDivClass,
+						$this.settings,  'valueCholesterol', 'unitCholesterol', 'naCholesterol', 'textCholesterol', 'cholesterolContent', 'nf-line',
+						//showPercentageCode,  roundFunctionName,   roundFunctionRuleName,  labelClass,    valueClass,  dailyValueIndex
+						true,                 'roundCholesterol', 'roundCholesterolRule',  'nf-highlight', '',         'dailyValueCholesterol'
+					);
+				}
+
+				if ($this.settings.showSodium){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings, valueIndex,    unitIndex,    naIndex,    attributeText, itemPropValue,        topDivClass,
+						$this.settings,  'valueSodium', 'unitSodium', 'naSodium', 'textSodium',  'cholesterolContent', 'nf-line',
+						//showPercentageCode,  roundFunctionName, roundFunctionRuleName, labelClass,    valueClass,  dailyValueIndex
+						true,                 'roundSodium',     'roundSodiumRule',     'nf-highlight', '',         'dailyValueSodium'
+					);
+				}
+
+				if ($this.settings.showTotalCarb){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings, valueIndex,       unitIndex,       naIndex,       attributeText,    itemPropValue,         topDivClass,
+						$this.settings,  'valueTotalCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb',  'carbohydrateContent', 'nf-line',
+						//showPercentageCode,  roundFunctionName,            roundFunctionRuleName,            labelClass,    valueClass,  dailyValueIndex
+						true,                 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', 'nf-highlight', '',         'dailyValueCarb'
+					);
+				}
+
+				if ($this.settings.showFibers){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings, valueIndex,    unitIndex,    naIndex,    attributeText,  itemPropValue,  topDivClass,
+						$this.settings,  'valueFibers', 'unitFibers', 'naFibers', 'textFibers',   'fiberContent', 'nf-line nf-indent',
+						//showPercentageCode,  roundFunctionName,            roundFunctionRuleName,           labelClass, valueClass,  dailyValueIndex
+						true,                 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',         '',         'dailyValueFiber'
+					);
+				}
+
+				if ($this.settings.showSugars){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings,  valueIndex,    unitIndex,    naIndex,    attributeText, itemPropValue,  topDivClass,
+						$this.settings,   'valueSugars', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'nf-line nf-indent',
+						//showPercentageCode,  roundFunctionName,           roundFunctionRuleName, labelClass, valueClass, dailyValueIndex
+						false,                'roundCarbFiberSugarProtein', '',                    '',         '',         ''
+					);
+				}
+
+				//xxx
+				if ($this.settings.showAddedSugars){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings, valueIndex,         unitIndex,         naIndex,         attributeText,      itemPropValue, topDivClass,
+						$this.settings,  'valueAddedSugars', 'unitAddedSugars', 'naAddedSugars', 'textAddedSugars1', '',            'nf-line nf-indent2',
+						//showPercentageCode,  roundFunctionName,            roundFunctionRuleName,           labelClass, valueClass,  dailyValueIndex
+						false,                'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',         '',         ''
+					);
+				}
+
+				if ($this.settings.showProteins){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings, valueIndex,      unitIndex,      naIndex,      attributeText,   itemPropValue,    topDivClass,
+						$this.settings,  'valueProteins', 'unitProteins', 'naProteins', 'textProteins',  'proteinContent', 'nf-line',
+						//showPercentageCode,  roundFunctionName,           roundFunctionRuleName, labelClass,    valueClass,  dailyValueIndex
+						false,                'roundCarbFiberSugarProtein', '',                   'nf-highlight', '',         ''
+					);
+				}
+
+			if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018){
+				nutritionLabel += tab1 + '<div class="nf-bar2"></div>\n';
+				nutritionLabel += tab1 + '<div class="nf-vitamins">\n';
+			}
+
+				if ($this.settings.showVitaminD || $this.settings.showCalcium){
+					nutritionLabel += tab2 + '<div class="nf-line clear">\n';
+
+					if ($this.settings.showVitaminD){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,      dailyValueIndex,      unitIndex_base,      unitIndex_percent,      naIndex,      attributeTexts
+							$this.settings,  'valueVitaminD', 'dailyValueVitaminD', 'unitVitaminD_base', 'unitVitaminD_percent', 'naVitaminD', 'textVitaminD'
+						);
+					}
+
+					if ($this.settings.showCalcium){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,     dailyValueIndex,     unitIndex_base,     unitIndex_percent,     naIndex,     attributeTexts
+							$this.settings,  'valueCalcium', 'dailyValueCalcium', 'unitCalcium_base', 'unitCalcium_percent', 'naCalcium', 'textCalcium'
+						);
+					}
+
+					nutritionLabel += tab2 + '</div>\n';
+				}
+
+				if ($this.settings.showIron || $this.settings.showPotassium_2018){
+					nutritionLabel += tab2 + '<div class="nf-line clear">\n';
+
+					if ($this.settings.showIron){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,   dailyValueIndex,  unitIndex_base,  unitIndex_percent,  naIndex,  attributeTexts
+							$this.settings,  'valueIron', 'dailyValueIron',  'unitIron_base', 'unitIron_percent', 'naIron', 'textIron'
+						);
+					}
+
+					if ($this.settings.showPotassium_2018){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,       attributeTexts
+							$this.settings,  'valuePotassium_2018', 'dailyValuePotassium', 'unitPotassium_base', 'unitPotassium_percent', 'naPotassium', 'textPotassium_2018'
+						);
+					}
+
+					nutritionLabel += tab2 + '</div>\n';
+				}
+
+			if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018){
+				nutritionLabel += tab1 + '</div>\n';
+			}
+
+				nutritionLabel += tab1 + '<div class="nf-bar1"></div>\n';
+
+				nutritionLabel += tab1 + '<div class="nf-footnote">\n';
+					nutritionLabel += tab2 + $this.settings.textPercentDaily2018VersionPart1;
+					nutritionLabel += $this.settings.calorieIntake;
+					nutritionLabel += $this.settings.textPercentDaily2018VersionPart2 + '\n';
+
+					if ($this.settings.showIngredients){
+						nutritionLabel += ingredientsHtml2018Version($this.settings);
+					}
+
+					if ($this.settings.showDisclaimer){
+						nutritionLabel += disclaimerHtml2018Version($this.settings);
+					}
+
+				nutritionLabel += tab1 + '</div>\n';
+
+				if ($this.settings.showCalorieDiet){
+					nutritionLabel += calorieDietHtml2018Version($this.settings);
+				}
+
+				if ($this.settings.showBottomLink){
+					nutritionLabel += bottomLinkHtml2018Version($this.settings, tab1);
+				}
+
+				if ($this.settings.showCustomFooter){
+					nutritionLabel += tab1 + '<div class="nf-customFooter">' + $this.settings.valueCustomFooter + '</div>\n';
+				}
+
+			nutritionLabel += '</div><!-- closing class="nutritionLabel" -->\n';
+			//returns the html for the nutrition label
+			return nutritionLabel += '<div class="naTooltip">Data not available</div>\n';
+		}//end of => generate2018
 	};//end of => NutritionLabel.prototype
 
 })(jQuery);
