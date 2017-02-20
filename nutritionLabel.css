@@ -398,7 +398,9 @@
 .clear:after {
     clear: both;
 }
-
+.nf-ingredientListDiv {
+	padding-top: 8px;
+}
 .nf-ingredientListDiv.scroll {
 	overflow-y: scroll !important;
 }
@@ -406,7 +408,21 @@
 #nf-calcDisclaimer.scroll {
 	overflow-y: scroll !important;
 }
-
+.nf-tblCalorieDiet {
+	margin-top: 5px;
+	width: 100%;
+}
+.nf-tblCalorieDiet tr th,
+.nf-tblCalorieDiet tr td {
+	font-size: .80em;
+}
+.nf-customFooter,
+.nf-homeLinkPrint {
+	font-size: .80em;
+}
+h2 {
+	font-size: 1em;
+}
 /*******************************************************************************************************************
 *************************************END OF THE 2018 LABEL RELATED STYLES******************************************
 ******************************************************************************************************************/
