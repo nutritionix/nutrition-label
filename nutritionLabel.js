@@ -1537,76 +1537,6 @@
 	}
 
 
-	//generate and return the html code for the calorie diets area
-	function calorieDietHtml2018Version($localSettings){
-		//initializing the tab variables
-		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
-		//for debugging and editing purposes
-		for (x = 2; x < 6; x++){
-			var tab = '';
-			for (y = 1; y <= x; y++){
-				tab += '\t';
-			}
-			eval('var localTab' + x + ' = "' + tab + '";');
-		}
-
-		var localNutritionLabel = localTab2 + '<table class="nf-tblCalorieDiet">\n';
-			localNutritionLabel += localTab3 + '<thead>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<th>&nbsp;</th>\n';
-					localNutritionLabel += localTab5 + '<th>Calories</th>\n';
-					localNutritionLabel += localTab5 + '<th>' + $localSettings.valueCol1CalorieDiet + '</th>\n';
-					localNutritionLabel += localTab5 + '<th>' + $localSettings.valueCol2CalorieDiet + '</th>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-			localNutritionLabel += localTab3 + '</thead>\n';
-			localNutritionLabel += localTab3 + '<tbody>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>Total Fat</td>\n';
-					localNutritionLabel += localTab5 + '<td>Less than</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryTotalFat + 'g</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryTotalFat + 'g</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>&nbsp;&nbsp; Saturated Fat</td>\n';
-					localNutritionLabel += localTab5 + '<td>Less than</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietarySatFat + 'g</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietarySatFat + 'g</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>Cholesterol</td>\n';
-					localNutritionLabel += localTab5 + '<td>Less than</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryCholesterol + 'mg</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryCholesterol + 'mg</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>Sodium</td>\n';
-					localNutritionLabel += localTab5 + '<td>Less than</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietarySodium + 'mg</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietarySodium + 'mg</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>Potassium</td>\n';
-					localNutritionLabel += localTab5 + '<td>Less than</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryPotassium + 'mg</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryPotassium + 'mg</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>Total Carbohydrate</td>\n';
-					localNutritionLabel += localTab5 + '<td>&nbsp;</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryTotalCarb + 'g</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryTotalCarb + 'g</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>&nbsp;&nbsp; Dietary</td>\n';
-					localNutritionLabel += localTab5 + '<td>&nbsp;</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1Dietary + 'g</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2Dietary + 'g</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-			localNutritionLabel += localTab3 + '</tbody>\n';
-		return localNutritionLabel += localTab2 + '</table>\n';
-	}//end of => calorieDietHtml2018Version($localSettings)
-
-
 	//generate and return the html code for the bottom link area
 	function bottomLinkHtml2018Version($localSettings, localTab1){
 		var localNutritionLabel = localTab1 + '<div class="nf-spaceAbove"></div>\n';
@@ -2155,10 +2085,6 @@
 					}
 
 				nutritionLabel += tab1 + '</div>\n';
-
-				if ($this.settings.showCalorieDiet){
-					nutritionLabel += calorieDietHtml2018Version($this.settings);
-				}
 
 				if ($this.settings.showBottomLink){
 					nutritionLabel += bottomLinkHtml2018Version($this.settings, tab1);
