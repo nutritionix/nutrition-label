@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+	<link rel='stylesheet' type='text/css' media='screen' href='../../nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='./../css/demo.css'>
+
+	<!-- google webfont for nutrition label -->
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Archivo+Black" />
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<ul class="nav nav-sidebar">
+				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test1"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #1</h3>
+					<p>Giving specific nutrition label values and hiding some of the parts of the nutrition label</p>
+<pre id="pre1">
+$('#test1').nutritionLabel({
+	'showServingUnitQuantity' : false,
+	'itemName' : 'Bleu Cheese Dressing',
+	'ingredientList' : 'Bleu Cheese Dressing',
+
+	'decimalPlacesForQuantityTextbox' : 2,
+	'valueServingUnitQuantity' : 1,
+
+	'allowFDARounding' : true,
+	'decimalPlacesForNutrition' : 2,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valuePotassium' : 210,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminA' : 1.22,
+	'valueVitaminC' : 4.22,
+	'valueCalcium' : 7.22,
+	'valueIron' : 11.22
+});
+</pre>
+					<pre>http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+		</div>
+	</div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="../../nutritionLabel-min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	eval( eval( $('#pre1').html() ) );
+});
+</script>
+
+</body>
+</html>

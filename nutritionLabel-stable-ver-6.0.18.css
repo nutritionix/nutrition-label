@@ -4,12 +4,12 @@
  *                                                                                                                                                  |
  * This plugin allows you to create a fully customizable nutrition label                                                                            |
  *                                                                                                                                                  |
- * @authors             Leo Joseph Gajitos <leejay22@gmail.com, Rommel Malang <genesis23rd@gmail.com> and Yurko Fedoriv <yurko.fedoriv@gmail.com>   |
- * @copyright           Copyright (c) 2016 Nutritionix.                                                                                             |
+ * @authors             Leo Joseph Gajitos <leejay22@gmail.com>, Rommel Malang <genesis23rd@gmail.com> and Yurko Fedoriv <yurko.fedoriv@gmail.com>  |
+ * @copyright           Copyright (c) 2017 Nutritionix.                                                                                             |
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.02                                                                                                                      |
+ * @current version     7.0.3                                                                                                                       |
  * @stable version      6.0.18                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source"                                            |

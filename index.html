@@ -4,12 +4,12 @@
  *                                                                                                                                                  |
  * This plugin allows you to create a fully customizable nutrition label                                                                            |
  *                                                                                                                                                  |
- * @authors             Leo Joseph Gajitos <leejay22@gmail.com, Rommel Malang <genesis23rd@gmail.com> and Yurko Fedoriv <yurko.fedoriv@gmail.com>   |
- * @copyright           Copyright (c) 2016 Nutritionix.                                                                                             |
+ * @authors             Leo Joseph Gajitos <leejay22@gmail.com>, Rommel Malang <genesis23rd@gmail.com> and Yurko Fedoriv <yurko.fedoriv@gmail.com>  |
+ * @copyright           Copyright (c) 2017 Nutritionix.                                                                                             |
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.02                                                                                                                      |
+ * @current version     7.0.3                                                                                                                       |
  * @stable version      6.0.18                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source"                                            |
@@ -29,22 +29,21 @@
 <body>
 <div class="container">
 	<div class="hero-unit">
-		<h1>Nutrition Label version 7.0.02</h1>
+		<h1>Nutrition Label version 7.0.3</h1>
 		<h4>from Nutritionix</h4>
 		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
 		<p>
 			This plugin can be used to create customized nutrition labels like the ones that can be seen on
 			<a href="http://www.nutritionix.com" target="_newDemo">http://www.nutritionix.com</a> for normal html page labels and
-			<a href="http:m.nutritionix.com" target="_newDemo">http://m.nutritionix.com</a> for mobile html page labels.<br/><br/>
+			<a href="http://m.nutritionix.com" target="_newDemo">http://m.nutritionix.com</a> for mobile html page labels.<br/><br/>
 
 			You can read more about this on this
 			<a href="http://blog.nutritionix.com/2013/03/08/introducing-open-nutrition-label-project/" target="_newDemo">blog post</a><br/><br/>
 
-			Demo Pages:<br/>
+			Version 7.0.3 and above now allow users to use the Legacy version (original version of the plugin) or the
+			<a href="https://www.fda.gov/Food/GuidanceRegulation/GuidanceDocumentsRegulatoryInformation/LabelingNutrition/ucm385663.htm" target="_2018Fda">2018 version</a><br/><br/>
+
 			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/demo/demo.html" target="_newDemo">Main Demo Page</a><br/>
-			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/demo/demo-mobile" target="_newDemo">Mobile Demo Page</a><br/>
-			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/demo/demo-texbox-case1-a.html" target="_newDemo">Textbox Demo Case 1a</a><br/>
-			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/demo/demo-texbox-case1-b.html" target="_newDemo">Textbox Demo Case 1b</a><br/>
 		</p>
 	</div>
 	<p>These are the default values on the plugin that you need to change to create a customized nutrition label.</p>
@@ -102,8 +101,7 @@ nameBottomLink : 'Nutritionix',
 //this can't be less than zero, all values less than zero is converted to zero
 //the textbox to change this value is visible / enabled by default
 //if the initial value of the serving size unit quantity is less than or equal to zero, it is converted to 1.0
-//when enabled, user can change this value by clicking the arrow or changing the value on the textbox and
-	//pressing enter. the value on the label will be updated automatically
+//when enabled, user can change this value by clicking the arrow or changing the value on the textbox and pressing enter. the value on the label will be updated automatically
 //different scenarios and the result if this feature is enabled
 	//NOTE 1: [ ] => means a textbox will be shown
 	//NOTE 2: on all cases below showServingUnitQuantityTextbox == true AND showServingUnitQuantity == true
@@ -149,6 +147,10 @@ dailyValueSodium : 2400,
 dailyValuePotassium: 3500,
 dailyValueCarb : 300,
 dailyValueFiber : 25,
+dailyValueCalcium : 1000,
+dailyValueIron : 18,
+dailyValueVitaminD : 400,
+dailyValueAddedSugar : 50,
 
 //these values can be change to hide some nutrition values
 showCalories : true,
@@ -160,13 +162,16 @@ showPolyFat : true,
 showMonoFat : true,
 showCholesterol : true,
 showSodium : true,
-showPotassium: false,
+showPotassium: false, //this is for the legacy version, this is the only value that is default to be hidden
+showPotassium_2018: true, //this is for the 2018 version
 showTotalCarb : true,
 showFibers : true,
 showSugars : true,
+showAddedSugars : true,
 showProteins : true,
 showVitaminA : true,
 showVitaminC : true,
+showVitaminD : true,
 showCalcium : true,
 showIron : true,
 
@@ -206,13 +211,16 @@ naPolyFat : false,
 naMonoFat : false,
 naCholesterol : false,
 naSodium : false,
-naPotassium: false,
+naPotassium: false, //this is for the legacy version
+naPotassium_2018: false, //this is for the 2018 version
 naTotalCarb : false,
 naFibers : false,
 naSugars : false,
+naAddedSugars : false,
 naProteins : false,
 naVitaminA : false,
 naVitaminC : false,
+naVitaminD : false,
 naCalcium : false,
 naIron : false,
 
@@ -228,13 +236,16 @@ valuePolyFat : 0,
 valueMonoFat : 0,
 valueCholesterol : 0,
 valueSodium : 0,
-valuePotassium: 0,
+valuePotassium : 0, //this is for the legacy version
+valuePotassium_2018: 0, //this is for the 2018 version
 valueTotalCarb : 0,
 valueFibers : 0,
 valueSugars : 0,
+valueAddedSugars : 0,
 valueProteins : 0,
 valueVitaminA : 0,
 valueVitaminC : 0,
+valueVitaminD : 0,
 valueCalcium : 0,
 valueIron : 0,
 
@@ -248,15 +259,24 @@ unitPolyFat : 'g',
 unitMonoFat : 'g',
 unitCholesterol : 'mg',
 unitSodium : 'mg',
-unitPotassium: 'mg',
+unitPotassium: 'mg', //this is for the legacy version
+unitPotassium_base: 'mg', //this is for the 2018 version
+unitPotassium_percent: '%', //this is for the 2018 version
 unitTotalCarb : 'g',
 unitFibers : 'g',
 unitSugars : 'g',
+unitAddedSugars : 'g',
 unitProteins : 'g',
 unitVitaminA : '%',
 unitVitaminC : '%',
+unitVitaminD_base : 'mcg', //this is for the 2018 version
+unitVitaminD_percent : '%', //this is for the 2018 version
 unitCalcium : '%',
+unitCalcium_base : 'mg', //this is for the 2018 version
+unitCalcium_percent : '%', //this is for the 2018 version
 unitIron : '%',
+unitIron_base : 'mg', //this is for the 2018 version
+unitIron_percent : '%', //this is for the 2018 version
 
 //these are the values for the optional calorie diet
 valueCol1CalorieDiet : 2000,
@@ -291,18 +311,24 @@ textPolyFat : 'Polyunsaturated Fat',
 textMonoFat : 'Monounsaturated Fat',
 textCholesterol : 'Cholesterol',
 textSodium : 'Sodium',
-textPotassium: 'Potassium',
+textPotassium : 'Potassium', //this is for the legacy version
+textPotassium_2018 : 'Potas.', //this is for the 2018 version
 textTotalCarb : 'Total Carbohydrates',
 textFibers : 'Dietary Fiber',
 textSugars : 'Sugars',
+textAddedSugars1 : 'Includes ',
+textAddedSugars2 : ' Added Sugars',
 textProteins : 'Protein',
 textVitaminA : 'Vitamin A',
 textVitaminC : 'Vitamin C',
+textVitaminD : 'Vit. D',
 textCalcium : 'Calcium',
 textIron : 'Iron',
 ingredientList : 'None',
 textPercentDailyPart1 : 'Percent Daily Values are based on a',
 textPercentDailyPart2 : 'calorie diet',
+textPercentDaily2018VersionPart1 : 'The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. ',
+textPercentDaily2018VersionPart2 : ' calories a day is used for general nutrition advice.',
 textGoogleAnalyticsEventCategory : 'Nutrition Label',
 textGoogleAnalyticsEventActionUpArrow : 'Quantity Up Arrow Clicked',
 textGoogleAnalyticsEventActionDownArrow : 'Quantity Down Arrow Clicked',
@@ -310,7 +336,7 @@ textGoogleAnalyticsEventActionTextbox : 'Quantity Textbox Changed',
 
 showLegacyVersion: true
 	</pre>
-	<p>There are a lot of sample on our <a href="demo/demo.html">demo page</a> on how the plugin can be used</p>
+	<p>There are a lot of sample on our <a href="demo/demo.html">demo page</a> on how the plugin can be used and how it can be customized to fit your need</p>
 </div>
 </body>
 </html>
