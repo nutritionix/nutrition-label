@@ -295,6 +295,7 @@
 }
 
 .nf-title,
+.nf-servingUnitQuantity,
 .nf-highlight,
 .nf-serving,
 .nf-amount-per-serving,
@@ -316,6 +317,7 @@
 .nf-serving {
 	font-size: 1.2em;
 	line-height: normal;
+	padding: 3px 0;
 }
 
 .nf-amount-per-serving {
@@ -439,6 +441,7 @@
 	border-color: #333333 transparent transparent transparent;
 }
 
+.nf-unitQuantityBox,
 .nf-modifier-field {
 	width: 26px;
 	text-align: center;
@@ -446,6 +449,8 @@
 	border: 1px solid #666;
 	font-size: 1em;
 	float: left;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .nf-item-name {
@@ -469,6 +474,9 @@ div.nf-unitQuantityUp:hover, div.nf-unitQuantityDown:hover{
 
 .customFooter, .nf-customFooter{
 	padding-top: 10px;
+}
+.nf-servingUnitQuantity {
+	display: inline-block;
 }
 /*******************************************************************************************************************
 *************************************END OF THE 2018 LABEL RELATED STYLES******************************************

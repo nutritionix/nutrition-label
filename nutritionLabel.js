@@ -1626,7 +1626,7 @@
 
 		if ($localSettings.showServingUnitQuantity){
 			if ($localSettings.originalServingUnitQuantity > 0){
-				localNutritionLabel += $localSettings.textServingSize;
+				localNutritionLabel += '<span class="nf-serving">' + $localSettings.textServingSize + '</span>';
 					localNutritionLabel += $localSettings.showServingUnitQuantityTextbox ?
 						'' :
 						localTab3 + '<div class="nf-servingSizeText nf-fl" itemprop="servingSize">' +
@@ -1644,7 +1644,7 @@
 						unitAddedClass = 'nf-unitHasTextbox';
 						gramsAddedClass = 'nf-gramsHasTextbox';
 
-						localNutritionLabel += localTab3 + '<div class="nf-rel nf-servingSizeField nf-fl">\n';
+						localNutritionLabel += localTab3 + '<div class="">\n';
 
 						var textboxClass = 'nf-unitQuantityBox';
 						if (!$localSettings.hideTextboxArrows){
