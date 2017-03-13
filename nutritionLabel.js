@@ -1576,6 +1576,7 @@
 					localNutritionLabel += localTab3 + '</div><!-- closing class="nf-arrows" -->\n';
 				}else{
 					textboxClass = 'nf-unitQuantityBox nf-modifier-field nf-arrowsAreHidden';
+					var hideArrowsClass = "nf-fixed-serving "
 				}
 
 					localNutritionLabel += localTab3 + '<input type="text" value="' +
@@ -1590,7 +1591,7 @@
 							) + '" ';
 						localNutritionLabel += 'id="nf-nixLabelBeforeQuantity">\n';
 
-				var itemNameClass = 'nf-fixed-serving inline';
+				var itemNameClass = hideArrowsClass + 'inline';
 			}
 		}//end of => if ($localSettings.showServingUnitQuantityTextbox){
 
