@@ -1590,7 +1590,7 @@
 							) + '" ';
 						localNutritionLabel += 'id="nf-nixLabelBeforeQuantity">\n';
 
-				var itemNameClass = 'inline';
+				var itemNameClass = 'nf-fixed-serving inline';
 			}
 		}//end of => if ($localSettings.showServingUnitQuantityTextbox){
 
