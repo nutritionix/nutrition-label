@@ -2019,14 +2019,14 @@
 			var servingSizeIsHidden = sevingUnitQuantityHtml2018Result.servingSizeIsHidden;
 			var servingContainerIsHidden = sevingUnitQuantityHtml2018Result.servingContainerIsHidden;
 
-			var showLineDiv = ($this.settings.showServingsPerContainer && $this.settings.valueServingPerContainer > 0) || $this.settings.showItemName ||
-					(!$this.settings.showItemName && servingSizeIsHidden && servingContainerIsHidden);
+			var showLineDiv = $this.settings.showItemName || (!$this.settings.showItemName && servingSizeIsHidden && servingContainerIsHidden) ||
+				($this.settings.showServingUnitQuantity && $this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingsPerContainer && $this.settings.valueServingPerContainer > 0);
 
 			if (showLineDiv){
 				nutritionLabel += tab1 + '<div class="nf-line">\n';
 			}
 
-			if ($this.settings.showServingsPerContainer && $this.settings.valueServingPerContainer > 0){
+			if ($this.settings.showServingUnitQuantity && $this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingsPerContainer && $this.settings.valueServingPerContainer > 0){
 				nutritionLabel += tab2 + '<div class="nf-per-container">';
 					nutritionLabel += parseFloat(
 						$this.settings.valueServingPerContainer.toFixed($this.settings.decimalPlacesForNutrition)
