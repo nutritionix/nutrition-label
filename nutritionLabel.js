@@ -1583,7 +1583,7 @@
 							parseFloat(
 								$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
 							) + '" ';
-						localNutritionLabel += 'class="' + textboxClass + '">\n';
+						localNutritionLabel += 'class="' + textboxClass + '" data-role="none">\n';
 
 					localNutritionLabel += localTab3 + '<input type="hidden" value="' +
 							parseFloat(
