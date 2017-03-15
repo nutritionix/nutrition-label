@@ -1568,6 +1568,7 @@
 						$localSettings.originalServingUnitQuantity <= 0
 					)
 			){
+				var hideArrowsClass = '';
 				var textboxClass = 'nf-unitQuantityBox nf-modifier-field';
 				if (!$localSettings.hideTextboxArrows){
 					localNutritionLabel += localTab3 + '<div class="nf-arrows">\n';
@@ -1576,7 +1577,7 @@
 					localNutritionLabel += localTab3 + '</div><!-- closing class="nf-arrows" -->\n';
 				}else{
 					textboxClass = 'nf-unitQuantityBox nf-modifier-field nf-arrowsAreHidden';
-					var hideArrowsClass = "nf-fixed-serving "
+					hideArrowsClass = 'nf-fixed-serving ';
 				}
 
 					localNutritionLabel += localTab3 + '<input type="text" value="' +
@@ -1592,11 +1593,15 @@
 						localNutritionLabel += 'id="nf-nixLabelBeforeQuantity">\n';
 
 				var itemNameClass = hideArrowsClass + 'inline';
+			}else{
+				itemNameClass += ' nf-noQuantityTextbox';
 			}
-		}//end of => if ($localSettings.showServingUnitQuantityTextbox){
+		//end of => if ($localSettings.showServingUnitQuantityTextbox)
+		}else{
+			itemNameClass += ' nf-noQuantityTextbox';
+		}
 
 				localNutritionLabel += localTab4 + '<div class="nf-item-name ' + itemNameClass + '">';
-				//localNutritionLabel += localTab4 + '<div class="nf-item-name">';
 					localNutritionLabel += localTab5 + $localSettings.itemName;
 				if ($localSettings.showBrandName && $localSettings.brandName != null && $localSettings.brandName != ''){
 					localNutritionLabel += ' - ' + $localSettings.brandName;
