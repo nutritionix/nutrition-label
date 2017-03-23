@@ -1632,12 +1632,16 @@
 
 		if ($localSettings.showServingUnitQuantity){
 			if ($localSettings.originalServingUnitQuantity > 0){
-				localNutritionLabel += '<span class="nf-serving">' + $localSettings.textServingSize + '</span>';
-					localNutritionLabel += $localSettings.showServingUnitQuantityTextbox ?
-						'' :
-						localTab3 + '<div class="nf-servingSizeText nf-fl" itemprop="servingSize">' +
-							parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
-						'</div>\n';
+				localNutritionLabel += localTab1 + '<span class="nf-serving">' + $localSettings.textServingSize + '</span>\n';
+
+				localNutritionLabel += localTab1 + '<div class="nf-serving">\n';
+					localNutritionLabel += localTab2 + '<div class="">\n';
+
+				localNutritionLabel += $localSettings.showServingUnitQuantityTextbox ?
+					'' :
+					localTab3 + '<div class="nf-servingSizeText nf-fl" itemprop="servingSize">' +
+						parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
+					'</div>\n';
 
 				var unitAddedClass = '';
 				var gramsAddedClass = '';
@@ -1650,9 +1654,7 @@
 						unitAddedClass = 'nf-unitHasTextbox';
 						gramsAddedClass = 'nf-gramsHasTextbox';
 
-						localNutritionLabel += localTab3 + '<div class="">\n';
-
-						var textboxClass = 'nf-unitQuantityBox';
+						var textboxClass = 'nf-unitQuantityBox nf-modifier-field';
 						if (!$localSettings.hideTextboxArrows){
 							localNutritionLabel += localTab3 + '<div class="nf-arrows">\n';
 								localNutritionLabel += localTab4 + '<div class="nf-unitQuantityUp nf-arrow-up" rel="nofollow"></div>\n';
@@ -1662,26 +1664,25 @@
 							textboxClass = 'nf-unitQuantityBox nf-modifier-field nf-arrowsAreHidden';
 						}
 
-							localNutritionLabel += localTab4 + '<input type="text" value="' +
+							localNutritionLabel += localTab3 + '<input type="text" data-role="none" value="' +
 									parseFloat(
 										$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
 									) + '" ';
 								localNutritionLabel += 'class="' + textboxClass + '">\n';
 
-							localNutritionLabel += localTab4 + '<input type="hidden" value="' +
+							localNutritionLabel += localTab3 + '<input type="hidden" value="' +
 									parseFloat(
 										$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
 									) + '" ';
 								localNutritionLabel += 'id="nf-nixLabelBeforeQuantity">\n';
 
-						localNutritionLabel += localTab3 + '</div><!-- closing class="nf-servingSizeField" -->\n';
 					}else if ($localSettings.originalServingUnitQuantity > 0 && $localSettings.showServingUnitQuantityTextbox){
 							localNutritionLabel += localTab3 + '<div class="nf-servingUnitQuantity" itemprop="servingSize">' +
 								parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
 							'</div>\n';
 					}
 
-						localNutritionLabel += localTab3 + '<div class="nf-servingUnit nf-fl ' + unitAddedClass + '">' + $localSettings.valueServingSizeUnit + '</div>\n';
+						localNutritionLabel += localTab3 + '<div class="nf-servingUnit nf-fl nf-item-name ' + unitAddedClass + '">' + $localSettings.valueServingSizeUnit + '</div>\n';
 
 				}else if ($localSettings.originalServingUnitQuantity > 0 && $localSettings.showServingUnitQuantityTextbox){
 						localNutritionLabel += localTab3 + '<div class="nf-servingUnitQuantity nf-fl" itemprop="servingSize">' +
@@ -1694,6 +1695,10 @@
 							parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) )
 						+ 'g</span>)</div>\n';
 				}
+
+					localNutritionLabel += localTab2 + '</div>\n';
+				localNutritionLabel += localTab1 + '</div><!-- closing class="nf-serving" -->\n';
+
 			}else{
 				localServingSizeIsHidden = true;
 			}//end of => else => if ($localSettings.originalServingUnitQuantity > 0){
