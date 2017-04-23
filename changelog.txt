@@ -1,5 +1,5 @@
 
-version 7.0.4 - March XX, 2017
+version 7.0.4 - April XX, 2017
  - https://github.com/nutritionix/nutrition-label/issues/59
 
 ------------------------------------------------------------------------------------------------------

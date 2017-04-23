@@ -317,7 +317,6 @@
 .nf-serving {
 	font-size: 1.2em;
 	line-height: normal;
-	padding: 3px 0;
 }
 
 .nf-amount-per-serving {
@@ -449,8 +448,6 @@
 	border: 1px solid #666;
 	font-size: 1em;
 	float: left;
-	padding: 0;
-	font-family: Arial, Helvetica, sans-serif;
 }
 
 .nf-item-name {
@@ -481,6 +478,10 @@ div.nf-unitQuantityUp:hover, div.nf-unitQuantityDown:hover{
 
 .nf-item-name.nf-fixed-serving {
 	margin-left: 35px;
+}
+
+.nf-item-name.no-indent {
+    margin-left: 0;
 }
 /*******************************************************************************************************************
 *************************************END OF THE 2018 LABEL RELATED STYLES******************************************
