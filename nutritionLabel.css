@@ -446,8 +446,10 @@
 	text-align: center;
 	line-height: normal;
 	border: 1px solid #666;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1em;
 	float: left;
+	padding: 0;
 }
 
 .nf-item-name {
@@ -482,6 +484,9 @@ div.nf-unitQuantityUp:hover, div.nf-unitQuantityDown:hover{
 
 .nf-item-name.no-indent {
     margin-left: 0;
+}
+.nf-arrowsAreHidden + input + .nf-item-name {
+	margin-left: 35px;
 }
 /*******************************************************************************************************************
 *************************************END OF THE 2018 LABEL RELATED STYLES******************************************
