@@ -1572,7 +1572,7 @@
 					) + '" id="nf-nixLabelBeforeQuantity">\n\n';
 
 				var itemNameClass = hideArrowsClass;
-			}else{
+			}else if (!$localSettings.showServingUnitQuantity){
 				itemNameClass += 'no-indent';
 			}
 		//end of => if ($localSettings.showServingUnitQuantityTextbox)
@@ -1675,7 +1675,7 @@
 					}
 
 					if (!$localSettings.showItemName){
-						localNutritionLabel += localTab5 + '<div>\n';
+						localNutritionLabel += localTab5 + '<div class="nf-item-name">\n';
 							localNutritionLabel += localTab6 + $localSettings.valueServingSizeUnit + '\n';
 						localNutritionLabel += localTab5 + '</div>\n';
 					}
