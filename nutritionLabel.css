@@ -279,7 +279,6 @@
 ******************************************************************************************************************/
 .nf {
 	border: 1px solid #000;
-	max-width: 230px;
 	padding: 6px;
 	box-sizing: border-box;
 	font-family: Arial, Helvetica, sans-serif;
@@ -425,7 +424,7 @@
 
 .nf-arrows {
 	float: left;
-	padding: 2px 5px 0 0;
+	padding: 4px 5px 0 0;
 }
 
 .nf-arrow-up {
@@ -450,12 +449,14 @@
 	font-size: 1em;
 	float: left;
 	padding: 0;
+	margin-top: 3px;
 }
 
 .nf-item-name {
 	margin-left: 50px;
 	line-height: 1.25em;
-	padding-top: 2px;
+	padding-top: 4px;
+	padding-bottom: 3px;
 }
 
 .nutritionLabel .nf-item-name.inline {
