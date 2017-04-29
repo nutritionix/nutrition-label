@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
-	<link rel='stylesheet' type='text/css' media='screen' href='../../nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='../../css/nutritionLabel-min.css'>
 	<link rel='stylesheet' type='text/css' media='screen' href='./../css/demo.css'>
 
 	<!-- google webfont for nutrition label -->
@@ -45,11 +45,10 @@ $('#test1').nutritionLabel({
 	'valueFibers' : '<1g',
 	'valueSugars' : 'n/a',
 	'valueProteins' : 'not applicable',
-	'valueVitaminD' : 'None',
-	'valuePotassium_2018' : '~10%',
+	'valueVitaminA' : 'None',
+	'valueVitaminC' : '~10%',
 	'valueCalcium' : '<5%',
-	'valueIron' : '<1%',
-	'showLegacyVersion' : false
+	'valueIron' : '<1%'
 });
 </pre>
 				</div>
@@ -82,11 +81,10 @@ $('#test2').nutritionLabel({
 	'valueFibers' : 0,
 	'valueSugars' : 3,
 	'valueProteins' : 3,
-	'valueVitaminD' : 0,
-	'valuePotassium_2018' : 0,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 0,
 	'valueCalcium' : 0,
-	'valueIron' : 0,
-	'showLegacyVersion' : false
+	'valueIron' : 0
 });
 </pre>
 				</div>
@@ -109,7 +107,7 @@ $('#test3').nutritionLabel({
 	'showMonoFat' : false,
 	'showTransFat' : false,
 	'showFibers' : false,
-	'showVitaminD' : false,
+	'showVitaminA' : false,
 	'showVitaminC' : false,
 	'showCalcium' : false,
 	'showIron' : false,
@@ -126,8 +124,7 @@ $('#test3').nutritionLabel({
 	'valueSodium' : 430,
 	'valueTotalCarb' : 44,
 	'valueSugars' : 24,
-	'valueProteins' : 4,
-	'showLegacyVersion' : false
+	'valueProteins' : 4
 });
 </pre>
 				</div>
@@ -151,7 +148,7 @@ $('#test4').nutritionLabel({
 	'showPolyFat' : false,
 	'showMonoFat' : false,
 	'showTransFat' : false,
-	'showVitaminD' : false,
+	'showVitaminA' : false,
 	'showVitaminC' : false,
 	'showCalcium' : false,
 	'showIron' : false,
@@ -165,8 +162,7 @@ $('#test4').nutritionLabel({
 	'valueTotalCarb' : 20,
 	'valueFibers' : 0,
 	'valueSugars' : 18,
-	'valueProteins' : 48,
-	'showLegacyVersion' : false
+	'valueProteins' : 48
 });
 </pre>
 				</div>
@@ -179,7 +175,7 @@ $('#test4').nutritionLabel({
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript" src="../../nutritionLabel-min.js"></script>
+<script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );

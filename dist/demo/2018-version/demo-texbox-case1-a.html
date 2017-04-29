@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
-	<link rel='stylesheet' type='text/css' media='screen' href='../../nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='../../css/nutritionLabel-min.css'>
 	<link rel='stylesheet' type='text/css' media='screen' href='./../css/demo.css'>
 
 	<!-- google webfont for nutrition label -->
@@ -13,15 +13,15 @@
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
-				<li><a href="#test1"><i class="icon-chevron-right"></i>Case #1-A-1-a-2</a></li>
-				<li><a href="#test2"><i class="icon-chevron-right"></i>Case #1-B-1-a-2</a></li>
-				<li><a href="#test3"><i class="icon-chevron-right"></i>Case #1-C-1-a-2</a></li>
-				<li><a href="#test4"><i class="icon-chevron-right"></i>Case #1-D-1-a-2</a></li>
+				<li><a href="#test1"><i class="icon-chevron-right"></i>Case #1-A-1-a-1</a></li>
+				<li><a href="#test2"><i class="icon-chevron-right"></i>Case #1-B-1-a-1</a></li>
+				<li><a href="#test3"><i class="icon-chevron-right"></i>Case #1-C-1-a-1</a></li>
+				<li><a href="#test4"><i class="icon-chevron-right"></i>Case #1-D-1-a-1</a></li>
 
-				<li><a href="#test5"><i class="icon-chevron-right"></i>Case #1-A-2-a-2</a></li>
-				<li><a href="#test6"><i class="icon-chevron-right"></i>Case #1-B-2-a-2</a></li>
-				<li><a href="#test7"><i class="icon-chevron-right"></i>Case #1-C-2-a-2</a></li>
-				<li><a href="#test8"><i class="icon-chevron-right"></i>Case #1-D-2-a-2</a></li>
+				<li><a href="#test5"><i class="icon-chevron-right"></i>Case #1-A-2-a-1</a></li>
+				<li><a href="#test6"><i class="icon-chevron-right"></i>Case #1-B-2-a-1</a></li>
+				<li><a href="#test7"><i class="icon-chevron-right"></i>Case #1-C-2-a-1</a></li>
+				<li><a href="#test8"><i class="icon-chevron-right"></i>Case #1-D-2-a-1</a></li>
 			</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -37,18 +37,19 @@
 					<div id="test1"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Case #1-A-1-a-2</h3>
+					<h3>Case #1-A-1-a-1</h3>
 					<p>
 showServingUnitQuantityTextbox == true<br/>
 showServingUnitQuantity == true<br/>
 valueServingSizeUnit != '' (AND NOT null)<br/>
 valueServingUnitQuantity >= 0 (AND NOT N/A)<br/>
-valueServingWeightGrams > 0 (making this part hidden)
+showItemNameAtTheTop == false<br/>
+valueServingWeightGrams > 0 (making this part visible)
 					</p>
 <pre id="pre1">
 $('#test1').nutritionLabel({
 	'valueServingPerContainer' : 1.33,
-	'valueServingWeightGrams' : 0,
+	'valueServingWeightGrams' : 2.56,
 
 	'showServingsPerContainer' : true,
 
@@ -89,19 +90,20 @@ $('#test1').nutritionLabel({
 					<div id="test2"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Case #1-B-1-a-2</h3>
+					<h3>Case #1-B-1-a-1</h3>
 					<p>
 showServingUnitQuantityTextbox == true<br/>
 showServingUnitQuantity == true<br/>
 valueServingSizeUnit != '' (AND NOT null)<br/>
 valueServingUnitQuantity <= 0 (AND NOT N/A)<br/>
 showItemName == true<br/>
-valueServingWeightGrams > 0 (making this part hidden)
+showItemNameAtTheTop == false<br/>
+valueServingWeightGrams > 0 (making this part visible)
 					</p>
 <pre id="pre2">
 $('#test2').nutritionLabel({
 	'valueServingPerContainer' : 1.33,
-	'valueServingWeightGrams' : 0,
+	'valueServingWeightGrams' : 2.56,
 
 	'showServingsPerContainer' : true,
 
@@ -142,18 +144,18 @@ $('#test2').nutritionLabel({
 					<div id="test3"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Case #1-C-1-a-2</h3>
+					<h3>Case #1-C-1-a-1</h3>
 					<p>
 showServingUnitQuantityTextbox == true<br/>
 showServingUnitQuantity == false<br/>
 valueServingSizeUnit != '' (AND NOT null)<br/>
 valueServingUnitQuantity >= 0 (AND NOT N/A)<br/>
-valueServingWeightGrams > 0 (making this part hidden)
+valueServingWeightGrams > 0 (making this part visible)
 					</p>
 <pre id="pre3">
 $('#test3').nutritionLabel({
 	'valueServingPerContainer' : 1.33,
-	'valueServingWeightGrams' : 0,
+	'valueServingWeightGrams' : 2.56,
 
 	'showServingsPerContainer' : true,
 	'showServingUnitQuantity' : false,
@@ -195,19 +197,19 @@ $('#test3').nutritionLabel({
 					<div id="test4"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Case #1-D-1-a-2</h3>
+					<h3>Case #1-D-1-a-1</h3>
 					<p>
 showServingUnitQuantityTextbox == true<br/>
 showServingUnitQuantity == true<br/>
 valueServingSizeUnit != '' (AND NOT null)<br/>
 valueServingUnitQuantity <= 0 (AND NOT N/A)<br/>
 showItemName == false<br/>
-valueServingWeightGrams > 0 (making this part hidden)
+valueServingWeightGrams > 0 (making this part visible)
 					</p>
 <pre id="pre4">
 $('#test4').nutritionLabel({
 	'valueServingPerContainer' : 1.33,
-	'valueServingWeightGrams' : 0,
+	'valueServingWeightGrams' : 2.56,
 
 	'showServingsPerContainer' : true,
 	'showItemName' : false,
@@ -253,18 +255,18 @@ $('#test4').nutritionLabel({
 					<div id="test5"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Case #1-A-2-a-2</h3>
+					<h3>Case #1-A-2-a-1</h3>
 					<p>
 showServingUnitQuantityTextbox == false<br/>
 showServingUnitQuantity == true<br/>
 valueServingSizeUnit != '' (AND NOT null)<br/>
 valueServingUnitQuantity >= 0 (AND NOT N/A)<br/>
-valueServingWeightGrams > 0 (making this part hidden)
+valueServingWeightGrams > 0 (making this part visible)
 					</p>
 <pre id="pre5">
 $('#test5').nutritionLabel({
 	'valueServingPerContainer' : 1.33,
-	'valueServingWeightGrams' : 0,
+	'valueServingWeightGrams' : 2.56,
 
 	'showServingsPerContainer' : true,
 
@@ -306,19 +308,19 @@ $('#test5').nutritionLabel({
 					<div id="test6"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Case #1-B-2-a-2</h3>
+					<h3>Case #1-B-2-a-1</h3>
 					<p>
 showServingUnitQuantityTextbox == false<br/>
 showServingUnitQuantity == true<br/>
 valueServingSizeUnit != '' (AND NOT null)<br/>
 valueServingUnitQuantity <= 0 (AND NOT N/A)<br/>
 showItemName == true<br/>
-valueServingWeightGrams > 0 (making this part hidden)
+valueServingWeightGrams > 0 (making this part visible)
 					</p>
 <pre id="pre6">
 $('#test6').nutritionLabel({
 	'valueServingPerContainer' : 1.33,
-	'valueServingWeightGrams' : 0,
+	'valueServingWeightGrams' : 2.56,
 
 	'showServingsPerContainer' : true,
 
@@ -360,18 +362,18 @@ $('#test6').nutritionLabel({
 					<div id="test7"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Case #1-C-2-a-2</h3>
+					<h3>Case #1-C-2-a-1</h3>
 					<p>
 showServingUnitQuantityTextbox == false<br/>
 showServingUnitQuantity == false<br/>
 valueServingSizeUnit != '' (AND NOT null)<br/>
 valueServingUnitQuantity >= 0 (AND NOT N/A)<br/>
-valueServingWeightGrams > 0 (making this part hidden)
+valueServingWeightGrams > 0 (making this part visible)
 					</p>
 <pre id="pre7">
 $('#test7').nutritionLabel({
 	'valueServingPerContainer' : 1.33,
-	'valueServingWeightGrams' : 0,
+	'valueServingWeightGrams' : 2.56,
 
 	'showServingsPerContainer' : true,
 	'showServingUnitQuantity' : false,
@@ -414,19 +416,19 @@ $('#test7').nutritionLabel({
 					<div id="test8"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Case #1-D-2-a-2</h3>
+					<h3>Case #1-D-2-a-1</h3>
 					<p>
 showServingUnitQuantityTextbox == false<br/>
 showServingUnitQuantity == true<br/>
 valueServingSizeUnit != '' (AND NOT null)<br/>
 valueServingUnitQuantity <= 0 (AND NOT N/A)<br/>
 showItemName == false<br/>
-valueServingWeightGrams > 0 (making this part hidden)
+valueServingWeightGrams > 0 (making this part visible)
 					</p>
 <pre id="pre8">
 $('#test8').nutritionLabel({
 	'valueServingPerContainer' : 1.33,
-	'valueServingWeightGrams' : 0,
+	'valueServingWeightGrams' : 2.56,
 
 	'showServingsPerContainer' : true,
 	'showItemName' : false,
@@ -474,7 +476,7 @@ $('#test8').nutritionLabel({
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript" src="../../nutritionLabel-min.js"></script>
+<script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );

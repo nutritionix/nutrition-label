@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
-	<link rel='stylesheet' type='text/css' media='screen' href='../../nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='../../css/nutritionLabel-min.css'>
 	<link rel='stylesheet' type='text/css' media='screen' href='./../css/demo.css'>
 
 	<!-- google webfont for nutrition label -->
@@ -59,7 +59,8 @@ $('#test1').nutritionLabel({
 	'urlBottomLink' : 'http://facebook.com',
 	'nameBottomLink' : 'Google Name but the URL is facebook\'s',
 	'showCustomFooter' : true,
-	'valueCustomFooter' : testHTML
+	'valueCustomFooter' : testHTML,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -99,10 +100,12 @@ $('#test2').nutritionLabel({
 	'valueFibers' : 0,
 	'valueSugars' : 3,
 	'valueProteins' : 3,
-	'valueVitaminA' : 1.22,
-	'valueVitaminC' : 4.22,
+	'valueVitaminD' : 1.22,
+	'valuePotassium_2018' : 4.22,
 	'valueCalcium' : 7.22,
-	'valueIron' : 11.22
+	'valueIron' : 11.22,
+	'valueAddedSugars' : 17,
+	'showLegacyVersion' : false
 });
 </pre>
 					<pre>http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing</pre>
@@ -127,8 +130,8 @@ $('#test3').nutritionLabel({
 	'showMonoFat' : false,
 	'showTransFat' : false,
 	'showFibers' : false,
-	'showVitaminA' : false,
-	'showVitaminC' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
 	'showCalcium' : false,
 	'showIron' : false,
 
@@ -143,7 +146,8 @@ $('#test3').nutritionLabel({
 	'valueSodium' : 430,
 	'valueTotalCarb' : 44,
 	'valueSugars' : 24,
-	'valueProteins' : 4
+	'valueProteins' : 4,
+	'showLegacyVersion' : false
 });
 </pre>
 					<pre>http://www.nutritionix.com/duchess/chocolate-donuts</pre>
@@ -170,8 +174,8 @@ $('#test4').nutritionLabel({
 	'showMonoFat' : false,
 	'showTransFat' : false,
 	'showFibers' : false,
-	'showVitaminA' : false,
-	'showVitaminC' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
 	'showCalcium' : false,
 	'showIron' : false,
 
@@ -186,7 +190,8 @@ $('#test4').nutritionLabel({
 	'valueSodium' : 430,
 	'valueTotalCarb' : 44,
 	'valueSugars' : 24,
-	'valueProteins' : 4
+	'valueProteins' : 4,
+	'showLegacyVersion' : false
 });
 </pre>
 					<pre>http://www.nutritionix.com/label/item/47584</pre>
@@ -212,8 +217,8 @@ $('#test5').nutritionLabel({
 	'showPolyFat' : false,
 	'showMonoFat' : false,
 	'showTransFat' : false,
-	'showVitaminA' : false,
-	'showVitaminC' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
 	'showCalcium' : false,
 	'showIron' : false,
 	'showFatCalories' : false,
@@ -226,7 +231,8 @@ $('#test5').nutritionLabel({
 	'valueTotalCarb' : 20,
 	'valueFibers' : 0,
 	'valueSugars' : 18,
-	'valueProteins' : 48
+	'valueProteins' : 48,
+	'showLegacyVersion' : false
 });
 </pre>
 					<pre>http://www.nutritionix.com/ufood-grill/fire-grilled-sirloin-tips</pre>
@@ -251,8 +257,8 @@ $('#test6').nutritionLabel({
 	'naFatCalories' : true,
 	'naPolyFat' : true,
 	'naMonoFat' : true,
-	'naVitaminA' : true,
-	'naVitaminC' : true,
+	'naVitaminD' : true,
+	'naPotassium' : true,
 	'naCalcium' : true,
 	'naIron' : true,
 
@@ -265,7 +271,8 @@ $('#test6').nutritionLabel({
 	'valueTotalCarb' : 46,
 	'valueFibers' : 2,
 	'valueSugars' : '<1g',
-	'valueProteins' : 7
+	'valueProteins' : 7,
+	'showLegacyVersion' : false
 });
 </pre>
 					<pre>http://www.nutritionix.com/the-old-spaghetti-factory/olive-tapenade</pre>
@@ -296,15 +303,16 @@ $('#test7').nutritionLabel({
 	'naFibers' : true,
 	'naSugars' : true,
 	'naProteins' : true,
-	'naVitaminA' : true,
-	'naVitaminC' : true,
+	'naVitaminD' : true,
+	'naPotassium' : true,
 	'naCalcium' : true,
 	'naIron' : true,
 
 	'valueCalories' : 1110,
 	'valueTotalFat' : 58,
 	'valueSatFat' : 25,
-	'valueSodium' : 1750
+	'valueSodium' : 1750,
+	'showLegacyVersion' : false
 });
 </pre>
 					<pre>http://www.nutritionix.com/teds-montana-grill/bar-none-sliders-bison</pre>
@@ -338,10 +346,11 @@ $('#test8').nutritionLabel({
 	'valueFibers' : '<1g',
 	'valueSugars' : 'n/a',
 	'valueProteins' : 'not applicable',
-	'valueVitaminA' : 'None',
-	'valueVitaminC' : '~10%',
+	'valueVitaminD' : 'None',
+	'valuePotassium_2018' : '~10%',
 	'valueCalcium' : '<5%',
-	'valueIron' : '<1%'
+	'valueIron' : '<1%',
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -370,10 +379,11 @@ $('#test9').nutritionLabel({
 	'naFibers' : true,
 	'naSugars' : true,
 	'naProteins' : true,
-	'naVitaminA' : true,
-	'naVitaminC' : true,
+	'naVitaminD' : true,
+	'naPotassium' : true,
 	'naCalcium' : true,
-	'naIron' : true
+	'naIron' : true,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -414,10 +424,11 @@ $('#test10').nutritionLabel({
 	'valueFibers' : 0,
 	'valueSugars' : 3,
 	'valueProteins' : 3,
-	'valueVitaminA' : 0,
-	'valueVitaminC' : 0,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
 	'valueCalcium' : 0,
-	'valueIron' : 0
+	'valueIron' : 0,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -458,10 +469,11 @@ $('#test11').nutritionLabel({
 	'valueFibers' : 0,
 	'valueSugars' : 3,
 	'valueProteins' : 3,
-	'valueVitaminA' : 0,
-	'valueVitaminC' : 0,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
 	'valueCalcium' : 0,
-	'valueIron' : 0
+	'valueIron' : 0,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -503,10 +515,11 @@ $('#test12').nutritionLabel({
 	'valueFibers' : 0,
 	'valueSugars' : 3,
 	'valueProteins' : 3,
-	'valueVitaminA' : 0,
-	'valueVitaminC' : 0,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
 	'valueCalcium' : 0,
-	'valueIron' : 0
+	'valueIron' : 0,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -548,8 +561,8 @@ $('#test13').nutritionLabel({
 	'valueFibers' : 0,
 	'valueSugars' : 3,
 	'valueProteins' : 3,
-	'valueVitaminA' : 0,
-	'valueVitaminC' : 0,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
 	'valueCalcium' : 0,
 	'valueIron' : 0,
 
@@ -566,7 +579,8 @@ $('#test13').nutritionLabel({
 	'valueCol1DietaryTotalCarb' : 200,
 	'valueCol2DietaryTotalCarb' : 270,
 	'valueCol1Dietary' : 33,
-	'valueCol2Dietary' : 76
+	'valueCol2Dietary' : 76,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -583,7 +597,8 @@ $('#test13').nutritionLabel({
 <pre id="pre14">
 $('#test14').nutritionLabel({
 	'showServingUnitQuantity' : false,
-	'showItemName' : false
+	'showItemName' : false,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -603,7 +618,8 @@ $('#test15').nutritionLabel({
 	'showServingsPerContainer' : true,
 	'valueServingUnitQuantity' : '0',
 	'valueServingPerContainer' : '',
-	'showItemName' : false
+	'showItemName' : false,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -638,10 +654,11 @@ $('#test16').nutritionLabel({
 	'valueFibers' : 0,
 	'valueSugars' : 3,
 	'valueProteins' : 3,
-	'valueVitaminA' : 0,
-	'valueVitaminC' : 0,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
 	'valueCalcium' : 0,
-	'valueIron' : 0
+	'valueIron' : 0,
+	'showLegacyVersion' : false
 });
 </pre>
 					<pre>http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing</pre>
@@ -677,10 +694,11 @@ $('#test17').nutritionLabel({
 	'valueFibers' : 0,
 	'valueSugars' : 3,
 	'valueProteins' : 3,
-	'valueVitaminA' : 0,
-	'valueVitaminC' : 0,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
 	'valueCalcium' : 0,
-	'valueIron' : 0
+	'valueIron' : 0,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -705,8 +723,8 @@ $('#test18').nutritionLabel({
 	'showMonoFat' : false,
 	'showTransFat' : false,
 	'showFibers' : false,
-	'showVitaminA' : false,
-	'showVitaminC' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
 	'showCalcium' : false,
 	'showIron' : false,
 
@@ -722,7 +740,8 @@ $('#test18').nutritionLabel({
 	'valueSodium' : 430,
 	'valueTotalCarb' : 44,
 	'valueSugars' : 24,
-	'valueProteins' : 4
+	'valueProteins' : 4,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -743,14 +762,13 @@ $('#test19').nutritionLabel({
 	'showServingsPerContainer' : true,
 	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
 	'showDisclaimer' : true,
-	'showCalorieDiet' : true,
 
 	'showPolyFat' : false,
 	'showMonoFat' : false,
 	'showTransFat' : false,
 	'showFibers' : false,
-	'showVitaminA' : false,
-	'showVitaminC' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
 	'showCalcium' : false,
 	'showIron' : false,
 
@@ -765,7 +783,8 @@ $('#test19').nutritionLabel({
 	'valueSodium' : 430,
 	'valueTotalCarb' : 44,
 	'valueSugars' : 24,
-	'valueProteins' : 4
+	'valueProteins' : 4,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -794,8 +813,8 @@ $('#test20').nutritionLabel({
 	'showMonoFat' : false,
 	'showTransFat' : false,
 	'showFibers' : false,
-	'showVitaminA' : false,
-	'showVitaminC' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
 	'showCalcium' : false,
 	'showIron' : false,
 
@@ -810,7 +829,8 @@ $('#test20').nutritionLabel({
 	'valueSodium' : 430,
 	'valueTotalCarb' : 44,
 	'valueSugars' : 24,
-	'valueProteins' : 4
+	'valueProteins' : 4,
+	'showLegacyVersion' : false
 });
 </pre>
 				</div>
@@ -822,7 +842,7 @@ $('#test20').nutritionLabel({
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript" src="../../nutritionLabel-min.js"></script>
+<script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );

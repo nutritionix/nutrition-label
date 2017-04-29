@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
-	<link rel='stylesheet' type='text/css' media='screen' href='../../nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='../../css/nutritionLabel-min.css'>
 	<link rel='stylesheet' type='text/css' media='screen' href='./../css/demo.css'>
 
 	<!-- google webfont for nutrition label -->
@@ -26,34 +26,10 @@
 				</div>
 				<div class="col-md-8">
 					<h3>Example #1</h3>
-<pre id="pre1">
-$('#test1').nutritionLabel({
-	'showServingsPerContainer' : true,
-	'valueServingUnitQuantity' : '~12',
-	'valueServingPerContainer' : 'TBA',
-	'valueServingWeightGrams' : '<33',
-	'valueCalories' : '~100',
-	'valueFatCalories' : '<1',
-	'valueTotalFat' : '<1g',
-	'valueSatFat' : 'N/A',
-	'valueTransFat' : '<1g',
-	'valuePolyFat' : '~10g',
-	'valueMonoFat' : '<6g',
-	'valueCholesterol' : '~10mg',
-	'valueSodium' : '<5mg',
-	'valueTotalCarb' : 'Negligible',
-	'valueFibers' : '<1g',
-	'valueSugars' : 'n/a',
-	'valueProteins' : 'not applicable',
-	'valueVitaminD' : 'None',
-	'valuePotassium_2018' : '~10%',
-	'valueCalcium' : '<5%',
-	'valueIron' : '<1%',
-	'showLegacyVersion' : false
-});
-</pre>
+					<p>Most basic use of the plugin</p>
+					<pre id="pre1">$('#test1').nutritionLabel();</pre>
 				</div>
-			</div><br /><br />	<br />
+			</div><br /><br />
 
 
 			<div class="row">
@@ -62,6 +38,7 @@ $('#test1').nutritionLabel({
 				</div>
 				<div class="col-md-8">
 					<h3>Example #2</h3>
+					<p>Giving specific nutrition label values and hiding some of the parts of the nutrition label</p>
 <pre id="pre2">
 $('#test2').nutritionLabel({
 	'showServingUnitQuantity' : false,
@@ -71,7 +48,7 @@ $('#test2').nutritionLabel({
 	'showPolyFat' : false,
 	'showMonoFat' : false,
 
-	'valueCalories' : '> 450',
+	'valueCalories' : 450,
 	'valueFatCalories' : 430,
 	'valueTotalFat' : 48,
 	'valueSatFat' : 6,
@@ -82,13 +59,13 @@ $('#test2').nutritionLabel({
 	'valueFibers' : 0,
 	'valueSugars' : 3,
 	'valueProteins' : 3,
-	'valueVitaminD' : 0,
-	'valuePotassium_2018' : 0,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 0,
 	'valueCalcium' : 0,
-	'valueIron' : 0,
-	'showLegacyVersion' : false
+	'valueIron' : 0
 });
 </pre>
+					<pre>http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing</pre>
 				</div>
 			</div><br /><br /><br />
 
@@ -99,6 +76,9 @@ $('#test2').nutritionLabel({
 				</div>
 				<div class="col-md-8">
 					<h3>Example #3</h3>
+					<p>Similar to example #2 but with different plugin options. One thing to note is the use of serving size, serving size unit and showing the serving container to overwrite the default value (compare it to other examples to see the difference)</p>
+					<p>Also, an example where the serving size unit is present and the value serving size is greater than zero and not 'not applicable'</p>
+					<p>Another thing to note is that the serving unit quantity is not the default value (1.0)</p>
 <pre id="pre3">
 $('#test3').nutritionLabel({
 	'showItemName' : false,
@@ -109,13 +89,13 @@ $('#test3').nutritionLabel({
 	'showMonoFat' : false,
 	'showTransFat' : false,
 	'showFibers' : false,
-	'showVitaminD' : false,
+	'showVitaminA' : false,
 	'showVitaminC' : false,
 	'showCalcium' : false,
 	'showIron' : false,
 
 	'valueServingUnitQuantity' : 2.3,
-	'valueServingSize' : '~6',
+	'valueServingSize' : 6,
 	'valueServingSizeUnit' : 'DONUTS',
 
 	'valueCalories' : 400,
@@ -126,10 +106,10 @@ $('#test3').nutritionLabel({
 	'valueSodium' : 430,
 	'valueTotalCarb' : 44,
 	'valueSugars' : 24,
-	'valueProteins' : 4,
-	'showLegacyVersion' : false
+	'valueProteins' : 4
 });
 </pre>
+					<pre>http://www.nutritionix.com/duchess/chocolate-donuts</pre>
 				</div>
 			</div><br /><br /><br />
 
@@ -140,6 +120,8 @@ $('#test3').nutritionLabel({
 				</div>
 				<div class="col-md-8">
 					<h3>Example #4</h3>
+					<p>Similar to example #2 but with only a few visible values</p>
+					<p>Another thing to take note here is that the serving size unit is null or an empty string so the textbox appears before the item name</p>
 <pre id="pre4">
 $('#test4').nutritionLabel({
 	'showServingUnitQuantity' : false,
@@ -151,24 +133,24 @@ $('#test4').nutritionLabel({
 	'showPolyFat' : false,
 	'showMonoFat' : false,
 	'showTransFat' : false,
-	'showVitaminD' : false,
+	'showVitaminA' : false,
 	'showVitaminC' : false,
 	'showCalcium' : false,
 	'showIron' : false,
 	'showFatCalories' : false,
 
 	'valueCalories' : 410,
-	'valueTotalFat' : '+15',
+	'valueTotalFat' : 15,
 	'valueSatFat' : 4.5,
 	'valueCholesterol' : 105,
 	'valueSodium' : 1220,
 	'valueTotalCarb' : 20,
 	'valueFibers' : 0,
 	'valueSugars' : 18,
-	'valueProteins' : 48,
-	'showLegacyVersion' : false
+	'valueProteins' : 48
 });
 </pre>
+					<pre>http://www.nutritionix.com/ufood-grill/fire-grilled-sirloin-tips</pre>
 				</div>
 			</div><br /><br /><br />
 
@@ -179,7 +161,7 @@ $('#test4').nutritionLabel({
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript" src="../../nutritionLabel-min.js"></script>
+<script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );

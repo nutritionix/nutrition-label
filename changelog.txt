@@ -1,6 +1,43 @@
 
-version 7.0.4 - April XX, 2017
+version 7.0.4 - April 30, 2017
  - https://github.com/nutritionix/nutrition-label/issues/59
+   - new setting showLegacyVersion (default to true), set this to false to show the 2018 version
+   - new settings that are exclusive for the 2018 version and their default values
+      - dailyValuePotassium: 3500
+      - dailyValueVitaminD : 400
+      - dailyValueAddedSugar : 50
+
+      - showPotassium_2018: true
+      - showVitaminD: true
+      - showAddedSugars : true
+
+      - naPotassium_2018: false
+      - naVitaminD : false
+      - naAddedSugars : false
+
+      - valuePotassium_2018: 0
+      - valueVitaminD : 0
+      - valueAddedSugars : 0
+
+      - unitPotassium: 'mg'
+      - unitPotassium_base: 'mg'
+      - unitPotassium_percent: '%'
+
+      - unitAddedSugars : 'g'
+
+      - unitVitaminD_base : 'mcg'
+      - unitVitaminD_percent : '%'
+
+      - unitCalcium_base : 'mg'
+      - unitCalcium_percent : '%'
+
+      - unitIron_base : 'mg'
+      - unitIron_percent : '%'
+
+      - textPotassium_2018 : 'Potas.'
+      - textVitaminD : 'Vit. D'
+      - textAddedSugars1 : 'Includes ',
+      - textAddedSugars2 : ' Added Sugars',
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
