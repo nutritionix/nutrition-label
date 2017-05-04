@@ -542,7 +542,8 @@
 	}
 
 
-	function addScrollToItemDiv($elem, $settings, localNameClass){
+	function addScrollToItemDiv($elem, $settings, localNameClass, forLegacyLabel){
+		//as of 05142017 inline class only appears on the legacy version
 		if ( $('#' + $elem.attr('id') + ' .' + localNameClass + '.inline').val() != undefined ){
 			if ( $('#' + $elem.attr('id') + ' .' + localNameClass + '.inline').height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) ){
 				$('#' +$elem.attr('id') + ' .' + localNameClass + '.inline').css({
@@ -552,11 +553,23 @@
 				});
 			}
 		}else{
-			if ( $('#' + $elem.attr('id') + ' .' + localNameClass).height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) ){
-				$('#' + $elem.attr('id') + ' .' + localNameClass).css({
-					'height' : parseInt($settings.scrollLongItemNamePixel) + 'px',
-					'overflow-y' : 'auto'
-				});
+			if (forLegacyLabel){
+				if ( $('#' + $elem.attr('id') + ' .' + localNameClass).height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) ){
+					$('#' + $elem.attr('id') + ' .' + localNameClass).css({
+						'height' : parseInt($settings.scrollLongItemNamePixel) + 'px',
+						'overflow-y' : 'auto'
+					});
+				}
+			}else{
+				//xxx
+				//default value for $settings.scrollLongItemNamePixel = 36
+				$settings.scrollLongItemNamePixel = 36; //in case you need to change this to test some changes
+				if ( $('#' + $elem.attr('id') + ' .' + localNameClass + ' div').height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) ){
+					$('#' + $elem.attr('id') + ' .' + localNameClass + ' div').css({
+						'height' : parseInt($settings.scrollLongItemNamePixel) + 'px',
+						'overflow-y' : 'auto'
+					});
+				}
 			}
 		}
 	}
@@ -647,7 +660,7 @@
 
 		//add a scroll on long item names
 		if ($localSettings.scrollLongItemName){
-			addScrollToItemDiv($elem, $localSettings, nameElementClass);
+			addScrollToItemDiv($elem, $localSettings, nameElementClass, forLegacyLabel);
 		}
 
 		if (!forInitialization){
