@@ -91,8 +91,10 @@
 		allowGoogleAnalyticsEventLog : false,
 		gooleAnalyticsFunctionName : 'ga',
 
-		//enable triggering of user function on quantity change
+    //enable triggering of user function on quantity change: global function name
 		userFunctionNameOnQuantityChange: null,
+    //enable triggering of user function on quantity change: handler instance
+    userFunctionOnQuantityChange:     null,
 
 		//when set to true, this will hide the values if they are not applicable
 		hideNotApplicableValues : false,
@@ -668,6 +670,19 @@
 		}
 	}//end of => updateValuesAfterAQuantityChanged($localSettings, $elem, ingredientListID, calcDisclaimerTextID, forLegacyLabel, forInitialization)
 
+  function handleQuantityChange($localSettings, source, previousValue, newValue) {
+    var handler;
+
+    if ($localSettings.userFunctionOnQuantityChange) {
+      handler = $localSettings.userFunctionOnQuantityChange;
+    } else if ($localSettings.userFunctionNameOnQuantityChange) {
+      handler = window[$localSettings.userFunctionNameOnQuantityChange];
+    }
+
+    if (typeof handler === 'function') {
+      handler(source, previousValue, newValue);
+    }
+  }
 
 	function changeQuantityTextbox($thisTextbox, $localSettings, nutritionLabel, $elem, forLegacyLabel){
 		var nixLabelBeforeQuantityID = 'nixLabelBeforeQuantity';
@@ -692,15 +707,13 @@
 			);
 		}
 
-		if (typeof window[$localSettings.userFunctionNameOnQuantityChange] === 'function'){
-			eval($localSettings.userFunctionNameOnQuantityChange)(
-				'textbox',
-				previousValue.toFixed($localSettings.decimalPlacesForQuantityTextbox),
-				textBoxValue.toFixed($localSettings.decimalPlacesForQuantityTextbox)
-			);
-		}
+    handleQuantityChange(
+      $localSettings,
+      'textbox',
+      previousValue.toFixed($localSettings.decimalPlacesForQuantityTextbox),
+      textBoxValue.toFixed($localSettings.decimalPlacesForQuantityTextbox)
+    );
 	}//end of => function changeQuantityTextbox($thisTextbox, $localSettings, nutritionLabel, $elem, forLegacyLabel)
-
 
 	function changeQuantityByArrow($thisQuantity, changeValueBy, $localSettings, nutritionLabel, $elem, forLegacyLabel){
 		var unitQuantityBoxClass = 'unitQuantityBox';
@@ -757,13 +770,12 @@
 			}
 		}
 
-		if (typeof window[$localSettings.userFunctionNameOnQuantityChange] === 'function'){
-			eval($localSettings.userFunctionNameOnQuantityChange)(
-				changeValueBy > 0 ? 'up arrow' : 'down arrow',
-				beforeCurrentQuantityWasChanged,
-				currentQuantity
-			);
-		}
+    handleQuantityChange(
+      $localSettings,
+      changeValueBy > 0 ? 'up arrow' : 'down arrow',
+      beforeCurrentQuantityWasChanged,
+      currentQuantity
+    );
 	}//end of => function changeQuantityByArrow($thisQuantity, changeValueBy, $localSettings, nutritionLabel, $elem, forLegacyLabel)
 
 
