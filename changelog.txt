@@ -1,4 +1,12 @@
 
+version 7.0.5 - XXX XX, 2017
+
+ - improvement on the feature to trigger custom javascript commands when the quantity is changed https://github.com/nutritionix/nutrition-label/issues/68
+   - the change is to allow the current feature to work normally and to be able to have this feature work when the label is integrated in angular
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 7.0.4 - April 30, 2017
  - https://github.com/nutritionix/nutrition-label/issues/59
    - new setting showLegacyVersion (default to true), set this to false to show the 2018 version
