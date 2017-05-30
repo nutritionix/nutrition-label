@@ -565,7 +565,7 @@
 			}else{
 				//xxx
 				//default value for $settings.scrollLongItemNamePixel = 36
-				$settings.scrollLongItemNamePixel = 36; //in case you need to change this to test some changes
+				$settings.scrollLongItemNamePixel = 32; //in case you need to change this to test some changes
 				if ( $('#' + $elem.attr('id') + ' .' + localNameClass + ' div').height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) ){
 					$('#' + $elem.attr('id') + ' .' + localNameClass + ' div').css({
 						'height' : parseInt($settings.scrollLongItemNamePixel) + 'px',
