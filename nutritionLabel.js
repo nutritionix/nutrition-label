@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.4                                                                                                                       |
+ * @current version     7.0.5                                                                                                                       |
  * @stable version      6.0.18                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -116,6 +116,7 @@
 		//to scroll the item name if the jQuery.height() is > scrollLongItemNamePixel
 		scrollLongItemName : true,
 		scrollLongItemNamePixel : 36,
+		scrollLongItemNamePixel2018Override : 32, //this is needed to fix some issues on the 2018 label as the layout of the label is very different than the legacy one
 
 		//show the customizable link at the bottom
 		showBottomLink : false,
@@ -383,7 +384,8 @@
 			'valueFibers', 'valueSugars', 'valueProteins', 'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueCol1CalorieDiet', 'valueCol2CalorieDiet', 'valueCol1DietaryTotalFat',
 			'valueCol2DietaryTotalFat', 'valueCol1DietarySatFat', 'valueCol2DietarySatFat', 'valueCol1DietaryCholesterol', 'valueCol2DietaryCholesterol', 'valueCol1DietarySodium',
 			'valueCol2DietarySodium', 'valueCol1DietaryPotassium', 'valueCol2DietaryPotassium', 'valueCol1DietaryTotalCarb', 'valueCol2DietaryTotalCarb', 'valueCol1Dietary', 'valueCol2Dietary',
-			'valueServingUnitQuantity', 'scrollLongItemNamePixel', 'decimalPlacesForQuantityTextbox', 'valueAddedSugars', 'dailyValueVitaminD', 'dailyValueCalcium', 'dailyValueIron', 'valueVitaminD'
+			'valueServingUnitQuantity', 'scrollLongItemNamePixel', 'scrollLongItemNamePixel2018Override', 'decimalPlacesForQuantityTextbox', 'valueAddedSugars', 'dailyValueVitaminD',
+			'dailyValueCalcium', 'dailyValueIron', 'valueVitaminD'
 		];
 
 		$.each(settings, function(index, value){
@@ -545,30 +547,32 @@
 
 
 	function addScrollToItemDiv($elem, $settings, localNameClass, forLegacyLabel){
+		var local_scrollLongItemNamePixel = parseInt($settings.scrollLongItemNamePixel);
+		if (!forLegacyLabel){
+			local_scrollLongItemNamePixel = parseInt($settings.scrollLongItemNamePixel2018Override);
+		}
+
 		//as of 05142017 inline class only appears on the legacy version
 		if ( $('#' + $elem.attr('id') + ' .' + localNameClass + '.inline').val() != undefined ){
-			if ( $('#' + $elem.attr('id') + ' .' + localNameClass + '.inline').height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) ){
+			if ($('#' + $elem.attr('id') + ' .' + localNameClass + '.inline').height() > local_scrollLongItemNamePixel + 1){
 				$('#' +$elem.attr('id') + ' .' + localNameClass + '.inline').css({
 					'margin-left' : '3.90em',
-					'height' : parseInt($settings.scrollLongItemNamePixel) + 'px',
+					'height' : local_scrollLongItemNamePixel + 'px',
 					'overflow-y' : 'auto'
 				});
 			}
 		}else{
 			if (forLegacyLabel){
-				if ( $('#' + $elem.attr('id') + ' .' + localNameClass).height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) ){
+				if ($('#' + $elem.attr('id') + ' .' + localNameClass).height() > local_scrollLongItemNamePixel + 1){
 					$('#' + $elem.attr('id') + ' .' + localNameClass).css({
-						'height' : parseInt($settings.scrollLongItemNamePixel) + 'px',
+						'height' : local_scrollLongItemNamePixel + 'px',
 						'overflow-y' : 'auto'
 					});
 				}
 			}else{
-				//xxx
-				//default value for $settings.scrollLongItemNamePixel = 36
-				$settings.scrollLongItemNamePixel = 32; //in case you need to change this to test some changes
-				if ( $('#' + $elem.attr('id') + ' .' + localNameClass + ' div').height() > ( parseInt($settings.scrollLongItemNamePixel) + 1 ) ){
+				if ($('#' + $elem.attr('id') + ' .' + localNameClass + ' div').height() >= local_scrollLongItemNamePixel + 1){
 					$('#' + $elem.attr('id') + ' .' + localNameClass + ' div').css({
-						'height' : parseInt($settings.scrollLongItemNamePixel) + 'px',
+						'height' : local_scrollLongItemNamePixel + 'px',
 						'overflow-y' : 'auto'
 					});
 				}

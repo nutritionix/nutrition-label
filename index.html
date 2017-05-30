@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.4                                                                                                                       |
+ * @current version     7.0.5                                                                                                                       |
  * @stable version      6.0.18                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -29,7 +29,7 @@
 <body>
 <div class="container">
 	<div class="hero-unit">
-		<h1>Nutrition Label version 7.0.4</h1>
+		<h1>Nutrition Label version 7.0.5</h1>
 		<h4>from Nutritionix</h4>
 		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
 		<p>
@@ -65,8 +65,10 @@ allowFDARounding : false,
 allowGoogleAnalyticsEventLog : false,
 gooleAnalyticsFunctionName : 'ga',
 
-//enable triggering of user function on quantity change
+//enable triggering of user function on quantity change: global function name
 userFunctionNameOnQuantityChange: null,
+//enable triggering of user function on quantity change: handler instance
+userFunctionOnQuantityChange:     null,
 
 //when set to true, this will hide the values if they are not applicable
 hideNotApplicableValues : false,
@@ -88,6 +90,7 @@ decimalPlacesForQuantityTextbox : 1,
 //to scroll the item name if the jQuery.height() is > scrollLongItemNamePixel
 scrollLongItemName : true,
 scrollLongItemNamePixel : 36,
+scrollLongItemNamePixel2018Override : 32, //this is needed to fix some issues on the 2018 label as the layout of the label is very different than the legacy one
 
 //show the customizable link at the bottom
 showBottomLink : false,
