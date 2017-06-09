@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
+	<title>>2018 Version Demo Page</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
 	<link rel='stylesheet' type='text/css' media='screen' href='../../css/nutritionLabel-min.css'>
 	<link rel='stylesheet' type='text/css' media='screen' href='./../css/demo.css'>
@@ -43,26 +44,7 @@
 				<div class="col-md-8">
 					<h3>Example #1</h3>
 					<p>Most basic use of the plugin</p>
-<pre id="pre1">
-var testHTML = '<a href="" onClick="alert(\'Clicked\'); return false;">Alert Link</a><div style="height: 10px;"></div>';
-testHTML += '<a href="" onClick="confirm(\'Did you have a great morning?\'); return false;">Confirm Link</a><div style="height: 10px;"></div>';
-testHTML += '<h2>H2 SAMPLE TEXT</h2>';
-
-$('#test1').nutritionLabel({
-	//'hideTextboxArrows' : true,
-	//'showServingUnitQuantityTextbox' : false,
-	'showServingsPerContainer' : true,
-	'ingredientList' : 'Balsamic Vinaigrette, BBQ Hickory, Steak Tips',
-	'showDisclaimer' : true,
-	'valueDisclaimer' : 'Please note that these nutrition values are estimated based on our standard serving portions. As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal. If you have any questions about our nutrition calculator, please contact Nutritionix.',
-	'showBottomLink' : true,
-	'urlBottomLink' : 'http://facebook.com',
-	'nameBottomLink' : 'Google Name but the URL is facebook\'s',
-	'showCustomFooter' : true,
-	'valueCustomFooter' : testHTML,
-	'showLegacyVersion' : false
-});
-</pre>
+					<pre id="pre1">$('#test1').nutritionLabel({'showLegacyVersion' : false});</pre>
 				</div>
 			</div><br/><br/>
 
