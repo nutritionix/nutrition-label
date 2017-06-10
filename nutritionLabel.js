@@ -674,6 +674,7 @@
 		}
 	}//end of => updateValuesAfterAQuantityChanged($localSettings, $elem, ingredientListID, calcDisclaimerTextID, forLegacyLabel, forInitialization)
 
+
   function handleQuantityChange($localSettings, source, previousValue, newValue) {
     var handler;
 
@@ -687,6 +688,7 @@
       handler(source, previousValue, newValue);
     }
   }
+
 
 	function changeQuantityTextbox($thisTextbox, $localSettings, nutritionLabel, $elem, forLegacyLabel){
 		var nixLabelBeforeQuantityID = 'nixLabelBeforeQuantity';
@@ -718,6 +720,7 @@
       textBoxValue.toFixed($localSettings.decimalPlacesForQuantityTextbox)
     );
 	}//end of => function changeQuantityTextbox($thisTextbox, $localSettings, nutritionLabel, $elem, forLegacyLabel)
+
 
 	function changeQuantityByArrow($thisQuantity, changeValueBy, $localSettings, nutritionLabel, $elem, forLegacyLabel){
 		var unitQuantityBoxClass = 'unitQuantityBox';
