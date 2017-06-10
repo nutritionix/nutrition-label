@@ -1351,7 +1351,7 @@
 		//initialize the not applicable image icon in case we need to use it
 		var localNaValue = '<font class="notApplicable">-&nbsp;</font>';
 
-		//TODO LATER: for improvement - add notes on why the computation is this way
+		//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
 		var localNutritionLabel = localTab1 + '<div class="' + lineClass + '">\n';
 			localNutritionLabel += localTab2 + '<div class="dv">';
 				localNutritionLabel += $localSettings[naIndex] ?
@@ -1413,7 +1413,7 @@
 
 		if (showPercentageCode){
 			localNutritionLabel += localTab2 + '<span class="nf-highlight nf-pr">';
-				//TODO LATER: for improvement - add notes on why the computation is this way
+				//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
 				localNutritionLabel += $localSettings[naIndex] ?
 					localNaValue :
 					parseFloat(
