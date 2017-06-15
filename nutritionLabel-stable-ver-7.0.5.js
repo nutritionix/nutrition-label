@@ -187,8 +187,8 @@
 		showTotalFat : true,
 		showSatFat : true,
 		showTransFat : true,
-		showPolyFat : false,
-		showMonoFat : false,
+		showPolyFat : true,
+		showMonoFat : true,
 		showCholesterol : true,
 		showSodium : true,
 		showPotassium: false, //this is for the legacy version, this is the only value that is default to be hidden

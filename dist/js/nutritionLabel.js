@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.5                                                                                                                       |
- * @stable version      6.0.18                                                                                                                      |
+ * @current version     7.0.6                                                                                                                       |
+ * @stable version      7.0.5                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
@@ -187,8 +187,8 @@
 		showTotalFat : true,
 		showSatFat : true,
 		showTransFat : true,
-		showPolyFat : true,
-		showMonoFat : true,
+		showPolyFat : false,
+		showMonoFat : false,
 		showCholesterol : true,
 		showSodium : true,
 		showPotassium: false, //this is for the legacy version, this is the only value that is default to be hidden
@@ -674,6 +674,7 @@
 		}
 	}//end of => updateValuesAfterAQuantityChanged($localSettings, $elem, ingredientListID, calcDisclaimerTextID, forLegacyLabel, forInitialization)
 
+
   function handleQuantityChange($localSettings, source, previousValue, newValue) {
     var handler;
 
@@ -687,6 +688,7 @@
       handler(source, previousValue, newValue);
     }
   }
+
 
 	function changeQuantityTextbox($thisTextbox, $localSettings, nutritionLabel, $elem, forLegacyLabel){
 		var nixLabelBeforeQuantityID = 'nixLabelBeforeQuantity';
@@ -718,6 +720,7 @@
       textBoxValue.toFixed($localSettings.decimalPlacesForQuantityTextbox)
     );
 	}//end of => function changeQuantityTextbox($thisTextbox, $localSettings, nutritionLabel, $elem, forLegacyLabel)
+
 
 	function changeQuantityByArrow($thisQuantity, changeValueBy, $localSettings, nutritionLabel, $elem, forLegacyLabel){
 		var unitQuantityBoxClass = 'unitQuantityBox';
@@ -1348,7 +1351,7 @@
 		//initialize the not applicable image icon in case we need to use it
 		var localNaValue = '<font class="notApplicable">-&nbsp;</font>';
 
-		//TODO LATER: for improvement - add notes on why the computation is this way
+		//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
 		var localNutritionLabel = localTab1 + '<div class="' + lineClass + '">\n';
 			localNutritionLabel += localTab2 + '<div class="dv">';
 				localNutritionLabel += $localSettings[naIndex] ?
@@ -1410,7 +1413,7 @@
 
 		if (showPercentageCode){
 			localNutritionLabel += localTab2 + '<span class="nf-highlight nf-pr">';
-				//TODO LATER: for improvement - add notes on why the computation is this way
+				//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
 				localNutritionLabel += $localSettings[naIndex] ?
 					localNaValue :
 					parseFloat(

@@ -1,4 +1,12 @@
 
+version 7.0.6 - June 15, 2017
+
+ - added <title> to the demo pages
+ - set poly and moni fat to be hidden by default https://github.com/nutritionix/nutrition-label/issues/70
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 7.0.5 - May 30, 2017
 
  - improvement on the feature to trigger custom javascript commands when the quantity is changed https://github.com/nutritionix/nutrition-label/issues/68
