@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.6                                                                                                                       |
+ * @current version     7.0.7                                                                                                                       |
  * @stable version      7.0.5                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -298,7 +298,7 @@
 		unitProteins : 'g',
 		unitVitaminA : '%',
 		unitVitaminC : '%',
-		unitVitaminD_base : 'mcg', //this is for the 2018 version
+		unitVitaminD_base : 'IU', //this is for the 2018 version
 		unitVitaminD_percent : '%', //this is for the 2018 version
 		unitCalcium : '%',
 		unitCalcium_base : 'mg', //this is for the 2018 version
