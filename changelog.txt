@@ -1,4 +1,11 @@
 
+version 7.0.8 - July 15, 2017
+
+ - fixed a minor bug - missing line under the label header. see the discussion on https://github.com/nutritionix/nutrition-label/issues/73
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 7.0.7 - June 30, 2017
 
  - fixed the default base unit of Vitamin D (only available on the 2018 version). see the discussion on https://github.com/nutritionix/nutrition-label/issues/71

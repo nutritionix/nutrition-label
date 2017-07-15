@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.7                                                                                                                       |
+ * @current version     7.0.8                                                                                                                       |
  * @stable version      7.0.5                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -2032,8 +2032,24 @@
 			var servingSizeIsHidden = sevingUnitQuantityHtml2018Result.servingSizeIsHidden;
 			var servingContainerIsHidden = sevingUnitQuantityHtml2018Result.servingContainerIsHidden;
 
-			var showLineDiv = $this.settings.showItemName || (!$this.settings.showItemName && servingSizeIsHidden && servingContainerIsHidden) ||
-				($this.settings.showServingUnitQuantity && $this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingsPerContainer && $this.settings.valueServingPerContainer > 0);
+			var showLineDiv =
+				$this.settings.showItemName ||
+				(
+					!$this.settings.showItemName &&
+					servingSizeIsHidden &&
+					servingContainerIsHidden
+				) ||
+				(
+					!$this.settings.showItemName &&
+					$this.settings.originalServingUnitQuantity > 0 &&
+					$this.settings.valueServingWeightGrams > 0
+				) ||
+				(
+					$this.settings.showServingUnitQuantity &&
+					$this.settings.originalServingUnitQuantity > 0 &&
+					$this.settings.showServingsPerContainer &&
+					$this.settings.valueServingPerContainer > 0
+				);
 
 			if (showLineDiv){
 				nutritionLabel += tab1 + '<div class="nf-line">\n';
