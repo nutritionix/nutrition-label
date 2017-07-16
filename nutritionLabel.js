@@ -1594,14 +1594,17 @@
 
 		localNutritionLabel += localTab3 + '<div class="nf-item-name ' + itemNameClass + '">' + '\n';
 
-			if ($localSettings.showServingUnitQuantity && $localSettings.originalServingUnitQuantity > 0){
-				if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null){
-					localNutritionLabel += localTab4 + $localSettings.valueServingSizeUnit + '\n';
-				}
+			if (
+					$localSettings.showServingUnitQuantity &&
+					$localSettings.originalServingUnitQuantity > 0 &&
+					$localSettings.valueServingSizeUnit !== '' &&
+					$localSettings.valueServingSizeUnit !== null
+			){
+				localNutritionLabel += localTab4 + $localSettings.valueServingSizeUnit + '\n';
 
 				if ($localSettings.valueServingWeightGrams > 0){
 					localNutritionLabel += localTab4 + '(<span itemprop="servingSize">' +
-						parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) )
+					parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) )
 					+ 'g</span>)\n';
 				}
 			}
@@ -1689,6 +1692,11 @@
 					if (!$localSettings.showItemName){
 						localNutritionLabel += localTab5 + '<div class="nf-item-name">\n';
 							localNutritionLabel += localTab6 + $localSettings.valueServingSizeUnit + '\n';
+
+						if ($localSettings.valueServingWeightGrams > 0){
+							localNutritionLabel += localTab6 + '(' + $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForQuantityTextbox) + 'g)\n';
+						}
+
 						localNutritionLabel += localTab5 + '</div>\n';
 					}
 
@@ -1696,6 +1704,10 @@
 						localNutritionLabel += ' <span itemprop="servingSize">' +
 							parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
 						'</span>\n';
+
+					if ( ($localSettings.valueServingSizeUnit == '' || $localSettings.valueServingSizeUnit == null) && $localSettings.valueServingWeightGrams > 0 ){
+						localNutritionLabel += localTab4 + '(' + $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForQuantityTextbox) + 'g)\n';
+					}
 				}//end of => if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null)
 
 				if (!servingSizeDivAlreadyClosed){

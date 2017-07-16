@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>2018 Version Demo Page</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+	<link rel='stylesheet' type='text/css' media='screen' href='../../css/nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='./../css/demo.css'>
+
+	<!-- google webfont for nutrition label -->
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Archivo+Black" />
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<ul class="nav nav-sidebar">
+				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
+				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
+				<li><a href="#test3"><i class="icon-chevron-right"></i> Example 3</a></li>
+				<li><a href="#test4"><i class="icon-chevron-right"></i> Example 4</a></li>
+				<li><a href="#test5"><i class="icon-chevron-right"></i> Example 5</a></li>
+				<li><a href="#test6"><i class="icon-chevron-right"></i> Example 6</a></li>
+				<li><a href="#test7"><i class="icon-chevron-right"></i> Example 7</a></li>
+				<li><a href="#test8"><i class="icon-chevron-right"></i> Example 8</a></li>
+				<li><a href="#test9"><i class="icon-chevron-right"></i> Example 9</a></li>
+				<li><a href="#test10"><i class="icon-chevron-right"></i> Example 10</a></li>
+				<li><a href="#test11"><i class="icon-chevron-right"></i> Example 11</a></li>
+				<li><a href="#test12"><i class="icon-chevron-right"></i> Example 12</a></li>
+				<li><a href="#test13"><i class="icon-chevron-right"></i> Example 13</a></li>
+				<li><a href="#test14"><i class="icon-chevron-right"></i> Example 14</a></li>
+				<li><a href="#test15"><i class="icon-chevron-right"></i> Example 15</a></li>
+				<li><a href="#test16"><i class="icon-chevron-right"></i> Example 16</a></li>
+				<li><a href="#test17"><i class="icon-chevron-right"></i> Example 17</a></li>
+				<li><a href="#test18"><i class="icon-chevron-right"></i> Example 18</a></li>
+				<li><a href="#test19"><i class="icon-chevron-right"></i> Example 19</a></li>
+				<li><a href="#test20"><i class="icon-chevron-right"></i> Example 20</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test1"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #1</h3>
+					<p>Most basic use of the plugin</p>
+					<pre id="pre1">
+$('#test1').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showLegacyVersion' : false
+});</pre>
+				</div>
+			</div><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test2"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #2</h3>
+					<p>Giving specific nutrition label values and hiding some of the parts of the nutrition label</p>
+<pre id="pre2">
+$('#test2').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showServingUnitQuantity' : false,
+	'itemName' : 'Bleu Cheese Dressing',
+	'ingredientList' : 'Bleu Cheese Dressing',
+
+	'decimalPlacesForQuantityTextbox' : 2,
+	'valueServingUnitQuantity' : 1,
+
+	'allowFDARounding' : true,
+	'decimalPlacesForNutrition' : 2,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminD' : 1.22,
+	'valuePotassium_2018' : 4.22,
+	'valueCalcium' : 7.22,
+	'valueIron' : 11.22,
+	'valueAddedSugars' : 17,
+	'showLegacyVersion' : false
+});
+</pre>
+					<pre>http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test3"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #3</h3>
+					<p>Similar to example #2 but with different plugin options. One thing to note is the use of serving size, serving size unit and showing the serving container to overwrite the default value (compare it to other examples to see the difference)</p>
+<pre id="pre3">
+$('#test3').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showItemName' : false,
+	'showServingsPerContainer' : true,
+	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showFibers' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+
+	'valueServingUnitQuantity' : 6,
+	'valueServingSizeUnit' : 'DONUTS',
+
+	'valueCalories' : 400,
+	'valueFatCalories' : 220,
+	'valueTotalFat' : 24,
+	'valueSatFat' : 15,
+	'valueCholesterol' : 25,
+	'valueSodium' : 430,
+	'valueTotalCarb' : 44,
+	'valueSugars' : 24,
+	'valueProteins' : 4,
+	'showLegacyVersion' : false
+});
+</pre>
+					<pre>http://www.nutritionix.com/duchess/chocolate-donuts</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test4"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #4</h3>
+					<p>Similar to example #3 but the very tall ingredient list has a scroll to prevent a very tall nutrition label. The scroll height is customized too</p>
+<pre id="pre4">
+$('#test4').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'scrollHeightPixel' : 200,
+	'scrollLongIngredients' : true,
+	'showItemName' : false,
+	'showServingsPerContainer' : true,
+	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showFibers' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+
+	'valueServingUnitQuantity' : 6,
+	'valueServingSizeUnit' : 'DONUTS',
+
+	'valueCalories' : 400,
+	'valueFatCalories' : 220,
+	'valueTotalFat' : 24,
+	'valueSatFat' : 15,
+	'valueCholesterol' : 25,
+	'valueSodium' : 430,
+	'valueTotalCarb' : 44,
+	'valueSugars' : 24,
+	'valueProteins' : 4,
+	'showLegacyVersion' : false
+});
+</pre>
+					<pre>http://www.nutritionix.com/label/item/47584</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test5"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #5</h3>
+					<p>Similar to example #2 but with only a few visible values</p>
+<pre id="pre5">
+$('#test5').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showServingUnitQuantity' : false,
+	'showAmountPerServing' : false,
+	'showCalorieDiet' : true,
+	'ingredientList' : 'Balsamic Vinaigrette, BBQ Hickory, Steak Tips',
+	'itemName' : 'Fire Grilled Sirloin Tips',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+	'showFatCalories' : false,
+
+	'valueCalories' : 410,
+	'valueTotalFat' : 15,
+	'valueSatFat' : 4.5,
+	'valueCholesterol' : 105,
+	'valueSodium' : 1220,
+	'valueTotalCarb' : 20,
+	'valueFibers' : 0,
+	'valueSugars' : 18,
+	'valueProteins' : 48,
+	'showLegacyVersion' : false
+});
+</pre>
+					<pre>http://www.nutritionix.com/ufood-grill/fire-grilled-sirloin-tips</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test6"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #6</h3>
+					<p>Similar to example #2 but with different plugin options. Things to note are the use of 'not applicable' and text value instead of numerical value on sugar</p>
+<pre id="pre6">
+$('#test6').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showServingUnitQuantity' : false,
+	'showAmountPerServing' : false,
+	'showIngredients' : false,
+	'itemName' : 'Olive Tapenade',
+
+	'naFatCalories' : true,
+	'naPolyFat' : true,
+	'naMonoFat' : true,
+	'naVitaminD' : true,
+	'naPotassium' : true,
+	'naCalcium' : true,
+	'naIron' : true,
+
+	'valueCalories' : 800,
+	'valueTotalFat' : 66,
+	'valueSatFat' : 7,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 0,
+	'valueSodium' : 1560,
+	'valueTotalCarb' : 46,
+	'valueFibers' : 2,
+	'valueSugars' : '<1g',
+	'valueProteins' : 7,
+	'showLegacyVersion' : false
+});
+</pre>
+					<pre>http://www.nutritionix.com/the-old-spaghetti-factory/olive-tapenade</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test7"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #7</h3>
+					<p>Example where a few of the values are not applicable</p>
+<pre id="pre7">
+$('#test7').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showServingUnitQuantity' : false,
+	'showAmountPerServing' : false,
+	'showIngredients' : false,
+	'itemName' : 'Bar None Sliders Bison',
+
+	'naFatCalories' : true,
+	'naTransFat' : true,
+	'naPolyFat' : true,
+	'naMonoFat' : true,
+	'naCholesterol' : true,
+	'naTotalCarb' : true,
+	'naFibers' : true,
+	'naSugars' : true,
+	'naProteins' : true,
+	'naVitaminD' : true,
+	'naPotassium' : true,
+	'naCalcium' : true,
+	'naIron' : true,
+
+	'valueCalories' : 1110,
+	'valueTotalFat' : 58,
+	'valueSatFat' : 25,
+	'valueSodium' : 1750,
+	'showLegacyVersion' : false
+});
+</pre>
+					<pre>http://www.nutritionix.com/teds-montana-grill/bar-none-sliders-bison</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test8"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #8</h3>
+					<p>All non-numeric values are automatically filtered and converted to numeric to prevent errors</p>
+<pre id="pre8">
+$('#test8').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showServingsPerContainer' : true,
+	'valueServingUnitQuantity' : '~12',
+	'valueServingPerContainer' : 'TBA',
+	'valueServingWeightGrams' : '<33',
+	'valueCalories' : '~100',
+	'valueFatCalories' : '<1',
+	'valueTotalFat' : '<1g',
+	'valueSatFat' : 'N/A',
+	'valueTransFat' : '<1g',
+	'valuePolyFat' : '~10g',
+	'valueMonoFat' : '<6g',
+	'valueCholesterol' : '~10mg',
+	'valueSodium' : '<5mg',
+	'valueTotalCarb' : 'Negligible',
+	'valueFibers' : '<1g',
+	'valueSugars' : 'n/a',
+	'valueProteins' : 'not applicable',
+	'valueVitaminD' : 'None',
+	'valuePotassium_2018' : '~10%',
+	'valueCalcium' : '<5%',
+	'valueIron' : '<1%',
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div><br/><br/>	<br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test9"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #9</h3>
+					<p>all values are not applicable and the N/A</p>
+<pre id="pre9">
+$('#test9').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'naCalories' : true,
+	'naFatCalories' : true,
+	'naTotalFat' : true,
+	'naSatFat' : true,
+	'naTransFat' : true,
+	'naPolyFat' : true,
+	'naMonoFat' : true,
+	'naCholesterol' : true,
+	'naSodium' : true,
+	'naTotalCarb' : true,
+	'naFibers' : true,
+	'naSugars' : true,
+	'naProteins' : true,
+	'naVitaminD' : true,
+	'naPotassium' : true,
+	'naCalcium' : true,
+	'naIron' : true,
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test10"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #10</h3>
+					<p>Similar to example #2 but with a few different settings - different calorie intake, decimal places for nutrition changed from 1 to 2, decimal places for the "% daily values" is changed from 0 to 2, showing the home page link at the bottom and customizing it</p>
+<pre id="pre10">
+$('#test10').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'calorieIntake' : 1222,
+	'showServingUnitQuantity' : false,
+	'showIngredients' : false,
+	'itemName' : 'Bleu Cheese Dressing',
+	'decimalPlacesForNutrition' : 2,
+	'decimalPlacesForDailyValues' : 2,
+
+	'showBottomLink' : true,
+	'urlBottomLink' : 'http://facebook.com',
+	'nameBottomLink' : 'Google Name but the URL is facebook\'s',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450.10,
+	'valueFatCalories' : 430.23,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6.12,
+	'valueTransFat' : 0.00,
+	'valueCholesterol' : 30.90,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0,
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test11"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #11</h3>
+					<p>Similar to example #2 but the "recommended daily intake values" are halved</p>
+<pre id="pre11">
+$('#test11').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showServingUnitQuantity' : false,
+	'showIngredients' : false,
+	'itemName' : 'Bleu Cheese Dressing',
+
+	'dailyValueTotalFat' : 32,
+	'dailyValueSatFat' : 10,
+	'dailyValueCholesterol' : 150,
+	'dailyValueSodium' : 1200,
+	'dailyValueCarb' : 150,
+	'dailyValueFiber' : 12,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0,
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test12"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #12</h3>
+					<p>Similar to example #11 but the calorie diet is enabled (default calorie diet values)</p>
+<pre id="pre12">
+$('#test12').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showServingUnitQuantity' : false,
+	'showIngredients' : false,
+	'showCalorieDiet' : true,
+	'itemName' : 'Bleu Cheese Dressing',
+
+	'dailyValueTotalFat' : 32,
+	'dailyValueSatFat' : 10,
+	'dailyValueCholesterol' : 150,
+	'dailyValueSodium' : 1200,
+	'dailyValueCarb' : 150,
+	'dailyValueFiber' : 12,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0,
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test13"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #13</h3>
+					<p>Similar to example #11 but the calorie diet is enabled (custom calorie diet values)</p>
+<pre id="pre13">
+$('#test13').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showServingUnitQuantity' : false,
+	'showIngredients' : false,
+	'showCalorieDiet' : true,
+	'itemName' : 'Bleu Cheese Dressing',
+
+	'dailyValueTotalFat' : 32,
+	'dailyValueSatFat' : 10,
+	'dailyValueCholesterol' : 150,
+	'dailyValueSodium' : 1200,
+	'dailyValueCarb' : 150,
+	'dailyValueFiber' : 12,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0,
+
+	'valueCol1CalorieDiet' : 2200,
+	'valueCol2CalorieDiet' : 2700,
+	'valueCol1DietaryTotalFat' : 120,
+	'valueCol2DietaryTotalFat' : 180,
+	'valueCol1DietarySatFat' : 25,
+	'valueCol2DietarySatFat' : 65,
+	'valueCol1DietaryCholesterol' : 50,
+	'valueCol2DietaryCholesterol' : 70,
+	'valueCol1DietarySodium' : 10,
+	'valueCol2DietarySodium' : 15,
+	'valueCol1DietaryTotalCarb' : 200,
+	'valueCol2DietaryTotalCarb' : 270,
+	'valueCol1Dietary' : 33,
+	'valueCol2Dietary' : 76,
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test14"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #14</h3>
+					<p>Version 3.0.0 fix with the title being too close when the serving size and item name are hidden</p>
+<pre id="pre14">
+$('#test14').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showServingUnitQuantity' : false,
+	'showItemName' : false,
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test15"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #15</h3>
+					<p>Version 3.0.0 fix with the title being too close when the item name is hidden, showServingUnitQuantity is true and both the serving size and servings per container are hidden</p>
+<pre id="pre15">
+$('#test15').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showServingUnitQuantity' : true,
+	'showServingsPerContainer' : true,
+	'valueServingUnitQuantity' : '0',
+	'valueServingPerContainer' : '',
+	'showItemName' : false,
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test16"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #16</h3>
+					<p>Giving specific nutrition label values and hiding some of the parts of the nutrition label. also there is a brand name and it is shown</p>
+<pre id="pre16">
+$('#test16').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showServingUnitQuantity' : false,
+	'itemName' : 'Bleu Cheese Dressing',
+	'ingredientList' : 'Bleu Cheese Dressing',
+	'showBrandName' : true,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0,
+	'showLegacyVersion' : false
+});
+</pre>
+					<pre>http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test17"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #17</h3>
+					<p>Similar to Example #2 but the arrows are hidden</p>
+<pre id="pre17">
+$('#test17').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'hideTextboxArrows' : true,
+	'showServingUnitQuantity' : false,
+	'itemName' : 'Bleu Cheese Dressing',
+	'ingredientList' : 'Bleu Cheese Dressing',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminD' : 0,
+	'valuePotassium_2018' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0,
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test18"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #18</h3>
+					<p>Similar to Example #3 but the arrows are hidden</p>
+<pre id="pre18">
+$('#test18').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'hideTextboxArrows' : true,
+	'showItemName' : false,
+	'showServingsPerContainer' : true,
+	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showFibers' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+
+	'valueServingPerContainer' : 5,
+	'valueServingUnitQuantity' : 2,
+	'valueServingSizeUnit' : 'Cookies',
+
+	'valueCalories' : 400,
+	'valueFatCalories' : 220,
+	'valueTotalFat' : 24,
+	'valueSatFat' : 15,
+	'valueCholesterol' : 25,
+	'valueSodium' : 430,
+	'valueTotalCarb' : 44,
+	'valueSugars' : 24,
+	'valueProteins' : 4,
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test19"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #19</h3>
+					<p>Similar to example #3 but the disclaimer is shown and the calorie diet is enabled (default calorie diet values)</p>
+					<p>there is no scroll because the disclaimer div height is not greater than 100px</p>
+<pre id="pre19">
+$('#test19').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'showItemName' : false,
+	'showServingsPerContainer' : true,
+	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+	'showDisclaimer' : true,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showFibers' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+
+	'valueServingUnitQuantity' : 6,
+	'valueServingSizeUnit' : 'DONUTS',
+
+	'valueCalories' : 400,
+	'valueFatCalories' : 220,
+	'valueTotalFat' : 24,
+	'valueSatFat' : 15,
+	'valueCholesterol' : 25,
+	'valueSodium' : 430,
+	'valueTotalCarb' : 44,
+	'valueSugars' : 24,
+	'valueProteins' : 4,
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test20"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #20</h3>
+					<p>Similar to example #4 but the disclaimer is shown and customized. The calorie diet is also enabled (default calorie diet values)</p>
+					<p>Another difference is that the scrollHeightPixel is the default value</p>
+<pre id="pre20">
+$('#test20').nutritionLabel({
+	'valueServingWeightGrams' : 23.65,
+	'scrollLongIngredients' : true,
+	'showItemName' : false,
+	'showServingsPerContainer' : true,
+	'ingredientList' : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+	'showDisclaimer' : true,
+	'valueDisclaimer' : 'Although efforts are made to avoid cross-contact of allergens, Mellow Mushroom does not guarantee that cross-contact with allergens will not occur. Before placing your order, please inform your server if you or anyone in your party has a food allergy<br/><br/>Unless otherwise specified, any food in our establishment may come into contact with surfaces or utensils that have previously contacted wheat, dairy, gluten, fish, eggs, shellfish, soybeans, tree nuts, or peanuts.<br/><br/>This nutrition and allergen information is provided for information purposes only, and they do not constitute medical or dietary advice of any kind.  Please always consult your healthcare practitioner for questions regarding your diet.<br/><br/>Mellow Mushroom, its franchisees, and employees, do not assume responsibility for a person’s sensitivity or allergy to any food item provided in our restaurants.<br/><br/>We rely on our suppliers’ statements of ingredients to determine which products do not contain certain allergens. Suppliers may change the ingredients in their products or the way they prepare their products, so please check this list frequently to make sure that the menu item you like still meets your dietary requirements.<br/><br/>From time to time we may substitute products due to inventory shortages. We can’t be sure that the substitute products will be free of the allergen you wish to avoid.<br/><br/>Please note that these nutrition values are estimated based on our standard serving portions.  As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal.  If you have any questions about our nutrition calculator, please contact Nutritionix.',
+	'showCalorieDiet' : true,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	'showTransFat' : false,
+	'showFibers' : false,
+	'showVitaminD' : false,
+	'showPotassium_2018' : false,
+	'showCalcium' : false,
+	'showIron' : false,
+
+	'valueServingUnitQuantity' : 6,
+	'valueServingSizeUnit' : 'DONUTS',
+
+	'valueCalories' : 400,
+	'valueFatCalories' : 220,
+	'valueTotalFat' : 24,
+	'valueSatFat' : 15,
+	'valueCholesterol' : 25,
+	'valueSodium' : 430,
+	'valueTotalCarb' : 44,
+	'valueSugars' : 24,
+	'valueProteins' : 4,
+	'showLegacyVersion' : false
+});
+</pre>
+				</div>
+			</div><br/><br/><br/>
+
+
+		</div>
+	</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	eval( eval( $('#pre1').html() ) );
+	eval( eval( $('#pre2').html() ) );
+	eval( eval( $('#pre3').html() ) );
+	eval( eval( $('#pre4').html() ) );
+	eval( eval( $('#pre5').html() ) );
+	eval( eval( $('#pre6').html() ) );
+	eval( eval( $('#pre7').html() ) );
+	eval( eval( $('#pre8').html() ) );
+	eval( eval( $('#pre9').html() ) );
+	eval( eval( $('#pre10').html() ) );
+	eval( eval( $('#pre11').html() ) );
+	eval( eval( $('#pre12').html() ) );
+	eval( eval( $('#pre13').html() ) );
+	eval( eval( $('#pre14').html() ) );
+	eval( eval( $('#pre15').html() ) );
+	eval( eval( $('#pre16').html() ) );
+	eval( eval( $('#pre17').html() ) );
+	eval( eval( $('#pre18').html() ) );
+	eval( eval( $('#pre19').html() ) );
+	eval( eval( $('#pre20').html() ) );
+});
+</script>
+
+</body>
+</html>

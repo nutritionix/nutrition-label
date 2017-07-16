@@ -2,6 +2,7 @@
 version 7.0.8 - July 15, 2017
 
  - fixed a minor bug - missing line under the label header. see the discussion on https://github.com/nutritionix/nutrition-label/issues/73
+ - fixed a bug - issue with the serving weight gram on the 2018 label https://github.com/nutritionix/nutrition-label/issues/74
 
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------

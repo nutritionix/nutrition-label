@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.7                                                                                                                       |
+ * @current version     7.0.8                                                                                                                       |
  * @stable version      7.0.5                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -1594,14 +1594,17 @@
 
 		localNutritionLabel += localTab3 + '<div class="nf-item-name ' + itemNameClass + '">' + '\n';
 
-			if ($localSettings.showServingUnitQuantity && $localSettings.originalServingUnitQuantity > 0){
-				if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null){
-					localNutritionLabel += localTab4 + $localSettings.valueServingSizeUnit + '\n';
-				}
+			if (
+					$localSettings.showServingUnitQuantity &&
+					$localSettings.originalServingUnitQuantity > 0 &&
+					$localSettings.valueServingSizeUnit !== '' &&
+					$localSettings.valueServingSizeUnit !== null
+			){
+				localNutritionLabel += localTab4 + $localSettings.valueServingSizeUnit + '\n';
 
 				if ($localSettings.valueServingWeightGrams > 0){
 					localNutritionLabel += localTab4 + '(<span itemprop="servingSize">' +
-						parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) )
+					parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) )
 					+ 'g</span>)\n';
 				}
 			}
@@ -1689,6 +1692,11 @@
 					if (!$localSettings.showItemName){
 						localNutritionLabel += localTab5 + '<div class="nf-item-name">\n';
 							localNutritionLabel += localTab6 + $localSettings.valueServingSizeUnit + '\n';
+
+						if ($localSettings.valueServingWeightGrams > 0){
+							localNutritionLabel += localTab6 + '(' + $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForQuantityTextbox) + 'g)\n';
+						}
+
 						localNutritionLabel += localTab5 + '</div>\n';
 					}
 
@@ -1696,6 +1704,10 @@
 						localNutritionLabel += ' <span itemprop="servingSize">' +
 							parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
 						'</span>\n';
+
+					if ( ($localSettings.valueServingSizeUnit == '' || $localSettings.valueServingSizeUnit == null) && $localSettings.valueServingWeightGrams > 0 ){
+						localNutritionLabel += localTab4 + '(' + $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForQuantityTextbox) + 'g)\n';
+					}
 				}//end of => if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null)
 
 				if (!servingSizeDivAlreadyClosed){
@@ -2032,8 +2044,24 @@
 			var servingSizeIsHidden = sevingUnitQuantityHtml2018Result.servingSizeIsHidden;
 			var servingContainerIsHidden = sevingUnitQuantityHtml2018Result.servingContainerIsHidden;
 
-			var showLineDiv = $this.settings.showItemName || (!$this.settings.showItemName && servingSizeIsHidden && servingContainerIsHidden) ||
-				($this.settings.showServingUnitQuantity && $this.settings.originalServingUnitQuantity > 0 && $this.settings.showServingsPerContainer && $this.settings.valueServingPerContainer > 0);
+			var showLineDiv =
+				$this.settings.showItemName ||
+				(
+					!$this.settings.showItemName &&
+					servingSizeIsHidden &&
+					servingContainerIsHidden
+				) ||
+				(
+					!$this.settings.showItemName &&
+					$this.settings.originalServingUnitQuantity > 0 &&
+					$this.settings.valueServingWeightGrams > 0
+				) ||
+				(
+					$this.settings.showServingUnitQuantity &&
+					$this.settings.originalServingUnitQuantity > 0 &&
+					$this.settings.showServingsPerContainer &&
+					$this.settings.valueServingPerContainer > 0
+				);
 
 			if (showLineDiv){
 				nutritionLabel += tab1 + '<div class="nf-line">\n';
