@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Legacy Version Demo Page</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+	<link rel='stylesheet' type='text/css' media='screen' href='../../css/nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='screen' href='./../css/demo.css'>
+
+	<!-- google webfont for nutrition label -->
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Archivo+Black" />
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<ul class="nav nav-sidebar">
+				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
+				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test1"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #1</h3>
+<pre id="pre1">
+var min = 100;
+var max = 1000;
+
+$('#test1').nutritionLabel({
+	'itemName' : 'Demo FDA Rounding Off',
+	'showPotassium' : true,
+
+	'valueServingWeightGrams' : Math.floor((Math.random() * max) + min) * .1,
+	'valueServingPerContainer' : Math.floor((Math.random() * max) + min) * .1,
+	'valueCalories' : Math.floor((Math.random() * max) + min) * .1,
+	'valueFatCalories' : Math.floor((Math.random() * max) + min) * .1,
+	'valueTotalFat' : Math.floor((Math.random() * max) + min) * .1,
+	'valueSatFat' : Math.floor((Math.random() * max) + min) * .1,
+	'valueTransFat' : Math.floor((Math.random() * max) + min) * .1,
+	'valuePolyFat' : Math.floor((Math.random() * max) + min) * .1,
+	'valueMonoFat' : Math.floor((Math.random() * max) + min) * .1,
+	'valueCholesterol' : Math.floor((Math.random() * max) + min) * .1,
+	'valueSodium' : Math.floor((Math.random() * max) + min) * .1,
+	'valuePotassium' : Math.floor((Math.random() * max) + min) * .1, //this is for the legacy version
+	'valuePotassium_2018' : Math.floor((Math.random() * max) + min) * .1, //this is for the 2018 version
+	'valueTotalCarb' : Math.floor((Math.random() * max) + min) * .1,
+	'valueFibers' : Math.floor((Math.random() * max) + min) * .1,
+	'valueSugars' : Math.floor((Math.random() * max) + min) * .1,
+	'valueAddedSugars' : Math.floor((Math.random() * max) + min) * .1,
+	'valueProteins' : Math.floor((Math.random() * max) + min) * .1,
+	'valueVitaminA' : Math.floor((Math.random() * max) + min) * .1,
+	'valueVitaminC' : Math.floor((Math.random() * max) + min) * .1,
+	'valueVitaminD' : Math.floor((Math.random() * max) + min) * .1,
+	'valueCalcium' : Math.floor((Math.random() * max) + min) * .1,
+	'valueIron' : Math.floor((Math.random() * max) + min) * .1
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test2"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #2</h3>
+<pre id="pre2">
+var min = 100;
+var max = 1000;
+
+$('#test2').nutritionLabel({
+	'itemName' : 'Demo FDA Rounding On',
+	'allowFDARounding' : true,
+	'showPotassium' : true,
+
+	'valueServingWeightGrams' : Math.floor((Math.random() * max) + min) * .1,
+	'valueServingPerContainer' : Math.floor((Math.random() * max) + min) * .1,
+	'valueCalories' : Math.floor((Math.random() * max) + min) * .1,
+	'valueFatCalories' : Math.floor((Math.random() * max) + min) * .1,
+	'valueTotalFat' : Math.floor((Math.random() * max) + min) * .1,
+	'valueSatFat' : Math.floor((Math.random() * max) + min) * .1,
+	'valueTransFat' : Math.floor((Math.random() * max) + min) * .1,
+	'valuePolyFat' : Math.floor((Math.random() * max) + min) * .1,
+	'valueMonoFat' : Math.floor((Math.random() * max) + min) * .1,
+	'valueCholesterol' : Math.floor((Math.random() * max) + min) * .1,
+	'valueSodium' : Math.floor((Math.random() * max) + min) * .1,
+	'valuePotassium' : Math.floor((Math.random() * max) + min) * .1, //this is for the legacy version
+	'valuePotassium_2018' : Math.floor((Math.random() * max) + min) * .1, //this is for the 2018 version
+	'valueTotalCarb' : Math.floor((Math.random() * max) + min) * .1,
+	'valueFibers' : Math.floor((Math.random() * max) + min) * .1,
+	'valueSugars' : Math.floor((Math.random() * max) + min) * .1,
+	'valueAddedSugars' : Math.floor((Math.random() * max) + min) * .1,
+	'valueProteins' : Math.floor((Math.random() * max) + min) * .1,
+	'valueVitaminA' : Math.floor((Math.random() * max) + min) * .1,
+	'valueVitaminC' : Math.floor((Math.random() * max) + min) * .1,
+	'valueVitaminD' : Math.floor((Math.random() * max) + min) * .1,
+	'valueCalcium' : Math.floor((Math.random() * max) + min) * .1,
+	'valueIron' : Math.floor((Math.random() * max) + min) * .1
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+		</div>
+	</div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	eval( eval( $('#pre1').html() ) );
+	eval( eval( $('#pre2').html() ) );
+});
+</script>
+
+</body>
+</html>

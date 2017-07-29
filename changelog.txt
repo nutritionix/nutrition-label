@@ -1,4 +1,15 @@
 
+version 7.0.9 - July 30, 2017
+
+ - made some changes on the 2018 version based on the discussion here
+   - changed the default unit for vitamin D from IU to mcg
+   - added a new daily potassium value for the 2018 label with a default value of 4700. this way, it don't affect the optional potassium value for the legacy label https://github.com/nutritionix/nutrition-label/commit/cff80ba92a399a12d3ba5aa07f651cb751b5c1ff?w=1#diff-9ce72bf5eb39b381c67a00ed3b790dd5
+   - changed the daily calcium value to 1300. this value don't affect the legacy version, only the 2018 version
+   - changed the daily vitamin d value to 20. this value don't affect the legacy version, only the 2018 version
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 7.0.8 - July 15, 2017
 
  - fixed a minor bug - missing line under the label header. see the discussion on https://github.com/nutritionix/nutrition-label/issues/73
