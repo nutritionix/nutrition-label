@@ -299,7 +299,7 @@
 		unitProteins : 'g',
 		unitVitaminA : '%',
 		unitVitaminC : '%',
-		unitVitaminD_base : 'mg', //this is for the 2018 version
+		unitVitaminD_base : 'mcg', //this is for the 2018 version
 		unitVitaminD_percent : '%', //this is for the 2018 version
 		unitCalcium : '%',
 		unitCalcium_base : 'mg', //this is for the 2018 version
