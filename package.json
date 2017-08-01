@@ -1,6 +1,6 @@
 {
   "name": "nutrition-label-jquery-plugin",
-  "version": "7.0.9",
+  "version": "7.0.10",
   "description": "To be able to create a FDA-style nutrition label with any nutrition data source",
   "main": "nutritionLabel-min.js",
   "dependencies": {},

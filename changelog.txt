@@ -1,4 +1,11 @@
 
+version 7.0.10 - August 1, 2017
+
+ - fixed a minor oversight where the default vitamin d unit was coded mg when it should have been mcg https://github.com/nutritionix/nutrition-label/issues/75#issuecomment-319099495
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 7.0.9 - July 30, 2017
 
  - made some changes on the 2018 version based on the discussion here
