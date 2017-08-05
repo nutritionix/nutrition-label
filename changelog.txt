@@ -1,4 +1,15 @@
 
+version 7.0.11 - August 5, 2017
+
+ - https://github.com/nutritionix/nutrition-label/issues/78
+ - changed the default text for these two 2018 version attributes:
+   - Vit. D to Vitamin D
+   - Potas. to Potassium
+ - given these changes, removed the setting textPotassium_2018 as there is no need for it anymore and the 2018 label will now use the setting textPotassium, same as the legacy label
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 7.0.10 - August 1, 2017
 
  - fixed a minor oversight where the default vitamin d unit was coded mg when it should have been mcg https://github.com/nutritionix/nutrition-label/issues/75#issuecomment-319099495

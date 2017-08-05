@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.10                                                                                                                      |
+ * @current version     7.0.11                                                                                                                      |
  * @stable version      7.0.5                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -341,8 +341,7 @@
 		textMonoFat : 'Monounsaturated Fat',
 		textCholesterol : 'Cholesterol',
 		textSodium : 'Sodium',
-		textPotassium : 'Potassium', //this is for the legacy version
-		textPotassium_2018 : 'Potas.', //this is for the 2018 version
+		textPotassium : 'Potassium',
 		textTotalCarb : 'Total Carbohydrates',
 		textFibers : 'Dietary Fiber',
 		textSugars : 'Sugars',
@@ -351,7 +350,7 @@
 		textProteins : 'Protein',
 		textVitaminA : 'Vitamin A',
 		textVitaminC : 'Vitamin C',
-		textVitaminD : 'Vit. D',
+		textVitaminD : 'Vitamin D',
 		textCalcium : 'Calcium',
 		textIron : 'Iron',
 		ingredientList : 'None',
@@ -2223,7 +2222,7 @@
 					if ($this.settings.showPotassium_2018){
 						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
 							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
-							$this.settings,  'valuePotassium_2018', 'dailyValuePotassium_2018', 'unitPotassium_base', 'unitPotassium_percent', 'naPotassium_2018', 'textPotassium_2018'
+							$this.settings,  'valuePotassium_2018', 'dailyValuePotassium_2018', 'unitPotassium_base', 'unitPotassium_percent', 'naPotassium_2018', 'textPotassium'
 						);
 					}
 
