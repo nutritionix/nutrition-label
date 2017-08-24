@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.11                                                                                                                      |
+ * @current version     7.0.12                                                                                                                      |
  * @stable version      7.0.5                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -194,7 +194,7 @@
 
 .nutritionLabel input.unitQuantityBox {
 	width:25px;
-	height: 15px;
+	height: 20px;
 	padding:2px;
 	font-size: .9em !important;
 	margin-left: 15px;
@@ -211,7 +211,7 @@
 .nutritionLabel .servingSizeField {
 	float: left;
 	margin-top: .2em;
-	margin-bottom: .2em;
+	margin-bottom: 0;
 	margin-right: .4em;
 }
 .nutritionLabel .servingUnit {

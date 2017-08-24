@@ -1,4 +1,11 @@
 
+version 7.0.12 - August 24, 2017
+
+ - added a new setting, "version (default 1)" to allow different styles on the labels. For this change, the legacy version will have an ability to show 2 different design on the servings area (best refer to the details on the task) https://github.com/nutritionix/nutrition-label/issues/77
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 7.0.11 - August 5, 2017
 
  - https://github.com/nutritionix/nutrition-label/issues/78

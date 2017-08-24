@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.11                                                                                                                      |
+ * @current version     7.0.12                                                                                                                      |
  * @stable version      7.0.5                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -363,7 +363,10 @@
 		textGoogleAnalyticsEventActionDownArrow : 'Quantity Down Arrow Clicked',
 		textGoogleAnalyticsEventActionTextbox : 'Quantity Textbox Changed',
 
-		showLegacyVersion : true
+		showLegacyVersion : true,
+
+		//more details here https://github.com/nutritionix/nutrition-label/issues/77#issuecomment-323510972
+		legacyVersion: 1
 	};//end of => $.fn.nutritionLabel.defaultSettings
 
 
@@ -1117,7 +1120,9 @@
 						'</div>\n';
 					}
 
-						localNutritionLabel += localTab3 + '<div class="servingUnit fl ' + unitAddedClass + '">' + $localSettings.valueServingSizeUnit + '</div>\n';
+						localNutritionLabel += localTab3 + '<div class="servingUnit fl ' + unitAddedClass + '">' +
+							$localSettings.valueServingSizeUnit +
+						($localSettings.legacyVersion == 1 ? '</div>\n' : '');
 
 				//end of => if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null)
 				}else if ($localSettings.originalServingUnitQuantity > 0 && $localSettings.showServingUnitQuantityTextbox){
@@ -1127,10 +1132,15 @@
 				}
 
 				if ($localSettings.valueServingWeightGrams > 0){
-						localNutritionLabel += localTab3 + '<div class="servingWeightGrams fl ' + gramsAddedClass + '">(<span itemprop="servingSize">' +
-							parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) )
-						+ 'g</span>)</div>\n';
+						localNutritionLabel += localTab3 + '<' + ($localSettings.legacyVersion == 1 ? 'div' : 'span') + ' class="servingWeightGrams ' +
+							($localSettings.legacyVersion == 1 ? 'fl' : '') + ' ' + gramsAddedClass + '">' +
+							'(<span itemprop="servingSize">' +
+								parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) ) +
+							'g</span>)\n</' +
+						($localSettings.legacyVersion == 1 ? 'div' : 'span') + '>\n';
 				}
+
+					localNutritionLabel += localTab3 + ($localSettings.legacyVersion == 1 ? '' : '</div>\n');
 
 				localNutritionLabel += localTab2 + '</div><!-- closing class="cf" -->\n\n';
 			}else{
