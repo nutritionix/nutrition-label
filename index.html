@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     7.0.12                                                                                                                      |
+ * @current version     7.0.13                                                                                                                      |
  * @stable version      7.0.5                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -29,7 +29,7 @@
 <body>
 <div class="container">
 	<div class="hero-unit">
-		<h1>Nutrition Label version 7.0.12</h1>
+		<h1>Nutrition Label version 7.0.13</h1>
 		<h4>from Nutritionix</h4>
 		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
 		<p>
@@ -256,30 +256,30 @@ valueIron : 0,
 //customizable units for the values
 unitCalories : '',
 unitFatCalories : '',
-unitTotalFat : 'g',
-unitSatFat : 'g',
-unitTransFat : 'g',
-unitPolyFat : 'g',
-unitMonoFat : 'g',
-unitCholesterol : 'mg',
-unitSodium : 'mg',
-unitPotassium : 'mg', //this is for the legacy version
-unitPotassium_base : 'mg', //this is for the 2018 version
+unitTotalFat : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitSatFat : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitTransFat : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitPolyFat : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitMonoFat : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitCholesterol : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>',
+unitSodium : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>',
+unitPotassium : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the legacy version
+unitPotassium_base : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
 unitPotassium_percent : '%', //this is for the 2018 version
-unitTotalCarb : 'g',
-unitFibers : 'g',
-unitSugars : 'g',
-unitAddedSugars : 'g',
-unitProteins : 'g',
+unitTotalCarb : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitFibers : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitSugars : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitAddedSugars : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitProteins : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
 unitVitaminA : '%',
 unitVitaminC : '%',
-unitVitaminD_base : 'mcg', //this is for the 2018 version
+unitVitaminD_base : '<span aria-hidden="true">mcg</span><span class="sr-only"> micrograms</span>', //this is for the 2018 version
 unitVitaminD_percent : '%', //this is for the 2018 version
 unitCalcium : '%',
-unitCalcium_base : 'mg', //this is for the 2018 version
+unitCalcium_base : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
 unitCalcium_percent : '%', //this is for the 2018 version
 unitIron : '%',
-unitIron_base : 'mg', //this is for the 2018 version
+unitIron_base : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
 unitIron_percent : '%', //this is for the 2018 version
 
 //these are the values for the optional calorie diet

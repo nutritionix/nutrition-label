@@ -1,4 +1,17 @@
 
+version 7.0.13 - September 16, 2017
+
+ - improve how the label is read by screen readers https://github.com/nutritionix/nutrition-label/issues/80
+   - change the default unit values to make it more screen reader friendly. not all screen reader behaves the same so we opted to be on the safe side and make sure that these units are readable
+     - eg: 'g' => '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>'
+   - up arrow, down arrow and the textbox are now screen reader friendly and it can be navigated using tab
+   - not applicable data is now screen reader friendly
+   - most daily percent value are hidden on screen reader. no idea yet if we can make this optional (eg. a setting to control this)
+   - added tabIndex to a few <div> and <span> elements to make it easy to use with screen reader. the outline is removed but devs can override it using css. the code that we use is "div, span{outline: 0;}"
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 7.0.12 - September 15, 2017
 
  - added a new setting, "version (default 1)" to allow different styles on the labels. For this change, the legacy version will have an ability to show 2 different design on the servings area (best refer to the details on the task) https://github.com/nutritionix/nutrition-label/issues/77
