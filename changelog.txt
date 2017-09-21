@@ -1,4 +1,11 @@
 
+version 7.0.14 - September 21, 2017
+
+ - added sr-only class style on the css (copied from bootstrap http://getbootstrap.com/)
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 7.0.13 - September 16, 2017
 
  - improve how the label is read by screen readers https://github.com/nutritionix/nutrition-label/issues/80
