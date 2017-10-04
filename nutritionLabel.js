@@ -116,7 +116,7 @@
 		//to scroll the item name if the jQuery.height() is > scrollLongItemNamePixel
 		scrollLongItemName : true,
 		scrollLongItemNamePixel : 36,
-		scrollLongItemNamePixel2018Override : 32, //this is needed to fix some issues on the 2018 label as the layout of the label is very different than the legacy one
+		scrollLongItemNamePixel2018Override : 34, //this is needed to fix some issues on the 2018 label as the layout of the label is very different than the legacy one
 
 		//show the customizable link at the bottom
 		showBottomLink : false,
