@@ -9,14 +9,14 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     8.0.1                                                                                                                       |
+ * @current version     7.0.15                                                                                                                      |
  * @stable version      7.0.5                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
  ***************************************************************************************************************************************************+
 */
-@import url("//fonts.googleapis.com/css?family=Archivo+Black");
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black");
 
 /*******************************************************************************************************************
 ***********************************START OF THE LEGACY RELATED STYLES**********************************************
@@ -58,8 +58,7 @@
 }
 .nutritionLabel .serving {
 	font-size: 1.1em;
-	 line-height: 1.28em;
-	padding-bottom: 2px;
+	line-height: 1.28em;
 }
 .nutritionLabel .name {
 	font-size: 1.1em;
@@ -97,6 +96,7 @@
 	line-height:0;
 	font-size:1px;
 	background: #333;
+	margin-top: 3px;
 }
 .nutritionLabel .bar2 {
 	height: 5px;
@@ -194,7 +194,7 @@
 
 .nutritionLabel input.unitQuantityBox {
 	width:25px;
-	height: 15px;
+	height: 20px;
 	padding:2px;
 	font-size: .9em !important;
 	margin-left: 15px;
@@ -211,7 +211,7 @@
 .nutritionLabel .servingSizeField {
 	float: left;
 	margin-top: .2em;
-	margin-bottom: .2em;
+	margin-bottom: 0;
 	margin-right: .4em;
 }
 .nutritionLabel .servingUnit {
@@ -489,6 +489,21 @@ div.nf-unitQuantityUp:hover, div.nf-unitQuantityDown:hover{
 .nf-arrowsAreHidden + input + .nf-item-name {
 	margin-left: 35px;
 }
+
+div, span{
+	outline: 0;
+}
 /*******************************************************************************************************************
 *************************************END OF THE 2018 LABEL RELATED STYLES******************************************
 ******************************************************************************************************************/
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}

@@ -1,4 +1,12 @@
 
+version 8.0.1 - October 5, 2017
+
+  - moved the /dist/images to /dist/css/images to fix the path issue on the css
+  - put back the non minified version of the css and js on the dist files
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 7.0.15 - October 4, 2017
 
  - fixed the bug - long item name scroll feature isn't appearing on most browsers https://github.com/nutritionix/nutrition-label/issues/79
