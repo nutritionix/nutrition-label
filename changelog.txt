@@ -1,4 +1,11 @@
 
+version 8.0.2 - October 7, 2017
+
+ - create a setting to allow users to customize the not applicable value https://github.com/nutritionix/nutrition-label/issues/85
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 8.0.1 - October 5, 2017
 
   - moved the /dist/images to /dist/css/images to fix the path issue on the css
