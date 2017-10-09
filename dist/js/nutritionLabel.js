@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     8.0.2                                                                                                                       |
+ * @current version     8.0.3                                                                                                                       |
  * @stable version      7.0.11                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -1305,7 +1305,7 @@
 	){
 		//initialize the not applicable image icon in case we need to use it
 		//attributeDisplayType == 5 => for vitamin a, vitamin c, calcium and iron
-		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + textNotApplicable + '&nbsp;</font>' +
+		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font>' +
 			'<font class="sr-only">Data not available' + (attributeDisplayType == 5 ? ' for ' : '') + '</font>';
 		var localNutritionLabel = localTabValue + '<div class="' + lineClass + '" tabindex="0">';
 
@@ -1363,7 +1363,7 @@
 		}
 
 		//initialize the not applicable image icon in case we need to use it
-		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + textNotApplicable + '&nbsp;</font><font class="sr-only">Data not available</font>';
+		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font><font class="sr-only">Data not available</font>';
 
 		//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
 		var localNutritionLabel = localTab1 + '<div class="' + lineClass + '" tabindex="0">\n';
@@ -1422,7 +1422,7 @@
 		}
 
 		//initialize the not applicable image icon in case we need to use it
-		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + textNotApplicable + '&nbsp;</font><font class="sr-only">Data not available</font>';
+		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font><font class="sr-only">Data not available</font>';
 		var localNutritionLabel = localTab1 + '<div class="' + topDivClass +'" tabindex="0">\n';
 
 		if (showPercentageCode){
@@ -1533,7 +1533,7 @@
 	 */
 	function generateHtmlAndComputeValueGivenThePercentage($localSettings, valueIndex, dailyValueIndex, unitIndex_base, unitIndex_percent, naIndex, attributeTexts){
 		//initialize the not applicable image icon in case we need to use it
-		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + textNotApplicable + '&nbsp;</font><font class="sr-only">Data not available</font>';
+		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font><font class="sr-only">Data not available</font>';
 		var localNutritionLabel = '<div class="nf-vitamin-column" tabindex="0">\n';
 			localNutritionLabel += $localSettings[attributeTexts] + ' ';
 			localNutritionLabel += (
