@@ -198,7 +198,7 @@
 		showFibers : true,
 		showSugars : true,
 		showAddedSugars : true,
-		showSugarAlcohol : true,
+		showSugarAlcohol : false,
 		showProteins : true,
 		showVitaminA : true,
 		showVitaminC : true,
