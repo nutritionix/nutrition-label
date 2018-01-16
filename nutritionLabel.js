@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     8.0.3                                                                                                                       |
- * @stable version      7.0.11                                                                                                                      |
+ * @current version     8.0.4                                                                                                                       |
+ * @stable version      8.0.3                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
@@ -198,6 +198,7 @@
 		showFibers : true,
 		showSugars : true,
 		showAddedSugars : true,
+		showSugarAlcohol : true,
 		showProteins : true,
 		showVitaminA : true,
 		showVitaminC : true,
@@ -247,6 +248,7 @@
 		naFibers : false,
 		naSugars : false,
 		naAddedSugars : false,
+		naSugarAlcohol : false,
 		naProteins : false,
 		naVitaminA : false,
 		naVitaminC : false,
@@ -272,6 +274,7 @@
 		valueFibers : 0,
 		valueSugars : 0,
 		valueAddedSugars : 0,
+		valueSugarAlcohol : 0,
 		valueProteins : 0,
 		valueVitaminA : 0,
 		valueVitaminC : 0,
@@ -296,6 +299,7 @@
 		unitFibers : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
 		unitSugars : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
 		unitAddedSugars : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+		unitSugarAlcohol : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
 		unitProteins : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
 		unitVitaminA : '%',
 		unitVitaminC : '%',
@@ -347,6 +351,7 @@
 		textSugars : 'Sugars',
 		textAddedSugars1 : 'Includes ',
 		textAddedSugars2 : ' Added Sugars',
+		textSugarAlcohol : 'Sugar Alcohol',
 		textProteins : 'Protein',
 		textVitaminA : 'Vitamin A',
 		textVitaminC : 'Vitamin C',
@@ -389,7 +394,7 @@
 			'valueCol2DietaryTotalFat', 'valueCol1DietarySatFat', 'valueCol2DietarySatFat', 'valueCol1DietaryCholesterol', 'valueCol2DietaryCholesterol', 'valueCol1DietarySodium',
 			'valueCol2DietarySodium', 'valueCol1DietaryPotassium', 'valueCol2DietaryPotassium', 'valueCol1DietaryTotalCarb', 'valueCol2DietaryTotalCarb', 'valueCol1Dietary', 'valueCol2Dietary',
 			'valueServingUnitQuantity', 'scrollLongItemNamePixel', 'scrollLongItemNamePixel2018Override', 'decimalPlacesForQuantityTextbox', 'valueAddedSugars', 'dailyValueVitaminD',
-			'dailyValueCalcium', 'dailyValueIron', 'valueVitaminD'
+			'dailyValueCalcium', 'dailyValueIron', 'valueVitaminD', 'valueSugarAlcohol'
 		];
 
 		$.each(settings, function(index, value){
@@ -413,7 +418,8 @@
 	function updateNutritionValueWithMultiplier(settings){
 		var nutritionIndex = [
 			'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat', 'valueTransFat', 'valuePolyFat', 'valueMonoFat', 'valueCholesterol', 'valueSodium', 'valuePotassium', 'valueTotalCarb',
-			'valueFibers','valueSugars','valueProteins', 'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueServingWeightGrams', 'valueAddedSugars', 'valueVitaminD', 'valuePotassium_2018'
+			'valueFibers','valueSugars','valueProteins', 'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueServingWeightGrams', 'valueAddedSugars', 'valueVitaminD',
+			'valuePotassium_2018', 'valueSugarAlcohol'
 		];
 
 		$.each(settings, function(index, value){
@@ -1292,7 +1298,7 @@
 
 	/*
 	 * generate and return the html code for these areas that share similar html format for the legacy version of the label:
-	 *    fat calories, calories, trans fat, poly fat, mono fat, sugars, proteins, vitamin a, vitamin c, calcium and iron
+	 *    fat calories, calories, trans fat, poly fat, mono fat, sugars, sugar alcohol, proteins, vitamin a, vitamin c, calcium and iron
 	 * attributeDisplayType
 	 *    1 => <strong> + $localSettings[attributeText] + </strong> <span itemprop=" + itemPropValue + ">
 	 *    2 => $localSettings[attributeText] + ' '
@@ -1406,7 +1412,7 @@
 
 	/*
 	 * generate and return the html code for these areas that share similar html format for the 2018 version of the label:
-	 *    calories, total fat, saturated fat, trans fat, poly fat, mono fat, cholesterol, sodium, total carb, fibers, sugars, added sugar, proteins
+	 *    calories, total fat, saturated fat, trans fat, poly fat, mono fat, cholesterol, sodium, total carb, fibers, sugars, added sugar, sugar alcohol, proteins
 	 */
 	function generateAttributeHtml2018Version(
 			$localSettings, valueIndex, unitIndex, naIndex, attributeText, itemPropValue, topDivClass, showPercentageCode, roundFunctionName, roundFunctionRuleName, labelClass, valueClass, dailyValueIndex
@@ -1771,6 +1777,7 @@
 				$this.settings.showTotalCarb = $this.settings.naTotalCarb ? false : $this.settings.showTotalCarb;
 				$this.settings.showFibers = $this.settings.naFibers ? false : $this.settings.showFibers;
 				$this.settings.showSugars = $this.settings.naSugars ? false : $this.settings.showSugars;
+				$this.settings.showSugarAlcohol = $this.settings.naSugarAlcohol ? false : $this.settings.showSugarAlcohol;
 				$this.settings.showProteins = $this.settings.naProteins ? false : $this.settings.showProteins;
 				$this.settings.showVitaminA = $this.settings.naVitaminA ? false : $this.settings.showVitaminA;
 				$this.settings.showVitaminC = $this.settings.naVitaminC ? false : $this.settings.showVitaminC;
@@ -1930,6 +1937,13 @@
 				);
 			}
 
+			if ($this.settings.showSugarAlcohol){
+				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
+					//$localSettings, valueIndex,          unitIndex,          naIndex,          attributeText,     localTabValue, lineClass,    attributeDisplayType, itemPropValue, localExtraTab, roundFunctionName
+					$this.settings,  'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', tab1,         'line indent', 4,                   '',             '',           'roundCarbFiberSugarProtein'
+				);
+			}
+
 			if ($this.settings.showProteins){
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
 					//$localSettings, valueIndex,      unitIndex,      naIndex,      attributeText, localTabValue, lineClass, attributeDisplayType, itemPropValue,   localExtraTab, roundFunctionName
@@ -2028,6 +2042,7 @@
 				$this.settings.showFibers = $this.settings.naFibers ? false : $this.settings.showFibers;
 				$this.settings.showSugars = $this.settings.naSugars ? false : $this.settings.showSugars;
 				$this.settings.showAddedSugars = $this.settings.naAddedSugars ? false : $this.settings.showAddedSugars;
+				$this.settings.showSugarAlcohol = $this.settings.naSugarAlcohol ? false : $this.settings.showSugarAlcohol;
 				$this.settings.showProteins = $this.settings.naProteins ? false : $this.settings.showProteins;
 				$this.settings.showVitaminD = $this.settings.naVitaminD ? false : $this.settings.showVitaminD;
 				$this.settings.showCalcium = $this.settings.naCalcium ? false : $this.settings.showCalcium;
@@ -2199,6 +2214,13 @@
 					nutritionLabel += generateAttributeHtml2018Version(
 						//$localSettings, valueIndex,         unitIndex,         naIndex,         attributeText,     itemPropValue, topDivClass,         showPercentageCode, roundFunctionName,            roundFunctionRuleName,           labelClass, valueClass, dailyValueIndex
 						$this.settings,  'valueAddedSugars', 'unitAddedSugars', 'naAddedSugars', 'textAddedSugars1', '',           'nf-line nf-indent2', true,              'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',         '',        'dailyValueAddedSugar'
+					);
+				}
+
+				if ($this.settings.showSugarAlcohol){
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings, valueIndex,          unitIndex,          naIndex,          attributeText,      itemPropValue, topDivClass,        showPercentageCode, roundFunctionName,           roundFunctionRuleName, labelClass, valueClass, dailyValueIndex
+						$this.settings,  'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', '',            'nf-line nf-indent', false,             'roundCarbFiberSugarProtein', '',                    '',         '',         ''
 					);
 				}
 
