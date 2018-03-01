@@ -31,13 +31,13 @@ git clone git@github.com:nutritionix/nutrition-label.git
 ```sh
 bower install --save nutrition-label-jquery-plugin
 ```
-
 ***
 
 **using npm**
 ```sh
 npm install nutrition-label-jquery-plugin
 ```
+***
 
 ```html
 <!-- include the needed font from google api -->
