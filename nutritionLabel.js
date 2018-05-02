@@ -182,6 +182,29 @@
 		dailyValueVitaminD : 20,
 		dailyValueAddedSugar : 50,
 
+    dailyValueVitaminA_2018 : 5000,
+    dailyValueVitaminC_2018 : 60,
+    dailyValueVitaminE : 30,
+    dailyValueVitaminK : 80,
+    dailyValueThiamin : 1.5,
+    dailyValueRiboflavin : 1.7,
+    dailyValueNiacin : 20,
+    dailyValueVitaminB6 : 2,
+    dailyValueFolate : 400,
+    dailyValueVitaminB12 : 6,
+    dailyValueBiotin : 300,
+    dailyValuePantothenicAcid : 10,
+    dailyValuePhosphorus : 1000,
+    dailyValueIodine : 150,
+    dailyValueMagnesium : 400,
+    dailyValueZinc : 15,
+    dailyValueSelenium : 70,
+    dailyValueCopper : 2,
+    dailyValueManganese : 2,
+    dailyValueChromium : 120,
+    dailyValueMolybdenum : 75,
+    dailyValueChloride : 3400,
+
 		//these values can be change to hide some nutrition values
 		showCalories : true,
 		showFatCalories : true,
@@ -201,10 +224,36 @@
 		showSugarAlcohol : false,
 		showProteins : true,
 		showVitaminA : true,
+    showVitaminA_2018: false, // optional in 2018
 		showVitaminC : true,
+    showVitaminC_2018: false, // optional in 2018
 		showVitaminD : true,
 		showCalcium : true,
 		showIron : true,
+
+		// additional optional nutrients for 2018 version
+		// these can be included, but are not required by the FDA as of 2018
+		// disabled by default
+    showVitaminE: false,
+    showVitaminK: false,
+    showThiamin: false,
+    showRiboflavin: false,
+    showNiacin: false,
+    showVitaminB6: false,
+    showFolate: false,
+    showVitaminB12: false,
+    showBiotin: false,
+    showPantothenicAcid: false,
+    showPhosphorus: false,
+    showIodine: false,
+    showMagnesium: false,
+    showZinc: false,
+    showSelenium: false,
+    showCopper: false,
+    showManganese: false,
+    showChromium: false,
+    showMolybdenum: false,
+    showChloride: false,
 
 		//to show the 'amount per serving' text
 		showAmountPerServing : true,
@@ -251,10 +300,32 @@
 		naSugarAlcohol : false,
 		naProteins : false,
 		naVitaminA : false,
+		naVitaminA_2018: false,
 		naVitaminC : false,
+    naVitaminC_2018: false,
 		naVitaminD : false,
 		naCalcium : false,
 		naIron : false,
+    naVitaminE: false,
+    naVitaminK: false,
+    naThiamin: false,
+    naRiboflavin: false,
+    naNiacin: false,
+    naVitaminB6: false,
+    naFolate: false,
+    naVitaminB12: false,
+    naBiotin: false,
+    naPantothenicAcid: false,
+    naPhosphorus: false,
+    naIodine: false,
+    naMagnesium: false,
+    naZinc: false,
+    naSelenium: false,
+    naCopper: false,
+    naManganese: false,
+    naChromium: false,
+    naMolybdenum: false,
+    naChloride: false,
 
 		//these are the default values for the nutrition info
 		valueServingWeightGrams : 0,
@@ -276,11 +347,34 @@
 		valueAddedSugars : 0,
 		valueSugarAlcohol : 0,
 		valueProteins : 0,
-		valueVitaminA : 0,
-		valueVitaminC : 0,
+		valueVitaminA : 0, //this is for the legacy version
+		valueVitaminA_2018: 0, //this is for the 2018 version, optional
+		valueVitaminC : 0, //this is for the legacy version
+		valueVitaminC_2018: 0, //this is for the 2018 version, optional
 		valueVitaminD : 0,
 		valueCalcium : 0,
 		valueIron : 0,
+		// optional nutrients 2018 only
+    valueVitaminE: 0,
+    valueVitaminK: 0,
+    valueThiamin: 0,
+    valueRiboflavin: 0,
+    valueNiacin: 0,
+    valueVitaminB6: 0,
+    valueFolate: 0,
+    valueVitaminB12: 0,
+    valueBiotin: 0,
+    valuePantothenicAcid: 0,
+    valuePhosphorus: 0,
+    valueIodine: 0,
+    valueMagnesium: 0,
+    valueZinc: 0,
+    valueSelenium: 0,
+    valueCopper: 0,
+    valueManganese: 0,
+    valueChromium: 0,
+    valueMolybdenum: 0,
+    valueChloride: 0,
 
 		//customizable units for the values
 		unitCalories : '',
@@ -302,7 +396,11 @@
 		unitSugarAlcohol : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
 		unitProteins : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
 		unitVitaminA : '%',
+		unitVitaminA_base: '<span aria-hidden="true"> IU</span><span class="sr-only"> international units</span>', //this is for the 2018 version
+		unitVitaminA_percent: "%", //this is for the 2018 version
 		unitVitaminC : '%',
+		unitVitaminC_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
+		unitVitaminC_percent: "%", //this is for the 2018 version
 		unitVitaminD_base : '<span aria-hidden="true">mcg</span><span class="sr-only"> micrograms</span>', //this is for the 2018 version
 		unitVitaminD_percent : '%', //this is for the 2018 version
 		unitCalcium : '%',
@@ -311,6 +409,48 @@
 		unitIron : '%',
 		unitIron_base : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
 		unitIron_percent : '%', //this is for the 2018 version
+
+		// optional nutrients 2018 only
+		unitVitaminE_base: '<span aria-hidden="true"> IU</span><span class="sr-only"> international units</span>',
+		unitVitaminE_percent: "%",
+		unitVitaminK_base: '<span aria-hidden="true"> IU</span><span class="sr-only"> international units</span>',
+		unitVitaminK_percent: "%",
+		unitThiamin_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>',
+		unitThiamin_percent: "%",
+		unitRiboflavin_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>',
+		unitRiboflavin_percent: "%",
+		unitNiacin_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>',
+		unitNiacin_percent: "%",
+		unitVitaminB6_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>',
+		unitVitaminB6_percent: "%",
+		unitFolate_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>',
+		unitFolate_percent: "%",
+		unitVitaminB12_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>',
+		unitVitaminB12_percent: "%",
+		unitBiotin_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>',
+		unitBiotin_percent: "%",
+		unitPantothenicAcid_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>',
+		unitPantothenicAcid_percent: "%",
+		unitPhosphorus_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>',
+		unitPhosphorus_percent: "%",
+		unitIodine_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>',
+		unitIodine_percent: "%",
+		unitMagnesium_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>',
+		unitMagnesium_percent: "%",
+		unitZinc_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>',
+		unitZinc_percent: "%",
+		unitSelenium_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>',
+		unitSelenium_percent: "%",
+		unitCopper_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>',
+		unitCopper_percent: "%",
+		unitManganese_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>',
+		unitManganese_percent: "%",
+		unitChromium_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>',
+		unitChromium_percent: "%",
+		unitMolybdenum_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>',
+		unitMolybdenum_percent: "%",
+		unitChloride_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>',
+		unitChloride_percent: "%",
 
 		//these are the values for the optional calorie diet
 		valueCol1CalorieDiet : 2000,
@@ -358,6 +498,26 @@
 		textVitaminD : 'Vitamin D',
 		textCalcium : 'Calcium',
 		textIron : 'Iron',
+		textVitaminE: "Vitamin E",
+    textVitaminK: "Vitamin K",
+    textThiamin: "Thiamin",
+    textRiboflavin: "Riboflavin",
+    textNiacin: "Niacin",
+    textVitaminB6: "Vitamin B<sub>6</sub>",
+    textFolate: "Folate",
+    textVitaminB12: "Vitamin B<sub>12</sub>",
+    textBiotin: "Biotin",
+    textPantothenicAcid: "Pantothenic Acid",
+    textPhosphorus: "Phosphorus",
+    textIodine: "Iodine",
+    textMagnesium: "Magnesium",
+    textZinc: "Zinc",
+    textSelenium: "Selenium",
+    textCopper: "Copper",
+    textManganese: "Manganese",
+    textChromium: "Chromium",
+    textMolybdenum: "Molybdenum",
+    textChloride: "Chloride",
 		textNotApplicable : '-',
 		ingredientList : 'None',
 		textPercentDailyPart1 : 'Percent Daily Values are based on a',
@@ -1783,6 +1943,7 @@
 				$this.settings.showVitaminC = $this.settings.naVitaminC ? false : $this.settings.showVitaminC;
 				$this.settings.showCalcium = $this.settings.naCalcium ? false : $this.settings.showCalcium;
 				$this.settings.showIron = $this.settings.naIron ? false : $this.settings.showIron;
+
 			}
 
 			//initializing the tab variables (for debugging and editing purposes)
@@ -2047,6 +2208,28 @@
 				$this.settings.showVitaminD = $this.settings.naVitaminD ? false : $this.settings.showVitaminD;
 				$this.settings.showCalcium = $this.settings.naCalcium ? false : $this.settings.showCalcium;
 				$this.settings.showIron = $this.settings.naIron ? false : $this.settings.showIron;
+				$this.settings.showVitaminA_2018 = $this.settings.naVitaminA_2018 ? false : $this.settings.showVitaminA_2018
+				$this.settings.showVitaminC_2018 = $this.settings.naVitaminC_2018 ? false : $this.settings.showVitaminC_2018
+				$this.settings.showVitaminE = $this.settings.naVitaminE ? false : $this.settings.showVitaminE
+				$this.settings.showVitaminK = $this.settings.naVitaminK ? false : $this.settings.showVitaminK
+				$this.settings.showThiamin = $this.settings.naThiamin ? false : $this.settings.showThiamin
+				$this.settings.showRiboflavin = $this.settings.naRiboflavin ? false : $this.settings.showRiboflavin
+				$this.settings.showNiacin = $this.settings.naNiacin ? false : $this.settings.showNiacin
+				$this.settings.showVitaminB6 = $this.settings.naVitaminB6 ? false : $this.settings.showVitaminB6
+				$this.settings.showFolate = $this.settings.naFolate ? false : $this.settings.showFolate
+				$this.settings.showVitaminB12 = $this.settings.naVitaminB12 ? false : $this.settings.showVitaminB12
+				$this.settings.showBiotin = $this.settings.naBiotin ? false : $this.settings.showBiotin
+				$this.settings.showPantothenicAcid = $this.settings.naPantothenicAcid ? false : $this.settings.showPantothenicAcid
+				$this.settings.showPhosphorus = $this.settings.naPhosphorus ? false : $this.settings.showPhosphorus
+				$this.settings.showIodine = $this.settings.naIodine ? false : $this.settings.showIodine
+				$this.settings.showMagnesium = $this.settings.naMagnesium ? false : $this.settings.showMagnesium
+				$this.settings.showZinc = $this.settings.naZinc ? false : $this.settings.showZinc
+				$this.settings.showSelenium = $this.settings.naSelenium ? false : $this.settings.showSelenium
+				$this.settings.showCopper = $this.settings.naCopper ? false : $this.settings.showCopper
+				$this.settings.showManganese = $this.settings.naManganese ? false : $this.settings.showManganese
+				$this.settings.showChromium = $this.settings.naChromium ? false : $this.settings.showChromium
+				$this.settings.showMolybdenum = $this.settings.naMolybdenum ? false : $this.settings.showMolybdenum
+				$this.settings.showChloride = $this.settings.naChloride ? false : $this.settings.showChloride
 			}
 
 			//initializing the tab variables (for debugging and editing purposes)
@@ -2265,6 +2448,138 @@
 							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
 							$this.settings,  'valuePotassium_2018', 'dailyValuePotassium_2018', 'unitPotassium_base', 'unitPotassium_percent', 'naPotassium_2018', 'textPotassium'
 						);
+					}
+					if ($this.settings.showVitaminA_2018){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts							
+							$this.settings, 'valueVitaminA_2018', 'dailyValueVitaminA_2018', 'unitVitaminA_base', 'unitVitaminA_percent', 'naVitaminA_2018', 'textVitaminA'
+						)
+					}
+					if ($this.settings.showVitaminC_2018){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueVitaminC_2018', 'dailyValueVitaminC_2018', 'unitVitaminC_base', 'unitVitaminC_percent', 'naVitaminC_2018', 'textVitaminC'
+						)
+					}
+					if ($this.settings.showVitaminE){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueVitaminE', 'dailyValueVitaminE', 'unitVitaminE_base', 'unitVitaminE_percent', 'naVitaminE', 'textVitaminE'
+						)
+					}
+					if ($this.settings.showVitaminK){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueVitaminK', 'dailyValueVitaminK', 'unitVitaminK_base', 'unitVitaminK_percent', 'naVitaminK', 'textVitaminK'
+						)
+					}
+					if ($this.settings.showThiamin){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueThiamin', 'dailyValueThiamin', 'unitThiamin_base', 'unitThiamin_percent', 'naThiamin', 'textThiamin'
+						)
+					}
+					if ($this.settings.showRiboflavin){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueRiboflavin', 'dailyValueRiboflavin', 'unitRiboflavin_base', 'unitRiboflavin_percent', 'naRiboflavin', 'textRiboflavin'
+						)
+					}
+					if ($this.settings.showNiacin){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueNiacin', 'dailyValueNiacin', 'unitNiacin_base', 'unitNiacin_percent', 'naNiacin', 'textNiacin'
+						)
+					}
+					if ($this.settings.showVitaminB6){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueVitaminB6', 'dailyValueVitaminB6', 'unitVitaminB6_base', 'unitVitaminB6_percent', 'naVitaminB6', 'textVitaminB6'
+						)
+					}
+					if ($this.settings.showFolate){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueFolate', 'dailyValueFolate', 'unitFolate_base', 'unitFolate_percent', 'naFolate', 'textFolate'
+						)
+					}
+					if ($this.settings.showVitaminB12){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueVitaminB12', 'dailyValueVitaminB12', 'unitVitaminB12_base', 'unitVitaminB12_percent', 'naVitaminB12', 'textVitaminB12'
+						)
+					}
+					if ($this.settings.showBiotin){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueBiotin', 'dailyValueBiotin', 'unitBiotin_base', 'unitBiotin_percent', 'naBiotin', 'textBiotin'
+						)
+					}
+					if ($this.settings.showPantothenicAcid){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valuePantothenicAcid', 'dailyValuePantothenicAcid', 'unitPantothenicAcid_base', 'unitPantothenicAcid_percent', 'naPantothenicAcid', 'textPantothenicAcid'
+						)
+					}
+					if ($this.settings.showPhosphorus){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valuePhosphorus', 'dailyValuePhosphorus', 'unitPhosphorus_base', 'unitPhosphorus_percent', 'naPhosphorus', 'textPhosphorus'
+						)
+					}
+					if ($this.settings.showIodine){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueIodine', 'dailyValueIodine', 'unitIodine_base', 'unitIodine_percent', 'naIodine', 'textIodine'
+						)
+					}
+					if ($this.settings.showMagnesium){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueMagnesium', 'dailyValueMagnesium', 'unitMagnesium_base', 'unitMagnesium_percent', 'naMagnesium', 'textMagnesium'
+						)
+					}
+					if ($this.settings.showZinc){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueZinc', 'dailyValueZinc', 'unitZinc_base', 'unitZinc_percent', 'naZinc', 'textZinc'
+						)
+					}
+					if ($this.settings.showSelenium){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueSelenium', 'dailyValueSelenium', 'unitSelenium_base', 'unitSelenium_percent', 'naSelenium', 'textSelenium'
+						)
+					}
+					if ($this.settings.showCopper){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueCopper', 'dailyValueCopper', 'unitCopper_base', 'unitCopper_percent', 'naCopper', 'textCopper'
+						)
+					}
+					if ($this.settings.showManganese){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueManganese', 'dailyValueManganese', 'unitManganese_base', 'unitManganese_percent', 'naManganese', 'textManganese'
+						)
+					}
+					if ($this.settings.showChromium){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueChromium', 'dailyValueChromium', 'unitChromium_base', 'unitChromium_percent', 'naChromium', 'textChromium'
+						)
+					}
+					if ($this.settings.showMolybdenum){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueMolybdenum', 'dailyValueMolybdenum', 'unitMolybdenum_base', 'unitMolybdenum_percent', 'naMolybdenum', 'textMolybdenum'
+						)
+					}
+					if ($this.settings.showChloride){
+						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
+							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts
+							$this.settings, 'valueChloride', 'dailyValueChloride', 'unitChloride_base', 'unitChloride_percent', 'naChloride', 'textChloride'
+						)
 					}
 
 					nutritionLabel += tab2 + '</div>\n';
