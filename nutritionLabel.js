@@ -87,6 +87,9 @@
 		//to enable rounding of the nutritional values based on the FDA rounding rules http://goo.gl/RMD2O
 		allowFDARounding : false,
 
+		//2018 only. calculate vitamin DV percentage by mass, instead of calculating mass from percent DV
+		useMassForVitamins : false,
+
 		//to enabled the google analytics event logging
 		allowGoogleAnalyticsEventLog : false,
 		gooleAnalyticsFunctionName : 'ga',
@@ -1698,6 +1701,46 @@
 	 * generate and return the html code for these areas that share similar html format: vitamin d, calcium, iron and potassium
 	 */
 	function generateHtmlAndComputeValueGivenThePercentage($localSettings, valueIndex, dailyValueIndex, unitIndex_base, unitIndex_percent, naIndex, attributeTexts){
+		// $this.settings,  'valueVitaminD', 'dailyValueVitaminD', 'unitVitaminD_base', 'unitVitaminD_percent', 'naVitaminD', 'textVitaminD'
+		//initialize the not applicable image icon in case we need to use it
+		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font><font class="sr-only">Data not available</font>';
+		var localNutritionLabel = '<div class="nf-vitamin-column" tabindex="0">\n';
+			localNutritionLabel += $localSettings[attributeTexts] + ' ';
+			if ($localSettings.useMassForVitamins) {
+				localNutritionLabel += (
+					$localSettings[naIndex] ?
+						localNaValue : (
+							$localSettings[valueIndex] +
+							$localSettings[unitIndex_base] +
+							' <span class="nf-pr" aria-hidden="true">' +
+								($localSettings[valueIndex] / $localSettings[dailyValueIndex] * 100).toFixed($localSettings.decimalPlacesForDailyValues) + $localSettings[unitIndex_percent] +
+							'</span>'
+						)
+				) + '\n';
+			}
+			else {
+				localNutritionLabel += (
+					$localSettings[naIndex] ?
+						localNaValue : (
+							parseFloat(
+								//percentage / 100 * daily value
+								($localSettings[valueIndex] / 100) * $localSettings[dailyValueIndex]
+							).toFixed($localSettings.decimalPlacesForDailyValues) +
+							$localSettings[unitIndex_base] +
+							' <span class="nf-pr" aria-hidden="true">' +
+								$localSettings[valueIndex].toFixed($localSettings.decimalPlacesForDailyValues) + $localSettings[unitIndex_percent] +
+							'</span>'
+						)
+				) + '\n';
+			}
+		return localNutritionLabel += '</div>\n';
+	}
+
+		/*
+	 * generate and return the html code for these areas that share similar html format: vitamin d, calcium, iron and potassium
+	 */
+	function generateHtmlAndComputeValueGivenTheMass($localSettings, valueIndex, dailyValueIndex, unitIndex_base, unitIndex_percent, naIndex, attributeTexts){
+		// $this.settings,  'valueVitaminD', 'dailyValueVitaminD', 'unitVitaminD_base', 'unitVitaminD_percent', 'naVitaminD', 'textVitaminD'
 		//initialize the not applicable image icon in case we need to use it
 		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font><font class="sr-only">Data not available</font>';
 		var localNutritionLabel = '<div class="nf-vitamin-column" tabindex="0">\n';
@@ -1705,19 +1748,15 @@
 			localNutritionLabel += (
 				$localSettings[naIndex] ?
 					localNaValue : (
-						parseFloat(
-							//percentage / 100 * daily value
-							($localSettings[valueIndex] / 100) * $localSettings[dailyValueIndex]
-						).toFixed($localSettings.decimalPlacesForDailyValues) +
+						$localSettings[valueIndex] +
 						$localSettings[unitIndex_base] +
 						' <span class="nf-pr" aria-hidden="true">' +
-							$localSettings[valueIndex].toFixed($localSettings.decimalPlacesForDailyValues) + $localSettings[unitIndex_percent] +
+							($localSettings[valueIndex] / $localSettings[dailyValueIndex] * 100).toFixed($localSettings.decimalPlacesForDailyValues) + $localSettings[unitIndex_percent] +
 						'</span>'
 					)
 			) + '\n';
 		return localNutritionLabel += '</div>\n';
 	}
-
 
 	//generate and return the html code for the item area
 	function itemNameHtml2018($localSettings){
