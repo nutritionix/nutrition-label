@@ -88,7 +88,7 @@
 		allowFDARounding : false,
 
 		//2018 only. calculate vitamin DV percentage by mass, instead of calculating mass from percent DV
-		useMassForVitamins : false,
+		useMassForVitamins : true,
 
 		//to enabled the google analytics event logging
 		allowGoogleAnalyticsEventLog : false,
@@ -532,7 +532,7 @@
 		textGoogleAnalyticsEventActionDownArrow : 'Quantity Down Arrow Clicked',
 		textGoogleAnalyticsEventActionTextbox : 'Quantity Textbox Changed',
 
-		showLegacyVersion : true,
+		showLegacyVersion : false,
 
 		//more details here https://github.com/nutritionix/nutrition-label/issues/77#issuecomment-323510972
 		legacyVersion: 1
@@ -637,40 +637,40 @@
 		//initalize the nutrition label and create / recreate it
 		var nutritionLabel = new NutritionLabel($updatedsettings, $elem);
 
-		if ($updatedsettings.showLegacyVersion){
-			//updateValuesAfterAQuantityChanged($localSettings, nutritionLabel, $elem, forLegacyLabel, forInitialization)
-			updateValuesAfterAQuantityChanged($settings, nutritionLabel, $elem, true, true);
+		// if ($updatedsettings.showLegacyVersion){
+		// 	//updateValuesAfterAQuantityChanged($localSettings, nutritionLabel, $elem, forLegacyLabel, forInitialization)
+		// 	updateValuesAfterAQuantityChanged($settings, nutritionLabel, $elem, true, true);
 
-			//if the text box for the unit quantity is shown
-			if ($settings.showServingUnitQuantityTextbox){
-				//increase the unit quantity by clicking the up arrow
-				$('#' + $elem.attr('id') ).delegate('.unitQuantityUp', 'click', function(e){
-					e.preventDefault();
-					changeQuantityByArrow($(this), 1, updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true);
-				});
+		// 	//if the text box for the unit quantity is shown
+		// 	if ($settings.showServingUnitQuantityTextbox){
+		// 		//increase the unit quantity by clicking the up arrow
+		// 		$('#' + $elem.attr('id') ).delegate('.unitQuantityUp', 'click', function(e){
+		// 			e.preventDefault();
+		// 			changeQuantityByArrow($(this), 1, updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true);
+		// 		});
 
-				//decrease the unit quantity by clicking the down arrow
-				$('#' + $elem.attr('id') ).delegate('.unitQuantityDown', 'click', function(e){
-					e.preventDefault();
-					changeQuantityByArrow($(this), -1, updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true);
-				});
+		// 		//decrease the unit quantity by clicking the down arrow
+		// 		$('#' + $elem.attr('id') ).delegate('.unitQuantityDown', 'click', function(e){
+		// 			e.preventDefault();
+		// 			changeQuantityByArrow($(this), -1, updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true);
+		// 		});
 
-				//the textbox unit quantity value is changed
-				$('#' + $elem.attr('id') ).delegate('.unitQuantityBox', 'change', function(e){
-					e.preventDefault();
-					changeQuantityTextbox($(this), updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true);
-				});
+		// 		//the textbox unit quantity value is changed
+		// 		$('#' + $elem.attr('id') ).delegate('.unitQuantityBox', 'change', function(e){
+		// 			e.preventDefault();
+		// 			changeQuantityTextbox($(this), updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true);
+		// 		});
 
-				//the textbox unit quantity value is changed
-				$('#' + $elem.attr('id') ).delegate('.unitQuantityBox', 'keydown', function(e){
-					if (e.keyCode == 13){
-						e.preventDefault();
-						changeQuantityTextbox($(this), updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true);
-					}
-				});
-			}//end of => if ($settings.showServingUnitQuantityTextbox)
-		//end of => if ($updatedsettings.showLegacyVersion)
-		}else{
+		// 		//the textbox unit quantity value is changed
+		// 		$('#' + $elem.attr('id') ).delegate('.unitQuantityBox', 'keydown', function(e){
+		// 			if (e.keyCode == 13){
+		// 				e.preventDefault();
+		// 				changeQuantityTextbox($(this), updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true);
+		// 			}
+		// 		});
+		// 	}//end of => if ($settings.showServingUnitQuantityTextbox)
+		// //end of => if ($updatedsettings.showLegacyVersion)
+		// }else{
 			//this part is for the 2018 version
 			//updateValuesAfterAQuantityChanged($localSettings, nutritionLabel, $elem, forLegacyLabel, forInitialization)
 			updateValuesAfterAQuantityChanged($settings, nutritionLabel, $elem, false, true);
@@ -703,7 +703,7 @@
 					}
 				});
 			}//end of => if ($settings.showServingUnitQuantityTextbox)
-		}//end of else => => if ($updatedsettings.showLegacyVersion)
+		// }//end of else => => if ($updatedsettings.showLegacyVersion)
 
 		//store the object for later reference
 		$elem.data('_nutritionLabel', nutritionLabel);
@@ -816,11 +816,11 @@
 			nutritionLabel = new NutritionLabel($localSettings, $elem);
 		}
 
-		if (forLegacyLabel){
-			$elem.html( nutritionLabel.generateLegacy() );
-		}else{
+		// if (forLegacyLabel){
+		// 	$elem.html( nutritionLabel.generateLegacy() );
+		// }else{
 			$elem.html( nutritionLabel.generate2018() );
-		}
+		// }
 
 		//scroll the ingredients of the innerheight is > $localSettings.scrollHeightComparison and the settings showIngredients and scrollLongIngredients are true
 		if ($localSettings.showIngredients && $localSettings.scrollLongIngredients){
