@@ -557,7 +557,9 @@
 			'valueCol2DietaryTotalFat', 'valueCol1DietarySatFat', 'valueCol2DietarySatFat', 'valueCol1DietaryCholesterol', 'valueCol2DietaryCholesterol', 'valueCol1DietarySodium',
 			'valueCol2DietarySodium', 'valueCol1DietaryPotassium', 'valueCol2DietaryPotassium', 'valueCol1DietaryTotalCarb', 'valueCol2DietaryTotalCarb', 'valueCol1Dietary', 'valueCol2Dietary',
 			'valueServingUnitQuantity', 'scrollLongItemNamePixel', 'scrollLongItemNamePixel2018Override', 'decimalPlacesForQuantityTextbox', 'valueAddedSugars', 'dailyValueVitaminD',
-			'dailyValueCalcium', 'dailyValueIron', 'valueVitaminD', 'valueSugarAlcohol'
+			'dailyValueCalcium', 'dailyValueIron', 'valueVitaminD', 'valueSugarAlcohol', 'valueVitaminA_2018', 'valueVitaminC_2018', 'valueVitaminE', 'valueVitaminK', 'valueThiamin', 'valueRiboflavin', 'valueNiacin', 'valueVitaminB6',
+			'valueFolate', 'valueVitaminB12', 'valueBiotin', 'valuePantothenicAcid', 'valuePhosphorus', 'valueIodine', 'valueMagnesium', 'valueZinc', 'valueSelenium', 'valueCopper', 'valueManganese', 
+			'valueChromium', 'valueMolybdenum', 'valueChloride',
 		];
 
 		$.each(settings, function(index, value){
@@ -582,7 +584,9 @@
 		var nutritionIndex = [
 			'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat', 'valueTransFat', 'valuePolyFat', 'valueMonoFat', 'valueCholesterol', 'valueSodium', 'valuePotassium', 'valueTotalCarb',
 			'valueFibers','valueSugars','valueProteins', 'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueServingWeightGrams', 'valueAddedSugars', 'valueVitaminD',
-			'valuePotassium_2018', 'valueSugarAlcohol'
+			'valuePotassium_2018', 'valueSugarAlcohol', 'valueVitaminA_2018', 'valueVitaminC_2018', 'valueVitaminE', 'valueVitaminK', 'valueThiamin', 'valueRiboflavin', 'valueNiacin', 'valueVitaminB6',
+			'valueFolate', 'valueVitaminB12', 'valueBiotin', 'valuePantothenicAcid', 'valuePhosphorus', 'valueIodine', 'valueMagnesium', 'valueZinc', 'valueSelenium', 'valueCopper', 'valueManganese', 
+			'valueChromium', 'valueMolybdenum', 'valueChloride',
 		];
 
 		$.each(settings, function(index, value){
