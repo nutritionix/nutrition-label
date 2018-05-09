@@ -1714,7 +1714,7 @@
 				localNutritionLabel += (
 					$localSettings[naIndex] ?
 						localNaValue : (
-							parseFloat($localSettings[valueIndex].toFixed($localSettings.decimalPlacesForDailyValues)) +
+							parseFloat($localSettings[valueIndex].toFixed($localSettings.decimalPlacesForNutrition)) +
 							$localSettings[unitIndex_base] +
 							' <span class="nf-pr" aria-hidden="true">' +
 								($localSettings[valueIndex] / $localSettings[dailyValueIndex] * 100).toFixed($localSettings.decimalPlacesForDailyValues) + $localSettings[unitIndex_percent] +
