@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     8.0.6                                                                                                                       |
+ * @current version     8.0.7                                                                                                                       |
  * @stable version      8.0.5                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -1263,8 +1263,12 @@
 			eval('var localTab' + x + ' = "' + tab + '";');
 		}
 
-		var localNutritionLabel = localTab3 + '<br/>\n';
-		localNutritionLabel += localTab3 + '<div class="ingredientListDiv" tabindex="0">\n';
+		var localNutritionLabel = '';
+		if (!$localSettings.hidePercentDailyValues){
+			localNutritionLabel += localTab3 + '<br/>\n';
+		}
+
+		localNutritionLabel += localTab3 + '<div class="' + ($localSettings.hidePercentDailyValues ? 'ingredientListDivHiddenDailyValues' : 'ingredientListDiv') + '" tabindex="0">\n';
 			localNutritionLabel += localTab4 + '<strong class="active" id="ingredientList">' + $localSettings.ingredientLabel + '</strong>\n';
 			localNutritionLabel += localTab4 + $localSettings.ingredientList + '\n';
 		return localNutritionLabel += localTab3 + '</div><!-- closing class="ingredientListDiv" -->\n\n';
@@ -1504,8 +1508,12 @@
 			eval('var localTab' + x + ' = "' + tab + '";');
 		}
 
-		var localNutritionLabel = localTab3 + '<br/>\n\n';
-		localNutritionLabel += localTab3 + '<div class="nf-ingredientListDiv" tabindex="0">\n';
+		var localNutritionLabel = '';
+		if (!$localSettings.hidePercentDailyValues){
+			localNutritionLabel += localTab3 + '<br/>\n\n';
+		}
+
+		localNutritionLabel += localTab3 + '<div class="' + ($localSettings.hidePercentDailyValues ? 'nf-ingredientListDivHiddenDailyValues' : 'nf-ingredientListDiv') + '" tabindex="0">\n';
 			localNutritionLabel += localTab4 + '<strong class="active" id="nf-ingredientList">' + $localSettings.ingredientLabel + '</strong>\n';
 			localNutritionLabel += localTab4 + $localSettings.ingredientList + '\n';
 		return localNutritionLabel += localTab3 + '</div><!-- closing class="nf-ingredientListDiv" -->\n\n';
@@ -1998,10 +2006,13 @@
 
 				nutritionLabel += tab1 + '<div class="dvCalorieDiet line">\n';
 					nutritionLabel += tab2 + '<div class="calorieNote">\n';
+
+					if (!$this.settings.hidePercentDailyValues){
 						nutritionLabel += tab3 + '<span tabindex="0"><span class="star" aria-hidden="true">*</span> ' +
 							$this.settings.textPercentDailyPart1 + ' ' +
 							$this.settings.calorieIntake + ' ' +
 							$this.settings.textPercentDailyPart2 + '.</span>\n';
+					}
 
 					if ($this.settings.showIngredients){
 						nutritionLabel += ingredientsHtmlLegacy($this.settings);
@@ -2301,10 +2312,12 @@
 
 				nutritionLabel += tab1 + '<div class="nf-bar1"></div>\n';
 
-				nutritionLabel += tab1 + '<div class="nf-footnote">\n';
-					nutritionLabel += tab2 + '<span tabIndex="0">' + $this.settings.textPercentDaily2018VersionPart1;
-					nutritionLabel += $this.settings.calorieIntake;
-					nutritionLabel += $this.settings.textPercentDaily2018VersionPart2 + '</span>\n';
+				nutritionLabel += tab1 + '<div class="' + ($this.settings.hidePercentDailyValues ? 'nf-footnoteHiddenDailyValues' : 'nf-footnote') + '">\n';
+					if (!$this.settings.hidePercentDailyValues){
+						nutritionLabel += tab2 + '<span tabIndex="0">' + $this.settings.textPercentDaily2018VersionPart1;
+						nutritionLabel += $this.settings.calorieIntake;
+						nutritionLabel += $this.settings.textPercentDaily2018VersionPart2 + '</span>\n';
+					}
 
 					if ($this.settings.showIngredients){
 						nutritionLabel += ingredientsHtml2018Version($this.settings);
