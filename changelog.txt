@@ -1,4 +1,19 @@
 
+version 8.0.7 - July 2, 2018
+
+ - more changes on task to hide the text near the bottom of the label that pertains to the daily values https://github.com/nutritionix/nutrition-label/issues/90#issuecomment-401797188
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+version 8.0.6 - June 27, 2018
+
+ - option to hide the % Daily Values https://github.com/nutritionix/nutrition-label/issues/90
+ - for the 2018 version, the "Daily Value" text is now controlled by the "textDailyValues" setting like the legacy version
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 8.0.5 - March 2, 2018
 
  - minor changes to publish this on npm too

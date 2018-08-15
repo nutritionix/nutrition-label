@@ -3,8 +3,8 @@
 <head>
 	<title>Legacy Version Demo Page</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
-	<link rel='stylesheet' type='text/css' media='screen' href='../../nutritionLabel-min.css'>
-	<link rel='stylesheet' type='text/css' media='screen' href='./../css/demo.css'>
+	<link rel='stylesheet' type='text/css' media='all' href='../../nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='all' href='./../css/demo.css'>
 
 	<!-- google webfont for nutrition label -->
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Archivo+Black" />
@@ -18,6 +18,7 @@
 				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
 				<li><a href="#test3"><i class="icon-chevron-right"></i> Example 3</a></li>
 				<li><a href="#test4"><i class="icon-chevron-right"></i> Example 4</a></li>
+				<li><a href="#test5"><i class="icon-chevron-right"></i> Example 5</a></li>
 			</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -66,7 +67,6 @@ $('#test2').nutritionLabel({
 	'valueIron' : 0
 });
 </pre>
-					<pre>http://www.nutritionix.com/mcalisters-deli/ingredient/6933/bleu-cheese-dressing</pre>
 				</div>
 			</div><br /><br /><br />
 
@@ -110,7 +110,6 @@ $('#test3').nutritionLabel({
 	'valueProteins' : 4
 });
 </pre>
-					<pre>http://www.nutritionix.com/duchess/chocolate-donuts</pre>
 				</div>
 			</div><br /><br /><br />
 
@@ -151,11 +150,46 @@ $('#test4').nutritionLabel({
 	'valueProteins' : 48
 });
 </pre>
-					<pre>http://www.nutritionix.com/ufood-grill/fire-grilled-sirloin-tips</pre>
 				</div>
 			</div><br /><br /><br />
 
 
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test5"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #5</h3>
+					<p>Similar to Example #2 but the Percent Daily Values are Hidden</p>
+<pre id="pre5">
+$('#test5').nutritionLabel({
+	'hidePercentDailyValues' : true,
+	'showServingUnitQuantity' : false,
+	'itemName' : 'Bleu Cheese Dressing',
+	'ingredientList' : 'Bleu Cheese Dressing',
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+
+	'valueCalories' : 450,
+	'valueFatCalories' : 430,
+	'valueTotalFat' : 48,
+	'valueSatFat' : 6,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 30,
+	'valueSodium' : 780,
+	'valueTotalCarb' : 3,
+	'valueFibers' : 0,
+	'valueSugars' : 3,
+	'valueProteins' : 3,
+	'valueVitaminA' : 0,
+	'valueVitaminC' : 0,
+	'valueCalcium' : 0,
+	'valueIron' : 0
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
 		</div>
 	</div>
 </div>
@@ -169,6 +203,7 @@ $(document).ready(function(){
 	eval( eval( $('#pre2').html() ) );
 	eval( eval( $('#pre3').html() ) );
 	eval( eval( $('#pre4').html() ) );
+	eval( eval( $('#pre5').html() ) );
 });
 </script>
 
