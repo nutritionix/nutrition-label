@@ -14,6 +14,9 @@ Default values shown as well
 ### Enable rounding of the nutritional values based on the FDA rounding rules http://goo.gl/RMD2O
     allowFDARounding : false
 
+### 2018 only. calculate vitamin DV percentage by mass, instead of calculating mass from percent DV
+    useMassForVitamins : false,
+
 ### Enable google analytics event logging
     allowGoogleAnalyticsEventLog : false
     gooleAnalyticsFunctionName : 'ga'
@@ -123,6 +126,29 @@ If `showItemName == false`, the values that should be on the 'item name div' are
     dailyValueVitaminD : 20
     dailyValueAddedSugar : 50
 
+    dailyValueVitaminA_2018 : 5000
+    dailyValueVitaminC_2018 : 60
+    dailyValueVitaminE : 30
+    dailyValueVitaminK : 80
+    dailyValueThiamin : 1.5
+    dailyValueRiboflavin : 1.7
+    dailyValueNiacin : 20
+    dailyValueVitaminB6 : 2
+    dailyValueFolate : 400
+    dailyValueVitaminB12 : 6
+    dailyValueBiotin : 300
+    dailyValuePantothenicAcid : 10
+    dailyValuePhosphorus : 1000
+    dailyValueIodine : 150
+    dailyValueMagnesium : 400
+    dailyValueZinc : 15
+    dailyValueSelenium : 70
+    dailyValueCopper : 2
+    dailyValueManganese : 2
+    dailyValueChromium : 120
+    dailyValueMolybdenum : 75
+    dailyValueChloride : 3400
+
 ### These values can be changed to hide some nutrition values
     showCalories : true
     showFatCalories : true
@@ -142,10 +168,39 @@ If `showItemName == false`, the values that should be on the 'item name div' are
     showSugarAlcohol : false
     showProteins : true
     showVitaminA : true
+    showVitaminA_2018: false // optional in 2018
     showVitaminC : true
+    showVitaminC_2018: false // optional in 2018
     showVitaminD : true
     showCalcium : true
     showIron : true
+
+
+### Additional optional nutrients for 2018 version.
+These can be included, but are not required by the FDA as of 2018
+
+Disabled by default
+
+    showVitaminE: false,
+    showVitaminK: false,
+    showThiamin: false,
+    showRiboflavin: false,
+    showNiacin: false,
+    showVitaminB6: false,
+    showFolate: false,
+    showVitaminB12: false,
+    showBiotin: false,
+    showPantothenicAcid: false,
+    showPhosphorus: false,
+    showIodine: false,
+    showMagnesium: false,
+    showZinc: false,
+    showSelenium: false,
+    showCopper: false,
+    showManganese: false,
+    showChromium: false,
+    showMolybdenum: false,
+    showChloride: false,
 
 ### Show the 'amount per serving' text
     showAmountPerServing : true
@@ -192,10 +247,33 @@ If `showItemName == false`, the values that should be on the 'item name div' are
     naSugarAlcohol : false
     naProteins : false
     naVitaminA : false
+    naVitaminA_2018: false
     naVitaminC : false
+    naVitaminC_2018: false
     naVitaminD : false
     naCalcium : false
     naIron : false
+
+    naVitaminE: false
+    naVitaminK: false
+    naThiamin: false
+    naRiboflavin: false
+    naNiacin: false
+    naVitaminB6: false
+    naFolate: false
+    naVitaminB12: false
+    naBiotin: false
+    naPantothenicAcid: false
+    naPhosphorus: false
+    naIodine: false
+    naMagnesium: false
+    naZinc: false
+    naSelenium: false
+    naCopper: false
+    naManganese: false
+    naChromium: false
+    naMolybdenum: false
+    naChloride: false
 
 ### These are the default values for the nutrition info
     valueServingWeightGrams : 0
@@ -217,11 +295,37 @@ If `showItemName == false`, the values that should be on the 'item name div' are
     valueAddedSugars : 0
     valueSugarAlcohol : 0
     valueProteins : 0
-    valueVitaminA : 0
-    valueVitaminC : 0
+    
+    valueVitaminA : 0 // this is for the legacy version
+	valueVitaminA_2018: 0 // this is for the 2018 version, optional
+    valueVitaminC : 0 // this is for the legacy version
+    valueVitaminC_2018: 0 // this is for the 2018 version, optional
     valueVitaminD : 0
     valueCalcium : 0
     valueIron : 0
+
+### Optional nutrients 2018 only
+    valueVitaminE: 0
+    valueVitaminK: 0
+    valueThiamin: 0
+    valueRiboflavin: 0
+    valueNiacin: 0
+    valueVitaminB6: 0
+    valueFolate: 0
+    valueVitaminB12: 0
+    valueBiotin: 0
+    valuePantothenicAcid: 0
+    valuePhosphorus: 0
+    valueIodine: 0
+    valueMagnesium: 0
+    valueZinc: 0
+    valueSelenium: 0
+    valueCopper: 0
+    valueManganese: 0
+    valueChromium: 0
+    valueMolybdenum: 0
+    valueChloride: 0
+
 
 ### Customizable units for the values
     unitCalories : ''
@@ -243,7 +347,11 @@ If `showItemName == false`, the values that should be on the 'item name div' are
     unitSugarAlcohol : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>'
     unitProteins : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>'
     unitVitaminA : '%'
+    unitVitaminA_base: '<span aria-hidden="true"> IU</span><span class="sr-only"> international units</span>' // this is for the 2018 version
+    unitVitaminA_percent: "%" // this is for the 2018 version
     unitVitaminC : '%'
+    unitVitaminC_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>' // this is for the 2018 version
+    unitVitaminC_percent: "%" // this is for the 2018 version
     unitVitaminD_base : '<span aria-hidden="true">mcg</span><span class="sr-only"> micrograms</span>' // this is for the 2018 version
     unitVitaminD_percent : '%' // this is for the 2018 version
     unitCalcium : '%'
@@ -253,6 +361,48 @@ If `showItemName == false`, the values that should be on the 'item name div' are
     unitIron_base : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>' // this is for the 2018 version
     unitIron_percent : '%' // this is for the 2018 version
 
+### optional nutrients 2018 only
+    unitVitaminE_base: '<span aria-hidden="true"> IU</span><span class="sr-only"> international units</span>'
+    unitVitaminE_percent: "%"
+    unitVitaminK_base: '<span aria-hidden="true"> IU</span><span class="sr-only"> international units</span>'
+    unitVitaminK_percent: "%"
+    unitThiamin_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>'
+    unitThiamin_percent: "%"
+    unitRiboflavin_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>'
+    unitRiboflavin_percent: "%"
+    unitNiacin_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>'
+    unitNiacin_percent: "%"
+    unitVitaminB6_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>'
+    unitVitaminB6_percent: "%"
+    unitFolate_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>'
+    unitFolate_percent: "%"
+    unitVitaminB12_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>'
+    unitVitaminB12_percent: "%"
+    unitBiotin_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>'
+    unitBiotin_percent: "%"
+    unitPantothenicAcid_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>'
+    unitPantothenicAcid_percent: "%"
+    unitPhosphorus_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>'
+    unitPhosphorus_percent: "%"
+    unitIodine_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>'
+    unitIodine_percent: "%"
+    unitMagnesium_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>'
+    unitMagnesium_percent: "%"
+    unitZinc_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>'
+    unitZinc_percent: "%"
+    unitSelenium_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>'
+    unitSelenium_percent: "%"
+    unitCopper_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>'
+    unitCopper_percent: "%"
+    unitManganese_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>'
+    unitManganese_percent: "%"
+    unitChromium_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>'
+    unitChromium_percent: "%"
+    unitMolybdenum_base: '<span aria-hidden="true">µg</span><span class="sr-only"> micrograms</span>'
+    unitMolybdenum_percent: "%"
+    unitChloride_base: '<span aria-hidden="true">mg</span><span class="sr-only"> micrograms</span>'
+    unitChloride_percent: "%"
+    
 ### These are the values for the optional calorie diet
     valueCol1CalorieDiet : 2000
     valueCol2CalorieDiet : 2500
@@ -299,6 +449,26 @@ If `showItemName == false`, the values that should be on the 'item name div' are
     textVitaminD : 'Vitamin D'
     textCalcium : 'Calcium'
     textIron : 'Iron'
+    textVitaminE: "Vitamin E"
+    textVitaminK: "Vitamin K"
+    textThiamin: "Thiamin"
+    textRiboflavin: "Riboflavin"
+    textNiacin: "Niacin"
+    textVitaminB6: "Vitamin B<sub>6</sub>"
+    textFolate: "Folate"
+    textVitaminB12: "Vitamin B<sub>12</sub>"
+    textBiotin: "Biotin"
+    textPantothenicAcid: "Pantothenic Acid"
+    textPhosphorus: "Phosphorus"
+    textIodine: "Iodine"
+    textMagnesium: "Magnesium"
+    textZinc: "Zinc"
+    textSelenium: "Selenium"
+    textCopper: "Copper"
+    textManganese: "Manganese"
+    textChromium: "Chromium"
+    textMolybdenum: "Molybdenum"
+    textChloride: "Chloride"
     textNotApplicable : '-'
     ingredientList : 'None'
     textPercentDailyPart1 : 'Percent Daily Values are based on a'
