@@ -1,4 +1,12 @@
 
+version 8.0.8 - September 9, 2018
+
+ - changed the demo html code to use media='all' and not media='screen' https://github.com/nutritionix/nutrition-label/issues/96
+ - add a feature so the % daily values can be hidden (visible by default) https://github.com/nutritionix/nutrition-label/issues/100
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 8.0.7 - July 2, 2018
 
  - more changes on task to hide the text near the bottom of the label that pertains to the daily values https://github.com/nutritionix/nutrition-label/issues/90#issuecomment-401797188

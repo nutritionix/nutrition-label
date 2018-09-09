@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     8.0.7                                                                                                                       |
- * @stable version      8.0.5                                                                                                                       |
+ * @current version     8.0.8                                                                                                                       |
+ * @stable version      8.0.7                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
@@ -255,7 +255,7 @@
 	display: inline-block;
 }
 
-.ingredientListDiv.scroll {
+.ingredientListDiv.scroll, .ingredientListDivHiddenDailyValues.scroll {
 	overflow-y: scroll !important;
 }
 
@@ -345,7 +345,7 @@
  border-bottom: 1px solid #000;
 }
 
-.nf-footnote {
+.nf-footnote, .nf-footnoteHiddenDailyValues {
 	padding-top: 4px;
 	margin-left: 5px;
 	font-size: .85em;
@@ -354,6 +354,11 @@
 
 .nf-footnote:before {
 	content: "*";
+	float: left;
+	margin-left: -5px;
+}
+
+.nf-footnoteHiddenDailyValues:before {
 	float: left;
 	margin-left: -5px;
 }
@@ -392,7 +397,7 @@
 	padding-top: 8px;
 }
 
-.nf-ingredientListDiv.scroll {
+.nf-ingredientListDiv.scroll, .nf-ingredientListDivHiddenDailyValues.scroll {
 	overflow-y: scroll !important;
 }
 
