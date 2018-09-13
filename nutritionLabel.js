@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     8.0.8                                                                                                                       |
+ * @current version     8.0.9                                                                                                                       |
  * @stable version      8.0.7                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -184,6 +184,7 @@
 		dailyValueIron : 18,
 		dailyValueVitaminD : 20,
 		dailyValueAddedSugar : 50,
+		dailyValueSugar : 100,
 
 		//these values can be change to hide some nutrition values
 		showCalories : true,
@@ -210,6 +211,7 @@
 		showIron : true,
 
 		//these values can be change to hide some nutrition daily values
+			//take note that the setting 'hidePercentDailyValues' override these values
 		showDailyTotalFat : true,
 		showDailySatFat : true,
 		showDailyCholesterol : true,
@@ -218,7 +220,7 @@
 		showDailyPotassium_2018: true, //this is for the 2018 version
 		showDailyTotalCarb : true,
 		showDailyFibers : true,
-		showDailySugars : true,
+		showDailySugars : false,
 		showDailyAddedSugars : true,
 		showDailyVitaminD : true,
 		showDailyCalcium : true,
@@ -412,7 +414,7 @@
 			'valueCol2DietaryTotalFat', 'valueCol1DietarySatFat', 'valueCol2DietarySatFat', 'valueCol1DietaryCholesterol', 'valueCol2DietaryCholesterol', 'valueCol1DietarySodium',
 			'valueCol2DietarySodium', 'valueCol1DietaryPotassium', 'valueCol2DietaryPotassium', 'valueCol1DietaryTotalCarb', 'valueCol2DietaryTotalCarb', 'valueCol1Dietary', 'valueCol2Dietary',
 			'valueServingUnitQuantity', 'scrollLongItemNamePixel', 'scrollLongItemNamePixel2018Override', 'decimalPlacesForQuantityTextbox', 'valueAddedSugars', 'dailyValueVitaminD',
-			'dailyValueCalcium', 'dailyValueIron', 'valueVitaminD', 'valueSugarAlcohol'
+			'dailyValueCalcium', 'dailyValueIron', 'valueVitaminD', 'valueSugarAlcohol', 'dailyValueSugar',
 		];
 
 		$.each(settings, function(index, value){
@@ -1973,9 +1975,10 @@
 			}
 
 			if ($this.settings.showSugars){
-				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings, valueIndex,    unitIndex,    naIndex,    attributeText, localTabValue, lineClass,    attributeDisplayType, itemPropValue, localExtraTab, roundFunctionName
-					$this.settings,  'valueSugars', 'unitSugars', 'naSugars', 'textSugars',   tab1,         'line indent', 4,                   'sugarContent', '',           'roundCarbFiberSugarProtein'
+				//nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
+				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
+					//$localSetting, valueIndex,    dailyValueIndex,   unitIndex,    naIndex,    attributeTexts, lineClass,     itemPropValue,  roundFunctionName,            roundFunctionRuleName,           boldName, showTheDailyValue
+					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',   'line indent', 'sugarContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,    $this.settings.showDailySugars
 				);
 			}
 
@@ -2246,8 +2249,8 @@
 
 				if ($this.settings.showTotalCarb){
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings, valueIndex,       unitIndex,       naIndex,       attributeText,   itemPropValue,         topDivClass, showPercentageCode, roundFunctionName, roundFunctionRuleName,            labelClass,    valueClass, dailyValueIndex
-						$this.settings,  'valueTotalCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'carbohydrateContent', 'nf-line',    $this.settings.showDailyTotalCarb,    'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', 'nf-highlight', '',        'dailyValueCarb'
+						//$localSettings, valueIndex,       unitIndex,       naIndex,       attributeText,   itemPropValue,         topDivClass, showPercentageCode,                 roundFunctionName,            roundFunctionRuleName,            labelClass,     valueClass, dailyValueIndex
+						$this.settings,  'valueTotalCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'carbohydrateContent', 'nf-line',    $this.settings.showDailyTotalCarb, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule',  'nf-highlight', '',        'dailyValueCarb'
 					);
 				}
 
@@ -2260,8 +2263,8 @@
 
 				if ($this.settings.showSugars){
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings, valueIndex,    unitIndex,    naIndex,    attributeText, itemPropValue,  topDivClass,        showPercentageCode,              roundFunctionName,           roundFunctionRuleName, labelClass, valueClass, dailyValueIndex
-						$this.settings,  'valueSugars', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'nf-line nf-indent', false,             'roundCarbFiberSugarProtein', '',                    '',         '',         ''
+						//$localSettings, valueIndex,    unitIndex,    naIndex,    attributeText, itemPropValue,  topDivClass, showPercentageCode,              roundFunctionName,            roundFunctionRuleName,             labelClass,    valueClass, dailyValueIndex
+						$this.settings,  'valueSugars', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'nf-line',    $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule',  'nf-highlight', '',        'dailyValueSugar'
 					);
 				}
 
@@ -2317,7 +2320,7 @@
 
 					if ($this.settings.showPotassium_2018){
 						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
-							//$localSettings, valueIndex,            dailyValueIndex,       unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts,      showTheDailyValue
+							//$localSettings, valueIndex,            dailyValueIndex,            unitIndex_base,       unitIndex_percent,       naIndex,            attributeTexts, showTheDailyValue
 							$this.settings,  'valuePotassium_2018', 'dailyValuePotassium_2018', 'unitPotassium_base', 'unitPotassium_percent', 'naPotassium_2018', 'textPotassium', $this.settings.showDailyPotassium_2018
 						);
 					}
