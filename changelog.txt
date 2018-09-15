@@ -1,4 +1,11 @@
 
+version 8.0.10 - September 16, 2018
+
+ - changes on the feature for the 2018 label - option to hide the % Daily Values https://github.com/nutritionix/nutrition-label/issues/101
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 8.0.9 - September 14, 2018
 
  - add a feature for %DV for total sugars https://github.com/nutritionix/nutrition-label/issues/99

@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     8.0.9                                                                                                                       |
+ * @current version     8.0.10                                                                                                                      |
  * @stable version      8.0.7                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -2098,10 +2098,10 @@
 			}
 
 			if ($this.settings.hidePercentDailyValues){
-				$this.settings.showVitaminD = false;
-				$this.settings.showCalcium = false;
-				$this.settings.showIron = false;
-				$this.settings.showPotassium_2018 = false;
+				$this.settings.showDailyVitaminD = false;
+				$this.settings.showDailyCalcium = false;
+				$this.settings.showDailyIron = false;
+				$this.settings.showDailyPotassium_2018 = false;
 			}
 
 			//initializing the tab variables (for debugging and editing purposes)
