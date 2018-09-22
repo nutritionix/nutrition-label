@@ -1,4 +1,11 @@
 
+version 8.0.12 - September 23, 2018
+
+ - bug on the default value of indentSugarAndRemoveBoldStyleFor2018Label. it should be false by default and not true
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 8.0.11 - September 22, 2018
 
  - new feature for the sugar details on the 2018 label https://github.com/nutritionix/nutrition-label/issues/103
