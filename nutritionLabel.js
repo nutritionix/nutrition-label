@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     8.0.10                                                                                                                      |
+ * @current version     8.0.11                                                                                                                      |
  * @stable version      8.0.7                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -240,6 +240,9 @@
 		showCalorieDiet : false,
 		//to show the customizable footer which can contain html and js codes
 		showCustomFooter : false,
+		//see https://github.com/nutritionix/nutrition-label/issues/93
+		//indentSugarAndRemoveBoldStyleFor2018Label : false,
+		indentSugarAndRemoveBoldStyleFor2018Label : true,
 
 		//to show the disclaimer text or not
 		showDisclaimer : false,
@@ -2262,10 +2265,17 @@
 				}
 
 				if ($this.settings.showSugars){
-					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings, valueIndex,    unitIndex,    naIndex,    attributeText, itemPropValue,  topDivClass, showPercentageCode,              roundFunctionName,            roundFunctionRuleName,             labelClass,    valueClass, dailyValueIndex
-						$this.settings,  'valueSugars', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'nf-line',    $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule',  'nf-highlight', '',        'dailyValueSugar'
-					);
+					if (!$this.settings.indentSugarAndRemoveBoldStyleFor2018Label){
+						nutritionLabel += generateAttributeHtml2018Version(
+							//$localSettings, valueIndex,    unitIndex,    naIndex,    attributeText, itemPropValue,  topDivClass, showPercentageCode,              roundFunctionName,            roundFunctionRuleName,             labelClass,    valueClass, dailyValueIndex
+							$this.settings,  'valueSugars', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'nf-line',    $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule',  'nf-highlight', '',        'dailyValueSugar'
+						);
+					}else{
+						nutritionLabel += generateAttributeHtml2018Version(
+							//$localSettings, valueIndex,    unitIndex,    naIndex,    attributeText, itemPropValue,  topDivClass,        showPercentageCode,              roundFunctionName,            roundFunctionRuleName,             labelClass, valueClass, dailyValueIndex
+							$this.settings,  'valueSugars', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'nf-line nf-indent', $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule',  '',          '',        'dailyValueSugar'
+						);
+					}
 				}
 
 				if ($this.settings.showAddedSugars){
