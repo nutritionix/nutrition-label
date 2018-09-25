@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     8.0.13                                                                                                                      |
+ * @current version     8.0.14                                                                                                                      |
  * @stable version      8.0.7                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -240,8 +240,8 @@
 		showCalorieDiet : false,
 		//to show the customizable footer which can contain html and js codes
 		showCustomFooter : false,
-		//see https://github.com/nutritionix/nutrition-label/issues/93
-		indentSugarAndRemoveBoldStyleFor2018Label : false,
+		//see https://github.com/nutritionix/nutrition-label/issues/93 and then https://github.com/nutritionix/nutrition-label/issues/104
+		indentSugarAndRemoveBoldStyleFor2018Label : true,
 
 		//to show the disclaimer text or not
 		showDisclaimer : false,
