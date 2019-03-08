@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     8.0.15                                                                                                                      |
- * @stable version      8.0.14                                                                                                                      |
+ * @current version     9.0.1                                                                                                                       |
+ * @stable version      8.0.15                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
@@ -162,6 +162,9 @@
 	z-index: 10000;
 }
 .nutritionLabel .spaceAbove {
+	 height: 10px;
+}
+.nutritionLabel .spaceBelow {
 	 height: 10px;
 }
 .nutritionLabel .setter {
@@ -464,12 +467,12 @@
 	padding-bottom: 3px;
 }
 
-.nutritionLabel .nf-item-name.inline {
+.nf .nf-item-name.inline {
 	padding-top: .2em;
 	padding-top: .25em \9;
 }
 
-.nutritionLabel input.nf-unitQuantityBox.arrowsAreHidden {
+.nf input.nf-unitQuantityBox.arrowsAreHidden {
 	margin-left: 0;
 }
 
@@ -498,9 +501,122 @@ div.nf-unitQuantityUp:hover, div.nf-unitQuantityDown:hover{
 div, span{
 	outline: 0;
 }
+
+.nf .nf-spaceAbove {
+	 height: 10px;
+}
+.nf .nf-spaceBelow {
+	 height: 10px;
+}
+
 /*******************************************************************************************************************
 *************************************END OF THE 2018 LABEL RELATED STYLES******************************************
 ******************************************************************************************************************/
+
+
+/*******************************************************************************************************************
+*************************************START OF THE UK LABEL RELATED STYLES******************************************
+******************************************************************************************************************/
+.uk_nf {
+	border: 1px solid #000;
+	padding: 6px;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 14px;
+	text-align: left;
+}
+
+.uk_nf table {
+	width: 100%;
+	border-collapse: collapse;
+	border-top: 4px solid #000;
+}
+
+.uk_nf.uk .uk_nf-title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 2.15em;
+	line-height: 1.15em;
+	margin-top: -6px;
+	font-weight: bold;
+	padding-top: 8px;
+	padding-bottom: 6px;
+}
+
+.uk_nf.uk .uk_nf-ingredient-statement,
+.uk_nf.uk .uk_nf-disclaimer {
+	padding-top: 8px;
+}
+
+.uk_nf.uk .uk_nf-modifier-field {
+	width: 20px;
+	padding: 3px;
+	text-align: center;
+}
+
+.uk_nf-indent {
+	padding-left: 16px;
+}
+.uk_nf table tr th,
+.uk_nf table tbody tr td {
+	border-bottom: 1px solid #000;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+.uk_nf table tfoot tr td {
+	padding-top: 4px;
+	font-size: 90%;
+	line-height: normal;
+}
+
+.uk_nf-arrows {
+	float: left;
+	padding: 4px 5px 0 0;
+}
+.uk_nf-arrow-up, .uk_nf-arrow-down {
+		width: 0;
+		height: 0;
+		border-style: solid;
+}
+.uk_nf-arrow-up {
+	margin-bottom: 3px;
+	border-width: 0 5px 6px 5px;
+	border-color: transparent transparent #333 transparent;
+}
+.uk_nf-arrow-down {
+		margin-bottom: -2px;
+		border-width: 6px 5px 0 5px;
+		border-color: #333 transparent transparent transparent;
+}
+
+.referenceIntake {
+	padding-top: 5px;
+}
+
+.uk_nf-customFooter {
+	padding-top: 10px;
+}
+
+.uk_nf .uk_nf-spaceAbove {
+	 height: 10px;
+}
+.uk_nf .uk_nf-spaceBelow {
+	 height: 10px;
+}
+
+.uk_nf-ingredientListDiv.scroll {
+	overflow-y: scroll !important;
+}
+
+#uk_nf-calcDisclaimer.scroll {
+	overflow-y: scroll !important;
+}
+
+/*******************************************************************************************************************
+**************************************END OF THE UK LABEL RELATED STYLES*******************************************
+******************************************************************************************************************/
+
 
 .sr-only {
   position: absolute;

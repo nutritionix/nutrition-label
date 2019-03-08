@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>UK Version Demo Page</title>
+	<link rel='stylesheet' type='text/css' media='all' href='../../css/nutritionLabel-min.css'>
+
+	<!-- google webfont for nutrition label -->
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Archivo+Black" />
+</head>
+<body>
+<div id="test1"></div>
+<pre id="pre1" style="border: 1px solid black; width: 550px; padding: 15px;">
+$('#test1').nutritionLabel({
+	width : 380,
+	showLegacyVersion : false,
+	showUKVersion : true,
+	showDailySugars : true,
+	valueServingWeightGrams : 77,
+
+	dailyValueTotalFat : 70, //this should be 70 for the uk version
+	dailyValueCarb : 260, //this should be 260 for the uk version
+	dailyValueSugar : 90, //this should be 90 for the uk version
+
+	textCalories : 'Energy',
+	textTotalCarb : 'Carbohydrate',
+	textFibers : 'Fibre',
+	textSodium : 'Salt',
+
+	showServingUnitQuantity : false,
+	itemName : 'Bleu Cheese Dressing',
+	ingredientList : 'Bleu Cheese Dressing',
+
+	decimalPlacesForQuantityTextbox : 2,
+	valueServingUnitQuantity : 1,
+
+	allowFDARounding : true,
+	decimalPlacesForNutrition : 2,
+
+	valueCalories : 450,
+	valueTotalFat : 48,
+	valueSatFat : 6,
+	valueSodium : 780,
+	valueTotalCarb : 3,
+	valueFibers : 0,
+	valueSugars : 3,
+	valueProteins : 3
+});
+</pre>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="../../css/nutritionLabel-min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	eval( eval( $('#pre1').html() ) );
+});
+</script>
+
+</body>
+</html>

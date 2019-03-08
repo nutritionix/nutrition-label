@@ -1,5 +1,47 @@
 
-version 8.0.15 - January 31, 2018
+version 9.0.1 - March 8, 2019
+
+ - fixed a minor bug where the itemprop value for sodium as it was incorrect
+
+ - renamed showTheDailyValue to showPercentageCode as it seems more understandable for coders who wants to make changes on the code in the future
+
+ - a few minor improvement on the nutritionLabel.js file
+
+ - a few minor improvement on the demo files
+
+ - https://github.com/nutritionix/nutrition-label/issues/106
+   - new settings that are exclusive for the uk version and their default values
+      - dailyValueEnergyKcal : 2000,
+      - dailyValueProtein : 50,
+      - dailyValueSalt : 6,
+
+      - showDailyProtein : true,
+      - showDailyEnergy : true,
+
+      - unitEnergy_kj : 'Kj',
+      - unitEnergy_kcal : 'kcal',
+      - unitSalt : 'g',
+      - unitGramOrMlForThePer100Part : 'g',
+
+      - textUKTypicalValues : 'Typical Values',
+      - textUKReferenceIntake : 'Reference intake of an average adult',
+
+      - showUKVersion : false,
+
+   - please take note that the daily values needs to be changed to work properly on the uk version
+      - dailyValueTotalFat : 65, //this should be 70 for the uk version
+      - dailyValueCarb : 300, //this should be 260 for the uk version
+      - dailyValueSugar : 100, //this should be 90 for the uk version
+
+   - take note of these comments on how the plugin will select which version to show
+		   //if the showLegacyVersion is true, the system will show the legacy version
+		   //if both the showLegacyVersion and showUKVersion are false, the system will show the 2018 version
+		   //if both the showLegacyVersion is false and showUKVersion is true, the system will show the uk version
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+version 8.0.15 - January 31, 2019
 
  - fix the issue with the mobile demo pages
 

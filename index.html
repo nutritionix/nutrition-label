@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     8.0.15                                                                                                                      |
- * @stable version      8.0.14                                                                                                                      |
+ * @current version     9.0.1                                                                                                                       |
+ * @stable version      8.0.15                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
@@ -27,9 +27,9 @@
 	</style>
 </head>
 <body>
-<div class="container">
+<div class="container" style="width: 1250px;">
 	<div class="hero-unit">
-		<h1>Nutrition Label version 8.0.15</h1>
+		<h1>Nutrition Label version 9.0.1</h1>
 		<h4>from Nutritionix</h4>
 		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
 		<p>
@@ -40,13 +40,14 @@
 			You can read more about this on this
 			<a href="http://blog.nutritionix.com/2013/03/08/introducing-open-nutrition-label-project/" target="_newDemo">blog post</a><br/><br/>
 
-			Version 7.0.4 and above now allow users to use the Legacy version (original version of the plugin) or the
-			<a href="https://www.fda.gov/Food/GuidanceRegulation/GuidanceDocumentsRegulatoryInformation/LabelingNutrition/ucm385663.htm" target="_2018Fda">2018 version</a><br/><br/>
+			Version 9.0.1 and above now allow users to use the Legacy version (original version of the plugin) or the
+			<a href="https://www.fda.gov/Food/GuidanceRegulation/GuidanceDocumentsRegulatoryInformation/LabelingNutrition/ucm385663.htm" target="_2018Fda">2018 version</a> or the
+			<a href="https://github.com/nutritionix/nutrition-label/issues/106" target="_ukTask">UK version</a><br/><br/>
 
 			<a href="http://dev2.nutritionix.com/html/label-jquery-plugin/demo/demo.html" target="_newDemo">Main Demo Page</a><br/>
 		</p>
 	</div>
-	<p>These are the default values on the plugin that you need to change to create a customized nutrition label.</p>
+	<p>These are the default values on the plugin that you need to change to create a customized nutrition label to suit your needs.</p>
 	<pre style="padding: 20px 40px; font-size: 14px;">
 //default fixedWidth of the nutrition label
 width : 280,
@@ -68,7 +69,7 @@ gooleAnalyticsFunctionName : 'ga',
 //enable triggering of user function on quantity change: global function name
 userFunctionNameOnQuantityChange: null,
 //enable triggering of user function on quantity change: handler instance
-userFunctionOnQuantityChange:     null,
+userFunctionOnQuantityChange: null,
 
 //when set to true, this will hide the values if they are not applicable
 hideNotApplicableValues : false,
@@ -93,7 +94,8 @@ decimalPlacesForQuantityTextbox : 1,
 //to scroll the item name if the jQuery.height() is > scrollLongItemNamePixel
 scrollLongItemName : true,
 scrollLongItemNamePixel : 36,
-scrollLongItemNamePixel2018Override : 34, //this is needed to fix some issues on the 2018 label as the layout of the label is very different than the legacy one
+//this is needed to fix some issues on the 2018 label as the layout of the label is very different than the legacy one
+scrollLongItemNamePixel2018Override : 34,
 
 //show the customizable link at the bottom
 showBottomLink : false,
@@ -107,7 +109,8 @@ nameBottomLink : 'Nutritionix',
 //this can't be less than zero, all values less than zero is converted to zero
 //the textbox to change this value is visible / enabled by default
 //if the initial value of the serving size unit quantity is less than or equal to zero, it is converted to 1.0
-//when enabled, user can change this value by clicking the arrow or changing the value on the textbox and pressing enter. the value on the label will be updated automatically
+//when enabled, user can change this value by clicking the arrow or changing the value on the textbox and pressing enter.
+	//the value on the label will be updated automatically
 //different scenarios and the result if this feature is enabled
 	//NOTE 1: [ ] => means a textbox will be shown
 	//NOTE 2: on all cases below showServingUnitQuantityTextbox == true AND showServingUnitQuantity == true
@@ -146,19 +149,22 @@ totalContainerQuantity : 1,
 calorieIntake : 2000,
 
 //these are the recommended daily intake values
-dailyValueTotalFat : 65,
+dailyValueTotalFat : 65, //this should be 70 for the uk version
 dailyValueSatFat : 20,
 dailyValueCholesterol : 300,
 dailyValueSodium : 2400,
 dailyValuePotassium : 3500,
-dailyValuePotassium_2018 : 4700,
-dailyValueCarb : 300,
+dailyValuePotassium_2018 : 4700, //this is for the 2018 version
+dailyValueCarb : 300, //this should be 260 for the uk version
 dailyValueFiber : 25,
-dailyValueCalcium : 1300,
+dailyValueCalcium : 1300, //this is for the 2018 version
 dailyValueIron : 18,
 dailyValueVitaminD : 20,
 dailyValueAddedSugar : 50,
-dailyValueSugar : 100,
+dailyValueSugar : 100, //this should be 90 for the uk version
+dailyValueEnergyKcal : 2000, //this is for the uk version
+dailyValueProtein : 50, //this is for the uk version
+dailyValueSalt : 6, //this is for the uk version
 
 //these values can be change to hide some nutrition values
 showCalories : true,
@@ -170,18 +176,18 @@ showPolyFat : false,
 showMonoFat : false,
 showCholesterol : true,
 showSodium : true,
-showPotassium: false, //this is for the legacy version, this is the only value that is default to be hidden
+showPotassium: false, //this is for the legacy version
 showPotassium_2018: true, //this is for the 2018 version
 showTotalCarb : true,
 showFibers : true,
 showSugars : true,
 showAddedSugars : true,
-showSugarAlcohol : false,
+showSugarAlcohol : false, //this is for the 2018 version
 showProteins : true,
 showVitaminA : true,
 showVitaminC : true,
-showVitaminD : true,
-showCalcium : true,
+showVitaminD : true, //this is for the 2018 version
+showCalcium : true, //this is for the 2018 version
 showIron : true,
 
 //these values can be change to hide some nutrition daily values
@@ -195,10 +201,12 @@ showDailyPotassium_2018: true, //this is for the 2018 version
 showDailyTotalCarb : true,
 showDailyFibers : true,
 showDailySugars : false,
-showDailyAddedSugars : true,
-showDailyVitaminD : true,
-showDailyCalcium : true,
+showDailyAddedSugars : true, //this is for the 2018 version
+showDailyVitaminD : true, //this is for the 2018 version
+showDailyCalcium : true, //this is for the 2018 version
 showDailyIron : true,
+showDailyProtein : true, //this is for the uk version
+showDailyEnergy : true, //this is for the uk version
 
 //to show the 'amount per serving' text
 showAmountPerServing : true,
@@ -243,13 +251,13 @@ naPotassium_2018 : false, //this is for the 2018 version
 naTotalCarb : false,
 naFibers : false,
 naSugars : false,
-naAddedSugars : false,
+naAddedSugars : false, //this is for the 2018 version
 naSugarAlcohol : false,
 naProteins : false,
 naVitaminA : false,
 naVitaminC : false,
-naVitaminD : false,
-naCalcium : false,
+naVitaminD : false, //this is for the 2018 version
+naCalcium : false, //this is for the 2018 version
 naIron : false,
 
 //these are the default values for the nutrition info
@@ -269,13 +277,13 @@ valuePotassium_2018 : 0, //this is for the 2018 version
 valueTotalCarb : 0,
 valueFibers : 0,
 valueSugars : 0,
-valueAddedSugars : 0,
+valueAddedSugars : 0, //this is for the 2018 version
 valueSugarAlcohol : 0,
 valueProteins : 0,
 valueVitaminA : 0,
 valueVitaminC : 0,
-valueVitaminD : 0,
-valueCalcium : 0,
+valueVitaminD : 0, //this is for the 2018 version
+valueCalcium : 0, //this is for the 2018 version
 valueIron : 0,
 
 //customizable units for the values
@@ -294,19 +302,23 @@ unitPotassium_percent : '%', //this is for the 2018 version
 unitTotalCarb : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
 unitFibers : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
 unitSugars : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
-unitAddedSugars : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitAddedSugars : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>', //this is for the 2018 version
 unitSugarAlcohol : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
 unitProteins : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
 unitVitaminA : '%',
 unitVitaminC : '%',
 unitVitaminD_base : '<span aria-hidden="true">mcg</span><span class="sr-only"> micrograms</span>', //this is for the 2018 version
 unitVitaminD_percent : '%', //this is for the 2018 version
-unitCalcium : '%',
+unitCalcium : '%', //this is for the 2018 version
 unitCalcium_base : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
 unitCalcium_percent : '%', //this is for the 2018 version
 unitIron : '%',
 unitIron_base : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
 unitIron_percent : '%', //this is for the 2018 version
+unitEnergy_kj : 'Kj', //this is for the uk version
+unitEnergy_kcal : 'kcal', //this is for the uk version
+unitSalt : 'g', //this is for the uk version
+unitGramOrMlForThePer100Part : 'g', //this is for the uk version
 
 //these are the values for the optional calorie diet
 valueCol1CalorieDiet : 2000,
@@ -346,13 +358,13 @@ textTotalCarb : 'Total Carbohydrates',
 textFibers : 'Dietary Fiber',
 textSugars : 'Sugars',
 textAddedSugars1 : 'Includes ',
-textAddedSugars2 : ' Added Sugars',
+textAddedSugars2 : ' Added Sugars', //this is for the 2018 version
 textSugarAlcohol : 'Sugar Alcohol',
 textProteins : 'Protein',
 textVitaminA : 'Vitamin A',
 textVitaminC : 'Vitamin C',
-textVitaminD : 'Vitamin D',
-textCalcium : 'Calcium',
+textVitaminD : 'Vitamin D', //this is for the 2018 version
+textCalcium : 'Calcium', //this is for the 2018 version
 textIron : 'Iron',
 textNotApplicable : '-',
 ingredientList : 'None',
@@ -364,8 +376,14 @@ textGoogleAnalyticsEventCategory : 'Nutrition Label',
 textGoogleAnalyticsEventActionUpArrow : 'Quantity Up Arrow Clicked',
 textGoogleAnalyticsEventActionDownArrow : 'Quantity Down Arrow Clicked',
 textGoogleAnalyticsEventActionTextbox : 'Quantity Textbox Changed',
+textUKTypicalValues : 'Typical Values', //this is for the uk version
+textUKReferenceIntake : 'Reference intake of an average adult', //this is for the uk version
 
+//if the showLegacyVersion is true, the system will show the legacy version
+//if both the showLegacyVersion and showUKVersion are false, the system will show the 2018 version
+//if both the showLegacyVersion is false and showUKVersion is true, the system will show the uk version
 showLegacyVersion : true,
+showUKVersion : false,
 
 //more details here https://github.com/nutritionix/nutrition-label/issues/77#issuecomment-323510972
 legacyVersion: 1

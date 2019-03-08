@@ -211,14 +211,8 @@ body {
   border-radius: 50%;
 }
 
-
-/*
- * default style override for the demo pages
- */
-.nutritionLabel a.unitQuantityUp {
-	background: transparent url("../images/up.png") left top no-repeat;
-}
-
-.nutritionLabel a.unitQuantityDown {
-	background: transparent url("../images/down.png") left bottom no-repeat;
+.demo-legacy, .demo-2018, .demo-uk {
+	float: left;
+	width: 370px;
+	padding: 20px;
 }

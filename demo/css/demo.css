@@ -211,3 +211,8 @@ body {
   border-radius: 50%;
 }
 
+.demo-legacy, .demo-2018, .demo-uk {
+	float: left;
+	width: 370px;
+	padding: 20px;
+}
