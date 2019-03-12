@@ -1,4 +1,12 @@
 
+version 9.0.2 - March 13, 2019
+
+ - for the uk label, if the serving name is empty, have it default to "Serving" https://github.com/nutritionix/nutrition-label/issues/108
+   - this is controlled by the setting convertEmptyServingNametoServingForUKLabel which is set to true by default
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 9.0.1 - March 8, 2019
 
  - fixed a minor bug where the itemprop value for sodium as it was incorrect

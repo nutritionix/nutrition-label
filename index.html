@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     9.0.1                                                                                                                       |
+ * @current version     9.0.2                                                                                                                       |
  * @stable version      8.0.15                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -29,7 +29,7 @@
 <body>
 <div class="container" style="width: 1250px;">
 	<div class="hero-unit">
-		<h1>Nutrition Label version 9.0.1</h1>
+		<h1>Nutrition Label version 9.0.2</h1>
 		<h4>from Nutritionix</h4>
 		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
 		<p>
@@ -384,6 +384,9 @@ textUKReferenceIntake : 'Reference intake of an average adult', //this is for th
 //if both the showLegacyVersion is false and showUKVersion is true, the system will show the uk version
 showLegacyVersion : true,
 showUKVersion : false,
+
+//for the uk label, If the serving name is empty, have it default to "Serving"
+convertEmptyServingNametoServingForUKLabel: true,
 
 //more details here https://github.com/nutritionix/nutrition-label/issues/77#issuecomment-323510972
 legacyVersion: 1
