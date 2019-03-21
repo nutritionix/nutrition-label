@@ -1,4 +1,11 @@
 
+version 9.0.3 - March 22, 2019
+
+ - added a way to handle long serving unit names on the uk label https://github.com/nutritionix/nutrition-label/issues/110
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 9.0.2 - March 13, 2019
 
  - for the uk label, if the serving name is empty, have it default to "Serving" https://github.com/nutritionix/nutrition-label/issues/108

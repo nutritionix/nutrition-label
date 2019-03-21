@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     9.0.2                                                                                                                       |
+ * @current version     9.0.3                                                                                                                       |
  * @stable version      8.0.15                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -708,7 +708,7 @@
 		}
 
 		if (!forInitialization) {
-			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.3 version
+			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.4 version
 			$localSettings = updateNutritionValueWithMultiplier($localSettings);
 			nutritionLabel = new NutritionLabel($localSettings, $elem);
 		}
@@ -748,7 +748,7 @@
 		}
 
 		if (!forInitialization) {
-			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.3 version
+			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.4 version
 			return $localSettings;
 		}
 	}//end of => updateValuesAfterAQuantityChanged($localSettings, $elem, ingredientListID, calcDisclaimerTextID, forLegacyLabel, forInitialization, forUKLabel)
@@ -2676,7 +2676,7 @@
 
 						nutritionLabel += tab4 + '<th>';
 						/**
-							//this part is for version 9.0.3 //xxx
+							//this part is for version 9.0.4 //xxx
 							nutritionLabel += tab5 + '<div class="uk_nf-arrows">\n';
 								nutritionLabel += tab6 + '<div class="uk_nf-arrow-up" aria-label="Increase the Quantity Arrow" rel="nofollow" tabindex="0"></div>\n';
 								nutritionLabel += tab6 + '<div class="uk_nf-arrow-down" aria-label="Decrease the Quantity Arrow" rel="nofollow" tabindex="0"></div>\n';
@@ -2687,7 +2687,8 @@
 						**/
 							nutritionLabel += tab5 + $this.settings.valueServingUnitQuantity;
 
-							nutritionLabel += tab5 + $this.settings.valueServingSizeUnit + ' (' + $this.settings.valueServingWeightGrams.toFixed() + $this.settings.unitGramOrMlForThePer100Part + ')\n';
+							nutritionLabel += tab5 + '<span class="uk_nf-servingUnit">' + $this.settings.valueServingSizeUnit;
+								nutritionLabel += ' (' + $this.settings.valueServingWeightGrams.toFixed() + $this.settings.unitGramOrMlForThePer100Part + ')</span>\n';
 						nutritionLabel += '</th>\n';
 
 						nutritionLabel += tab4 + '<th>%*(' + $this.settings.valueServingWeightGrams.toFixed() + $this.settings.unitGramOrMlForThePer100Part + ')</th>\n';

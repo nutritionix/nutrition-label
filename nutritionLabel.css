@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     9.0.2                                                                                                                       |
+ * @current version     9.0.3                                                                                                                       |
  * @stable version      8.0.15                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -611,6 +611,17 @@ div, span{
 
 #uk_nf-calcDisclaimer.scroll {
 	overflow-y: scroll !important;
+}
+
+.uk_nf-servingUnit {
+	display: inline-block;
+}
+.uk_nf table tr th {
+	white-space: nowrap;
+	padding-right: 15px;
+}
+.uk_nf table tr th:nth-child(3) {
+	white-space: normal;
 }
 
 /*******************************************************************************************************************
