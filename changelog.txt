@@ -1,4 +1,14 @@
 
+version 9.0.4 - March 22, 2019
+
+ - add a div at the top for the item name on the uk version (should be hidden by default) https://github.com/nutritionix/nutrition-label/issues/109
+
+		- //to show the item name for the UK version. the main difference with the previous setting is this feature is set to false by default. the UK version will ignore the showItemName setting
+		- showItemNameForUK : false,
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 9.0.3 - March 22, 2019
 
  - added a way to handle long serving unit names on the uk label https://github.com/nutritionix/nutrition-label/issues/110

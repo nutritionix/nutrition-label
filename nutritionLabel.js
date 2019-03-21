@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     9.0.3                                                                                                                       |
+ * @current version     9.0.4                                                                                                                       |
  * @stable version      8.0.15                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -239,6 +239,8 @@
 		showServingsPerContainer : false,
 		//to show the item name. there are special cases where the item name is replaced with 'servings per container' value
 		showItemName : true,
+		//to show the item name for the UK version. the main difference with the previous setting is this feature is set to false by default. the UK version will ignore the showItemName setting
+		showItemNameForUK : false,
 		//show the brand where this item belongs to
 		showBrandName : false,
 		//to show the ingredients value or not
@@ -708,7 +710,7 @@
 		}
 
 		if (!forInitialization) {
-			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.4 version
+			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.5 version
 			$localSettings = updateNutritionValueWithMultiplier($localSettings);
 			nutritionLabel = new NutritionLabel($localSettings, $elem);
 		}
@@ -748,7 +750,7 @@
 		}
 
 		if (!forInitialization) {
-			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.4 version
+			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.5 version
 			return $localSettings;
 		}
 	}//end of => updateValuesAfterAQuantityChanged($localSettings, $elem, ingredientListID, calcDisclaimerTextID, forLegacyLabel, forInitialization, forUKLabel)
@@ -2663,6 +2665,10 @@
 
 			nutritionLabel += tab1 + '<div class="uk_nf-title" tabindex="0">' + $this.settings.textNutritionFacts + '</div>\n';
 
+			if ($this.settings.showItemNameForUK) {
+				nutritionLabel += tab1 + '<div class="uk_nf-item-name" tabindex="0">' + $this.settings.itemName + '</div>\n';
+			}
+
 			//for the uk label, If the serving name is empty, have it default to "Serving"
 			if ($this.settings.convertEmptyServingNametoServingForUKLabel && $this.settings.valueServingSizeUnit + '' === '') {
 				$this.settings.valueServingSizeUnit = 'Serving';
@@ -2676,7 +2682,7 @@
 
 						nutritionLabel += tab4 + '<th>';
 						/**
-							//this part is for version 9.0.4 //xxx
+							//this part is for version 9.0.5 //xxx
 							nutritionLabel += tab5 + '<div class="uk_nf-arrows">\n';
 								nutritionLabel += tab6 + '<div class="uk_nf-arrow-up" aria-label="Increase the Quantity Arrow" rel="nofollow" tabindex="0"></div>\n';
 								nutritionLabel += tab6 + '<div class="uk_nf-arrow-down" aria-label="Decrease the Quantity Arrow" rel="nofollow" tabindex="0"></div>\n';
