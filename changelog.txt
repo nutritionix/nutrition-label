@@ -1,4 +1,23 @@
 
+version 9.0.6 - April 1, 2019
+
+ - fix an issue with the 2018 label where "Amount per serving" is hard-coded instead of using the setting "textAmountPerServing"
+
+ - make the remaining hard-coded texts customizable by adding them on the settings https://github.com/nutritionix/nutrition-label/issues/112
+
+		- unitServingWeight : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>', //this is for the 2018 version
+		- textUKPer100 : 'Per', //this is for the uk version
+		- textUKDefaultServingNameIfEmpty : 'Serving', //this is for the uk version
+		- textDataNotAvailable : 'Data not available',
+		- textAriaLabelIncreaseQuantityArrow : 'Increase the Quantity Arrow',
+		- textAriaLabelDecreaseQuantityArrow : 'Decrease the Quantity Arrow',
+		- textAriaLabelChangeQuantityTextbox : 'Change the Quantity Textbox',
+		- textCalorieDietHtmlLegacyLessThan : 'Less than',
+		- textCalorieDietHtmlLegacyDietary : 'Dietary',
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 9.0.5 - March 31, 2019
 
  - fixed a minor issue with the line height for the item name on the uk label https://github.com/nutritionix/nutrition-label/issues/111
