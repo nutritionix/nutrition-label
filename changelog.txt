@@ -1,4 +1,11 @@
 
+version 9.0.5 - March 31, 2019
+
+ - fixed a minor issue with the line height for the item name on the uk label https://github.com/nutritionix/nutrition-label/issues/111
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 9.0.4 - March 22, 2019
 
  - add a div at the top for the item name on the uk version (should be hidden by default) https://github.com/nutritionix/nutrition-label/issues/109
