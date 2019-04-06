@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     9.0.6                                                                                                                       |
+ * @current version     9.0.7                                                                                                                       |
  * @stable version      8.0.15                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -719,7 +719,7 @@
 		}
 
 		if (!forInitialization) {
-			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.7 version
+			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.8 version
 			$localSettings = updateNutritionValueWithMultiplier($localSettings);
 			nutritionLabel = new NutritionLabel($localSettings, $elem);
 		}
@@ -759,7 +759,7 @@
 		}
 
 		if (!forInitialization) {
-			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.7 version
+			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.8 version
 			return $localSettings;
 		}
 	}//end of => updateValuesAfterAQuantityChanged($localSettings, $elem, ingredientListID, calcDisclaimerTextID, forLegacyLabel, forInitialization, forUKLabel)
@@ -2315,9 +2315,8 @@
 				nutritionLabel += tab1 + '<div class="customFooter" tabindex="0">' + $this.settings.valueCustomFooter + '</div>\n';
 			}
 
-			nutritionLabel += '</div><!-- closing class="nutritionLabel" -->\n\n';
 			//returns the html for the nutrition label
-			return nutritionLabel += '<div class="naTooltip">' + $this.settings.textDataNotAvailable + '</div>\n';
+			return nutritionLabel += '<div class="naTooltip">' + $this.settings.textDataNotAvailable + '</div>\n</div><!-- closing class="nutritionLabel" -->\n';
 		},//end of => generateLegacy: function()
 
 
@@ -2621,9 +2620,8 @@
 					nutritionLabel += tab1 + '<div class="nf-customFooter" tabindex="0">' + $this.settings.valueCustomFooter + '</div>\n';
 				}
 
-			nutritionLabel += '</div><!-- closing class="nf" -->\n\n';
 			//returns the html for the nutrition label
-			return nutritionLabel += '<div class="naTooltip">' + $this.settings.textDataNotAvailable + '</div>\n';
+			return nutritionLabel += '<div class="naTooltip">' + $this.settings.textDataNotAvailable + '</div>\n</div><!-- closing class="nf" -->\n';
 		},//end of => generate2018: function()
 
 
@@ -2704,7 +2702,7 @@
 
 						nutritionLabel += tab4 + '<th>';
 						/**
-							//this part is for version 9.0.7 //xxx
+							//this part is for version 9.0.8 //xxx
 							nutritionLabel += tab5 + '<div class="uk_nf-arrows">\n';
 								nutritionLabel += tab6 + '<div class="uk_nf-arrow-up" aria-label="Increase the Quantity Arrow" rel="nofollow" tabindex="0"></div>\n';
 								nutritionLabel += tab6 + '<div class="uk_nf-arrow-down" aria-label="Decrease the Quantity Arrow" rel="nofollow" tabindex="0"></div>\n';
@@ -2814,10 +2812,9 @@
 						nutritionLabel += tab3 + '</tr>\n';
 					nutritionLabel += tab2 + '</tfoot>\n';
 				nutritionLabel += tab1 + '</table>\n';
-			nutritionLabel += '</div><!-- closing class="uk_nf" -->\n\n';
 
 			//returns the html for the nutrition label
-			return nutritionLabel += '<div class="naTooltip">' + $this.settings.textDataNotAvailable + '</div>\n';
+			return nutritionLabel += '<div class="naTooltip">' + $this.settings.textDataNotAvailable + '</div>\n</div><!-- closing class="uk_nf" -->\n';
 		}//end of => generateUK: function()
 	};//end of => NutritionLabel.prototype
 

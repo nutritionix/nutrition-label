@@ -1,4 +1,11 @@
 
+version 9.0.7 - April 6, 2019
+
+ - moved the tooltip div inside the main div https://github.com/nutritionix/nutrition-label/issues/113
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 9.0.6 - April 1, 2019
 
  - fix an issue with the 2018 label where "Amount per serving" is hard-coded instead of using the setting "textAmountPerServing"
