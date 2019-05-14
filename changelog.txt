@@ -1,4 +1,11 @@
 
+version 9.0.8 - May 15, 2019
+
+ - minor change on the uk label to change the default value Kj to kj https://github.com/nutritionix/nutrition-label/issues/114
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 9.0.7 - April 6, 2019
 
  - moved the tooltip div inside the main div https://github.com/nutritionix/nutrition-label/issues/113

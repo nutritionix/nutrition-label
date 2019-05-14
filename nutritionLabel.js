@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     9.0.7                                                                                                                       |
+ * @current version     9.0.8                                                                                                                       |
  * @stable version      8.0.15                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -343,7 +343,7 @@
 		unitIron_base : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
 		unitIron_percent : '%', //this is for the 2018 version
 		unitServingWeight : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>', //this is for the 2018 version
-		unitEnergy_kj : 'Kj', //this is for the uk version
+		unitEnergy_kj : 'kj', //this is for the uk version
 		unitEnergy_kcal : 'kcal', //this is for the uk version
 		unitSalt : 'g', //this is for the uk version
 		unitGramOrMlForThePer100Part : 'g', //this is for the uk version
@@ -719,7 +719,7 @@
 		}
 
 		if (!forInitialization) {
-			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.8 version
+			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.9 version
 			$localSettings = updateNutritionValueWithMultiplier($localSettings);
 			nutritionLabel = new NutritionLabel($localSettings, $elem);
 		}
@@ -759,7 +759,7 @@
 		}
 
 		if (!forInitialization) {
-			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.8 version
+			//xxx - currently, this is only for the legacy and 2018 label. this will be changed very soon on the 9.0.9 version
 			return $localSettings;
 		}
 	}//end of => updateValuesAfterAQuantityChanged($localSettings, $elem, ingredientListID, calcDisclaimerTextID, forLegacyLabel, forInitialization, forUKLabel)
@@ -2702,7 +2702,7 @@
 
 						nutritionLabel += tab4 + '<th>';
 						/**
-							//this part is for version 9.0.8 //xxx
+							//this part is for version 9.0.9 //xxx
 							nutritionLabel += tab5 + '<div class="uk_nf-arrows">\n';
 								nutritionLabel += tab6 + '<div class="uk_nf-arrow-up" aria-label="Increase the Quantity Arrow" rel="nofollow" tabindex="0"></div>\n';
 								nutritionLabel += tab6 + '<div class="uk_nf-arrow-down" aria-label="Decrease the Quantity Arrow" rel="nofollow" tabindex="0"></div>\n';
