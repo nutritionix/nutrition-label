@@ -1,4 +1,13 @@
 
+version 9.0.9 - May XX, 2019
+
+ - add a feature on the uk version where the serving unit quantity can be changed https://github.com/nutritionix/nutrition-label/issues/107
+
+ - some code improvements
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 9.0.8 - May 15, 2019
 
  - minor change on the uk label to change the default value Kj to kj https://github.com/nutritionix/nutrition-label/issues/114

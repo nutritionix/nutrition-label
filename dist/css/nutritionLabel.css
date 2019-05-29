@@ -1,4 +1,4 @@
-/*
+ /*
  ***************************************************************************************************************************************************+
  * NUTRITIONIX.com                                                                                                                                  |
  *                                                                                                                                                  |
@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     9.0.7                                                                                                                       |
+ * @current version     9.0.9                                                                                                                       |
  * @stable version      8.0.15                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -548,12 +548,6 @@ div, span{
 	padding-top: 8px;
 }
 
-.uk_nf.uk .uk_nf-modifier-field {
-	width: 20px;
-	padding: 3px;
-	text-align: center;
-}
-
 .uk_nf-indent {
 	padding-left: 16px;
 }
@@ -630,10 +624,72 @@ div, span{
 	line-height: 18px;
 }
 
+.uk_nf input.unitQuantityBox.ui-input-text {
+	margin-top: 0;
+	border-radius: 0;
+	height: auto;
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+}
+
+.uk_nf input.unitQuantityBox.ui-shadow-inset {
+	box-shadow: none;
+}
+
+.uk_nf .setter a {
+	display: block;
+	width: 9px;
+	height: 7px;
+	font-size: 1px;
+	line-height: 0em;
+}
+
+.uk_nf a.uk_nf-unitQuantityUp {
+	width: 50px;
+	height: 50px;
+
+	padding-bottom: 1px;
+	background: transparent url("images/up.png") left top no-repeat;
+	z-index: 9999;
+}
+
+.uk_nf a.uk_nf-unitQuantityDown {
+	padding-top: 1px;
+	background: transparent url("images/down.png") left bottom no-repeat;
+	z-index: 9999;
+}
+
+.uk_nf input.uk_nf-modifier-field {
+	text-align: center;
+	width: 25px;
+	height: 20px;
+	padding: 2px;
+	font-size: .9em !important;
+	margin-bottom: 0;
+	line-height: 15px;
+}
+.uk_nf input.uk_nf-modifier-field.arrowsAreHidden {
+	margin-left: 0;
+}
+
+.uk_nf .setter {
+	width: 12px;
+	padding: 3px 0 0 0;
+	position: static;
+	float: left;
+}
+.uk_nf .setter a {
+	display: block;
+	width: 9px;
+	height: 7px;
+	font-size: 1px;
+	line-height: 0em;
+}
+
 /*******************************************************************************************************************
 **************************************END OF THE UK LABEL RELATED STYLES*******************************************
 ******************************************************************************************************************/
-
 
 .sr-only {
   position: absolute;

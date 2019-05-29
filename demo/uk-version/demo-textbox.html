@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>UK Version Demo Page</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+	<link rel='stylesheet' type='text/css' media='all' href='../../nutritionLabel-min.css'>
+	<link rel='stylesheet' type='text/css' media='all' href='./../css/demo.css'>
+
+	<!-- google webfont for nutrition label -->
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Archivo+Black" />
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<ul class="nav nav-sidebar">
+				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
+				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
+				<li><a href="#test3"><i class="icon-chevron-right"></i> Example 3</a></li>
+				<li><a href="#test4"><i class="icon-chevron-right"></i> Example 4</a></li>
+				<li><a href="#test5"><i class="icon-chevron-right"></i> Example 5</a></li>
+				<li><a href="#test6"><i class="icon-chevron-right"></i> Example 6</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test1"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #1</h3>
+<pre id="pre1">
+$('#test1').nutritionLabel({
+	width : 380,
+	showLegacyVersion : false,
+	showUKVersion : true,
+	showItemNameForUK : true,
+	showDailySugars : true,
+	valueServingWeightGrams : 77,
+
+	dailyValueTotalFat : 70, //this should be 70 for the uk version
+	dailyValueCarb : 260, //this should be 260 for the uk version
+	dailyValueSugar : 90, //this should be 90 for the uk version
+
+	textCalories : 'Energy',
+	textTotalCarb : 'Carbohydrate',
+	textFibers : 'Fibre',
+	textSodium : 'Salt',
+
+	showServingUnitQuantity : false,
+	itemName : 'Bleu Cheese Dressing',
+	ingredientList : 'Bleu Cheese Dressing',
+
+	valueCalories : 450,
+	valueTotalFat : 48,
+	valueSatFat : 6,
+	valueSodium : 780,
+	valueTotalCarb : 3,
+	valueFibers : 0,
+	valueSugars : 3,
+	valueProteins : 3
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test2"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #2</h3>
+<pre id="pre2">
+$('#test2').nutritionLabel({
+	width : 380,
+	showLegacyVersion : false,
+	showUKVersion : true,
+	showItemNameForUK : true,
+	showDailySugars : true,
+	valueServingWeightGrams : 77,
+
+	dailyValueTotalFat : 70, //this should be 70 for the uk version
+	dailyValueCarb : 260, //this should be 260 for the uk version
+	dailyValueSugar : 90, //this should be 90 for the uk version
+
+	textCalories : 'Energy',
+	textTotalCarb : 'Carbohydrate',
+	textFibers : 'Fibre',
+	textSodium : 'Salt',
+
+	showItemName : false,
+	ingredientList : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+
+	showCalories : false,
+	showSatFat : false,
+	showSodium : false,
+
+	valueServingUnitQuantity : 2.3,
+	valueServingSize : 6,
+	valueServingSizeUnit : 'DONUTS',
+
+	valueCalories : 400,
+	valueTotalFat : 24,
+	valueSatFat : 15,
+	valueSodium : 430,
+	valueTotalCarb : 44,
+	valueSugars : 24,
+	valueProteins : 4
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test3"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #3</h3>
+<pre id="pre3">
+$('#test3').nutritionLabel({
+	width : 380,
+	hideTextboxArrows : true,
+	showLegacyVersion : false,
+	showUKVersion : true,
+	showItemNameForUK : true,
+	showDailySugars : true,
+	valueServingWeightGrams : 77,
+
+	dailyValueTotalFat : 70, //this should be 70 for the uk version
+	dailyValueCarb : 260, //this should be 260 for the uk version
+	dailyValueSugar : 90, //this should be 90 for the uk version
+
+	textCalories : 'Energy',
+	textTotalCarb : 'Carbohydrate',
+	textFibers : 'Fibre',
+	textSodium : 'Salt',
+
+	showServingUnitQuantity : false,
+	itemName : 'Bleu Cheese Dressing',
+	ingredientList : 'Bleu Cheese Dressing',
+
+	valueCalories : 450,
+	valueTotalFat : 48,
+	valueSatFat : 6,
+	valueSodium : 780,
+	valueTotalCarb : 3,
+	valueFibers : 0,
+	valueSugars : 3,
+	valueProteins : 3
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test4"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #4</h3>
+<pre id="pre4">
+$('#test4').nutritionLabel({
+	width : 380,
+	hideTextboxArrows : true,
+	showLegacyVersion : false,
+	showUKVersion : true,
+	showItemNameForUK : true,
+	showDailySugars : true,
+	valueServingWeightGrams : 77,
+
+	dailyValueTotalFat : 70, //this should be 70 for the uk version
+	dailyValueCarb : 260, //this should be 260 for the uk version
+	dailyValueSugar : 90, //this should be 90 for the uk version
+
+	textCalories : 'Energy',
+	textTotalCarb : 'Carbohydrate',
+	textFibers : 'Fibre',
+	textSodium : 'Salt',
+
+	showItemName : false,
+	ingredientList : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+
+	showCalories : false,
+	showSatFat : false,
+	showSodium : false,
+
+	valueServingUnitQuantity : 2.3,
+	valueServingSize : 6,
+	valueServingSizeUnit : 'DONUTS',
+
+	valueCalories : 400,
+	valueTotalFat : 24,
+	valueSatFat : 15,
+	valueSodium : 430,
+	valueTotalCarb : 44,
+	valueSugars : 24,
+	valueProteins : 4
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test5"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #5</h3>
+<pre id="pre5">
+$('#test5').nutritionLabel({
+	width : 380,
+	showServingUnitQuantityTextbox : false,
+	showLegacyVersion : false,
+	showUKVersion : true,
+	showItemNameForUK : true,
+	showDailySugars : true,
+	valueServingWeightGrams : 77,
+
+	dailyValueTotalFat : 70, //this should be 70 for the uk version
+	dailyValueCarb : 260, //this should be 260 for the uk version
+	dailyValueSugar : 90, //this should be 90 for the uk version
+
+	textCalories : 'Energy',
+	textTotalCarb : 'Carbohydrate',
+	textFibers : 'Fibre',
+	textSodium : 'Salt',
+
+	showServingUnitQuantity : false,
+	itemName : 'Bleu Cheese Dressing',
+	ingredientList : 'Bleu Cheese Dressing',
+
+	valueCalories : 450,
+	valueTotalFat : 48,
+	valueSatFat : 6,
+	valueSodium : 780,
+	valueTotalCarb : 3,
+	valueFibers : 0,
+	valueSugars : 3,
+	valueProteins : 3
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test6"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #6</h3>
+<pre id="pre6">
+$('#test6').nutritionLabel({
+	width : 380,
+	showServingUnitQuantityTextbox : false,
+	showLegacyVersion : false,
+	showUKVersion : true,
+	showItemNameForUK : true,
+	showDailySugars : true,
+	valueServingWeightGrams : 77,
+
+	dailyValueTotalFat : 70, //this should be 70 for the uk version
+	dailyValueCarb : 260, //this should be 260 for the uk version
+	dailyValueSugar : 90, //this should be 90 for the uk version
+
+	textCalories : 'Energy',
+	textTotalCarb : 'Carbohydrate',
+	textFibers : 'Fibre',
+	textSodium : 'Salt',
+
+	showItemName : false,
+	ingredientList : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+
+	showCalories : false,
+	showSatFat : false,
+	showSodium : false,
+
+	valueServingUnitQuantity : 2.3,
+	valueServingSize : 6,
+	valueServingSizeUnit : 'DONUTS',
+
+	valueCalories : 400,
+	valueTotalFat : 24,
+	valueSatFat : 15,
+	valueSodium : 430,
+	valueTotalCarb : 44,
+	valueSugars : 24,
+	valueProteins : 4
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+		</div>
+	</div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="../../nutritionLabel-min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	eval( eval( $('#pre1').html() ) );
+	eval( eval( $('#pre2').html() ) );
+	eval( eval( $('#pre3').html() ) );
+	eval( eval( $('#pre4').html() ) );
+	eval( eval( $('#pre5').html() ) );
+	eval( eval( $('#pre6').html() ) );
+});
+</script>
+
+</body>
+</html>
