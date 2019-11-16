@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>2018 Version Demo Page</title>
+	<title>Legacy Version Demo Page</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
 	<link rel='stylesheet' type='text/css' media='all' href='../../css/nutritionLabel-min.css'>
 	<link rel='stylesheet' type='text/css' media='all' href='./../css/demo.css'>
@@ -17,7 +17,6 @@
 				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
 				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
 				<li><a href="#test3"><i class="icon-chevron-right"></i> Example 3</a></li>
-				<li><a href="#test4"><i class="icon-chevron-right"></i> Example 4</a></li>
 			</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -29,18 +28,40 @@
 					<h3>Example #1</h3>
 <pre id="pre1">
 $('#test1').nutritionLabel({
-	showItemName : false,
+	allowFDARounding : true,
+	showPolyFat : true,
+	showMonoFat : true,
 
-	valueServingUnitQuantity : 2.3,
-	valueServingSize : 6,
-	valueServingSizeUnit : 'DONUTS',
-	valueServingWeightGrams : 23.65,
+	valueCalories : 57.3254,
+	valueFatCalories : 73.3254,
+	valueTotalFat : 6.3254,
+	valueSatFat : 9.3254,
 
-	showLegacyVersion : false
+	valuePolyFat : 11.3254,
+	valueMonoFat : 13.5254,
+
+	valueTransFat : 7.5254,
+	valueCholesterol : 16.3254,
+	valueSodium : 156.3254,
+
+	valueTotalCarb : 3.3254,
+	valueFibers : 4.5254,
+	valueSugars : 5.5254,
+	valueProteins : 6.3254,
+
+	valueVitaminA : 53.3254,
+	valueVitaminC : 56.3254,
+	valueCalcium : 66.3254,
+	valueIron : 73.3254,
+
+	valuePotassium_2018 : 0.3254,
+	valueAddedSugars : 0.3254,
+	valueSugarAlcohol : 0.3254,
+	valueVitaminD : 0.3254
 });
 </pre>
 				</div>
-			</div><br /><br /><br />
+			</div><br/><br/>
 
 
 			<div class="row">
@@ -51,18 +72,40 @@ $('#test1').nutritionLabel({
 					<h3>Example #2</h3>
 <pre id="pre2">
 $('#test2').nutritionLabel({
-	showItemName : true,
+	allowFDARounding : true,
+	showPolyFat : true,
+	showMonoFat : true,
 
-	valueServingUnitQuantity : 2.3,
-	valueServingSize : 6,
-	valueServingSizeUnit : 'DONUTS',
-	valueServingWeightGrams : 23.65,
+	valueCalories : 42.3254,
+	valueFatCalories : 46.3254,
+	valueTotalFat : 4.3254,
+	valueSatFat : 2.8254,
 
-	showLegacyVersion : false
+	valuePolyFat : 4.3254,
+	valueMonoFat : 2.5654,
+
+	valueTransFat : 3.5254,
+	valueCholesterol : 4.3254,
+	valueSodium : 56.3254,
+
+	valueTotalCarb : 0.6254,
+	valueFibers : 0.7254,
+	valueSugars : 0.8254,
+	valueProteins : 0.9254,
+
+	valueVitaminA : 33.3254,
+	valueVitaminC : 46.3254,
+	valueCalcium : 16.3254,
+	valueIron : 23.3254,
+
+	valuePotassium_2018 : 0.3254,
+	valueAddedSugars : 0.3254,
+	valueSugarAlcohol : 0.3254,
+	valueVitaminD : 0.3254
 });
 </pre>
 				</div>
-			</div><br /><br /><br />
+			</div><br/><br/>
 
 
 			<div class="row">
@@ -73,45 +116,45 @@ $('#test2').nutritionLabel({
 					<h3>Example #3</h3>
 <pre id="pre3">
 $('#test3').nutritionLabel({
-	showItemName : false,
+	allowFDARounding : true,
+	showPolyFat : true,
+	showMonoFat : true,
 
-	valueServingUnitQuantity : 2.3,
-	valueServingSize : 6,
-	valueServingSizeUnit : '',
-	valueServingWeightGrams : 23.65,
+	valueCalories : 4.3254,
+	valueFatCalories : 3.3254,
+	valueTotalFat : 0.3254,
+	valueSatFat : 0.4254,
 
-	showLegacyVersion : false
+	valuePolyFat : 0.3254,
+	valueMonoFat : 0.1654,
+
+	valueTransFat : 0.4254,
+	valueCholesterol : 1.3254,
+	valueSodium : 4.3254,
+
+	valueTotalCarb : 0.4254,
+	valueFibers : 0.3254,
+	valueSugars : 0.3254,
+	valueProteins : 0.4670820615186001,
+
+	valueVitaminA : 9.3254,
+	valueVitaminC : 7.3254,
+	valueCalcium : 3.3254,
+	valueIron : 1.3254,
+
+	valuePotassium_2018 : 0.3254,
+	valueAddedSugars : 0.3254,
+	valueSugarAlcohol : 0.3254,
+	valueVitaminD : 0.3254
 });
 </pre>
 				</div>
-			</div><br /><br /><br />
-
-
-			<div class="row">
-				<div class="col-md-4">
-					<div id="test4"></div>
-				</div>
-				<div class="col-md-8">
-					<h3>Example #4</h3>
-<pre id="pre4">
-$('#test4').nutritionLabel({
-	showItemName : true,
-
-	valueServingUnitQuantity : 2.3,
-	valueServingSize : 6,
-	valueServingSizeUnit : '',
-	valueServingWeightGrams : 23.65,
-
-	showLegacyVersion : false
-});
-</pre>
-				</div>
-			</div><br /><br /><br />
-
+			</div><br/><br/>
 
 		</div>
 	</div>
 </div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
@@ -120,8 +163,8 @@ $(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );
 	eval( eval( $('#pre2').html() ) );
 	eval( eval( $('#pre3').html() ) );
-	eval( eval( $('#pre4').html() ) );
 });
 </script>
+
 </body>
 </html>

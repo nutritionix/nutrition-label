@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     9.0.9                                                                                                                       |
- * @stable version      8.0.15                                                                                                                      |
+ * @current version     9.0.10                                                                                                                      |
+ * @stable version      9.0.9                                                                                                                       |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
@@ -214,6 +214,7 @@
 		showVitaminD : true, //this is for the 2018 version
 		showCalcium : true, //this is for the 2018 version
 		showIron : true,
+		showCaffeine : true, //this is for the 2018 version
 
 		//these values can be change to hide some nutrition daily values
 			//take note that the setting 'hidePercentDailyValues' override these values
@@ -286,6 +287,7 @@
 		naVitaminD : false, //this is for the 2018 version
 		naCalcium : false, //this is for the 2018 version
 		naIron : false,
+		naCaffeine : false, //this is for the 2018 version
 
 		//these are the default values for the nutrition info
 		valueServingWeightGrams : 0,
@@ -312,6 +314,7 @@
 		valueVitaminD : 0, //this is for the 2018 version
 		valueCalcium : 0, //this is for the 2018 version
 		valueIron : 0,
+		valueCaffeine : 0, //this is for the 2018 version
 
 		//customizable units for the values
 		unitCalories : '',
@@ -347,6 +350,7 @@
 		unitEnergy_kcal : 'kcal', //this is for the uk version
 		unitSalt : 'g', //this is for the uk version
 		unitGramOrMlForThePer100Part : 'g', //this is for the uk version
+		unitCaffeine : 'mg', //this is for the 2018 version
 
 		//these are the values for the optional calorie diet
 		valueCol1CalorieDiet : 2000,
@@ -414,6 +418,7 @@
 		textAriaLabelChangeQuantityTextbox : 'Change the Quantity Textbox',
 		textCalorieDietHtmlLegacyLessThan : 'Less than',
 		textCalorieDietHtmlLegacyDietary : 'Dietary',
+		textCaffeine : 'Caffeine', //this is for the 2018 version
 
 		//if the showLegacyVersion is true, the system will show the legacy version
 		//if both the showLegacyVersion and showUKVersion are false, the system will show the 2018 version
@@ -449,7 +454,7 @@
 
 			'valueServingUnitQuantity', 'valueServingSize', 'valueServingWeightGrams', 'valueServingPerContainer', 'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat',
 			'valueTransFat', 'valuePolyFat', 'valueMonoFat', 'valueCholesterol', 'valueSodium', 'valuePotassium', 'valueTotalCarb', 'valueFibers', 'valueSugars', 'valueProteins',
-			'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueAddedSugars',  'valueVitaminD', 'valueSugarAlcohol',
+			'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueAddedSugars',  'valueVitaminD', 'valueSugarAlcohol', 'valueCaffeine',
 
 			'valueCol1CalorieDiet', 'valueCol2CalorieDiet', 'valueCol1DietaryTotalFat', 'valueCol2DietaryTotalFat', 'valueCol1DietarySatFat', 'valueCol2DietarySatFat',
 			'valueCol1DietaryCholesterol', 'valueCol2DietaryCholesterol', 'valueCol1DietarySodium', 'valueCol2DietarySodium', 'valueCol1DietaryPotassium', 'valueCol2DietaryPotassium',
@@ -478,7 +483,7 @@
 		var nutritionIndex = [
 			'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat', 'valueTransFat', 'valuePolyFat', 'valueMonoFat', 'valueCholesterol',
 			'valueSodium', 'valuePotassium', 'valueTotalCarb', 'valueFibers', 'valueSugars', 'valueProteins', 'valueVitaminA', 'valueVitaminC',
-			'valueCalcium', 'valueIron', 'valueServingWeightGrams', 'valueAddedSugars', 'valueVitaminD', 'valuePotassium_2018', 'valueSugarAlcohol'
+			'valueCalcium', 'valueIron', 'valueServingWeightGrams', 'valueAddedSugars', 'valueVitaminD', 'valuePotassium_2018', 'valueSugarAlcohol', 'valueCaffeine'
 		];
 
 		$.each(settings, function(index, value) {
@@ -1009,6 +1014,16 @@
 		} else {
 			toRound = '< 1';
 		}
+		return toRound;
+	}
+
+
+	function roundCaffeine(toRound, decimalPlace) {
+		toRound = roundToNearestNum(toRound, 1);
+		if (toRound > 0) {
+			toRound = parseFloat( toRound.toFixed(decimalPlace) );
+		}
+
 		return toRound;
 	}
 
@@ -2395,6 +2410,7 @@
 				$this.settings.showVitaminD = $this.settings.naVitaminD ? false : $this.settings.showVitaminD;
 				$this.settings.showCalcium = $this.settings.naCalcium ? false : $this.settings.showCalcium;
 				$this.settings.showIron = $this.settings.naIron ? false : $this.settings.showIron;
+				$this.settings.showCaffeine = $this.settings.naCaffeine ? false : $this.settings.showCaffeine;
 			}
 
 			if ($this.settings.hidePercentDailyValues) {
@@ -2644,6 +2660,16 @@
 			}
 
 				nutritionLabel += tab1 + '<div class="nf-bar1"></div>\n';
+
+				if ($this.settings.showCaffeine) {
+					nutritionLabel += generateAttributeHtml2018Version(
+						//$localSettings  valueIndex       unitIndex       naIndex       attributeText   itemPropValue      topDivClass  showPercentageCode  roundFunctionName  roundFunctionRuleName  labelClass     valueClass  dailyValueIndex
+						$this.settings,  'valueCaffeine', 'unitCaffeine', 'naCaffeine', 'textCaffeine', 'caffeineContent', 'nf-line',    false,             'roundCaffeine',    '',                   'nf-highlight', '',         ''
+					);
+
+					nutritionLabel += tab1 + '<div class="nf-bar2"></div>\n';
+					nutritionLabel += tab1 + '<div class="nf-vitamins">\n';
+				}
 
 				nutritionLabel += tab1 + '<div class="' + ($this.settings.hidePercentDailyValues ? 'nf-footnoteHiddenDailyValues' : 'nf-footnote') + '">\n';
 					if (!$this.settings.hidePercentDailyValues) {

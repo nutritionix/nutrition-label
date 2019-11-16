@@ -67,6 +67,7 @@ $('#label1').nutritionLabel({
 	valuePotassium_2018 : 0,
 	valueCalcium : 0,
 	valueIron : 0,
+	valueCaffeine : 15.63,
 	showLegacyVersion : false
 });
 </pre>
@@ -125,6 +126,7 @@ $('#label2').nutritionLabel({
 	valueTotalCarb : 44,
 	valueSugars : 24,
 	valueProteins : 4,
+	valueCaffeine : 15.63,
 
 	ingredientList : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour)',
 	showLegacyVersion : false
@@ -185,6 +187,7 @@ $('#label3').nutritionLabel({
 	valueTotalCarb : 44,
 	valueSugars : 24,
 	valueProteins : 4,
+	valueCaffeine : 15.63,
 
 	ingredientList : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour)',
 	showLegacyVersion : false
@@ -235,6 +238,7 @@ $('#label4').nutritionLabel({
 	showVitaminC : false,
 	showCalcium : false,
 	showIron : false,
+	showCaffeine : false,
 
 	valueCalories : 400,
 	valueFatCalories : 220,
@@ -267,7 +271,7 @@ $(document).bind('mobileinit',function(){
 });
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
-<script type="text/javascript" src="../../css/nutritionLabel-min.js"></script>
+<script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
 <script type="text/javascript">
 $(function(){
 	eval( eval( $('#pre1').html() ) );
