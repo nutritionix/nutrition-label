@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     9.0.10                                                                                                                      |
- * @stable version      9.0.9                                                                                                                       |
+ * @current version     9.0.11                                                                                                                      |
+ * @stable version      9.0.10                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
@@ -215,6 +215,7 @@
 		showCalcium : true, //this is for the 2018 version
 		showIron : true,
 		showCaffeine : true, //this is for the 2018 version
+		showServingWeightGrams : true,
 
 		//these values can be change to hide some nutrition daily values
 			//take note that the setting 'hidePercentDailyValues' override these values
@@ -1378,7 +1379,7 @@
 						'</div>\n';
 				}
 
-				if ($localSettings.valueServingWeightGrams > 0) {
+				if ($localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0) {
 						localNutritionLabel += localTab3 + '<' + ($localSettings.legacyVersion == 1 ? 'div' : 'span') + ' class="servingWeightGrams ' +
 							($localSettings.legacyVersion == 1 ? 'fl' : '') + ' ' + gramsAddedClass + '">' +
 							'(<span itemprop="servingSize">' +
@@ -1832,7 +1833,7 @@
 			) {
 				localNutritionLabel += localTab2 + $localSettings.valueServingSizeUnit + '\n';
 
-				if ($localSettings.valueServingWeightGrams > 0) {
+				if ($localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0) {
 					localNutritionLabel += localTab2 + '(<span itemprop="servingSize">' +
 						parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) ) +
 						$localSettings.unitServingWeight +
@@ -1923,7 +1924,7 @@
 						localNutritionLabel += localTab5 + '<div class="nf-item-name" tabindex="0">\n';
 							localNutritionLabel += localTab6 + $localSettings.valueServingSizeUnit + '\n';
 
-						if ($localSettings.valueServingWeightGrams > 0) {
+						if ($localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0) {
 							localNutritionLabel += localTab6 + '(' +
 								parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) ) +
 								$localSettings.unitServingWeight +
@@ -1938,7 +1939,7 @@
 							parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
 						'</span>\n';
 
-					if ( ($localSettings.valueServingSizeUnit == '' || $localSettings.valueServingSizeUnit == null) && $localSettings.valueServingWeightGrams > 0 ) {
+					if ( ($localSettings.valueServingSizeUnit == '' || $localSettings.valueServingSizeUnit == null) && $localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0 ) {
 						localNutritionLabel += localTab4 + '(' +
 							parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) ) +
 							$localSettings.unitServingWeight +
@@ -2459,6 +2460,7 @@
 				(
 					!$this.settings.showItemName &&
 					$this.settings.originalServingUnitQuantity > 0 &&
+					$this.settings.showServingWeightGrams &&
 					$this.settings.valueServingWeightGrams > 0
 				) ||
 				(
@@ -2718,7 +2720,6 @@
 				$this.settings.showSugars = $this.settings.naSugars ? false : $this.settings.showSugars;
 				$this.settings.showFibers = $this.settings.naFibers ? false : $this.settings.showFibers;
 				$this.settings.showProteins = $this.settings.naProteins ? false : $this.settings.showProteins;
-				$this.settings.showCalories = $this.settings.naCalories ? false : $this.settings.showCalories;
 				$this.settings.showSodium = $this.settings.naSodium ? false : $this.settings.showSodium;
 			}
 
@@ -2732,7 +2733,6 @@
 				$this.settings.naSugars = true;
 				$this.settings.naFibers = true;
 				$this.settings.naProteins = true;
-				$this.settings.naCalories = true;
 				$this.settings.naSodium = true;
 			}
 

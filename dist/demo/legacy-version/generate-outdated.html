@@ -910,16 +910,16 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript" src="../css/nutritionLabel-min.js"></script>
+<script type="text/javascript" src="../js/nutritionLabel-min.js"></script>
 <script type="text/javascript">
 //check if the value is a positive number
-function regIsPosNumber(fData){
+function regIsPosNumber(fData) {
 	var reg = new RegExp('(^[0-9]+[\.]?[0-9]+$)|(^[0-9]+$)');
 	return reg.test(fData);
 }
 
-$(document).ready(function(){
-	$("#generate").click(function(e){
+$(document).ready(function() {
+	$("#generate").click(function(e) {
 		e.preventDefault();
 
 		$('div#generatedLabel div#label').html('');

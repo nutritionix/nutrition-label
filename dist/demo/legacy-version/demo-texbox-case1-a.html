@@ -23,6 +23,9 @@
 				<li><a href="#test6"><i class="icon-chevron-right"></i>Case #1-B-2-a-1</a></li>
 				<li><a href="#test7"><i class="icon-chevron-right"></i>Case #1-C-2-a-1</a></li>
 				<li><a href="#test8"><i class="icon-chevron-right"></i>Case #1-D-2-a-1</a></li>
+
+				<li><a href="#test9"><i class="icon-chevron-right"></i>Case #1-A-1-a-1 (Hidden Serving Weight)</a></li>
+				<li><a href="#test10"><i class="icon-chevron-right"></i>Case #1-A-2-a-1 (Hidden Serving Weight)</a></li>
 			</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -463,13 +466,125 @@ $('#test8').nutritionLabel({
 <!--------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------->
 
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test9"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Case #1-A-1-a-1 (Hidden Serving Weight)</h3>
+					<p>
+showServingUnitQuantityTextbox == true<br/>
+showServingUnitQuantity == true<br/>
+valueServingSizeUnit != '' (AND NOT null)<br/>
+valueServingUnitQuantity >= 0 (AND NOT N/A)<br/>
+showItemNameAtTheTop == false<br/>
+valueServingWeightGrams > 0 (making this part visible)<br/>
+showServingWeightGrams == true
+					</p>
+<pre id="pre9">
+$('#test9').nutritionLabel({
+	valueServingPerContainer : 1.33,
+	valueServingWeightGrams : 2.56,
+
+	showServingsPerContainer : true,
+	showServingWeightGrams : false,
+
+	valueServingUnitQuantity : 6,
+	valueServingSizeUnit : 'DONUTS',
+
+	naPolyFat : true,
+	naFibers : true,
+
+	showMonoFat : false,
+	showTransFat : false,
+	showVitaminA : false,
+	showVitaminC : false,
+	showCalcium : false,
+	showIron : false,
+
+	valueCalories : 400,
+	valueFatCalories : 220,
+	valueTotalFat : 24,
+	valueSatFat : 15,
+	valueCholesterol : 25,
+	valueSodium : 430,
+	valueTotalCarb : 44,
+	valueSugars : 24,
+	valueProteins : 4,
+
+	ingredientList : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour)'
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test10"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Case #1-A-2-a-1 (Hidden Serving Weight)</h3>
+					<p>
+showServingUnitQuantityTextbox == false<br/>
+showServingUnitQuantity == true<br/>
+valueServingSizeUnit != '' (AND NOT null)<br/>
+valueServingUnitQuantity >= 0 (AND NOT N/A)<br/>
+valueServingWeightGrams > 0 (making this part visible)<br/>
+showServingWeightGrams == true
+					</p>
+<pre id="pre10">
+$('#test10').nutritionLabel({
+	valueServingPerContainer : 1.33,
+	valueServingWeightGrams : 2.56,
+
+	showServingsPerContainer : true,
+	showServingWeightGrams : false,
+
+	showServingUnitQuantityTextbox : false,
+	valueServingUnitQuantity : 6,
+	valueServingSizeUnit : 'DONUTS',
+
+	naPolyFat : true,
+	naFibers : true,
+
+	showMonoFat : false,
+	showTransFat : false,
+	showVitaminA : false,
+	showVitaminC : false,
+	showCalcium : false,
+	showIron : false,
+
+	valueCalories : 400,
+	valueFatCalories : 220,
+	valueTotalFat : 24,
+	valueSatFat : 15,
+	valueCholesterol : 25,
+	valueSodium : 430,
+	valueTotalCarb : 44,
+	valueSugars : 24,
+	valueProteins : 4,
+
+	ingredientList : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour)'
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------->
+
 		</div>
 	</div>
 </div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript" src="../../css/nutritionLabel-min.js"></script>
+<script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );
@@ -480,6 +595,8 @@ $(document).ready(function(){
 	eval( eval( $('#pre6').html() ) );
 	eval( eval( $('#pre7').html() ) );
 	eval( eval( $('#pre8').html() ) );
+	eval( eval( $('#pre9').html() ) );
+	eval( eval( $('#pre10').html() ) );
 });
 </script>
 

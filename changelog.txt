@@ -1,4 +1,12 @@
 
+version 9.0.11 - January 12, 2020
+
+ - add a setting to allow the serving weight and unit value to be hidden on the legacy and 2018 version https://github.com/nutritionix/nutrition-label/issues/118
+ - fixed an overlooked issue on the /dist/demo/html files where "../js/nutritionLabel-min.js" is coded as "../css/nutritionLabel-min.js"
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 9.0.10 - November 16, 2019
 
  - add a new nutrition label for the 2018 version - caffeine https://github.com/nutritionix/nutrition-label/issues/117
