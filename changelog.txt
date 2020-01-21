@@ -1,4 +1,15 @@
 
+version 10.0.1 - January 21, 2020
+
+ - modification to the 2018 label for the nutrition values - vitamin d, calcium, iron and potassium https://github.com/nutritionix/nutrition-label/issues/120
+
+		- //this will only affect Vitamin D (valueVitaminD), Calcium (valueCalcium), Iron (valueIron) and Potassium (valuePotassium_2018).
+		- 	//this will tell the system to process these values as base values and not % Daily Values (default)
+		- useBaseValueFor2018LabelAndNotDVPercentage : false, //this is for the 2018 version
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 9.0.11 - January 12, 2020
 
  - add a setting to allow the serving weight and unit value to be hidden on the legacy and 2018 version https://github.com/nutritionix/nutrition-label/issues/118

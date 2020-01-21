@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     9.0.11                                                                                                                      |
+ * @current version     10.0.1                                                                                                                      |
  * @stable version      9.0.10                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -29,7 +29,7 @@
 <body>
 <div class="container" style="width: 1250px;">
 	<div class="hero-unit">
-		<h1>Nutrition Label version 9.0.11</h1>
+		<h1>Nutrition Label version 10.0.1</h1>
 		<h4>from Nutritionix</h4>
 		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
 		<p>
@@ -96,6 +96,10 @@ scrollLongItemName : true,
 scrollLongItemNamePixel : 36,
 //this is needed to fix some issues on the 2018 label as the layout of the label is very different than the legacy one
 scrollLongItemNamePixel2018Override : 34,
+
+//this will only affect Vitamin D (valueVitaminD), Calcium (valueCalcium), Iron (valueIron) and Potassium (valuePotassium_2018).
+	//this will tell the system to process these values as base values and not % Daily Values (default)
+useBaseValueFor2018LabelAndNotDVPercentage : false, //this is for the 2018 version
 
 //show the customizable link at the bottom
 showBottomLink : false,

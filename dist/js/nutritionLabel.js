@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     9.0.11                                                                                                                      |
+ * @current version     10.0.1                                                                                                                      |
  * @stable version      9.0.10                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -121,6 +121,10 @@
 		scrollLongItemNamePixel : 36,
 		//this is needed to fix some issues on the 2018 label as the layout of the label is very different than the legacy one
 		scrollLongItemNamePixel2018Override : 34,
+
+		//this will only affect Vitamin D (valueVitaminD), Calcium (valueCalcium), Iron (valueIron) and Potassium (valuePotassium_2018).
+			//this will tell the system to process these values as base values and not % Daily Values (default)
+		useBaseValueFor2018LabelAndNotDVPercentage : false, //this is for the 2018 version
 
 		//show the customizable link at the bottom
 		showBottomLink : false,
@@ -455,7 +459,7 @@
 
 			'valueServingUnitQuantity', 'valueServingSize', 'valueServingWeightGrams', 'valueServingPerContainer', 'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat',
 			'valueTransFat', 'valuePolyFat', 'valueMonoFat', 'valueCholesterol', 'valueSodium', 'valuePotassium', 'valueTotalCarb', 'valueFibers', 'valueSugars', 'valueProteins',
-			'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueAddedSugars',  'valueVitaminD', 'valueSugarAlcohol', 'valueCaffeine',
+			'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueAddedSugars', 'valueVitaminD', 'valueSugarAlcohol', 'valueCaffeine',
 
 			'valueCol1CalorieDiet', 'valueCol2CalorieDiet', 'valueCol1DietaryTotalFat', 'valueCol2DietaryTotalFat', 'valueCol1DietarySatFat', 'valueCol2DietarySatFat',
 			'valueCol1DietaryCholesterol', 'valueCol2DietaryCholesterol', 'valueCol1DietarySodium', 'valueCol2DietarySodium', 'valueCol1DietaryPotassium', 'valueCol2DietaryPotassium',
@@ -550,31 +554,31 @@
 					//increase the unit quantity by clicking the up arrow
 					$('#' + $elem.attr('id') ).delegate('.unitQuantityUp', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       1,             updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      1,              updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
 					});
 
 					//decrease the unit quantity by clicking the down arrow
 					$('#' + $elem.attr('id') ).delegate('.unitQuantityDown', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       -1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      -1,           updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
 					});
 				}
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.unitQuantityBox', 'change', function(e) {
 					e.preventDefault();
-                             //($thisTextbox  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-					changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
+					                    //($thisTextbox $localSettings                                     nutritionLabel  $elem  forLegacyLabel forUKLabel)
+					changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
 				});
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.unitQuantityBox', 'keydown', function(e) {
 					if (e.keyCode == 13) {
 						e.preventDefault();
-                               //($thisTextbox  $localSettings,                                     nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
+						                   //($thisTextbox $localSettings,                                     nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
 					}
 				});
 			}
@@ -591,39 +595,39 @@
 					//increase the unit quantity by clicking the up arrow
 					$('#' + $elem.attr('id') ).delegate('.uk_nf-unitQuantityUp', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       1,             updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
 					});
 
 					//decrease the unit quantity by clicking the down arrow
 					$('#' + $elem.attr('id') ).delegate('.uk_nf-unitQuantityDown', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       -1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      -1,           updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
 					});
 				}
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.uk_nf-unitQuantityBox', 'change', function(e) {
 					e.preventDefault();
-                             //($thisTextbox  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-					changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
+					                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+					changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
 				});
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.uk_nf-unitQuantityBox', 'keydown', function(e) {
 					if (e.keyCode == 13) {
 						e.preventDefault();
-                               //($thisTextbox  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
+						                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
 					}
 				});
 			}
 		//end of => else if ($updatedsettings.showUKVersion)
 		} else {
 			//this part is for the 2018 version
-                                     //($localSettings  nutritionLabel  $elem  forLegacyLabel  forInitialization  forUKLabel)
-			updateValuesAfterAQuantityChanged($settings,      nutritionLabel, $elem, false,          true,              false);
+			                               //($localSettings nutritionLabel  $elem  forLegacyLabel forInitialization forUKLabel)
+			updateValuesAfterAQuantityChanged($settings,     nutritionLabel, $elem, false,         true,             false);
 
 			//if the text box for the unit quantity is shown
 			if ($settings.showServingUnitQuantityTextbox) {
@@ -632,31 +636,31 @@
 					//increase the unit quantity by clicking the up arrow
 					$('#' + $elem.attr('id') ).delegate('div.nf-unitQuantityUp', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       1,             updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
 					});
 
 					//decrease the unit quantity by clicking the down arrow
 					$('#' + $elem.attr('id') ).delegate('div.nf-unitQuantityDown', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       -1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      -1,           updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
 					});
 				}
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.nf-unitQuantityBox', 'change', function(e) {
 					e.preventDefault();
-                             //($thisTextbox  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-					changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
+					                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+					changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
 				});
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.nf-unitQuantityBox', 'keydown', function(e) {
 					if (e.keyCode == 13) {
 						e.preventDefault();
-                               //($thisTextbox  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
+						                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
 					}
 				});
 			}
@@ -791,14 +795,14 @@
 
 		//scroll the ingredients of the innerheight is > $localSettings.scrollHeightComparison and the settings showIngredients and scrollLongIngredients are true
 		if ($localSettings.showIngredients && $localSettings.scrollLongIngredients) {
-                          //($localElem  $localSettings  localIDToScroll   localScrollHeightComparison            localScrollHeight)
-			updateScrollingFeature($elem,      $localSettings, ingredientListID, $localSettings.scrollHeightComparison, $localSettings.scrollHeightPixel);
+			                    //($localElem $localSettings  localIDToScroll   localScrollHeightComparison            localScrollHeight)
+			updateScrollingFeature($elem,     $localSettings, ingredientListID, $localSettings.scrollHeightComparison, $localSettings.scrollHeightPixel);
 		}
 
 		//scroll the disclaimer if the height of the disclaimer div is greater than scrollDisclaimerHeightComparison
 		if ($localSettings.showDisclaimer) {
-                          //($localElem  $localSettings  localIDToScroll       localScrollHeightComparison                      localScrollHeight)
-			updateScrollingFeature($elem,      $localSettings, calcDisclaimerTextID, $localSettings.scrollDisclaimerHeightComparison, $localSettings.scrollDisclaimer);
+			                    //($localElem $localSettings  localIDToScroll       localScrollHeightComparison                      localScrollHeight)
+			updateScrollingFeature($elem,     $localSettings, calcDisclaimerTextID, $localSettings.scrollDisclaimerHeightComparison, $localSettings.scrollDisclaimer);
 		}
 
 		//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
@@ -905,8 +909,8 @@
 		);
 
 		$localSettings.valueServingUnitQuantity = currentQuantity;
-		                                                //($localSettings  nutritionLabel  $elem  forLegacyLabel  forInitialization  forUKLabel)
-		$localSettings = updateValuesAfterAQuantityChanged($localSettings, nutritionLabel, $elem, forLegacyLabel, false,             forUKLabel);
+		                                                //($localSettings  nutritionLabel  $elem  forLegacyLabel  forInitialization forUKLabel)
+		$localSettings = updateValuesAfterAQuantityChanged($localSettings, nutritionLabel, $elem, forLegacyLabel, false,            forUKLabel);
 
 		if ($localSettings.allowGoogleAnalyticsEventLog) {
 			if (changeValueBy > 0) {
@@ -1221,6 +1225,38 @@
 	}
 
 
+	function roundFor2018LabelVitaminDIron(toRound) {
+		toRound = roundFor2018LabelVitaminDIronRule(toRound);
+		if (toRound > 0) {
+			return parseFloat( toRound.toFixed(1) );
+		}
+
+		return 0;
+	}
+
+
+	function roundFor2018LabelVitaminDIronRule(toRound) {
+		//round to the nearest 0.1 increment
+		return roundToNearestNum(toRound, 0.1);
+	}
+
+
+	function roundFor2018LabelCalciumPotassium(toRound) {
+		toRound = roundFor2018LabelCalciumPotassiumRule(toRound);
+		if (toRound > 0) {
+			return toRound;
+		}
+
+		return 0;
+	}
+
+
+	function roundFor2018LabelCalciumPotassiumRule(toRound) {
+		//round to the nearest 10 increment
+		return roundToNearestNum(toRound, 10);
+	}
+
+
 	//check if the value is a positive number
 	function regIsPosNumber(fData) {
 		return new RegExp('(^[0-9]+[\.]?[0-9]+$)|(^[0-9]+$)').test(fData);
@@ -1527,7 +1563,7 @@
 	 * attributeDisplayType
 	 *    1 => <strong> + $localSettings[attributeText] + </strong> <span itemprop=" + itemPropValue + ">
 	 *    2 => $localSettings[attributeText] + ' '
-	 *    3 => localExtraTab + $localSettings[attributeText] +  <span itemprop="transFatContent">;
+	 *    3 => localExtraTab + $localSettings[attributeText] + <span itemprop="transFatContent">;
 	 *    4 => localTab1 + <div class="line indent">;
 	 *    5 => a bit special format for vitamin a, vitamin c, calcium and iron
 	 */
@@ -1751,7 +1787,7 @@
 	/*
 	 * generate and return the html code for these areas that share similar html format: vitamin d, calcium, iron and potassium
 	 */
-	function generateHtmlAndComputeValueGivenThePercentage($localSettings, valueIndex, dailyValueIndex, unitIndex_base, unitIndex_percent, naIndex, attributeTexts, showPercentageCode) {
+	function generate2018HtmlAndComputeValueGivenThePercentage($localSettings, valueIndex, dailyValueIndex, unitIndex_base, unitIndex_percent, naIndex, attributeTexts, showPercentageCode) {
 		//initialize the not applicable image icon in case we need to use it
 		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font>' +
 			'<font class="sr-only">' + $localSettings.textDataNotAvailable + '</font>\n';
@@ -2199,15 +2235,15 @@
 
 				if ($this.settings.showFatCalories) {
 					nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-						//$localSettings  valueIndex          unitIndex          naIndex          attributeText     localTabValue  lineClass  attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-						$this.settings,  'valueFatCalories', 'unitFatCalories', 'naFatCalories', 'textFatCalories', tab2,         'fr',       2,                    '',            '',           'roundCalories'
+						//$localSettings valueIndex          unitIndex          naIndex          attributeText     localTabValue lineClass attributeDisplayType itemPropValue localExtraTab roundFunctionName
+						$this.settings, 'valueFatCalories', 'unitFatCalories', 'naFatCalories', 'textFatCalories', tab2,        'fr',      2,                   '',           '',          'roundCalories'
 					);
 				}
 
 				if ($this.settings.showCalories) {
 					nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText  localTabValue  lineClass  attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-						$this.settings,  'valueCalories', 'unitCalories', 'naCalories', 'textCalories', tab2,          '',        1,                   'calories',     '',           'roundCalories'
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass attributeDisplayType itemPropValue localExtraTab roundFunctionName
+						$this.settings, 'valueCalories', 'unitCalories', 'naCalories', 'textCalories', tab2,         '',       1,                  'calories',    '',          'roundCalories'
 					);
 				} else if ($this.settings.showFatCalories) {
 					nutritionLabel += tab2 + '<div>&nbsp;</div>\n';
@@ -2224,92 +2260,92 @@
 
 			if ($this.settings.showTotalFat) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex       dailyValueIndex       unitIndex       naIndex       attributeTexts  lineClass  itemPropValue  roundFunctionName  roundFunctionRuleName  boldName  showPercentageCode
-					$this.settings, 'valueTotalFat', 'dailyValueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'line',    'fatContent',  'roundFat',        'roundFatRule',         true,     $this.settings.showDailyTotalFat
+					//$localSetting  valueIndex       dailyValueIndex       unitIndex       naIndex       attributeTexts  lineClass itemPropValue roundFunctionName roundFunctionRuleName boldName showPercentageCode
+					$this.settings, 'valueTotalFat', 'dailyValueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'line',   'fatContent', 'roundFat',       'roundFatRule',        true,    $this.settings.showDailyTotalFat
 				);
 			}
 
 			if ($this.settings.showSatFat) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts  lineClass      itemPropValue          roundFunctionName  roundFunctionRuleName  boldName  showPercentageCode
-					$this.settings, 'valueSatFat', 'dailyValueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',   'line indent', 'saturatedFatContent', 'roundFat',        'roundFatRule',         false,    $this.settings.showDailySatFat
+					//$localSetting  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts lineClass      itemPropValue          roundFunctionName roundFunctionRuleName boldName showPercentageCode
+					$this.settings, 'valueSatFat', 'dailyValueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',  'line indent', 'saturatedFatContent', 'roundFat',       'roundFatRule',        false,   $this.settings.showDailySatFat
 				);
 			}
 
 			if ($this.settings.showTransFat) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex       unitIndex       naIndex       attributeText  localTabValue  lineClass     attributeDisplayType  itemPropValue     localExtraTab  roundFunctionName
-					$this.settings,  'valueTransFat', 'unitTransFat', 'naTransFat', 'textTransFat', tab1,         'line indent', 3,                   'transFatContent', tab2,         'roundFat'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass     attributeDisplayType itemPropValue     localExtraTab roundFunctionName
+					$this.settings, 'valueTransFat', 'unitTransFat', 'naTransFat', 'textTransFat', tab1,        'line indent', 3,                  'transFatContent', tab2,        'roundFat'
 				);
 			}
 
 			if ($this.settings.showPolyFat) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex      unitIndex      naIndex      attributeText  localTabValue  lineClass     attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valuePolyFat', 'unitPolyFat', 'naPolyFat', 'textPolyFat',  tab1,         'line indent', 2,                    '',            '',           'roundFat'
+					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass     attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valuePolyFat', 'unitPolyFat', 'naPolyFat', 'textPolyFat', tab1,        'line indent', 2,                   '',           '',          'roundFat'
 				);
 			}
 
 			if ($this.settings.showMonoFat) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex      unitIndex      naIndex      attributeText  localTabValue  lineClass     attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueMonoFat', 'unitMonoFat', 'naMonoFat', 'textMonoFat',  tab1,         'line indent', 2,                    '',            '',           'roundFat'
+					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass     attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueMonoFat', 'unitMonoFat', 'naMonoFat', 'textMonoFat', tab1,        'line indent', 2,                   '',           '',          'roundFat'
 				);
 			}
 
 			if ($this.settings.showCholesterol) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex          dailyValueIndex          unitIndex          naIndex          attributeTexts     lineClass  itemPropValue         roundFunctionName   roundFunctionRuleName  boldName  showPercentageCode
-					$this.settings, 'valueCholesterol', 'dailyValueCholesterol', 'unitCholesterol', 'naCholesterol', 'textCholesterol', 'line',    'cholesterolContent', 'roundCholesterol', 'roundCholesterolRule', true,     $this.settings.showDailyCholesterol
+					//$localSetting  valueIndex          dailyValueIndex          unitIndex          naIndex          attributeTexts     lineClass itemPropValue         roundFunctionName   roundFunctionRuleName  boldName showPercentageCode
+					$this.settings, 'valueCholesterol', 'dailyValueCholesterol', 'unitCholesterol', 'naCholesterol', 'textCholesterol', 'line',   'cholesterolContent', 'roundCholesterol', 'roundCholesterolRule', true,    $this.settings.showDailyCholesterol
 				);
 			}
 
 			if ($this.settings.showSodium) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts  lineClass  itemPropValue    roundFunctionName  roundFunctionRuleName  boldName  showPercentageCode
-					$this.settings, 'valueSodium', 'dailyValueSodium', 'unitSodium', 'naSodium', 'textSodium',   'line',    'sodiumContent', 'roundSodium',     'roundSodiumRule',      true,     $this.settings.showDailySodium
+					//$localSetting  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts lineClass itemPropValue    roundFunctionName roundFunctionRuleName boldName showPercentageCode
+					$this.settings, 'valueSodium', 'dailyValueSodium', 'unitSodium', 'naSodium', 'textSodium',  'line',   'sodiumContent', 'roundSodium',    'roundSodiumRule',     true,    $this.settings.showDailySodium
 				);
 			}
 
 			if ($this.settings.showPotassium) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex        dailyValueIndex        unitIndex        naIndex        attributeTexts   lineClass  itemPropValue       roundFunctionName  roundFunctionRuleName  boldName  showPercentageCode
-					$this.settings, 'valuePotassium', 'dailyValuePotassium', 'unitPotassium', 'naPotassium', 'textPotassium', 'line',    'potassiumContent', 'roundPotassium',  'roundPotassiumRule',   true,     $this.settings.showDailyPotassium
+					//$localSetting  valueIndex        dailyValueIndex        unitIndex        naIndex        attributeTexts   lineClass itemPropValue       roundFunctionName roundFunctionRuleName boldName showPercentageCode
+					$this.settings, 'valuePotassium', 'dailyValuePotassium', 'unitPotassium', 'naPotassium', 'textPotassium', 'line',   'potassiumContent', 'roundPotassium', 'roundPotassiumRule',  true,    $this.settings.showDailyPotassium
 				);
 			}
 
 			if ($this.settings.showTotalCarb) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex        dailyValueIndex   unitIndex        naIndex        attributeTexts   lineClass  itemPropValue          roundFunctionName             roundFunctionRuleName            boldName  showPercentageCode
-					$this.settings, 'valueTotalCarb', 'dailyValueCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'line',    'carbohydrateContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', true,     $this.settings.showDailyTotalCarb
+					//$localSetting  valueIndex        dailyValueIndex   unitIndex        naIndex        attributeTexts   lineClass itemPropValue          roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
+					$this.settings, 'valueTotalCarb', 'dailyValueCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'line',   'carbohydrateContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', true,    $this.settings.showDailyTotalCarb
 				);
 			}
 
 			if ($this.settings.showFibers) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts  lineClass      itemPropValue   roundFunctionName             roundFunctionRuleName            boldName  showPercentageCode
-					$this.settings, 'valueFibers', 'dailyValueFiber', 'unitFibers', 'naFibers', 'textFibers',   'line indent', 'fiberContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,    $this.settings.showDailyFibers
+					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts lineClass      itemPropValue   roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
+					$this.settings, 'valueFibers', 'dailyValueFiber', 'unitFibers', 'naFibers', 'textFibers',  'line indent', 'fiberContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   $this.settings.showDailyFibers
 				);
 			}
 
 			if ($this.settings.showSugars) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts  lineClass      itemPropValue   roundFunctionName             roundFunctionRuleName            boldName  showPercentageCode
-					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',   'line indent', 'sugarContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,    $this.settings.showDailySugars
+					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts lineClass      itemPropValue   roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
+					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',  'line indent', 'sugarContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   $this.settings.showDailySugars
 				);
 			}
 
 			if ($this.settings.showSugarAlcohol) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex           unitIndex           naIndex           attributeText      localTabValue  lineClass     attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', tab1,         'line indent', 4,                   '',             '',           'roundCarbFiberSugarProtein'
+					//$localSettings valueIndex           unitIndex           naIndex           attributeText      localTabValue lineClass     attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', tab1,        'line indent', 4,                  '',            '',          'roundCarbFiberSugarProtein'
 				);
 			}
 
 			if ($this.settings.showProteins) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex       unitIndex       naIndex       attributeText  localTabValue  lineClass  attributeDisplayType  itemPropValue    localExtraTab  roundFunctionName
-					$this.settings,  'valueProteins', 'unitProteins', 'naProteins', 'textProteins', tab1,         'line',     1,                   'proteinContent', '',           'roundCarbFiberSugarProtein'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass attributeDisplayType itemPropValue    localExtraTab roundFunctionName
+					$this.settings, 'valueProteins', 'unitProteins', 'naProteins', 'textProteins', tab1,        'line',    1,                  'proteinContent', '',          'roundCarbFiberSugarProtein'
 				);
 			}
 
@@ -2317,29 +2353,29 @@
 
 			if ($this.settings.showVitaminA) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex       unitIndex       naIndex       attributeText  localTabValue  lineClass       attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueVitaminA', 'unitVitaminA', 'naVitaminA', 'textVitaminA', tab1,         'line vitaminA', 5,                    '',            tab2,         'roundVitaminsCalciumIron'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass       attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueVitaminA', 'unitVitaminA', 'naVitaminA', 'textVitaminA', tab1,        'line vitaminA', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
 				);
 			}
 
 			if ($this.settings.showVitaminC) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex       unitIndex       naIndex       attributeText  localTabValue  lineClass       attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueVitaminC', 'unitVitaminC', 'naVitaminC', 'textVitaminC', tab1,         'line vitaminC', 5,                    '',            tab2,         'roundVitaminsCalciumIron'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass       attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueVitaminC', 'unitVitaminC', 'naVitaminC', 'textVitaminC', tab1,        'line vitaminC', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
 				);
 			}
 
 			if ($this.settings.showCalcium) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex      unitIndex      naIndex      attributeText  localTabValue  lineClass      attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueCalcium', 'unitCalcium', 'naCalcium', 'textCalcium',  tab1,         'line calcium', 5,                    '',            tab2,         'roundVitaminsCalciumIron'
+					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass      attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueCalcium', 'unitCalcium', 'naCalcium', 'textCalcium', tab1,        'line calcium', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
 				);
 			}
 
 			if ($this.settings.showIron) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex   unitIndex   naIndex   attributeText  localTabValue  lineClass   attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueIron', 'unitIron', 'naIron', 'textIron',     tab1,         'line iron', 5,                    '',            tab2,         'roundVitaminsCalciumIron'
+					//$localSettings valueIndex   unitIndex   naIndex   attributeText localTabValue lineClass   attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueIron', 'unitIron', 'naIron', 'textIron',    tab1,        'line iron', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
 				);
 			}
 
@@ -2507,8 +2543,8 @@
 
 				if ($this.settings.showCalories) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText   itemPropValue  topDivClass   showPercentageCode  roundFunctionName  roundFunctionRuleName  labelClass   valueClass  dailyValueIndex
-						$this.settings,  'valueCalories', 'unitCalories', 'naCalories', 'textCalories', 'calories',    'nf-calories', false,             'roundCalories',    '',                    '',         'nf-pr',     ''
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue topDivClass   showPercentageCode roundFunctionName roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valueCalories', 'unitCalories', 'naCalories', 'textCalories', 'calories',   'nf-calories', false,            'roundCalories',   '',                   '',       'nf-pr',    ''
 					);
 				}
 
@@ -2522,99 +2558,99 @@
 
 				if ($this.settings.showTotalFat) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText   itemPropValue  topDivClass  showPercentageCode                 roundFunctionName  roundFunctionRuleName  labelClass     valueClass  dailyValueIndex
-						$this.settings,  'valueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'fatContent',  'nf-line',    $this.settings.showDailyTotalFat, 'roundFat',        'roundFatRule',        'nf-highlight', '',        'dailyValueTotalFat'
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue topDivClass showPercentageCode                 roundFunctionName roundFunctionRuleName labelClass     valueClass dailyValueIndex
+						$this.settings, 'valueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'fatContent', 'nf-line',   $this.settings.showDailyTotalFat, 'roundFat',       'roundFatRule',       'nf-highlight', '',       'dailyValueTotalFat'
 					);
 				}
 
 				if ($this.settings.showSatFat) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex     unitIndex     naIndex     attributeText  itemPropValue          topDivClass         showPercentageCode               roundFunctionName  roundFunctionRuleName  labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',  'saturatedFatContent', 'nf-line nf-indent', $this.settings.showDailySatFat, 'roundFat',        'roundFatRule',         '',         '',        'dailyValueSatFat'
+						//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue          topDivClass         showPercentageCode               roundFunctionName roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat', 'saturatedFatContent', 'nf-line nf-indent', $this.settings.showDailySatFat, 'roundFat',       'roundFatRule',        '',        '',       'dailyValueSatFat'
 					);
 				}
 
 				if ($this.settings.showTransFat) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText   itemPropValue      topDivClass         showPercentageCode  roundFunctionName  roundFunctionRuleName  labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueTransFat', 'unitTransFat', 'naTransFat', 'textTransFat', 'transFatContent', 'nf-line nf-indent', false,             'roundFat',         '',                     '',         '',        ''
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue      topDivClass         showPercentageCode roundFunctionName roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valueTransFat', 'unitTransFat', 'naTransFat', 'textTransFat', 'transFatContent', 'nf-line nf-indent', false,            'roundFat',        '',                   '',        '',        ''
 					);
 				}
 
 				if ($this.settings.showPolyFat) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex      unitIndex      naIndex      attributeText  itemPropValue  topDivClass         showPercentageCode  roundFunctionName  roundFunctionRuleName  labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valuePolyFat', 'unitPolyFat', 'naPolyFat', 'textPolyFat',  '',           'nf-line nf-indent', false,             'roundFat',         '',                    '',         '',         ''
+						//$localSettings valueIndex      unitIndex      naIndex      attributeText itemPropValue topDivClass         showPercentageCode roundFunctionName roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valuePolyFat', 'unitPolyFat', 'naPolyFat', 'textPolyFat', '',          'nf-line nf-indent', false,            'roundFat',        '',                   '',        '',        ''
 					);
 				}
 
 				if ($this.settings.showMonoFat) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex      unitIndex      naIndex      attributeText  itemPropValue  topDivClass         showPercentageCode  roundFunctionName  roundFunctionRuleName  labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueMonoFat', 'unitMonoFat', 'naMonoFat', 'textMonoFat',  '',           'nf-line nf-indent', false,             'roundFat',         '',                    '',         '',         ''
+						//$localSettings valueIndex      unitIndex      naIndex      attributeText itemPropValue topDivClass         showPercentageCode roundFunctionName roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valueMonoFat', 'unitMonoFat', 'naMonoFat', 'textMonoFat', '',          'nf-line nf-indent', false,            'roundFat',        '',                   '',        '',        ''
 					);
 				}
 
 				if ($this.settings.showCholesterol) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex          unitIndex          naIndex          attributeText      itemPropValue         topDivClass  showPercentageCode                    roundFunctionName   roundFunctionRuleName   labelClass     valueClass  dailyValueIndex
-						$this.settings,  'valueCholesterol', 'unitCholesterol', 'naCholesterol', 'textCholesterol', 'cholesterolContent', 'nf-line',    $this.settings.showDailyCholesterol, 'roundCholesterol', 'roundCholesterolRule', 'nf-highlight', '',        'dailyValueCholesterol'
+						//$localSettings valueIndex          unitIndex          naIndex          attributeText      itemPropValue         topDivClass showPercentageCode                    roundFunctionName   roundFunctionRuleName   labelClass     valueClass dailyValueIndex
+						$this.settings, 'valueCholesterol', 'unitCholesterol', 'naCholesterol', 'textCholesterol', 'cholesterolContent', 'nf-line',   $this.settings.showDailyCholesterol, 'roundCholesterol', 'roundCholesterolRule', 'nf-highlight', '',       'dailyValueCholesterol'
 					);
 				}
 
 				if ($this.settings.showSodium) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex     unitIndex     naIndex     attributeText  itemPropValue    topDivClass  showPercentageCode               roundFunctionName  roundFunctionRuleName  labelClass     valueClass  dailyValueIndex
-						$this.settings,  'valueSodium', 'unitSodium', 'naSodium', 'textSodium',  'sodiumContent', 'nf-line',    $this.settings.showDailySodium, 'roundSodium',     'roundSodiumRule',     'nf-highlight', '',        'dailyValueSodium'
+						//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue    topDivClass showPercentageCode               roundFunctionName roundFunctionRuleName labelClass     valueClass dailyValueIndex
+						$this.settings, 'valueSodium', 'unitSodium', 'naSodium', 'textSodium', 'sodiumContent', 'nf-line',   $this.settings.showDailySodium, 'roundSodium',    'roundSodiumRule',    'nf-highlight', '',       'dailyValueSodium'
 					);
 				}
 
 				if ($this.settings.showTotalCarb) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex        unitIndex        naIndex        attributeText    itemPropValue          topDivClass  showPercentageCode                  roundFunctionName             roundFunctionRuleName             labelClass      valueClass  dailyValueIndex
-						$this.settings,  'valueTotalCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'carbohydrateContent', 'nf-line',    $this.settings.showDailyTotalCarb, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule',  'nf-highlight', '',        'dailyValueCarb'
+						//$localSettings valueIndex        unitIndex        naIndex        attributeText    itemPropValue          topDivClass showPercentageCode                  roundFunctionName             roundFunctionRuleName            labelClass      valueClass dailyValueIndex
+						$this.settings, 'valueTotalCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'carbohydrateContent', 'nf-line',   $this.settings.showDailyTotalCarb, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', 'nf-highlight', '',       'dailyValueCarb'
 					);
 				}
 
 				if ($this.settings.showFibers) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex     unitIndex     naIndex     attributeText  itemPropValue   topDivClass         showPercentageCode               roundFunctionName             roundFunctionRuleName            labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueFibers', 'unitFibers', 'naFibers', 'textFibers',  'fiberContent', 'nf-line nf-indent', $this.settings.showDailyFibers, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',         '',        'dailyValueFiber'
+						//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass         showPercentageCode               roundFunctionName             roundFunctionRuleName            labelClass valueClass dailyValueIndex
+						$this.settings, 'valueFibers', 'unitFibers', 'naFibers', 'textFibers', 'fiberContent', 'nf-line nf-indent', $this.settings.showDailyFibers, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',        '',       'dailyValueFiber'
 					);
 				}
 
 				if ($this.settings.showSugars) {
 					if (!$this.settings.indentSugarAndRemoveBoldStyleFor2018Label) {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings  valueIndex     unitIndex     naIndex     attributeText  itemPropValue   topDivClass  showPercentageCode               roundFunctionName             roundFunctionRuleName              labelClass     valueClass  dailyValueIndex
-							$this.settings,  'valueSugars', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'nf-line',    $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule',  'nf-highlight', '',        'dailyValueSugar'
+							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass showPercentageCode               roundFunctionName             roundFunctionRuleName             labelClass     valueClass dailyValueIndex
+							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line',   $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', 'nf-highlight', '',       'dailyValueSugar'
 						);
 					} else {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings  valueIndex     unitIndex     naIndex     attributeText  itemPropValue   topDivClass         showPercentageCode               roundFunctionName             roundFunctionRuleName              labelClass  valueClass  dailyValueIndex
-							$this.settings,  'valueSugars', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'nf-line nf-indent', $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule',  '',          '',        'dailyValueSugar'
+							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass         showPercentageCode               roundFunctionName             roundFunctionRuleName            labelClass valueClass dailyValueIndex
+							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line nf-indent', $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',        '',       'dailyValueSugar'
 						);
 					}
 				}
 
 				if ($this.settings.showAddedSugars) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex          unitIndex          naIndex          attributeText      itemPropValue  topDivClass          showPercentageCode                    roundFunctionName             roundFunctionRuleName            labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueAddedSugars', 'unitAddedSugars', 'naAddedSugars', 'textAddedSugars1', '',           'nf-line nf-indent2', $this.settings.showDailyAddedSugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',         '',        'dailyValueAddedSugar'
+						//$localSettings valueIndex          unitIndex          naIndex          attributeText      itemPropValue topDivClass          showPercentageCode                    roundFunctionName             roundFunctionRuleName            labelClass valueClass dailyValueIndex
+						$this.settings, 'valueAddedSugars', 'unitAddedSugars', 'naAddedSugars', 'textAddedSugars1', '',          'nf-line nf-indent2', $this.settings.showDailyAddedSugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',        '',       'dailyValueAddedSugar'
 					);
 				}
 
 				if ($this.settings.showSugarAlcohol) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex           unitIndex           naIndex           attributeText       itemPropValue  topDivClass         showPercentageCode  roundFunctionName            roundFunctionRuleName  labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', '',            'nf-line nf-indent', false,             'roundCarbFiberSugarProtein', '',                    '',         '',         ''
+						//$localSettings valueIndex           unitIndex           naIndex           attributeText       itemPropValue topDivClass         showPercentageCode roundFunctionName            roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', '',           'nf-line nf-indent', false,            'roundCarbFiberSugarProtein', '',                   '',        '',        ''
 					);
 				}
 
 				if ($this.settings.showProteins) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText   itemPropValue     topDivClass  showPercentageCode  roundFunctionName            roundFunctionRuleName  labelClass     valueClass  dailyValueIndex
-						$this.settings,  'valueProteins', 'unitProteins', 'naProteins', 'textProteins', 'proteinContent', 'nf-line',    false,             'roundCarbFiberSugarProtein', '',                   'nf-highlight', '',         ''
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue     topDivClass showPercentageCode roundFunctionName            roundFunctionRuleName labelClass     valueClass dailyValueIndex
+						$this.settings, 'valueProteins', 'unitProteins', 'naProteins', 'textProteins', 'proteinContent', 'nf-line',   false,            'roundCarbFiberSugarProtein', '',                  'nf-highlight', '',        ''
 					);
 				}
 
@@ -2626,36 +2662,56 @@
 				if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018) {
 					nutritionLabel += tab2 + '<div class="nf-vitamins">\n';
 
-					if ($this.settings.showVitaminD) {
-						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
-							//$localSettings  valueIndex       dailyValueIndex       unitIndex_base       unitIndex_percent       naIndex       attributeTexts  showPercentageCode
-							$this.settings,  'valueVitaminD', 'dailyValueVitaminD', 'unitVitaminD_base', 'unitVitaminD_percent', 'naVitaminD', 'textVitaminD',  $this.settings.showDailyVitaminD
+					if ($this.settings.showVitaminD && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += tab3 + generate2018HtmlAndComputeValueGivenThePercentage(
+							//$localSettings valueIndex       dailyValueIndex       unitIndex_base       unitIndex_percent       naIndex       attributeTexts showPercentageCode
+							$this.settings, 'valueVitaminD', 'dailyValueVitaminD', 'unitVitaminD_base', 'unitVitaminD_percent', 'naVitaminD', 'textVitaminD', $this.settings.showDailyVitaminD
+						);
+					} else if ($this.settings.showVitaminD && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += generateAttributeHtml2018Version(
+							//$localSettings valueIndex       unitIndex            naIndex       attributeText   itemPropValue      topDivClass showPercentageCode                 roundFunctionName                roundFunctionRuleName               labelClass valueClass dailyValueIndex
+							$this.settings, 'valueVitaminD', 'unitVitaminD_base', 'naVitaminD', 'textVitaminD', 'vitaminDContent', 'nf-line',   $this.settings.showDailyVitaminD, 'roundFor2018LabelVitaminDIron', 'roundFor2018LabelVitaminDIronRule', '',        '',       'dailyValueVitaminD'
 						);
 					}
 
-					if ($this.settings.showCalcium) {
-						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
-							//$localSettings  valueIndex      dailyValueIndex      unitIndex_base      unitIndex_percent      naIndex      attributeTexts  showPercentageCode
-							$this.settings,  'valueCalcium', 'dailyValueCalcium', 'unitCalcium_base', 'unitCalcium_percent', 'naCalcium', 'textCalcium',   $this.settings.showDailyCalcium
+					if ($this.settings.showCalcium && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += tab3 + generate2018HtmlAndComputeValueGivenThePercentage(
+							//$localSettings valueIndex      dailyValueIndex      unitIndex_base      unitIndex_percent      naIndex      attributeTexts showPercentageCode
+							$this.settings, 'valueCalcium', 'dailyValueCalcium', 'unitCalcium_base', 'unitCalcium_percent', 'naCalcium', 'textCalcium',  $this.settings.showDailyCalcium
+						);
+					} else if ($this.settings.showCalcium && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += generateAttributeHtml2018Version(
+							//$localSettings valueIndex      unitIndex            naIndex     attributeText  itemPropValue     topDivClass showPercentageCode                roundFunctionName                    roundFunctionRuleName                   labelClass valueClass dailyValueIndex
+							$this.settings, 'valueCalcium', 'unitCalcium_base', 'naCalcium', 'textCalcium', 'calciumContent', 'nf-line',   $this.settings.showDailyCalcium, 'roundFor2018LabelCalciumPotassium', 'roundFor2018LabelCalciumPotassiumRule', '',        '',       'dailyValueCalcium'
 						);
 					}
 
-					if ($this.settings.showIron) {
-						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
-							//$localSettings  valueIndex    dailyValueIndex  unitIndex_base   unitIndex_percent   naIndex   attributeTexts  showPercentageCode
-							$this.settings,  'valueIron', 'dailyValueIron', 'unitIron_base', 'unitIron_percent', 'naIron', 'textIron',      $this.settings.showDailyIron
+					if ($this.settings.showIron && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += tab3 + generate2018HtmlAndComputeValueGivenThePercentage(
+							//$localSettings valueIndex    dailyValueIndex  unitIndex_base   unitIndex_percent   naIndex   attributeTexts showPercentageCode
+							$this.settings, 'valueIron', 'dailyValueIron', 'unitIron_base', 'unitIron_percent', 'naIron', 'textIron',     $this.settings.showDailyIron
+						);
+					} else if ($this.settings.showIron && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += generateAttributeHtml2018Version(
+							//$localSettings valueIndex   unitIndex        naIndex   attributeText itemPropValue  topDivClass showPercentageCode             roundFunctionName                roundFunctionRuleName               labelClass valueClass dailyValueIndex
+							$this.settings, 'valueIron', 'unitIron_base', 'naIron', 'textIron',   'ironContent', 'nf-line',   $this.settings.showDailyIron, 'roundFor2018LabelVitaminDIron', 'roundFor2018LabelVitaminDIronRule', '',        '',       'dailyValueIron'
 						);
 					}
 
-					if ($this.settings.showPotassium_2018) {
-						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
-							//$localSettings  valueIndex             dailyValueIndex             unitIndex_base        unitIndex_percent        naIndex             attributeTexts  showPercentageCode
-							$this.settings,  'valuePotassium_2018', 'dailyValuePotassium_2018', 'unitPotassium_base', 'unitPotassium_percent', 'naPotassium_2018', 'textPotassium', $this.settings.showDailyPotassium_2018
+					if ($this.settings.showPotassium_2018 && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += tab3 + generate2018HtmlAndComputeValueGivenThePercentage(
+							//$localSettings valueIndex             dailyValueIndex             unitIndex_base        unitIndex_percent        naIndex             attributeTexts  showPercentageCode
+							$this.settings, 'valuePotassium_2018', 'dailyValuePotassium_2018', 'unitPotassium_base', 'unitPotassium_percent', 'naPotassium_2018', 'textPotassium', $this.settings.showDailyPotassium_2018
+						);
+					} else if ($this.settings.showPotassium_2018 && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += generateAttributeHtml2018Version(
+							//$localSettings valueIndex             unitIndex             naIndex             attributeText    itemPropValue       topDivClass showPercentageCode                       roundFunctionName                    roundFunctionRuleName                   labelClass valueClass dailyValueIndex
+							$this.settings, 'valuePotassium_2018', 'unitPotassium_base', 'naPotassium_2018', 'textPotassium', 'potassiumContent', 'nf-line',   $this.settings.showDailyPotassium_2018, 'roundFor2018LabelCalciumPotassium', 'roundFor2018LabelCalciumPotassiumRule', '',        '',       'dailyValuePotassium_2018'
 						);
 					}
 
 					nutritionLabel += tab2 + '</div>\n';
-				}
+				}//end of => if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018)
 
 			if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018) {
 				nutritionLabel += tab1 + '</div>\n';
@@ -2665,8 +2721,8 @@
 
 				if ($this.settings.showCaffeine) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText   itemPropValue      topDivClass  showPercentageCode  roundFunctionName  roundFunctionRuleName  labelClass     valueClass  dailyValueIndex
-						$this.settings,  'valueCaffeine', 'unitCaffeine', 'naCaffeine', 'textCaffeine', 'caffeineContent', 'nf-line',    false,             'roundCaffeine',    '',                   'nf-highlight', '',         ''
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue      topDivClass showPercentageCode roundFunctionName roundFunctionRuleName labelClass     valueClass dailyValueIndex
+						$this.settings, 'valueCaffeine', 'unitCaffeine', 'naCaffeine', 'textCaffeine', 'caffeineContent', 'nf-line',   false,            'roundCaffeine',   '',                  'nf-highlight', '',        ''
 					);
 
 					nutritionLabel += tab1 + '<div class="nf-bar2"></div>\n';
@@ -2811,61 +2867,61 @@
 
 			if ($this.settings.showCalories) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex       dailyValueIndex   unitIndex        naIndex       attributeTexts  itemPropValue   roundFunctionName    roundFunctionRuleName  showPercentageCode  indentedName
-					$this.settings,  'valueCalories', '',               'unitEnergy_kj', 'naCalories', 'textCalories',  '',            'roundToNearestNum', 'roundToNearestNum',    false,              false
+					//$localSettings valueIndex       dailyValueIndex unitIndex        naIndex       attributeTexts itemPropValue roundFunctionName    roundFunctionRuleName showPercentageCode indentedName
+					$this.settings, 'valueCalories', '',             'unitEnergy_kj', 'naCalories', 'textCalories', '',          'roundToNearestNum', 'roundToNearestNum',   false,             false
 				);
 
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex       dailyValueIndex         unitIndex          naIndex      attributeTexts   itemPropValue  roundFunctionName    roundFunctionRuleName  showPercentageCode              indentedName
-					$this.settings,  'valueCalories', 'dailyValueEnergyKcal', 'unitEnergy_kcal', 'naCalories', '',              '',           'roundToNearestNum', 'roundToNearestNum',    $this.settings.showDailyEnergy, false
+					//$localSettings valueIndex       dailyValueIndex         unitIndex          naIndex      attributeTexts itemPropValue roundFunctionName    roundFunctionRuleName showPercentageCode              indentedName
+					$this.settings, 'valueCalories', 'dailyValueEnergyKcal', 'unitEnergy_kcal', 'naCalories', '',            '',          'roundToNearestNum', 'roundToNearestNum',   $this.settings.showDailyEnergy, false
 				);
 			}
 			if ($this.settings.showTotalFat) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex       dailyValueIndex       unitIndex       naIndex       attributeTexts  itemPropValue  roundFunctionName                                roundFunctionRuleName                               showPercentageCode                indentedName
-					$this.settings,  'valueTotalFat', 'dailyValueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'fatContent',  'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyTotalFat, false
+					//$localSettings valueIndex       dailyValueIndex       unitIndex       naIndex       attributeTexts  itemPropValue roundFunctionName                                roundFunctionRuleName                               showPercentageCode                indentedName
+					$this.settings, 'valueTotalFat', 'dailyValueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'fatContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyTotalFat, false
 				);
 			}
 
 			if ($this.settings.showSatFat) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts  itemPropValue          roundFunctionName        roundFunctionRuleName       showPercentageCode              indentedName
-					$this.settings,  'valueSatFat', 'dailyValueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',   'saturatedFatContent', 'roundForUKLabelSatFat', 'roundForUKLabelSatFatRule', $this.settings.showDailySatFat, true
+					//$localSettings valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts itemPropValue          roundFunctionName        roundFunctionRuleName       showPercentageCode              indentedName
+					$this.settings, 'valueSatFat', 'dailyValueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',  'saturatedFatContent', 'roundForUKLabelSatFat', 'roundForUKLabelSatFatRule', $this.settings.showDailySatFat, true
 				);
 			}
 
 			if ($this.settings.showTotalCarb) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex        dailyValueIndex   unitIndex        naIndex        attributeTexts   itemPropValue          roundFunctionName                                roundFunctionRuleName                               showPercentageCode                 indentedName
-					$this.settings,  'valueTotalCarb', 'dailyValueCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'carbohydrateContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyTotalCarb, false
+					//$localSettings valueIndex        dailyValueIndex   unitIndex        naIndex        attributeTexts   itemPropValue          roundFunctionName                                roundFunctionRuleName                               showPercentageCode                 indentedName
+					$this.settings, 'valueTotalCarb', 'dailyValueCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'carbohydrateContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyTotalCarb, false
 				);
 			}
 
 			if ($this.settings.showSugars) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts  itemPropValue   roundFunctionName                                roundFunctionRuleName                               showPercentageCode             indentedName
-					$this.settings,  'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',   'sugarContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailySugars, true
+					//$localSettings valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts itemPropValue   roundFunctionName                                roundFunctionRuleName                               showPercentageCode             indentedName
+					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailySugars, true
 				);
 			}
 
 			if ($this.settings.showFibers) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex     dailyValueIndex   unitIndex     naIndex     attributeTexts  itemPropValue   roundFunctionName                                roundFunctionRuleName                               showPercentageCode  indentedName
-					$this.settings,  'valueFibers', '',               'unitFibers', 'naFibers', 'textFibers',   'fiberContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', false,              false
+					//$localSettings valueIndex     dailyValueIndex unitIndex     naIndex     attributeTexts itemPropValue   roundFunctionName                                roundFunctionRuleName                               showPercentageCode indentedName
+					$this.settings, 'valueFibers', '',             'unitFibers', 'naFibers', 'textFibers',  'fiberContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', false,             false
 				);
 			}
 
 			if ($this.settings.showProteins) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex       dailyValueIndex      unitIndex       naIndex       attributeTexts   itemPropValue     roundFunctionName                                roundFunctionRuleName                               showPercentageCode               indentedName
-					$this.settings,  'valueProteins', 'dailyValueProtein', 'unitProteins', 'naProteins', 'textProteins',  'proteinContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyProtein, false
+					//$localSettings valueIndex       dailyValueIndex      unitIndex       naIndex       attributeTexts  itemPropValue     roundFunctionName                                roundFunctionRuleName                               showPercentageCode               indentedName
+					$this.settings, 'valueProteins', 'dailyValueProtein', 'unitProteins', 'naProteins', 'textProteins', 'proteinContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyProtein, false
 				);
 			}
 
 			if ($this.settings.showSodium) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex     dailyValueIndex   unitIndex   naIndex     attributeTexts  itemPropValue    roundFunctionName      roundFunctionRuleName     showPercentageCode             indentedName
-					$this.settings,  'valueSodium', 'dailyValueSalt', 'unitSalt', 'naSodium', 'textSodium',   'sodiumContent', 'roundForUKLabelSalt', 'roundForUKLabelSaltRule', $this.settings.showDailySodium, false
+					//$localSettings valueIndex     dailyValueIndex   unitIndex   naIndex     attributeTexts itemPropValue    roundFunctionName      roundFunctionRuleName     showPercentageCode             indentedName
+					$this.settings, 'valueSodium', 'dailyValueSalt', 'unitSalt', 'naSodium', 'textSodium',  'sodiumContent', 'roundForUKLabelSalt', 'roundForUKLabelSaltRule', $this.settings.showDailySodium, false
 				);
 			}
 

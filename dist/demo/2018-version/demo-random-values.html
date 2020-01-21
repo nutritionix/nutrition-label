@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+var <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>2018 Version Demo Page</title>
@@ -16,6 +16,8 @@
 			<ul class="nav nav-sidebar">
 				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
 				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
+				<li><a href="#test3"><i class="icon-chevron-right"></i> Example 3</a></li>
+				<li><a href="#test4"><i class="icon-chevron-right"></i> Example 4</a></li>
 			</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -24,10 +26,10 @@
 					<div id="test1"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Example #1</h3>
+					<h3>Example #1 - FDA Rounding Off - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
 <pre id="pre1">
-var min = 100;
-var max = 1000;
+let min = 100;
+let max = 1000;
 
 $('#test1').nutritionLabel({
 	itemName : 'Demo FDA Rounding Off',
@@ -69,10 +71,10 @@ $('#test1').nutritionLabel({
 					<div id="test2"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Example #2</h3>
+					<h3>Example #2 - FDA Rounding On - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
 <pre id="pre2">
-var min = 100;
-var max = 1000;
+let min = 100;
+let max = 1000;
 
 $('#test2').nutritionLabel({
 	itemName : 'Demo FDA Rounding On',
@@ -109,6 +111,110 @@ $('#test2').nutritionLabel({
 				</div>
 			</div><br /><br /><br />
 
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test3"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #3 - FDA Rounding Off - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre3">
+let min = 100;
+let max = 1000;
+let minVitaminDIron = 50;
+let maxVitaminDIron = 100;
+let minCalcium = 100;
+let maxCalcium = 1500;
+let minPotassium = 100;
+let maxPotassium = 1500;
+
+$('#test3').nutritionLabel({
+	itemName : 'Demo FDA Rounding Off',
+	useBaseValueFor2018LabelAndNotDVPercentage : true,
+
+	valueServingWeightGrams : Math.floor((Math.random() * max) + min) * .1,
+	valueServingPerContainer : Math.floor((Math.random() * max) + min) * .1,
+	valueCalories : Math.floor((Math.random() * max) + min) * .1,
+	valueFatCalories : Math.floor((Math.random() * max) + min) * .1,
+	valueTotalFat : Math.floor((Math.random() * max) + min) * .1,
+	valueSatFat : Math.floor((Math.random() * max) + min) * .1,
+	valueTransFat : Math.floor((Math.random() * max) + min) * .1,
+	valuePolyFat : Math.floor((Math.random() * max) + min) * .1,
+	valueMonoFat : Math.floor((Math.random() * max) + min) * .1,
+	valueCholesterol : Math.floor((Math.random() * max) + min) * .1,
+	valueSodium : Math.floor((Math.random() * max) + min) * .1,
+	valuePotassium : Math.floor((Math.random() * max) + min) * .1, //this is for the legacy version
+	valuePotassium_2018 : Math.floor((Math.random() * maxPotassium) + minPotassium) * .1, //this is for the 2018 version
+	valueTotalCarb : Math.floor((Math.random() * max) + min) * .1,
+	valueFibers : Math.floor((Math.random() * max) + min) * .1,
+	valueSugars : Math.floor((Math.random() * max) + min) * .1,
+	valueAddedSugars : Math.floor((Math.random() * max) + min) * .1,
+	valueProteins : Math.floor((Math.random() * max) + min) * .1,
+	valueVitaminA : Math.floor((Math.random() * max) + min) * .1,
+	valueVitaminC : Math.floor((Math.random() * max) + min) * .1,
+	valueVitaminD : Math.floor((Math.random() * maxVitaminDIron) + minVitaminDIron) * .1,
+	valueCalcium : Math.floor((Math.random() * maxCalcium) + minCalcium) * .1,
+	valueIron : Math.floor((Math.random() * maxVitaminDIron) + minVitaminDIron) * .1,
+	valueCaffeine : Math.floor((Math.random() * max) + min) * .1,
+
+	showLegacyVersion : false
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test4"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #4 - FDA Rounding On - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre4">
+let min = 100;
+let max = 1000;
+let minVitaminDIron = 50;
+let maxVitaminDIron = 100;
+let minCalcium = 100;
+let maxCalcium = 1500;
+let minPotassium = 100;
+let maxPotassium = 1500;
+
+$('#test4').nutritionLabel({
+	itemName : 'Demo FDA Rounding On',
+	allowFDARounding : true,
+
+	valueServingWeightGrams : Math.floor((Math.random() * max) + min) * .1,
+	valueServingPerContainer : Math.floor((Math.random() * max) + min) * .1,
+	valueCalories : Math.floor((Math.random() * max) + min) * .1,
+	valueFatCalories : Math.floor((Math.random() * max) + min) * .1,
+	valueTotalFat : Math.floor((Math.random() * max) + min) * .1,
+	valueSatFat : Math.floor((Math.random() * max) + min) * .1,
+	valueTransFat : Math.floor((Math.random() * max) + min) * .1,
+	valuePolyFat : Math.floor((Math.random() * max) + min) * .1,
+	valueMonoFat : Math.floor((Math.random() * max) + min) * .1,
+	valueCholesterol : Math.floor((Math.random() * max) + min) * .1,
+	valueSodium : Math.floor((Math.random() * max) + min) * .1,
+	valuePotassium : Math.floor((Math.random() * max) + min) * .1, //this is for the legacy version
+	valuePotassium_2018 : Math.floor((Math.random() * maxPotassium) + minPotassium) * .1, //this is for the 2018 version
+	valueTotalCarb : Math.floor((Math.random() * max) + min) * .1,
+	valueFibers : Math.floor((Math.random() * max) + min) * .1,
+	valueSugars : Math.floor((Math.random() * max) + min) * .1,
+	valueAddedSugars : Math.floor((Math.random() * max) + min) * .1,
+	valueProteins : Math.floor((Math.random() * max) + min) * .1,
+	valueVitaminA : Math.floor((Math.random() * max) + min) * .1,
+	valueVitaminC : Math.floor((Math.random() * max) + min) * .1,
+	valueVitaminD : Math.floor((Math.random() * maxVitaminDIron) + minVitaminDIron) * .1,
+	valueCalcium : Math.floor((Math.random() * maxCalcium) + minCalcium) * .1,
+	valueIron : Math.floor((Math.random() * maxVitaminDIron) + minVitaminDIron) * .1,
+	valueCaffeine : Math.floor((Math.random() * max) + min) * .1,
+
+	showLegacyVersion : false
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
 		</div>
 	</div>
 </div>
@@ -117,9 +223,11 @@ $('#test2').nutritionLabel({
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
+$(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );
 	eval( eval( $('#pre2').html() ) );
+	eval( eval( $('#pre3').html() ) );
+	eval( eval( $('#pre4').html() ) );
 });
 </script>
 
