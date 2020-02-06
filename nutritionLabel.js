@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     10.0.1                                                                                                                      |
+ * @current version     10.0.2                                                                                                                      |
  * @stable version      9.0.10                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -165,6 +165,8 @@
 		showServingUnitQuantity : true,
 		//allow hiding of the textbox arrows
 		hideTextboxArrows : false,
+		//this is for the 2018 version and will only work when showServingUnitQuantity is false. see https://github.com/nutritionix/nutrition-label/issues/123
+		showOnlyTheTextServingSize : false,
 
 		//these 2 settings are used internally.
 		//this is just added here instead of a global variable to prevent a bug when there are multiple instances of the plugin like on the demo pages
@@ -1787,11 +1789,13 @@
 	/*
 	 * generate and return the html code for these areas that share similar html format: vitamin d, calcium, iron and potassium
 	 */
-	function generate2018HtmlAndComputeValueGivenThePercentage($localSettings, valueIndex, dailyValueIndex, unitIndex_base, unitIndex_percent, naIndex, attributeTexts, showPercentageCode) {
+	function generate2018HtmlAndComputeValueGivenThePercentage(
+			$localSettings, valueIndex, dailyValueIndex, unitIndex_base, unitIndex_percent, naIndex, attributeTexts, showPercentageCode, lastRow
+	) {
 		//initialize the not applicable image icon in case we need to use it
 		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font>' +
 			'<font class="sr-only">' + $localSettings.textDataNotAvailable + '</font>\n';
-		var localNutritionLabel = '<div class="nf-vitamin-column" tabindex="0">\n';
+		var localNutritionLabel = '<div class="nf-vitamin-column' + (lastRow ? ' nf-vitamin-column-last' : '') + '" tabindex="0">\n';
 			localNutritionLabel += $localSettings[attributeTexts] + ' ';
 			localNutritionLabel += (
 				$localSettings[naIndex] ?
@@ -1904,14 +1908,14 @@
 
 		if ($localSettings.showServingUnitQuantity) {
 			if ($localSettings.originalServingUnitQuantity > 0) {
-				localNutritionLabel += localTab3 + '<div tabIndex="0"><!-- opening for serving size div -->\n';
+				localNutritionLabel += localTab3 + '<div tabIndex="0" class="nf-line"><!-- opening for serving size div -->\n';
 					localNutritionLabel += localTab4 + $localSettings.textServingSize;
 
 					localNutritionLabel += $localSettings.showServingUnitQuantityTextbox ?
 						'' :
 						' <span itemprop="servingSize">' +
 							parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
-						'</span>\n';
+						' </span>\n';
 
 				var servingSizeDivAlreadyClosed = false;
 
@@ -1990,7 +1994,12 @@
 			} else {
 				localServingSizeIsHidden = true;
 			}
-		}//end of => if ($localSettings.showServingUnitQuantity)
+		//end of => if ($localSettings.showServingUnitQuantity)
+		} else if (!$localSettings.showServingUnitQuantity && $localSettings.showOnlyTheTextServingSize) {
+				localNutritionLabel += localTab3 + '<div tabIndex="0" class="nf-line">\n';
+					localNutritionLabel += localTab4 + $localSettings.textServingSize;
+				localNutritionLabel += localTab3 + '</div>\n\n';
+		}
 
 		return {
 			'servingSizeIsHidden' : localServingSizeIsHidden,
@@ -2657,75 +2666,98 @@
 			if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018) {
 				nutritionLabel += tab1 + '<div class="nf-bar2"></div>\n';
 				nutritionLabel += tab1 + '<div class="nf-vitamins">\n';
-			}
-
-				if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018) {
 					nutritionLabel += tab2 + '<div class="nf-vitamins">\n';
+
+					//check which one is the last row
+					let lastRowNutrition = 'valueVitaminD';
+					if (!$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						if ($this.settings.showPotassium_2018) {
+							lastRowNutrition = 'valuePotassium_2018';
+						} else {
+							if ($this.settings.showIron) {
+								lastRowNutrition = 'valueIron';
+							} else if ($this.settings.showCalcium) {
+								lastRowNutrition = 'valueCalcium';
+							}
+						}
+					}
+
+					//check which one is the first row
+					let firstRowNutrition = 'valuePotassium_2018';
+					if ($this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						if ($this.settings.showVitaminD) {
+							firstRowNutrition = 'valueVitaminD';
+						} else {
+							if ($this.settings.showCalcium) {
+								firstRowNutrition = 'valueCalcium';
+							} else if ($this.settings.showIron) {
+								firstRowNutrition = 'valueIron';
+							}
+						}
+					}
 
 					if ($this.settings.showVitaminD && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
 						nutritionLabel += tab3 + generate2018HtmlAndComputeValueGivenThePercentage(
-							//$localSettings valueIndex       dailyValueIndex       unitIndex_base       unitIndex_percent       naIndex       attributeTexts showPercentageCode
-							$this.settings, 'valueVitaminD', 'dailyValueVitaminD', 'unitVitaminD_base', 'unitVitaminD_percent', 'naVitaminD', 'textVitaminD', $this.settings.showDailyVitaminD
+							//$localSettings valueIndex       dailyValueIndex       unitIndex_base       unitIndex_percent       naIndex       attributeTexts showPercentageCode                lastRow
+							$this.settings, 'valueVitaminD', 'dailyValueVitaminD', 'unitVitaminD_base', 'unitVitaminD_percent', 'naVitaminD', 'textVitaminD', $this.settings.showDailyVitaminD, lastRowNutrition == 'valueVitaminD'
 						);
 					} else if ($this.settings.showVitaminD && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings valueIndex       unitIndex            naIndex       attributeText   itemPropValue      topDivClass showPercentageCode                 roundFunctionName                roundFunctionRuleName               labelClass valueClass dailyValueIndex
-							$this.settings, 'valueVitaminD', 'unitVitaminD_base', 'naVitaminD', 'textVitaminD', 'vitaminDContent', 'nf-line',   $this.settings.showDailyVitaminD, 'roundFor2018LabelVitaminDIron', 'roundFor2018LabelVitaminDIronRule', '',        '',       'dailyValueVitaminD'
+							//$localSettings valueIndex       unitIndex            naIndex       attributeText   itemPropValue     topDivClass                                            showPercentageCode                 roundFunctionName                roundFunctionRuleName               labelClass valueClass dailyValueIndex
+							$this.settings, 'valueVitaminD', 'unitVitaminD_base', 'naVitaminD', 'textVitaminD', 'vitaminDContent', firstRowNutrition == 'valueVitaminD' ? '' : 'nf-line', $this.settings.showDailyVitaminD, 'roundFor2018LabelVitaminDIron', 'roundFor2018LabelVitaminDIronRule', '',        '',       'dailyValueVitaminD'
 						);
 					}
 
 					if ($this.settings.showCalcium && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
 						nutritionLabel += tab3 + generate2018HtmlAndComputeValueGivenThePercentage(
-							//$localSettings valueIndex      dailyValueIndex      unitIndex_base      unitIndex_percent      naIndex      attributeTexts showPercentageCode
-							$this.settings, 'valueCalcium', 'dailyValueCalcium', 'unitCalcium_base', 'unitCalcium_percent', 'naCalcium', 'textCalcium',  $this.settings.showDailyCalcium
+							//$localSettings valueIndex      dailyValueIndex      unitIndex_base      unitIndex_percent      naIndex      attributeTexts showPercentageCode               lastRow
+							$this.settings, 'valueCalcium', 'dailyValueCalcium', 'unitCalcium_base', 'unitCalcium_percent', 'naCalcium', 'textCalcium',  $this.settings.showDailyCalcium, lastRowNutrition == 'valueCalcium'
 						);
 					} else if ($this.settings.showCalcium && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings valueIndex      unitIndex            naIndex     attributeText  itemPropValue     topDivClass showPercentageCode                roundFunctionName                    roundFunctionRuleName                   labelClass valueClass dailyValueIndex
-							$this.settings, 'valueCalcium', 'unitCalcium_base', 'naCalcium', 'textCalcium', 'calciumContent', 'nf-line',   $this.settings.showDailyCalcium, 'roundFor2018LabelCalciumPotassium', 'roundFor2018LabelCalciumPotassiumRule', '',        '',       'dailyValueCalcium'
+							//$localSettings valueIndex      unitIndex            naIndex     attributeText  itemPropValue    topDivClass                                           showPercentageCode                roundFunctionName                    roundFunctionRuleName                   labelClass valueClass dailyValueIndex
+							$this.settings, 'valueCalcium', 'unitCalcium_base', 'naCalcium', 'textCalcium', 'calciumContent', firstRowNutrition == 'valueCalcium' ? '' : 'nf-line', $this.settings.showDailyCalcium, 'roundFor2018LabelCalciumPotassium', 'roundFor2018LabelCalciumPotassiumRule', '',        '',       'dailyValueCalcium'
 						);
 					}
 
 					if ($this.settings.showIron && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
 						nutritionLabel += tab3 + generate2018HtmlAndComputeValueGivenThePercentage(
-							//$localSettings valueIndex    dailyValueIndex  unitIndex_base   unitIndex_percent   naIndex   attributeTexts showPercentageCode
-							$this.settings, 'valueIron', 'dailyValueIron', 'unitIron_base', 'unitIron_percent', 'naIron', 'textIron',     $this.settings.showDailyIron
+							//$localSettings valueIndex    dailyValueIndex  unitIndex_base   unitIndex_percent   naIndex   attributeTexts showPercentageCode            lastRow
+							$this.settings, 'valueIron', 'dailyValueIron', 'unitIron_base', 'unitIron_percent', 'naIron', 'textIron',     $this.settings.showDailyIron, lastRowNutrition == 'valueIron'
 						);
 					} else if ($this.settings.showIron && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings valueIndex   unitIndex        naIndex   attributeText itemPropValue  topDivClass showPercentageCode             roundFunctionName                roundFunctionRuleName               labelClass valueClass dailyValueIndex
-							$this.settings, 'valueIron', 'unitIron_base', 'naIron', 'textIron',   'ironContent', 'nf-line',   $this.settings.showDailyIron, 'roundFor2018LabelVitaminDIron', 'roundFor2018LabelVitaminDIronRule', '',        '',       'dailyValueIron'
+							//$localSettings valueIndex   unitIndex        naIndex   attributeText itemPropValue topDivClass                                          showPercentageCode             roundFunctionName                roundFunctionRuleName               labelClass valueClass dailyValueIndex
+							$this.settings, 'valueIron', 'unitIron_base', 'naIron', 'textIron',   'ironContent', firstRowNutrition == 'valueIron' ? '' : 'nf-line',   $this.settings.showDailyIron, 'roundFor2018LabelVitaminDIron', 'roundFor2018LabelVitaminDIronRule', '',        '',       'dailyValueIron'
 						);
 					}
 
 					if ($this.settings.showPotassium_2018 && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
 						nutritionLabel += tab3 + generate2018HtmlAndComputeValueGivenThePercentage(
-							//$localSettings valueIndex             dailyValueIndex             unitIndex_base        unitIndex_percent        naIndex             attributeTexts  showPercentageCode
-							$this.settings, 'valuePotassium_2018', 'dailyValuePotassium_2018', 'unitPotassium_base', 'unitPotassium_percent', 'naPotassium_2018', 'textPotassium', $this.settings.showDailyPotassium_2018
+							//$localSettings valueIndex             dailyValueIndex             unitIndex_base        unitIndex_percent        naIndex             attributeTexts  showPercentageCode                      lastRow
+							$this.settings, 'valuePotassium_2018', 'dailyValuePotassium_2018', 'unitPotassium_base', 'unitPotassium_percent', 'naPotassium_2018', 'textPotassium', $this.settings.showDailyPotassium_2018, lastRowNutrition == 'valuePotassium_2018'
 						);
 					} else if ($this.settings.showPotassium_2018 && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings valueIndex             unitIndex             naIndex             attributeText    itemPropValue       topDivClass showPercentageCode                       roundFunctionName                    roundFunctionRuleName                   labelClass valueClass dailyValueIndex
-							$this.settings, 'valuePotassium_2018', 'unitPotassium_base', 'naPotassium_2018', 'textPotassium', 'potassiumContent', 'nf-line',   $this.settings.showDailyPotassium_2018, 'roundFor2018LabelCalciumPotassium', 'roundFor2018LabelCalciumPotassiumRule', '',        '',       'dailyValuePotassium_2018'
+							//$localSettings valueIndex             unitIndex             naIndex             attributeText    itemPropValue      topDivClass                                                  showPercentageCode                       roundFunctionName                    roundFunctionRuleName                   labelClass valueClass dailyValueIndex
+							$this.settings, 'valuePotassium_2018', 'unitPotassium_base', 'naPotassium_2018', 'textPotassium', 'potassiumContent', firstRowNutrition == 'valuePotassium_2018' ? '' : 'nf-line', $this.settings.showDailyPotassium_2018, 'roundFor2018LabelCalciumPotassium', 'roundFor2018LabelCalciumPotassiumRule', '',        '',       'dailyValuePotassium_2018'
 						);
 					}
 
 					nutritionLabel += tab2 + '</div>\n';
-				}//end of => if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018)
 
-			if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018) {
 				nutritionLabel += tab1 + '</div>\n';
-			}
+			}//end of => if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018)
 
-				nutritionLabel += tab1 + '<div class="nf-bar1"></div>\n';
+				nutritionLabel += tab1 + '<div class="nf-bar2"></div>\n';
 
 				if ($this.settings.showCaffeine) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue      topDivClass showPercentageCode roundFunctionName roundFunctionRuleName labelClass     valueClass dailyValueIndex
-						$this.settings, 'valueCaffeine', 'unitCaffeine', 'naCaffeine', 'textCaffeine', 'caffeineContent', 'nf-line',   false,            'roundCaffeine',   '',                  'nf-highlight', '',        ''
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue     topDivClass showPercentageCode roundFunctionName roundFunctionRuleName labelClass     valueClass dailyValueIndex
+						$this.settings, 'valueCaffeine', 'unitCaffeine', 'naCaffeine', 'textCaffeine', 'caffeineContent', '',         false,            'roundCaffeine',   '',                  'nf-highlight', '',        ''
 					);
 
-					nutritionLabel += tab1 + '<div class="nf-bar2"></div>\n';
+					nutritionLabel += tab1 + '<div class="nf-bar1"></div>\n';
 					nutritionLabel += tab1 + '<div class="nf-vitamins">\n';
 				}
 

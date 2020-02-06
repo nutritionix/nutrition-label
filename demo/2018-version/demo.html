@@ -14,6 +14,8 @@
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
+				<li><a href="../demo.html"><i class="icon-chevron-right"></i> Back to Demo Page</a></li>
+
 				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
 				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
 				<li><a href="#test3"><i class="icon-chevron-right"></i> Example 3</a></li>
@@ -32,6 +34,7 @@
 				<li><a href="#test16"><i class="icon-chevron-right"></i> Example 16</a></li>
 				<li><a href="#test17"><i class="icon-chevron-right"></i> Example 17</a></li>
 				<li><a href="#test18"><i class="icon-chevron-right"></i> Example 18</a></li>
+				<li><a href="#test19"><i class="icon-chevron-right"></i> Example 19</a></li>
 			</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -822,6 +825,57 @@ $('#test18').nutritionLabel({
 </pre>
 				</div>
 			</div><br/><br/><br/>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test19"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #19</h3>
+					<p>Similar to example #2 but this will demonstate how the setting showOnlyTheTextServingSize works</p>
+<pre id="pre19">
+$('#test19').nutritionLabel({
+	showServingUnitQuantityTextbox : false,
+	showServingWeightGrams : false,
+	showIngredients : false,
+	showServingsPerContainer : false,
+	showItemName : false,
+
+	showServingUnitQuantity : false,
+	showOnlyTheTextServingSize: true,
+	textServingSize : 'Serving Size 6.96 10-inch pizza (3.7819<span aria-hidden="true">g</span><span class="sr-only"> grams</span>)',
+	valueServingUnitQuantity : 9.3, //should not appear on the label, see https://github.com/nutritionix/nutrition-label/issues/122
+
+	showPolyFat : false,
+	showMonoFat : false,
+	showTransFat : false,
+	showFibers : false,
+	showVitaminD : false,
+	showVitaminC : false,
+	showCalcium : false,
+	showIron : false,
+	showCaffeine : false,
+
+	valueCalories : 400,
+	valueFatCalories : 220,
+	valueTotalFat : 24,
+	valueSatFat : 15,
+	valueCholesterol : 25,
+	valueSodium : 430,
+	valueTotalCarb : 44,
+	valueSugars : 24,
+	valueProteins : 4,
+	valueVitaminD : 12.22,
+	valuePotassium_2018 : 4.22,
+	valueCalcium : 7.22,
+	valueIron : 11.22,
+	showLegacyVersion : false
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
 		</div>
 	</div>
 </div>
@@ -848,6 +902,7 @@ $(document).ready(function(){
 	eval( eval( $('#pre16').html() ) );
 	eval( eval( $('#pre17').html() ) );
 	eval( eval( $('#pre18').html() ) );
+	eval( eval( $('#pre19').html() ) );
 });
 </script>
 

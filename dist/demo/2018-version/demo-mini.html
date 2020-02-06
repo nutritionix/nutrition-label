@@ -14,12 +14,15 @@
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
+				<li><a href="../demo.html"><i class="icon-chevron-right"></i> Back to Demo Page</a></li>
+
 				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
 				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
 				<li><a href="#test3"><i class="icon-chevron-right"></i> Example 3</a></li>
 				<li><a href="#test4"><i class="icon-chevron-right"></i> Example 4</a></li>
 				<li><a href="#test5"><i class="icon-chevron-right"></i> Example 5</a></li>
 				<li><a href="#test6"><i class="icon-chevron-right"></i> Example 6</a></li>
+				<li><a href="#test7"><i class="icon-chevron-right"></i> Example 7</a></li>
 			</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -258,6 +261,57 @@ $('#test6').nutritionLabel({
 </pre>
 				</div>
 			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test7"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #7</h3>
+					<p>Similar to example #2 but this will demonstate how the setting showOnlyTheTextServingSize works</p>
+<pre id="pre7">
+$('#test7').nutritionLabel({
+	showServingUnitQuantityTextbox : false,
+	showServingWeightGrams : false,
+	showIngredients : false,
+	showServingsPerContainer : false,
+	showItemName : false,
+
+	showServingUnitQuantity : false,
+	showOnlyTheTextServingSize: true,
+	textServingSize : 'Serving Size 6.96 10-inch pizza (3.7819<span aria-hidden="true">g</span><span class="sr-only"> grams</span>)',
+	valueServingUnitQuantity : 9.3, //should not appear on the label, see https://github.com/nutritionix/nutrition-label/issues/122
+
+	showPolyFat : false,
+	showMonoFat : false,
+	showTransFat : false,
+	showFibers : false,
+	showVitaminD : false,
+	showVitaminC : false,
+	showCalcium : false,
+	showIron : false,
+	showCaffeine : false,
+
+	valueCalories : 400,
+	valueFatCalories : 220,
+	valueTotalFat : 24,
+	valueSatFat : 15,
+	valueCholesterol : 25,
+	valueSodium : 430,
+	valueTotalCarb : 44,
+	valueSugars : 24,
+	valueProteins : 4,
+	valueVitaminD : 12.22,
+	valuePotassium_2018 : 4.22,
+	valueCalcium : 7.22,
+	valueIron : 11.22,
+	showLegacyVersion : false
+});
+</pre>
+				</div>
+			</div><br /><br /><br />
+
 		</div>
 	</div>
 </div>
@@ -266,13 +320,14 @@ $('#test6').nutritionLabel({
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
+$(document).ready(function(){
 	eval( eval( $('#pre1').html() ) );
 	eval( eval( $('#pre2').html() ) );
 	eval( eval( $('#pre3').html() ) );
 	eval( eval( $('#pre4').html() ) );
 	eval( eval( $('#pre5').html() ) );
 	eval( eval( $('#pre6').html() ) );
+	eval( eval( $('#pre7').html() ) );
 });
 </script>
 

@@ -1,4 +1,16 @@
 
+version 10.0.2 - February 7, 2020
+
+ - more changes to the 2018 label https://github.com/nutritionix/nutrition-label/issues/121
+
+ - add a new setting for the 2018 label to allow to only show the textServingSize https://github.com/nutritionix/nutrition-label/issues/123
+
+		- //this is for the 2018 version and will only work when showServingUnitQuantity is false. see https://github.com/nutritionix/nutrition-label/issues/123
+		- showOnlyTheTextServingSize : false,
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 10.0.1 - January 21, 2020
 
  - modification to the 2018 label for the nutrition values - vitamin d, calcium, iron and potassium https://github.com/nutritionix/nutrition-label/issues/120

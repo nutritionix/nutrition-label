@@ -29,7 +29,7 @@
 <body>
 <div class="container" style="width: 1250px;">
 	<div class="hero-unit">
-		<h1>Nutrition Label version 10.0.1</h1>
+		<h1>Nutrition Label version 10.0.2</h1>
 		<h4>from Nutritionix</h4>
 		<h4><a href="http://github.com/nutritionix/nutrition-label" target="_newDemo">Homepage</a></h4>
 		<p>
@@ -140,6 +140,8 @@ itemName : 'Item / Ingredient Name',
 showServingUnitQuantity : true,
 //allow hiding of the textbox arrows
 hideTextboxArrows : false,
+//this is for the 2018 version and will only work when showServingUnitQuantity is false. see https://github.com/nutritionix/nutrition-label/issues/123
+showOnlyTheTextServingSize : false,
 
 //these 2 settings are used internally.
 //this is just added here instead of a global variable to prevent a bug when there are multiple instances of the plugin like on the demo pages

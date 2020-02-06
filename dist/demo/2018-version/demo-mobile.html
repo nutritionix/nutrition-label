@@ -20,6 +20,8 @@
 		<h5>from Nutritionix</h5>
 
 		<ul data-role="listview" data-inset="true">
+			<li><a href="../demo.html" data-transition="slide">Back to Demo Page</a></li>
+
 			<li><a href="#ex1" data-transition="slide">Example 1</a></li>
 			<li><a href="#ex2" data-transition="slide">Example 2</a></li>
 			<li><a href="#ex3" data-transition="slide">Example 3</a></li>
@@ -31,9 +33,9 @@
 <!-- example 1 -->
 <div data-role="page" id="ex1" data-theme="a">
 	<div data-role="header" data-theme="a">
-  	<a href="#" data-rel="back">Back</a>
-   	<h1>Example 1</h1>
-  </div>
+    	<a href="#" data-rel="back">Back</a>
+     	<h1>Example 1</h1>
+    </div>
 
 	<div id="label1"></div>
 
@@ -82,9 +84,9 @@ $('#label1').nutritionLabel({
 <!-- example 2 -->
 <div data-role="page" id="ex2" data-theme="a">
 	<div data-role="header" data-theme="a">
-  	<a href="#" data-rel="back">Back</a>
-   	<h1>Example 2</h1>
-  </div>
+    	<a href="#" data-rel="back">Back</a>
+     	<h1>Example 2</h1>
+    </div>
 
 	<div id="label2"></div>
 
@@ -142,9 +144,9 @@ $('#label2').nutritionLabel({
 <!-- example 3 -->
 <div data-role="page" id="ex3" data-theme="a">
 	<div data-role="header" data-theme="a">
-  	<a href="#" data-rel="back">Back</a>
-   	<h1>Example 3</h1>
-  </div>
+    	<a href="#" data-rel="back">Back</a>
+     	<h1>Example 3</h1>
+    </div>
 
 	<div id="label3"></div>
 
@@ -203,9 +205,9 @@ $('#label3').nutritionLabel({
 <!-- example 4 -->
 <div data-role="page" id="ex4" data-theme="a">
 	<div data-role="header" data-theme="a">
-  	<a href="#" data-rel="back">Back</a>
-   	<h1>Example 4</h1>
-  </div>
+    	<a href="#" data-rel="back">Back</a>
+     	<h1>Example 4</h1>
+    </div>
 
 	<div id="label4"></div>
 
@@ -259,12 +261,13 @@ $('#label4').nutritionLabel({
 				</div>
 			</div>
 	</div>
+
 </div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
-$(document).bind('mobileinit',function() {
+$(document).bind('mobileinit',function(){
 	$.mobile.changePage.defaults.changeHash = false;
 	$.mobile.hashListeningEnabled = false;
 	$.mobile.pushStateEnabled = false;
@@ -273,7 +276,7 @@ $(document).bind('mobileinit',function() {
 <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
 <script type="text/javascript" src="../../js/nutritionLabel-min.js"></script>
 <script type="text/javascript">
-$(function() {
+$(function(){
 	eval( eval( $('#pre1').html() ) );
 	eval( eval( $('#pre2').html() ) );
 	eval( eval( $('#pre3').html() ) );
