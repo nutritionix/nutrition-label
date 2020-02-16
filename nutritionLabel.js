@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     10.0.2                                                                                                                      |
+ * @current version     10.0.3                                                                                                                      |
  * @stable version      9.0.10                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -259,6 +259,7 @@
 		showCustomFooter : false,
 		//see https://github.com/nutritionix/nutrition-label/issues/93 and then https://github.com/nutritionix/nutrition-label/issues/104
 		indentSugarAndRemoveBoldStyleFor2018Label : true,
+		boldCaffeine : true, //this is for the 2018 version
 
 		//to show the disclaimer text or not
 		showDisclaimer : false,
@@ -2752,9 +2753,14 @@
 				nutritionLabel += tab1 + '<div class="nf-bar2"></div>\n';
 
 				if ($this.settings.showCaffeine) {
+					let labelClassCaffeine = 'nf-highlight';
+					if (!$this.settings.boldCaffeine) {
+						labelClassCaffeine = '';
+					}
+
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue     topDivClass showPercentageCode roundFunctionName roundFunctionRuleName labelClass     valueClass dailyValueIndex
-						$this.settings, 'valueCaffeine', 'unitCaffeine', 'naCaffeine', 'textCaffeine', 'caffeineContent', '',         false,            'roundCaffeine',   '',                  'nf-highlight', '',        ''
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue     topDivClass showPercentageCode roundFunctionName roundFunctionRuleName labelClass          valueClass dailyValueIndex
+						$this.settings, 'valueCaffeine', 'unitCaffeine', 'naCaffeine', 'textCaffeine', 'caffeineContent', '',         false,            'roundCaffeine',   '',                   labelClassCaffeine, '',        ''
 					);
 
 					nutritionLabel += tab1 + '<div class="nf-bar1"></div>\n';
