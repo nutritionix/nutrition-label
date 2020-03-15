@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     10.0.3                                                                                                                      |
+ * @current version     10.0.4                                                                                                                      |
  * @stable version      9.0.10                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -91,14 +91,14 @@
 	content: '\0000a0';
 }
 .nutritionLabel .bar1 {
-	height: 10px;
+	height: 11px;
 	line-height:0;
 	font-size:1px;
 	background: #333;
 	margin-top: 3px;
 }
 .nutritionLabel .bar2 {
-	height: 5px;
+	height: 6px;
 	line-height:0;
 	font-size:1px;
 	background: #333;
@@ -270,6 +270,10 @@
 }
 .nutritionLabel .ingredientListDiv {
 	padding-top: 10px;
+}
+
+.nutritionLabel .addedPadding {
+	padding: 1px 0;
 }
 /*******************************************************************************************************************
 *************************************END OF THE LEGACY RELATED STYLES**********************************************

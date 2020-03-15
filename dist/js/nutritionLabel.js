@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     10.0.3                                                                                                                      |
+ * @current version     10.0.4                                                                                                                      |
  * @stable version      9.0.10                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -2236,12 +2236,12 @@
 				nutritionLabel += tab1 + '<div class="bar1"></div>\n';
 
 			if ($this.settings.showAmountPerServing) {
-				nutritionLabel += tab1 + '<div class="line m" tabindex="0">';
+				nutritionLabel += tab1 + '<div class="addedPadding m" tabindex="0">';
 					nutritionLabel += '<strong>' + $this.settings.textAmountPerServing + '</strong>';
 				nutritionLabel += '</div>\n';
 			}
 
-				nutritionLabel += tab1 + '<div class="line">\n';
+				nutritionLabel += tab1 + '<div class="' + ($this.settings.showAmountPerServing ? 'line' : 'addedPadding') + '">\n';
 
 				if ($this.settings.showFatCalories) {
 					nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
@@ -2262,8 +2262,10 @@
 				nutritionLabel += tab1 + '</div>\n';
 				nutritionLabel += tab1 + '<div class="bar2"></div>\n';
 
+			let useLine = 'addedPadding';
 			if (!$this.settings.hidePercentDailyValues) {
-				nutritionLabel += tab1 + '<div class="line ar ">';
+				useLine = 'line';
+				nutritionLabel += tab1 + '<div class="addedPadding ar">';
 					nutritionLabel += '<strong>% ' + $this.settings.textDailyValues + '<sup>*</sup></strong>';
 				nutritionLabel += '</div>\n';
 			}
@@ -2271,125 +2273,144 @@
 			if ($this.settings.showTotalFat) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
 					//$localSetting  valueIndex       dailyValueIndex       unitIndex       naIndex       attributeTexts  lineClass itemPropValue roundFunctionName roundFunctionRuleName boldName showPercentageCode
-					$this.settings, 'valueTotalFat', 'dailyValueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'line',   'fatContent', 'roundFat',       'roundFatRule',        true,    $this.settings.showDailyTotalFat
+					$this.settings, 'valueTotalFat', 'dailyValueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat',  useLine, 'fatContent', 'roundFat',       'roundFatRule',        true,    $this.settings.showDailyTotalFat
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showSatFat) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts lineClass      itemPropValue          roundFunctionName roundFunctionRuleName boldName showPercentageCode
-					$this.settings, 'valueSatFat', 'dailyValueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',  'line indent', 'saturatedFatContent', 'roundFat',       'roundFatRule',        false,   $this.settings.showDailySatFat
+					//$localSetting  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts lineClass             itemPropValue          roundFunctionName roundFunctionRuleName boldName showPercentageCode
+					$this.settings, 'valueSatFat', 'dailyValueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',   useLine + ' indent', 'saturatedFatContent', 'roundFat',       'roundFatRule',        false,   $this.settings.showDailySatFat
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showTransFat) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass     attributeDisplayType itemPropValue     localExtraTab roundFunctionName
-					$this.settings, 'valueTransFat', 'unitTransFat', 'naTransFat', 'textTransFat', tab1,        'line indent', 3,                  'transFatContent', tab2,        'roundFat'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass            attributeDisplayType itemPropValue     localExtraTab roundFunctionName
+					$this.settings, 'valueTransFat', 'unitTransFat', 'naTransFat', 'textTransFat', tab1,         useLine + ' indent', 3,                  'transFatContent', tab2,        'roundFat'
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showPolyFat) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass     attributeDisplayType itemPropValue localExtraTab roundFunctionName
-					$this.settings, 'valuePolyFat', 'unitPolyFat', 'naPolyFat', 'textPolyFat', tab1,        'line indent', 2,                   '',           '',          'roundFat'
+					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass             attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valuePolyFat', 'unitPolyFat', 'naPolyFat', 'textPolyFat', tab1,          useLine + ' indent', 2,                   '',           '',          'roundFat'
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showMonoFat) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass     attributeDisplayType itemPropValue localExtraTab roundFunctionName
-					$this.settings, 'valueMonoFat', 'unitMonoFat', 'naMonoFat', 'textMonoFat', tab1,        'line indent', 2,                   '',           '',          'roundFat'
+					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass            attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueMonoFat', 'unitMonoFat', 'naMonoFat', 'textMonoFat', tab1,         useLine + ' indent', 2,                   '',           '',          'roundFat'
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showCholesterol) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex          dailyValueIndex          unitIndex          naIndex          attributeTexts     lineClass itemPropValue         roundFunctionName   roundFunctionRuleName  boldName showPercentageCode
-					$this.settings, 'valueCholesterol', 'dailyValueCholesterol', 'unitCholesterol', 'naCholesterol', 'textCholesterol', 'line',   'cholesterolContent', 'roundCholesterol', 'roundCholesterolRule', true,    $this.settings.showDailyCholesterol
+					//$localSetting  valueIndex          dailyValueIndex          unitIndex          naIndex          attributeTexts    lineClass itemPropValue         roundFunctionName   roundFunctionRuleName  boldName showPercentageCode
+					$this.settings, 'valueCholesterol', 'dailyValueCholesterol', 'unitCholesterol', 'naCholesterol', 'textCholesterol', useLine, 'cholesterolContent', 'roundCholesterol', 'roundCholesterolRule', true,    $this.settings.showDailyCholesterol
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showSodium) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
 					//$localSetting  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts lineClass itemPropValue    roundFunctionName roundFunctionRuleName boldName showPercentageCode
-					$this.settings, 'valueSodium', 'dailyValueSodium', 'unitSodium', 'naSodium', 'textSodium',  'line',   'sodiumContent', 'roundSodium',    'roundSodiumRule',     true,    $this.settings.showDailySodium
+					$this.settings, 'valueSodium', 'dailyValueSodium', 'unitSodium', 'naSodium', 'textSodium',   useLine, 'sodiumContent', 'roundSodium',    'roundSodiumRule',     true,    $this.settings.showDailySodium
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showPotassium) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex        dailyValueIndex        unitIndex        naIndex        attributeTexts   lineClass itemPropValue       roundFunctionName roundFunctionRuleName boldName showPercentageCode
-					$this.settings, 'valuePotassium', 'dailyValuePotassium', 'unitPotassium', 'naPotassium', 'textPotassium', 'line',   'potassiumContent', 'roundPotassium', 'roundPotassiumRule',  true,    $this.settings.showDailyPotassium
+					//$localSetting  valueIndex        dailyValueIndex        unitIndex        naIndex        attributeTexts  lineClass itemPropValue       roundFunctionName roundFunctionRuleName boldName showPercentageCode
+					$this.settings, 'valuePotassium', 'dailyValuePotassium', 'unitPotassium', 'naPotassium', 'textPotassium', useLine, 'potassiumContent', 'roundPotassium', 'roundPotassiumRule',  true,    $this.settings.showDailyPotassium
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showTotalCarb) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex        dailyValueIndex   unitIndex        naIndex        attributeTexts   lineClass itemPropValue          roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
-					$this.settings, 'valueTotalCarb', 'dailyValueCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'line',   'carbohydrateContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', true,    $this.settings.showDailyTotalCarb
+					//$localSetting  valueIndex        dailyValueIndex   unitIndex        naIndex        attributeTexts  lineClass itemPropValue          roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
+					$this.settings, 'valueTotalCarb', 'dailyValueCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', useLine, 'carbohydrateContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', true,    $this.settings.showDailyTotalCarb
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showFibers) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts lineClass      itemPropValue   roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
-					$this.settings, 'valueFibers', 'dailyValueFiber', 'unitFibers', 'naFibers', 'textFibers',  'line indent', 'fiberContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   $this.settings.showDailyFibers
+					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts lineClass             itemPropValue   roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
+					$this.settings, 'valueFibers', 'dailyValueFiber', 'unitFibers', 'naFibers', 'textFibers',   useLine + ' indent', 'fiberContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   $this.settings.showDailyFibers
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showSugars) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts lineClass      itemPropValue   roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
-					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',  'line indent', 'sugarContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   $this.settings.showDailySugars
+					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts lineClass             itemPropValue   roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
+					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',   useLine + ' indent', 'sugarContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   $this.settings.showDailySugars
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showSugarAlcohol) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings valueIndex           unitIndex           naIndex           attributeText      localTabValue lineClass     attributeDisplayType itemPropValue localExtraTab roundFunctionName
-					$this.settings, 'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', tab1,        'line indent', 4,                  '',            '',          'roundCarbFiberSugarProtein'
+					//$localSettings valueIndex           unitIndex           naIndex           attributeText      localTabValue lineClass            attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', tab1,         useLine + ' indent', 4,                  '',            '',          'roundCarbFiberSugarProtein'
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showProteins) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass attributeDisplayType itemPropValue    localExtraTab roundFunctionName
-					$this.settings, 'valueProteins', 'unitProteins', 'naProteins', 'textProteins', tab1,        'line',    1,                  'proteinContent', '',          'roundCarbFiberSugarProtein'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass   attributeDisplayType itemPropValue    localExtraTab roundFunctionName
+					$this.settings, 'valueProteins', 'unitProteins', 'naProteins', 'textProteins', tab1,         useLine,    1,                  'proteinContent', '',          'roundCarbFiberSugarProtein'
 				);
+				useLine = 'line'; //in case we need to add more attributes below this in future updates
 			}
 
 			nutritionLabel += tab1 + '<div class="bar1"></div>\n';
 
+			let useLineAgain = 'addedPadding';
 			if ($this.settings.showVitaminA) {
+				//in case we need to add more attributes above this in future updates
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass       attributeDisplayType itemPropValue localExtraTab roundFunctionName
-					$this.settings, 'valueVitaminA', 'unitVitaminA', 'naVitaminA', 'textVitaminA', tab1,        'line vitaminA', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass                   attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueVitaminA', 'unitVitaminA', 'naVitaminA', 'textVitaminA', tab1,         useLineAgain + ' vitaminA', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
 				);
+				useLineAgain = 'line';
 			}
 
 			if ($this.settings.showVitaminC) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass       attributeDisplayType itemPropValue localExtraTab roundFunctionName
-					$this.settings, 'valueVitaminC', 'unitVitaminC', 'naVitaminC', 'textVitaminC', tab1,        'line vitaminC', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass                   attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueVitaminC', 'unitVitaminC', 'naVitaminC', 'textVitaminC', tab1,         useLineAgain + ' vitaminC', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
 				);
+				useLineAgain = 'line';
 			}
 
 			if ($this.settings.showCalcium) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass      attributeDisplayType itemPropValue localExtraTab roundFunctionName
-					$this.settings, 'valueCalcium', 'unitCalcium', 'naCalcium', 'textCalcium', tab1,        'line calcium', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
+					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass                  attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueCalcium', 'unitCalcium', 'naCalcium', 'textCalcium', tab1,         useLineAgain + ' calcium', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
 				);
+				useLineAgain = 'line';
 			}
 
 			if ($this.settings.showIron) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings valueIndex   unitIndex   naIndex   attributeText localTabValue lineClass   attributeDisplayType itemPropValue localExtraTab roundFunctionName
-					$this.settings, 'valueIron', 'unitIron', 'naIron', 'textIron',    tab1,        'line iron', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
+					//$localSettings valueIndex   unitIndex   naIndex   attributeText localTabValue lineClass               attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueIron', 'unitIron', 'naIron', 'textIron',    tab1,         useLineAgain + ' iron', 5,                   '',           tab2,        'roundVitaminsCalciumIron'
 				);
+				useLineAgain = 'line'; //in case we need to add more attributes below this in future updates
 			}
 
-				nutritionLabel += tab1 + '<div class="dvCalorieDiet line">\n';
+				nutritionLabel += tab1 + '<div class="dvCalorieDiet ' + useLineAgain + '">\n';
 					nutritionLabel += tab2 + '<div class="calorieNote">\n';
 
 					if (!$this.settings.hidePercentDailyValues) {

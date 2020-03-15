@@ -1,4 +1,11 @@
 
+version 10.0.4 - March 16, 2020
+
+ - fixed the issue on the extra bars on the label https://github.com/nutritionix/nutrition-label/issues/124
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 10.0.3 - February 17, 2020
 
  - add an option to remove the bold formatting on the caffeine attribute (2018 label) https://github.com/nutritionix/nutrition-label/issues/125
