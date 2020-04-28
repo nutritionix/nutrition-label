@@ -1,4 +1,11 @@
 
+version 10.0.5 - April 28, 2020
+
+ - made changes to the code to make it complient to the eslint. take note that the eslint setting is customized to fit the coding of the plugin https://github.com/nutritionix/nutrition-label/issues/126
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 10.0.4 - March 16, 2020
 
  - fixed the issue on the extra bars on the label https://github.com/nutritionix/nutrition-label/issues/124

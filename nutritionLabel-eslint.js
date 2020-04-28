@@ -16,7 +16,24 @@
  *                                                                                                                                                  |
  ***************************************************************************************************************************************************+
 */
-;(function($) {
+
+
+//these variables are declared using eval
+/*global globalTab1, globalTab2, globalTab3, globalTab4, globalTab5, globalTab6, globalTab7 */
+
+
+;(function($) { // eslint-disable-line no-extra-semi
+	//initializing the global tab variables (for debugging and editing purposes)
+	//global tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
+	for (let x = 1; x < 8; x++) {
+		let tab = '';
+		for (let y = 1; y <= x; y++) {
+			tab += '\t';
+		}
+		eval('var globalTab' + x + ' = "' + tab + '";');
+	}
+
+
 	$.fn.nutritionLabel = function(option, settings) {
 		if (typeof option === 'object') {
 			settings = option;
@@ -32,10 +49,10 @@
 			} else if (option === 'show') {
 				new NutritionLabel().show( $(this) );
 			} else {
-				var values = [];
+				let values = [];
 
-				var elements = this.each(function() {
-					var data = $(this).data('_nutritionLabel');
+				let elements = this.each(function() {
+					let data = $(this).data('_nutritionLabel');
 					if (data) {
 						if ($.fn.nutritionLabel.defaultSettings[option] !== undefined) {
 							if (settings !== undefined) {
@@ -122,6 +139,10 @@
 		//this is needed to fix some issues on the 2018 label as the layout of the label is very different than the legacy one
 		scrollLongItemNamePixel2018Override : 34,
 
+		//this will only affect Vitamin D (valueVitaminD), Calcium (valueCalcium), Iron (valueIron) and Potassium (valuePotassium_2018).
+			//this will tell the system to process these values as base values and not % Daily Values (default)
+		useBaseValueFor2018LabelAndNotDVPercentage : false, //this is for the 2018 version
+
 		//show the customizable link at the bottom
 		showBottomLink : false,
 		//url for the customizable link at the bottom
@@ -161,6 +182,8 @@
 		showServingUnitQuantity : true,
 		//allow hiding of the textbox arrows
 		hideTextboxArrows : false,
+		//this is for the 2018 version and will only work when showServingUnitQuantity is false. see https://github.com/nutritionix/nutrition-label/issues/123
+		showOnlyTheTextServingSize : false,
 
 		//these 2 settings are used internally.
 		//this is just added here instead of a global variable to prevent a bug when there are multiple instances of the plugin like on the demo pages
@@ -215,6 +238,7 @@
 		showCalcium : true, //this is for the 2018 version
 		showIron : true,
 		showCaffeine : true, //this is for the 2018 version
+		showServingWeightGrams : true,
 
 		//these values can be change to hide some nutrition daily values
 			//take note that the setting 'hidePercentDailyValues' override these values
@@ -252,6 +276,7 @@
 		showCustomFooter : false,
 		//see https://github.com/nutritionix/nutrition-label/issues/93 and then https://github.com/nutritionix/nutrition-label/issues/104
 		indentSugarAndRemoveBoldStyleFor2018Label : true,
+		boldCaffeine : true, //this is for the 2018 version
 
 		//to show the disclaimer text or not
 		showDisclaimer : false,
@@ -444,21 +469,72 @@
 
 
 	function cleanSettings(settings) {
-		var numericIndex = [
-			'width', 'calorieIntake',
-			'scrollHeightComparison', 'scrollHeightPixel', 'scrollLongItemNamePixel', 'scrollLongItemNamePixel2018Override',
-			'decimalPlacesForNutrition', 'decimalPlacesForDailyValues', 'decimalPlacesForQuantityTextbox',
-
-			'dailyValueTotalFat', 'dailyValueSatFat', 'dailyValueCholesterol', 'dailyValueSodium', 'dailyValuePotassium', 'dailyValueCarb', 'dailyValueFiber',
-			'dailyValueVitaminD', 'dailyValueCalcium', 'dailyValueIron', 'dailyValueSugar', 'dailyValueSalt', 'dailyValueEnergyKcal', 'dailyValueProtein',
-
-			'valueServingUnitQuantity', 'valueServingSize', 'valueServingWeightGrams', 'valueServingPerContainer', 'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat',
-			'valueTransFat', 'valuePolyFat', 'valueMonoFat', 'valueCholesterol', 'valueSodium', 'valuePotassium', 'valueTotalCarb', 'valueFibers', 'valueSugars', 'valueProteins',
-			'valueVitaminA', 'valueVitaminC', 'valueCalcium', 'valueIron', 'valueAddedSugars',  'valueVitaminD', 'valueSugarAlcohol', 'valueCaffeine',
-
-			'valueCol1CalorieDiet', 'valueCol2CalorieDiet', 'valueCol1DietaryTotalFat', 'valueCol2DietaryTotalFat', 'valueCol1DietarySatFat', 'valueCol2DietarySatFat',
-			'valueCol1DietaryCholesterol', 'valueCol2DietaryCholesterol', 'valueCol1DietarySodium', 'valueCol2DietarySodium', 'valueCol1DietaryPotassium', 'valueCol2DietaryPotassium',
-			'valueCol1DietaryTotalCarb', 'valueCol2DietaryTotalCarb', 'valueCol1Dietary', 'valueCol2Dietary'
+		let numericIndex = [
+			'calorieIntake',
+			'dailyValueCalcium',
+			'dailyValueCarb',
+			'dailyValueCholesterol',
+			'dailyValueEnergyKcal',
+			'dailyValueFiber',
+			'dailyValueIron',
+			'dailyValuePotassium',
+			'dailyValueProtein',
+			'dailyValueSalt',
+			'dailyValueSatFat',
+			'dailyValueSodium',
+			'dailyValueSugar',
+			'dailyValueTotalFat',
+			'dailyValueVitaminD',
+			'decimalPlacesForDailyValues',
+			'decimalPlacesForNutrition',
+			'decimalPlacesForQuantityTextbox',
+			'scrollHeightComparison',
+			'scrollHeightPixel',
+			'scrollLongItemNamePixel',
+			'scrollLongItemNamePixel2018Override',
+			'valueAddedSugars',
+			'valueCaffeine',
+			'valueCalcium',
+			'valueCalories',
+			'valueCholesterol',
+			'valueCol1CalorieDiet',
+			'valueCol1Dietary',
+			'valueCol1DietaryCholesterol',
+			'valueCol1DietaryPotassium',
+			'valueCol1DietarySatFat',
+			'valueCol1DietarySodium',
+			'valueCol1DietaryTotalCarb',
+			'valueCol1DietaryTotalFat',
+			'valueCol2CalorieDiet',
+			'valueCol2Dietary',
+			'valueCol2DietaryCholesterol',
+			'valueCol2DietaryPotassium',
+			'valueCol2DietarySatFat',
+			'valueCol2DietarySodium',
+			'valueCol2DietaryTotalCarb',
+			'valueCol2DietaryTotalFat',
+			'valueFatCalories',
+			'valueFibers',
+			'valueIron',
+			'valueMonoFat',
+			'valuePolyFat',
+			'valuePotassium',
+			'valueProteins',
+			'valueSatFat',
+			'valueServingPerContainer',
+			'valueServingSize',
+			'valueServingUnitQuantity',
+			'valueServingWeightGrams',
+			'valueSodium',
+			'valueSugarAlcohol',
+			'valueSugars',
+			'valueTotalCarb',
+			'valueTotalFat',
+			'valueTransFat',
+			'valueVitaminA',
+			'valueVitaminC',
+			'valueVitaminD',
+			'width'
 		];
 
 		$.each(settings, function(index, value) {
@@ -480,10 +556,31 @@
 
 
 	function updateNutritionValueWithMultiplier(settings) {
-		var nutritionIndex = [
-			'valueCalories', 'valueFatCalories', 'valueTotalFat', 'valueSatFat', 'valueTransFat', 'valuePolyFat', 'valueMonoFat', 'valueCholesterol',
-			'valueSodium', 'valuePotassium', 'valueTotalCarb', 'valueFibers', 'valueSugars', 'valueProteins', 'valueVitaminA', 'valueVitaminC',
-			'valueCalcium', 'valueIron', 'valueServingWeightGrams', 'valueAddedSugars', 'valueVitaminD', 'valuePotassium_2018', 'valueSugarAlcohol', 'valueCaffeine'
+		let nutritionIndex = [
+			'valueAddedSugars',
+			'valueCaffeine',
+			'valueCalcium',
+			'valueCalories',
+			'valueCholesterol',
+			'valueFatCalories',
+			'valueFibers',
+			'valueIron',
+			'valueMonoFat',
+			'valuePolyFat',
+			'valuePotassium',
+			'valuePotassium_2018',
+			'valueProteins',
+			'valueSatFat',
+			'valueServingWeightGrams',
+			'valueSodium',
+			'valueSugarAlcohol',
+			'valueSugars',
+			'valueTotalCarb',
+			'valueTotalFat',
+			'valueTransFat',
+			'valueVitaminA',
+			'valueVitaminC',
+			'valueVitaminD'
 		];
 
 		$.each(settings, function(index, value) {
@@ -512,10 +609,10 @@
 
 	function init(settings, $elem) {
 		//merge the default settins with the user supplied settings
-		var $settings = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
-		$settings.totalContainerQuantity = parseFloat($settings.valueServingPerContainer) * parseFloat($settings['valueServingUnitQuantity']);
+		let $settings = $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} );
+		let $originalCleanSettings = cleanSettings( $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} ) );
 
-		var $originalCleanSettings = cleanSettings( $.extend( {}, $.fn.nutritionLabel.defaultSettings, settings || {} ) );
+		$settings.totalContainerQuantity = parseFloat($settings.valueServingPerContainer) * parseFloat($settings['valueServingUnitQuantity']);
 		$originalCleanSettings.totalContainerQuantity = parseFloat($originalCleanSettings.valueServingPerContainer) * parseFloat($originalCleanSettings['valueServingUnitQuantity']);
 
 		//clean the settings and make sure that all numeric settings are really numeric, if not, force them to be
@@ -525,7 +622,7 @@
 		$settings.nutritionValueMultiplier = $settings.valueServingUnitQuantity <= 0 ? 1 : 1 / $settings.valueServingUnitQuantity;
 
 		//update the nutrition values with the multiplier
-		var $updatedsettings = updateNutritionValueWithMultiplier($settings);
+		let $updatedsettings = updateNutritionValueWithMultiplier($settings);
 		$settings.originalServingUnitQuantity = $updatedsettings.valueServingUnitQuantity;
 
 		//if the original value is <= 0, set it to 1.0
@@ -549,31 +646,31 @@
 					//increase the unit quantity by clicking the up arrow
 					$('#' + $elem.attr('id') ).delegate('.unitQuantityUp', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       1,             updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
 					});
 
 					//decrease the unit quantity by clicking the down arrow
 					$('#' + $elem.attr('id') ).delegate('.unitQuantityDown', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       -1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      -1,           updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
 					});
 				}
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.unitQuantityBox', 'change', function(e) {
 					e.preventDefault();
-                             //($thisTextbox  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-					changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
+					                    //($thisTextbox $localSettings                                     nutritionLabel  $elem  forLegacyLabel forUKLabel)
+					changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
 				});
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.unitQuantityBox', 'keydown', function(e) {
 					if (e.keyCode == 13) {
 						e.preventDefault();
-                               //($thisTextbox  $localSettings,                                     nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
+						                   //($thisTextbox $localSettings,                                     nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
 					}
 				});
 			}
@@ -590,39 +687,39 @@
 					//increase the unit quantity by clicking the up arrow
 					$('#' + $elem.attr('id') ).delegate('.uk_nf-unitQuantityUp', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       1,             updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
 					});
 
 					//decrease the unit quantity by clicking the down arrow
 					$('#' + $elem.attr('id') ).delegate('.uk_nf-unitQuantityDown', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       -1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      -1,           updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
 					});
 				}
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.uk_nf-unitQuantityBox', 'change', function(e) {
 					e.preventDefault();
-                             //($thisTextbox  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-					changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
+					                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+					changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
 				});
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.uk_nf-unitQuantityBox', 'keydown', function(e) {
 					if (e.keyCode == 13) {
 						e.preventDefault();
-                               //($thisTextbox  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
+						                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
 					}
 				});
 			}
 		//end of => else if ($updatedsettings.showUKVersion)
 		} else {
 			//this part is for the 2018 version
-                                     //($localSettings  nutritionLabel  $elem  forLegacyLabel  forInitialization  forUKLabel)
-			updateValuesAfterAQuantityChanged($settings,      nutritionLabel, $elem, false,          true,              false);
+			                               //($localSettings nutritionLabel  $elem  forLegacyLabel forInitialization forUKLabel)
+			updateValuesAfterAQuantityChanged($settings,     nutritionLabel, $elem, false,         true,             false);
 
 			//if the text box for the unit quantity is shown
 			if ($settings.showServingUnitQuantityTextbox) {
@@ -631,31 +728,31 @@
 					//increase the unit quantity by clicking the up arrow
 					$('#' + $elem.attr('id') ).delegate('div.nf-unitQuantityUp', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       1,             updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
 					});
 
 					//decrease the unit quantity by clicking the down arrow
 					$('#' + $elem.attr('id') ).delegate('div.nf-unitQuantityDown', 'click', function(e) {
 						e.preventDefault();
-															 //($thisQuantity  changeValueBy  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityByArrow($(this),       -1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
+						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityByArrow($(this),      -1,           updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
 					});
 				}
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.nf-unitQuantityBox', 'change', function(e) {
 					e.preventDefault();
-                             //($thisTextbox  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-					changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
+					                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+					changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
 				});
 
 				//the textbox unit quantity value is changed
 				$('#' + $elem.attr('id') ).delegate('.nf-unitQuantityBox', 'keydown', function(e) {
 					if (e.keyCode == 13) {
 						e.preventDefault();
-                               //($thisTextbox  $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
-						changeQuantityTextbox($(this),      updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
+						                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
+						changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
 					}
 				});
 			}
@@ -667,7 +764,7 @@
 
 
 	function updateTheSettingsAfterAnEvent($localSettings, localSettings) {
-		var $localSettingsHolder = cleanSettings( $.extend( {}, $.fn.nutritionLabel.defaultSettings, localSettings || {} ) );
+		let $localSettingsHolder = cleanSettings($.extend({}, $.fn.nutritionLabel.defaultSettings, localSettings || {}));
 		$localSettingsHolder.originalServingUnitQuantity = $localSettings.originalServingUnitQuantity;
 		$localSettingsHolder.totalContainerQuantity = $localSettings.totalContainerQuantity;
 		$localSettingsHolder.nutritionValueMultiplier = $localSettingsHolder.valueServingUnitQuantity <= 0 ? 1 : 1 / $localSettingsHolder.valueServingUnitQuantity;
@@ -675,16 +772,16 @@
 	}
 
 
-	function addScrollToItemDiv($elem, $settings, localNameClass, forLegacyLabel) {
-		var local_scrollLongItemNamePixel = parseInt($settings.scrollLongItemNamePixel);
+	function addScrollToItemDiv($localElem, $localSettings, localNameClass, forLegacyLabel) {
+		let local_scrollLongItemNamePixel = parseInt($localSettings.scrollLongItemNamePixel);
 		if (!forLegacyLabel) {
-			local_scrollLongItemNamePixel = parseInt($settings.scrollLongItemNamePixel2018Override);
+			local_scrollLongItemNamePixel = parseInt($localSettings.scrollLongItemNamePixel2018Override);
 		}
 
 		//as of 05/14/2017 inline class only appears on the legacy version
-		if ( $('#' + $elem.attr('id') + ' .' + localNameClass + '.inline').val() != undefined ) {
-			if ($('#' + $elem.attr('id') + ' .' + localNameClass + '.inline').height() > local_scrollLongItemNamePixel + 1) {
-				$('#' +$elem.attr('id') + ' .' + localNameClass + '.inline').css({
+		if ( $('#' + $localElem.attr('id') + ' .' + localNameClass + '.inline').val() != undefined ) {
+			if ($('#' + $localElem.attr('id') + ' .' + localNameClass + '.inline').height() > local_scrollLongItemNamePixel + 1) {
+				$('#' + $localElem.attr('id') + ' .' + localNameClass + '.inline').css({
 					'margin-left' : '3.90em',
 					'height' : local_scrollLongItemNamePixel + 'px',
 					'overflow-y' : 'auto'
@@ -692,15 +789,15 @@
 			}
 		} else {
 			if (forLegacyLabel) {
-				if ($('#' + $elem.attr('id') + ' .' + localNameClass).height() > local_scrollLongItemNamePixel + 1) {
-					$('#' + $elem.attr('id') + ' .' + localNameClass).css({
+				if ($('#' + $localElem.attr('id') + ' .' + localNameClass).height() > local_scrollLongItemNamePixel + 1) {
+					$('#' + $localElem.attr('id') + ' .' + localNameClass).css({
 						'height' : local_scrollLongItemNamePixel + 'px',
 						'overflow-y' : 'auto'
 					});
 				}
 			} else {
-				if ($('#' + $elem.attr('id') + ' .' + localNameClass + ' div').height() >= local_scrollLongItemNamePixel + 1) {
-					$('#' + $elem.attr('id') + ' .' + localNameClass + ' div').css({
+				if ($('#' + $localElem.attr('id') + ' .' + localNameClass + ' div').height() >= local_scrollLongItemNamePixel + 1) {
+					$('#' + $localElem.attr('id') + ' .' + localNameClass + ' div').css({
 						'height' : local_scrollLongItemNamePixel + 'px',
 						'overflow-y' : 'auto'
 					});
@@ -710,26 +807,26 @@
 	}
 
 
-	function notApplicableHover($elem) {
+	function notApplicableHover($localElem) {
 		//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
-		if ($elem.attr('id') !== undefined && $elem.attr('id') !== '') {
-			$('#' + $elem.attr('id') + ' .notApplicable').hover(
+		if ($localElem.attr('id') !== undefined && $localElem.attr('id') !== '') {
+			$('#' + $localElem.attr('id') + ' .notApplicable').hover(
 				function() {
-					$('#' + $elem.attr('id') + ' .naTooltip').css({
-						'top' : $(this).position().top + 'px',
-						'left' : $(this).position().left+ 10 + 'px'
+					$('#' + $localElem.attr('id') + ' .naTooltip').css({
+						top: $(this).position().top + 'px',
+						left: $(this).position().left + 10 + 'px'
 					}).show();
 				},
 				function() {
-					$('#' + $elem.attr('id') + ' .naTooltip').hide();
+					$('#' + $localElem.attr('id') + ' .naTooltip').hide();
 				}
 			);
 		} else {
-			$('#' + $elem.attr('id') + ' .notApplicable').hover(
+			$('#' + $localElem.attr('id') + ' .notApplicable').hover(
 				function() {
 					$('.naTooltip').css({
-						'top' : $(this).position().top + 'px',
-						'left' : $(this).position().left+ 10 + 'px'
+						top: $(this).position().top + 'px',
+						left: $(this).position().left + 10 + 'px'
 					}).show();
 				},
 				function() {
@@ -741,6 +838,7 @@
 
 
 	function updateScrollingFeature($localElem, $localSettings, localIDToScroll, localScrollHeightComparison, localScrollHeight) {
+		let $parentElement;
 		if ($localElem.attr('id') !== undefined && $localElem.attr('id') !== '') {
 			//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
 			$parentElement = $('#' + $localElem.attr('id') + ' #' + localIDToScroll).parent();
@@ -750,16 +848,16 @@
 
 		if ($parentElement.innerHeight() > localScrollHeightComparison) {
 			$parentElement.addClass('scroll').css({
-				'height' : localScrollHeight + 'px'
+				height: localScrollHeight + 'px'
 			});
 		}
 	}
 
 
 	function updateValuesAfterAQuantityChanged($localSettings, nutritionLabel, $elem, forLegacyLabel, forInitialization, forUKLabel) {
-		var ingredientListID = 'ingredientList';
-		var calcDisclaimerTextID = 'calcDisclaimerText';
-		var nameElementClass = 'name';
+		let ingredientListID = 'ingredientList';
+		let calcDisclaimerTextID = 'calcDisclaimerText';
+		let nameElementClass = 'name';
 
 		if (!forLegacyLabel && !forUKLabel) {
 			//for the 2018 label
@@ -790,14 +888,14 @@
 
 		//scroll the ingredients of the innerheight is > $localSettings.scrollHeightComparison and the settings showIngredients and scrollLongIngredients are true
 		if ($localSettings.showIngredients && $localSettings.scrollLongIngredients) {
-                          //($localElem  $localSettings  localIDToScroll   localScrollHeightComparison            localScrollHeight)
-			updateScrollingFeature($elem,      $localSettings, ingredientListID, $localSettings.scrollHeightComparison, $localSettings.scrollHeightPixel);
+			                    //($localElem $localSettings  localIDToScroll   localScrollHeightComparison            localScrollHeight)
+			updateScrollingFeature($elem,     $localSettings, ingredientListID, $localSettings.scrollHeightComparison, $localSettings.scrollHeightPixel);
 		}
 
 		//scroll the disclaimer if the height of the disclaimer div is greater than scrollDisclaimerHeightComparison
 		if ($localSettings.showDisclaimer) {
-                          //($localElem  $localSettings  localIDToScroll       localScrollHeightComparison                      localScrollHeight)
-			updateScrollingFeature($elem,      $localSettings, calcDisclaimerTextID, $localSettings.scrollDisclaimerHeightComparison, $localSettings.scrollDisclaimer);
+			                    //($localElem $localSettings  localIDToScroll       localScrollHeightComparison                      localScrollHeight)
+			updateScrollingFeature($elem,     $localSettings, calcDisclaimerTextID, $localSettings.scrollDisclaimerHeightComparison, $localSettings.scrollDisclaimer);
 		}
 
 		//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
@@ -814,12 +912,11 @@
 		if (!forInitialization) {
 			return $localSettings;
 		}
-	}//end of => updateValuesAfterAQuantityChanged($localSettings, $elem, ingredientListID, calcDisclaimerTextID, forLegacyLabel, forInitialization, forUKLabel)
+	}//end of => function updateValuesAfterAQuantityChanged($localSettings, $elem, ingredientListID, calcDisclaimerTextID, forLegacyLabel, forInitialization, forUKLabel)
 
 
 	function handleQuantityChange($localSettings, source, previousValue, newValue) {
-		var handler;
-
+		let handler;
 		if ($localSettings.userFunctionOnQuantityChange) {
 			handler = $localSettings.userFunctionOnQuantityChange;
 		} else if ($localSettings.userFunctionNameOnQuantityChange) {
@@ -833,14 +930,17 @@
 
 
 	function changeQuantityTextbox($thisTextbox, $localSettings, nutritionLabel, $elem, forLegacyLabel, forUKLabel) {
-		var nixLabelBeforeQuantityID = 'nixLabelBeforeQuantity';
+		let nixLabelBeforeQuantityID = 'nixLabelBeforeQuantity';
+		let previousValue;
+		let textBoxValue;
+
 		if (!forLegacyLabel & !forUKLabel) {
 			nixLabelBeforeQuantityID = 'nf-nixLabelBeforeQuantity';
 		} else if (!forLegacyLabel & forUKLabel) {
 			nixLabelBeforeQuantityID = 'uk_nf-nixLabelBeforeQuantity';
 		}
 
-		var previousValue = parseFloat( $('#' +$elem.attr('id') + ' #' + nixLabelBeforeQuantityID).val() );
+		previousValue = parseFloat( $('#' + $elem.attr('id') + ' #' + nixLabelBeforeQuantityID).val() );
 
 		textBoxValue = !regIsPosNumber( $thisTextbox.val() ) ? previousValue : parseFloat( $thisTextbox.val() );
 		$thisTextbox.val( textBoxValue.toFixed($localSettings.decimalPlacesForQuantityTextbox) );
@@ -868,19 +968,18 @@
 
 
 	function changeQuantityByArrow($thisQuantity, changeValueBy, $localSettings, nutritionLabel, $elem, forLegacyLabel, forUKLabel) {
-		var unitQuantityBoxClass = 'unitQuantityBox';
+		let unitQuantityBoxClass = 'unitQuantityBox';
 		if (!forLegacyLabel & !forUKLabel) {
 			unitQuantityBoxClass = 'nf-unitQuantityBox';
 		} else if (!forLegacyLabel & forUKLabel) {
 			unitQuantityBoxClass = 'uk_nf-unitQuantityBox';
 		}
 
-		//get the current user quantity of the item
-		var currentQuantity = parseFloat( $thisQuantity.parent().parent().find('input.' + unitQuantityBoxClass).val() );
+		let currentQuantity = parseFloat( $thisQuantity.parent().parent().find('input.' + unitQuantityBoxClass).val() );
 		if ( isNaN(currentQuantity) ) {
 			currentQuantity = 1.0;
 		}
-		var beforeCurrentQuantityWasChanged = currentQuantity;
+		let beforeCurrentQuantityWasChanged = currentQuantity;
 
 		//see https://github.com/nutritionix/nutrition-label/issues/14 for an explanation on this part
 		if (currentQuantity <= 1 && changeValueBy == -1) {
@@ -904,8 +1003,8 @@
 		);
 
 		$localSettings.valueServingUnitQuantity = currentQuantity;
-		                                                //($localSettings  nutritionLabel  $elem  forLegacyLabel  forInitialization  forUKLabel)
-		$localSettings = updateValuesAfterAQuantityChanged($localSettings, nutritionLabel, $elem, forLegacyLabel, false,             forUKLabel);
+		                                                //($localSettings  nutritionLabel  $elem  forLegacyLabel  forInitialization forUKLabel)
+		$localSettings = updateValuesAfterAQuantityChanged($localSettings, nutritionLabel, $elem, forLegacyLabel, false,            forUKLabel);
 
 		if ($localSettings.allowGoogleAnalyticsEventLog) {
 			if (changeValueBy > 0) {
@@ -979,8 +1078,8 @@
 
 
 	function roundCholesterol(toRound, decimalPlace) {
-		var normalVersion = true;
-		var roundResult = roundCholesterolRule(toRound);
+		let normalVersion = true;
+		let roundResult = roundCholesterolRule(toRound);
 		if (roundResult === false) {
 			normalVersion = false;
 		} else {
@@ -999,8 +1098,8 @@
 
 
 	function roundCarbFiberSugarProtein(toRound, decimalPlace) {
-		var normalVersion = true;
-		var roundResult = roundCarbFiberSugarProteinRule(toRound);
+		let normalVersion = true;
+		let roundResult = roundCarbFiberSugarProteinRule(toRound);
 		if (roundResult === false) {
 			normalVersion = false;
 		} else {
@@ -1044,11 +1143,11 @@
 
 	//Total Fat, Saturated Fat, Polyunsaturated Fat and Monounsaturated Fat rounding rule
 	function roundFatRule(toRound) {
-		if (toRound < .5) {
+		if (toRound < 0.5) {
 			return 0;
 		} else if (toRound < 5) {
 			//< 5 g - express to nearest .5g increment
-			return roundToNearestNum(toRound, .5);
+			return roundToNearestNum(toRound, 0.5);
 		}
 
 		//>= 5 g - express to nearest 1 g increment
@@ -1099,7 +1198,7 @@
 
 	//Total Carbohydrate, Dietary Fiber, Sugar and Protein rounding rule
 	function roundCarbFiberSugarProteinRule(toRound) {
-		if (toRound < .5) {
+		if (toRound < 0.5) {
 			return 0;
 		} else if (toRound < 1) {
 			//< 1 g - express as "Contains less than 1g" or "less than 1g"
@@ -1131,9 +1230,8 @@
 
 
 	function roundForUKLabelTotalFatCarbsSugarFiberProtein(toRound) {
-		var normalVersion = true;
-
-		var roundResult = roundForUKLabelTotalFatCarbsSugarFiberProteinRule(toRound);
+		let normalVersion = true;
+		let roundResult = roundForUKLabelTotalFatCarbsSugarFiberProteinRule(toRound);
 		if (roundResult === false) {
 			normalVersion = false;
 		} else {
@@ -1161,9 +1259,8 @@
 
 
 	function roundForUKLabelSatFat(toRound) {
-		var normalVersion = true;
-
-		var roundResult = roundForUKLabelSatFatRule(toRound);
+		let normalVersion = true;
+		let roundResult = roundForUKLabelSatFatRule(toRound);
 		if (roundResult === false) {
 			normalVersion = false;
 		} else {
@@ -1191,8 +1288,8 @@
 
 
 	function roundForUKLabelSalt(toRound) {
-		var normalVersion = true;
-		var roundResult = roundForUKLabelSaltRule(toRound);
+		let normalVersion = true;
+		let roundResult = roundForUKLabelSaltRule(toRound);
 
 		if (roundResult === false) {
 			normalVersion = false;
@@ -1220,81 +1317,109 @@
 	}
 
 
+	function roundFor2018LabelVitaminDIron(toRound) {
+		toRound = roundFor2018LabelVitaminDIronRule(toRound);
+		if (toRound > 0) {
+			return parseFloat( toRound.toFixed(1) );
+		}
+
+		return 0;
+	}
+
+
+	function roundFor2018LabelVitaminDIronRule(toRound) {
+		//round to the nearest 0.1 increment
+		return roundToNearestNum(toRound, 0.1);
+	}
+
+
+	function roundFor2018LabelCalciumPotassium(toRound) {
+		toRound = roundFor2018LabelCalciumPotassiumRule(toRound);
+		if (toRound > 0) {
+			return toRound;
+		}
+
+		return 0;
+	}
+
+
+	function roundFor2018LabelCalciumPotassiumRule(toRound) {
+		//round to the nearest 10 increment
+		return roundToNearestNum(toRound, 10);
+	}
+
+
 	//check if the value is a positive number
 	function regIsPosNumber(fData) {
+		/* eslint-disable no-useless-escape */
 		return new RegExp('(^[0-9]+[\.]?[0-9]+$)|(^[0-9]+$)').test(fData);
+		/* eslint-enable no-useless-escape */
 	}
 
 
 	//generate and return the html code for the item area
 	function itemNameHtmlLegacy($localSettings) {
-		//initializing the tab variables (for debugging and editing purposes)
-		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
-		for (x = 1; x < 5; x++) {
-			var tab = '';
-			for (y = 1; y <= x; y++) {
-				tab += '\t';
-			}
-			eval('var localTab' + x + ' = "' + tab + '";');
-		}
-
-		var tabTemp = localTab1;
-		var localNutritionLabel = itemNameClass = '';
+		let tabTemp = globalTab1;
+		let localNutritionLabel = '';
+		let itemNameClass = '';
 		if ($localSettings.showServingUnitQuantityTextbox) {
 			if (
-					($localSettings.valueServingSizeUnit == null || $localSettings.valueServingSizeUnit == '') ||
+					($localSettings.valueServingSizeUnit === null || $localSettings.valueServingSizeUnit == '') ||
 					(
 						$localSettings.valueServingSizeUnit !== '' &&
 						$localSettings.valueServingSizeUnit !== null &&
 						$localSettings.originalServingUnitQuantity <= 0
 					)
 			) {
-				localNutritionLabel += localTab1 + '<div class="cf">\n';
-					localNutritionLabel += localTab2 + '<div class="rel servingSizeField">\n';
+				let textboxClass = 'unitQuantityBox';
 
-					var textboxClass = 'unitQuantityBox';
+				localNutritionLabel += globalTab1 + '<div class="cf">\n';
+					localNutritionLabel += globalTab2 + '<div class="rel servingSizeField">\n';
+
 					if (!$localSettings.hideTextboxArrows) {
-						localNutritionLabel += localTab3 + '<div class="setter">\n';
-							localNutritionLabel += localTab4 + '<a href="' + $localSettings.textAriaLabelIncreaseQuantityArrow + '" class="unitQuantityUp" ';
+						localNutritionLabel += globalTab3 + '<div class="setter">\n';
+							localNutritionLabel += globalTab4 + '<a href="' + $localSettings.textAriaLabelIncreaseQuantityArrow + '" class="unitQuantityUp" ';
 								localNutritionLabel += 'aria-label="' + $localSettings.textAriaLabelIncreaseQuantityArrow + '" rel="nofollow" tabindex="0"></a>\n';
-							localNutritionLabel += localTab4 + '<a href="' + $localSettings.textAriaLabelDecreaseQuantityArrow + '" class="unitQuantityDown" ';
+							localNutritionLabel += globalTab4 + '<a href="' + $localSettings.textAriaLabelDecreaseQuantityArrow + '" class="unitQuantityDown" ';
 								localNutritionLabel += 'aria-label="' + $localSettings.textAriaLabelDecreaseQuantityArrow + '" rel="nofollow" tabindex="0"></a>\n';
-						localNutritionLabel += localTab3 + '</div><!-- closing class="setter" -->\n\n';
+						localNutritionLabel += globalTab3 + '</div><!-- closing class="setter" -->\n\n';
 					} else {
 						textboxClass = 'unitQuantityBox arrowsAreHidden';
 					}
 
-						localNutritionLabel += localTab3 + '<input type="text" value="' + parseFloat(
+						localNutritionLabel += globalTab3 + '<input type="text" value="' + parseFloat(
 							$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
 						) + '" class="' + textboxClass + '" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
 
-						localNutritionLabel += localTab3 + '<input type="hidden" value="' + parseFloat(
+						localNutritionLabel += globalTab3 + '<input type="hidden" value="' + parseFloat(
 							$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
 						) + '" id="nixLabelBeforeQuantity">\n';
 
-					localNutritionLabel += localTab2 + '</div><!-- closing class="servingSizeField" -->\n\n';
-				tabTemp = localTab2;
-				var itemNameClass = 'inline';
+					localNutritionLabel += globalTab2 + '</div><!-- closing class="servingSizeField" -->\n\n';
+				tabTemp = globalTab2;
+				itemNameClass = 'inline';
 			}
 		}//end of => if ($localSettings.showServingUnitQuantityTextbox) {
 
 			localNutritionLabel += tabTemp + '<div class="name ' + itemNameClass + '" tabindex="0">';
 				localNutritionLabel += $localSettings.itemName;
-			if ($localSettings.showBrandName && $localSettings.brandName != null && $localSettings.brandName != '') {
+			if ($localSettings.showBrandName && $localSettings.brandName !== null && $localSettings.brandName != '') {
 				localNutritionLabel += ' - ' + $localSettings.brandName;
 			}
 			localNutritionLabel += '</div>\n';
 
 		if ($localSettings.showServingUnitQuantityTextbox) {
 			if (
-					($localSettings.valueServingSizeUnit == null || $localSettings.valueServingSizeUnit == '') ||
+					($localSettings.valueServingSizeUnit === null || $localSettings.valueServingSizeUnit == '') ||
 					(
 						$localSettings.valueServingSizeUnit !== '' &&
 						$localSettings.valueServingSizeUnit !== null &&
 						$localSettings.originalServingUnitQuantity <= 0
 					)
 			) {
-				localNutritionLabel += localTab1 + '</div><!-- closing class="cf" -->\n\n';
+				/* eslint-disable no-useless-escape */
+				localNutritionLabel += globalTab1 + '</div><!-- closing class="cf" -->\n\n';
+				/* eslint-enable no-useless-escape */
 			}
 		}
 
@@ -1304,82 +1429,75 @@
 
 	//generate and return the html code for the serving unit quantity area
 	function sevingUnitQuantityHtmlLegacy($localSettings) {
-		//initializing the tab variables (for debugging and editing purposes)
-		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
-		for (x = 1; x < 6; x++) {
-			var tab = '';
-			for (y = 1; y <= x; y++) {
-				tab += '\t';
-			}
-			eval('var localTab' + x + ' = "' + tab + '";');
-		}
-
-		var localServingSizeIsHidden = localServingContainerIsHidden = false;
-		var localNutritionLabel = '';
+		let localServingSizeIsHidden = false;
+		let localServingContainerIsHidden = false;
+		let localNutritionLabel = '';
 		if ($localSettings.showServingUnitQuantity) {
-			localNutritionLabel += localTab1 + '<div class="serving" tabIndex="0">\n';
+			localNutritionLabel += globalTab1 + '<div class="serving" tabIndex="0">\n';
 
 			if ($localSettings.originalServingUnitQuantity > 0) {
-				localNutritionLabel += localTab2 + '<div class="cf">\n';
-					localNutritionLabel += localTab3 + '<div class="servingSizeText fl">' + $localSettings.textServingSize + '</div>\n';
+				let unitAddedClass = '';
+				let gramsAddedClass = '';
+
+				localNutritionLabel += globalTab2 + '<div class="cf">\n';
+					localNutritionLabel += globalTab3 + '<div class="servingSizeText fl">' + $localSettings.textServingSize + '</div>\n';
 						localNutritionLabel += $localSettings.showServingUnitQuantityTextbox ?
 							'' :
-							localTab3 + '<div class="servingUnitQuantity fl" itemprop="servingSize">' +
+							globalTab3 + '<div class="servingUnitQuantity fl" itemprop="servingSize">' +
 								parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
 							'</div>\n';
 
-				var unitAddedClass = '';
-				var gramsAddedClass = '';
 				if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null) {
 					if (
 							$localSettings.showServingUnitQuantityTextbox &&
-							$localSettings.valueServingSizeUnit != null &&
+							$localSettings.valueServingSizeUnit !== null &&
 							$localSettings.valueServingSizeUnit != ''
 					) {
+						let textboxClass = 'unitQuantityBox';
+
 						unitAddedClass = 'unitHasTextbox';
 						gramsAddedClass = 'gramsHasTextbox';
-						localNutritionLabel += localTab3 + '<div class="rel servingSizeField fl">\n';
+						localNutritionLabel += globalTab3 + '<div class="rel servingSizeField fl">\n';
 
-						var textboxClass = 'unitQuantityBox';
 						if (!$localSettings.hideTextboxArrows) {
-							localNutritionLabel += localTab4 + '<div class="setter">\n';
-								localNutritionLabel += localTab5 + '<a href="' + $localSettings.textAriaLabelIncreaseQuantityArrow + '" class="unitQuantityUp" ';
+							localNutritionLabel += globalTab4 + '<div class="setter">\n';
+								localNutritionLabel += globalTab5 + '<a href="' + $localSettings.textAriaLabelIncreaseQuantityArrow + '" class="unitQuantityUp" ';
 									localNutritionLabel += 'aria-label="' + $localSettings.textAriaLabelIncreaseQuantityArrow + '" rel="nofollow" tabindex="0"></a>\n';
-								localNutritionLabel += localTab5 + '<a href="' + $localSettings.textAriaLabelDecreaseQuantityArrow + '" class="unitQuantityDown" ';
+								localNutritionLabel += globalTab5 + '<a href="' + $localSettings.textAriaLabelDecreaseQuantityArrow + '" class="unitQuantityDown" ';
 									localNutritionLabel += 'aria-label="' + $localSettings.textAriaLabelDecreaseQuantityArrow + '" rel="nofollow" tabindex="0"></a>\n';
-							localNutritionLabel += localTab4 + '</div><!-- closing class="setter" -->\n\n';
+							localNutritionLabel += globalTab4 + '</div><!-- closing class="setter" -->\n\n';
 						} else {
 							textboxClass = 'unitQuantityBox arrowsAreHidden';
 						}
 
-							localNutritionLabel += localTab4 + '<input type="text" value="' + parseFloat(
+							localNutritionLabel += globalTab4 + '<input type="text" value="' + parseFloat(
 								$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
 							) + '" class="' + textboxClass + '" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
 
-							localNutritionLabel += localTab4 + '<input type="hidden" value="' + parseFloat(
+							localNutritionLabel += globalTab4 + '<input type="hidden" value="' + parseFloat(
 								$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
 							) + '" id="nixLabelBeforeQuantity">\n';
 
-						localNutritionLabel += localTab3 + '</div><!-- closing class="servingSizeField" -->\n\n';
+						localNutritionLabel += globalTab3 + '</div><!-- closing class="servingSizeField" -->\n\n';
 					} else if ($localSettings.originalServingUnitQuantity > 0 && $localSettings.showServingUnitQuantityTextbox) {
-						localNutritionLabel += localTab3 + '<div class="servingUnitQuantity" itemprop="servingSize">' +
+						localNutritionLabel += globalTab3 + '<div class="servingUnitQuantity" itemprop="servingSize">' +
 							parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
 						'</div>\n';
 					}
 
-						localNutritionLabel += localTab3 + '<div class="servingUnit fl ' + unitAddedClass + '">' +
+						localNutritionLabel += globalTab3 + '<div class="servingUnit fl ' + unitAddedClass + '">' +
 							$localSettings.valueServingSizeUnit +
 						($localSettings.legacyVersion == 1 ? '</div>\n' : '');
 
 				//end of => if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null)
 				} else if ($localSettings.originalServingUnitQuantity > 0 && $localSettings.showServingUnitQuantityTextbox) {
-						localNutritionLabel += localTab3 + '<div class="servingUnitQuantity fl" itemprop="servingSize">' +
+						localNutritionLabel += globalTab3 + '<div class="servingUnitQuantity fl" itemprop="servingSize">' +
 							parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
 						'</div>\n';
 				}
 
-				if ($localSettings.valueServingWeightGrams > 0) {
-						localNutritionLabel += localTab3 + '<' + ($localSettings.legacyVersion == 1 ? 'div' : 'span') + ' class="servingWeightGrams ' +
+				if ($localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0) {
+						localNutritionLabel += globalTab3 + '<' + ($localSettings.legacyVersion == 1 ? 'div' : 'span') + ' class="servingWeightGrams ' +
 							($localSettings.legacyVersion == 1 ? 'fl' : '') + ' ' + gramsAddedClass + '">' +
 							'(<span itemprop="servingSize">' +
 									parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) ) +
@@ -1388,17 +1506,18 @@
 						($localSettings.legacyVersion == 1 ? 'div' : 'span') + '>\n';
 				}
 
-					localNutritionLabel += localTab3 + ($localSettings.legacyVersion == 1 ? '' : '</div>\n');
+					localNutritionLabel += globalTab3 + ($localSettings.legacyVersion == 1 ? '' : '</div>\n');
 
-				localNutritionLabel += localTab2 + '</div><!-- closing class="cf" -->\n\n';
+				localNutritionLabel += globalTab2 + '</div><!-- closing class="cf" -->\n\n';
+			//end of => if ($localSettings.originalServingUnitQuantity > 0) {
 			} else {
 				localServingSizeIsHidden = true;
-			}//end of => else => if ($localSettings.originalServingUnitQuantity > 0) {
+			}
 
 			if ($localSettings.showServingsPerContainer) {
 				//Serving per container
 				if ($localSettings.valueServingPerContainer > 0) {
-					localNutritionLabel += localTab2 + '<div tabindex="0">' + $localSettings.textServingsPerContainer + ' ' + parseFloat(
+					localNutritionLabel += globalTab2 + '<div tabindex="0">' + $localSettings.textServingsPerContainer + ' ' + parseFloat(
 						$localSettings.valueServingPerContainer.toFixed($localSettings.decimalPlacesForNutrition)
 					) + '</div>\n';
 				} else {
@@ -1408,115 +1527,105 @@
 				localServingContainerIsHidden = true;
 			}
 
-			localNutritionLabel += localTab1 + '</div><!-- closing class="serving" -->\n\n';
+			localNutritionLabel += globalTab1 + '</div><!-- closing class="serving" -->\n\n';
 		}//end of => if ($localSettings.showServingUnitQuantity)
 
 		return {
-			'servingSizeIsHidden' : localServingSizeIsHidden,
-			'servingContainerIsHidden' : localServingContainerIsHidden,
-			'nutritionLabel' : localNutritionLabel
+			servingSizeIsHidden: localServingSizeIsHidden,
+			servingContainerIsHidden: localServingContainerIsHidden,
+			nutritionLabel: localNutritionLabel
 		};
 	}//end of => function sevingUnitQuantityHtmlLegacy($localSettings)
 
 
 	//generate and return the html code for the calorie diets area
 	function calorieDietHtmlLegacy($localSettings) {
-		//initializing the tab variables (for debugging and editing purposes)
-		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
-		for (x = 2; x < 6; x++) {
-			var tab = '';
-			for (y = 1; y <= x; y++) {
-				tab += '\t';
-			}
-			eval('var localTab' + x + ' = "' + tab + '";');
-		}
-
-		var localNutritionLabel = localTab2 + '<table class="tblCalorieDiet" aria-hidden="true">\n';
-			localNutritionLabel += localTab3 + '<thead>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<th>&nbsp;</th>\n';
-					localNutritionLabel += localTab5 + '<th>' + $localSettings.textCalories + '</th>\n';
-					localNutritionLabel += localTab5 + '<th>' + $localSettings.valueCol1CalorieDiet + '</th>\n';
-					localNutritionLabel += localTab5 + '<th>' + $localSettings.valueCol2CalorieDiet + '</th>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-			localNutritionLabel += localTab3 + '</thead>\n';
-			localNutritionLabel += localTab3 + '<tbody>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.textTotalFat + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.textCalorieDietHtmlLegacyLessThan + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryTotalFat + 'g</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryTotalFat + 'g</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>&nbsp;&nbsp; ' + $localSettings.textSatFat + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.textCalorieDietHtmlLegacyLessThan + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietarySatFat + 'g</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietarySatFat + 'g</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.textCholesterol + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.textCalorieDietHtmlLegacyLessThan + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryCholesterol + 'mg</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryCholesterol + 'mg</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.textSodium + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.textCalorieDietHtmlLegacyLessThan + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietarySodium + 'mg</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietarySodium + 'mg</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.textPotassium + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.textCalorieDietHtmlLegacyLessThan + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryPotassium + 'mg</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryPotassium + 'mg</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.textTotalCarb + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>&nbsp;</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1DietaryTotalCarb + 'g</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2DietaryTotalCarb + 'g</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-				localNutritionLabel += localTab4 + '<tr>\n';
-					localNutritionLabel += localTab5 + '<td>&nbsp;&nbsp; ' + $localSettings.textCalorieDietHtmlLegacyDietary + '</td>\n';
-					localNutritionLabel += localTab5 + '<td>&nbsp;</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol1Dietary + 'g</td>\n';
-					localNutritionLabel += localTab5 + '<td>' + $localSettings.valueCol2Dietary + 'g</td>\n';
-				localNutritionLabel += localTab4 + '</tr>\n';
-			localNutritionLabel += localTab3 + '</tbody>\n';
-		return localNutritionLabel += localTab2 + '</table>\n';
-	}//end of => calorieDietHtmlLegacy($localSettings)
+		let localNutritionLabel = globalTab2 + '<table class="tblCalorieDiet" aria-hidden="true">\n';
+			localNutritionLabel += globalTab3 + '<thead>\n';
+				localNutritionLabel += globalTab4 + '<tr>\n';
+					localNutritionLabel += globalTab5 + '<th>&nbsp;</th>\n';
+					localNutritionLabel += globalTab5 + '<th>' + $localSettings.textCalories + '</th>\n';
+					localNutritionLabel += globalTab5 + '<th>' + $localSettings.valueCol1CalorieDiet + '</th>\n';
+					localNutritionLabel += globalTab5 + '<th>' + $localSettings.valueCol2CalorieDiet + '</th>\n';
+				localNutritionLabel += globalTab4 + '</tr>\n';
+			localNutritionLabel += globalTab3 + '</thead>\n';
+			localNutritionLabel += globalTab3 + '<tbody>\n';
+				localNutritionLabel += globalTab4 + '<tr>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.textTotalFat + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.textCalorieDietHtmlLegacyLessThan + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol1DietaryTotalFat + 'g</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol2DietaryTotalFat + 'g</td>\n';
+				localNutritionLabel += globalTab4 + '</tr>\n';
+				localNutritionLabel += globalTab4 + '<tr>\n';
+					localNutritionLabel += globalTab5 + '<td>&nbsp;&nbsp; ' + $localSettings.textSatFat + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.textCalorieDietHtmlLegacyLessThan + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol1DietarySatFat + 'g</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol2DietarySatFat + 'g</td>\n';
+				localNutritionLabel += globalTab4 + '</tr>\n';
+				localNutritionLabel += globalTab4 + '<tr>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.textCholesterol + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.textCalorieDietHtmlLegacyLessThan + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol1DietaryCholesterol + 'mg</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol2DietaryCholesterol + 'mg</td>\n';
+				localNutritionLabel += globalTab4 + '</tr>\n';
+				localNutritionLabel += globalTab4 + '<tr>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.textSodium + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.textCalorieDietHtmlLegacyLessThan + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol1DietarySodium + 'mg</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol2DietarySodium + 'mg</td>\n';
+				localNutritionLabel += globalTab4 + '</tr>\n';
+				localNutritionLabel += globalTab4 + '<tr>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.textPotassium + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.textCalorieDietHtmlLegacyLessThan + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol1DietaryPotassium + 'mg</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol2DietaryPotassium + 'mg</td>\n';
+				localNutritionLabel += globalTab4 + '</tr>\n';
+				localNutritionLabel += globalTab4 + '<tr>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.textTotalCarb + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>&nbsp;</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol1DietaryTotalCarb + 'g</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol2DietaryTotalCarb + 'g</td>\n';
+				localNutritionLabel += globalTab4 + '</tr>\n';
+				localNutritionLabel += globalTab4 + '<tr>\n';
+					localNutritionLabel += globalTab5 + '<td>&nbsp;&nbsp; ' + $localSettings.textCalorieDietHtmlLegacyDietary + '</td>\n';
+					localNutritionLabel += globalTab5 + '<td>&nbsp;</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol1Dietary + 'g</td>\n';
+					localNutritionLabel += globalTab5 + '<td>' + $localSettings.valueCol2Dietary + 'g</td>\n';
+				localNutritionLabel += globalTab4 + '</tr>\n';
+			localNutritionLabel += globalTab3 + '</tbody>\n';
+		return localNutritionLabel += globalTab2 + '</table>\n';
+	}//end of => function calorieDietHtmlLegacy($localSettings)
 
 
 	//generate and return the html code for the ingredients area
-	function ingredientsHtmlLegacy($localSettings, localTab1, localTab2) {
-		var localNutritionLabel = '';
+	function ingredientsHtmlLegacy($localSettings) {
+		let localNutritionLabel = '';
 		if (!$localSettings.hidePercentDailyValues) {
-			localNutritionLabel += localTab1 + '<br/>\n';
+			localNutritionLabel += globalTab3 + '<br/>\n';
 		}
 
-		localNutritionLabel += localTab1 + '<div class="' + ($localSettings.hidePercentDailyValues ? 'ingredientListDivHiddenDailyValues' : 'ingredientListDiv') + '" tabindex="0">\n';
-			localNutritionLabel += localTab2 + '<strong class="active" id="ingredientList">' + $localSettings.ingredientLabel + '</strong>\n';
-			localNutritionLabel += localTab2 + $localSettings.ingredientList + '\n';
-		return localNutritionLabel += localTab1 + '</div><!-- closing class="ingredientListDiv" -->\n\n';
+		localNutritionLabel += globalTab3 + '<div class="' + ($localSettings.hidePercentDailyValues ? 'ingredientListDivHiddenDailyValues' : 'ingredientListDiv') + '" tabindex="0">\n';
+			localNutritionLabel += globalTab4 + '<strong class="active" id="ingredientList">' + $localSettings.ingredientLabel + '</strong>\n';
+			localNutritionLabel += globalTab4 + $localSettings.ingredientList + '\n';
+		return localNutritionLabel += globalTab3 + '</div><!-- closing class="ingredientListDiv" -->\n\n';
 	}
 
 
 	//generate and return the html code for the disclaimer area
-	function disclaimerHtmlLegacy($localSettings, localTab1, localTab2) {
-		var localNutritionLabel = localTab1 + '<br/>\n\n';
-		localNutritionLabel += localTab1 + '<div id="calcDisclaimer">\n';
-			localNutritionLabel += localTab2 + '<span id="calcDisclaimerText" tabindex="0">' + $localSettings.valueDisclaimer + '</span>\n';
-		localNutritionLabel += localTab1 + '</div><!-- closing class="calcDisclaimer" -->\n\n';
-		return localNutritionLabel += localTab1 + '<br/>\n\n';
+	function disclaimerHtmlLegacy($localSettings) {
+		let localNutritionLabel = globalTab3 + '<br/>\n\n';
+		localNutritionLabel += globalTab3 + '<div id="calcDisclaimer">\n';
+			localNutritionLabel += globalTab4 + '<span id="calcDisclaimerText" tabindex="0">' + $localSettings.valueDisclaimer + '</span>\n';
+		localNutritionLabel += globalTab3 + '</div><!-- closing class="calcDisclaimer" -->\n\n';
+		return localNutritionLabel += globalTab3 + '<br/>\n\n';
 	}
 
 
 	//generate and return the html code for the bottom link area
-	function bottomLinkHtmlLegacy($localSettings, localTab1) {
-		var localNutritionLabel = localTab1 + '<div class="spaceAbove"></div>\n';
-		localNutritionLabel += localTab1 + '<a href="' + $localSettings.urlBottomLink + '" target="_newSite" class="homeLinkPrint">' + $localSettings.nameBottomLink + '</a>\n';
-		return localNutritionLabel += localTab1 + '<div class="spaceBelow"></div>\n';
+	function bottomLinkHtmlLegacy($localSettings) {
+		let localNutritionLabel = globalTab1 + '<div class="spaceAbove"></div>\n';
+		localNutritionLabel += globalTab1 + '<a href="' + $localSettings.urlBottomLink + '" target="_newSite" class="homeLinkPrint">' + $localSettings.nameBottomLink + '</a>\n';
+		return localNutritionLabel += globalTab1 + '<div class="spaceBelow"></div>\n';
 	}
 
 
@@ -1526,8 +1635,8 @@
 	 * attributeDisplayType
 	 *    1 => <strong> + $localSettings[attributeText] + </strong> <span itemprop=" + itemPropValue + ">
 	 *    2 => $localSettings[attributeText] + ' '
-	 *    3 => localExtraTab + $localSettings[attributeText] +  <span itemprop="transFatContent">;
-	 *    4 => localTab1 + <div class="line indent">;
+	 *    3 => localExtraTab + $localSettings[attributeText] + <span itemprop="transFatContent">;
+	 *    4 => globalTab1 + <div class="line indent">;
 	 *    5 => a bit special format for vitamin a, vitamin c, calcium and iron
 	 */
 	function generateAttributeWithoutPercentageHtmlLegacy(
@@ -1535,9 +1644,9 @@
 	) {
 		//initialize the not applicable image icon in case we need to use it
 		//attributeDisplayType == 5 => for vitamin a, vitamin c, calcium and iron
-		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font>' +
-			'<font class="sr-only">' + $localSettings.textDataNotAvailable + '</font>\n';
-		var localNutritionLabel = localTabValue + '<div class="' + lineClass + '" tabindex="0">\n';
+		let localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font><font class="sr-only">' +
+			$localSettings.textDataNotAvailable + '</font>\n';
+		let localNutritionLabel = localTabValue + '<div class="' + lineClass + '" tabindex="0">';
 
 		if (attributeDisplayType == 1) {
 			localNutritionLabel += '<strong>' + $localSettings[attributeText] + '</strong> <span itemprop="' + itemPropValue + '">';
@@ -1548,7 +1657,7 @@
 		} else if (attributeDisplayType == 4) {
 			localNutritionLabel += $localSettings[attributeText] + ' <span itemprop="' + itemPropValue + '">';
 		} else if (attributeDisplayType == 5) {
-			localNutritionLabel += localExtraTab + '<div class="dv">\n';
+			localNutritionLabel += localExtraTab + '<div class="dv">';
 		}
 
 		localNutritionLabel += $localSettings[naIndex] ?
@@ -1572,8 +1681,7 @@
 		}
 
 		return localNutritionLabel;
-	}//end of => function generateAttributeWithoutPercentageHtmlLegacy
-									//($localSettings, valueIndex, unitIndex, naIndex, attributeText, localTabValue, lineClass, attributeDisplayType, itemPropValue, localExtraTab, roundFunctionName)
+	}//end of => function generateAttributeWithoutPercentageHtmlLegacy(**too many parameters**)
 
 
 	/*
@@ -1582,25 +1690,15 @@
 	function generateAttributeWithPercentageHtmlLegacy(
 			$localSettings, valueIndex, dailyValueIndex, unitIndex, naIndex, attributeTexts, lineClass, itemPropValue, roundFunctionName, roundFunctionRuleName, boldName, showPercentageCode
 	) {
-		//initializing the tab variables (for debugging and editing purposes)
-		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
-		for (x = 1; x < 3; x++) {
-			var tab = '';
-			for (y = 1; y <= x; y++) {
-				tab += '\t';
-			}
-			eval('var localTab' + x + ' = "' + tab + '";');
-		}
-
 		//initialize the not applicable image icon in case we need to use it
-		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font>' +
-			'<font class="sr-only">' + $localSettings.textDataNotAvailable + '</font>\n';
+		let localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font><font class="sr-only">' +
+			$localSettings.textDataNotAvailable + '</font>\n';
 
 		//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
-		var localNutritionLabel = localTab1 + '<div class="' + lineClass + '" tabindex="0">\n';
+		let localNutritionLabel = globalTab1 + '<div class="' + lineClass + '" tabindex="0">\n';
 
 		if (!$localSettings['hidePercentDailyValues'] && showPercentageCode) {
-			localNutritionLabel += localTab2 + '<div class="dv" aria-hidden="true">';
+			localNutritionLabel += globalTab2 + '<div class="dv" aria-hidden="true">';
 				localNutritionLabel += $localSettings[naIndex] ?
 					localNaValue :
 					'<strong>' +
@@ -1619,9 +1717,9 @@
 		}
 
 		if (boldName) {
-			localNutritionLabel += localTab2 + '<strong>' + $localSettings[attributeTexts] + '</strong> <span itemprop="' + itemPropValue + '">';
+			localNutritionLabel += globalTab2 + '<strong>' + $localSettings[attributeTexts] + '</strong> <span itemprop="' + itemPropValue + '">';
 		} else {
-			localNutritionLabel += localTab2 + $localSettings[attributeTexts] + ' <span itemprop="' + itemPropValue + '">';
+			localNutritionLabel += globalTab2 + $localSettings[attributeTexts] + ' <span itemprop="' + itemPropValue + '">';
 		}
 
 		localNutritionLabel += (
@@ -1633,9 +1731,8 @@
 						parseFloat( $localSettings[valueIndex].toFixed($localSettings.decimalPlacesForNutrition) )
 				) + $localSettings[unitIndex]
 		) + '\n';
-		return localNutritionLabel += localTab1 + '</span></div>\n';
-	}//end of => function generateAttributeWithPercentageHtmlLegacy($localSettings, valueIndex, dailyValueIndex, unitIndex, naIndex, attributeTexts, localNaValue,
-																																//lineClass, itemPropValue, roundFunctionName, roundFunctionRuleName, boldName)
+		return localNutritionLabel += globalTab1 + '</span></div>\n';
+	}//end of => function generateAttributeWithPercentageHtmlLegacy(**too many parameters**)
 
 
 	/*
@@ -1645,23 +1742,13 @@
 	function generateAttributeHtml2018Version(
 			$localSettings, valueIndex, unitIndex, naIndex, attributeText, itemPropValue, topDivClass, showPercentageCode, roundFunctionName, roundFunctionRuleName, labelClass, valueClass, dailyValueIndex
 	) {
-		//initializing the tab variables (for debugging and editing purposes)
-		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
-		for (x = 1; x < 4; x++) {
-			var tab = '';
-			for (y = 1; y <= x; y++) {
-				tab += '\t';
-			}
-			eval('var localTab' + x + ' = "' + tab + '";');
-		}
-
 		//initialize the not applicable image icon in case we need to use it
-		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font>' +
-			'<font class="sr-only">' + $localSettings.textDataNotAvailable + '</font>\n';
-		var localNutritionLabel = localTab1 + '<div class="' + topDivClass +'" tabindex="0">\n';
+		let localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font><font class="sr-only">' +
+			$localSettings.textDataNotAvailable + '</font>\n';
+		let localNutritionLabel = globalTab1 + '<div class="' + topDivClass + '" tabindex="0">\n';
 
 		if (showPercentageCode && !$localSettings['hidePercentDailyValues']) {
-			localNutritionLabel += localTab2 + '<span class="nf-highlight nf-pr" aria-hidden="true">';
+			localNutritionLabel += globalTab2 + '<span class="nf-highlight nf-pr" aria-hidden="true">';
 				//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
 				localNutritionLabel += $localSettings[naIndex] ?
 					localNaValue :
@@ -1681,11 +1768,11 @@
 
 		//this is for everything else
 		if (valueIndex != 'valueAddedSugars') {
-			localNutritionLabel += localTab2 + '<span class="' + labelClass + '">';
+			localNutritionLabel += globalTab2 + '<span class="' + labelClass + '">';
 				localNutritionLabel += $localSettings[attributeText];
 			localNutritionLabel += '</span>\n';
 
-			localNutritionLabel += localTab2 + '<span class="' + valueClass + '" itemprop="' + itemPropValue + '">';
+			localNutritionLabel += globalTab2 + '<span class="' + valueClass + '" itemprop="' + itemPropValue + '">';
 				localNutritionLabel += $localSettings[naIndex] ?
 					localNaValue :
 					(
@@ -1696,9 +1783,9 @@
 			localNutritionLabel += '</span>\n';
 		//special case for added sugars
 		} else {
-			localNutritionLabel += localTab2 + '<span class="' + labelClass + '">\n';
+			localNutritionLabel += globalTab2 + '<span class="' + labelClass + '">\n';
 				localNutritionLabel += $localSettings['textAddedSugars1'] + '\n';
-				localNutritionLabel += localTab3 + '<span class="' + valueClass + '" itemprop="' + itemPropValue + '">';
+				localNutritionLabel += globalTab3 + '<span class="' + valueClass + '" itemprop="' + itemPropValue + '">';
 					localNutritionLabel += $localSettings[naIndex] ?
 						localNaValue :
 						(
@@ -1711,50 +1798,52 @@
 			localNutritionLabel += '</span>\n';
 		}
 
-		return localNutritionLabel += localTab1 + '</div>\n';
-	}//end of => function generateAttributeHtml2018Version($localSettings, valueIndex, unitIndex, naIndex, attributeText, itemPropValue, topDivClass, showPercentageCode,
+		return localNutritionLabel += globalTab1 + '</div>\n';
+	}//end of => function generateAttributeHtml2018Version(**too many parameters**)
 
 
 	//generate and return the html code for the ingredients area
-	function ingredientsHtml2018Version($localSettings, localTab1, localTab2) {
-		var localNutritionLabel = '';
+	function ingredientsHtml2018Version($localSettings) {
+		let localNutritionLabel = '';
 		if (!$localSettings.hidePercentDailyValues) {
-			localNutritionLabel += localTab1 + '<br/>\n\n';
+			localNutritionLabel += globalTab3 + '<br/>\n\n';
 		}
 
-		localNutritionLabel += localTab1 + '<div class="' + ($localSettings.hidePercentDailyValues ? 'nf-ingredientListDivHiddenDailyValues' : 'nf-ingredientListDiv') + '" tabindex="0">\n';
-			localNutritionLabel += localTab2 + '<strong class="active" id="nf-ingredientList">' + $localSettings.ingredientLabel + '</strong>\n';
-			localNutritionLabel += localTab2 + $localSettings.ingredientList + '\n';
-		return localNutritionLabel += localTab1 + '</div><!-- closing class="nf-ingredientListDiv" -->\n\n';
+		localNutritionLabel += globalTab3 + '<div class="' + ($localSettings.hidePercentDailyValues ? 'nf-ingredientListDivHiddenDailyValues' : 'nf-ingredientListDiv') + '" tabindex="0">\n';
+			localNutritionLabel += globalTab4 + '<strong class="active" id="nf-ingredientList">' + $localSettings.ingredientLabel + '</strong>\n';
+			localNutritionLabel += globalTab4 + $localSettings.ingredientList + '\n';
+		return localNutritionLabel += globalTab3 + '</div><!-- closing class="nf-ingredientListDiv" -->\n\n';
 	}
 
 
 	//generate and return the html code for the disclaimer area
-	function disclaimerHtml2018Version($localSettings, localTab1, localTab2) {
-		var localNutritionLabel = localTab1 + '<br/>\n\n';
-		localNutritionLabel += localTab1 + '<div id="nf-calcDisclaimer">\n';
-			localNutritionLabel += localTab2 + '<span id="nf-calcDisclaimerText" tabindex="0">' + $localSettings.valueDisclaimer + '</span>\n';
-		localNutritionLabel += localTab1 + '</div><!-- closing class="nf-calcDisclaimer" -->\n\n';
-		return localNutritionLabel += localTab1 + '<br/>\n\n';
+	function disclaimerHtml2018Version($localSettings) {
+		let localNutritionLabel = globalTab3 + '<br/>\n\n';
+		localNutritionLabel += globalTab3 + '<div id="nf-calcDisclaimer">\n';
+			localNutritionLabel += globalTab4 + '<span id="nf-calcDisclaimerText" tabindex="0">' + $localSettings.valueDisclaimer + '</span>\n';
+		localNutritionLabel += globalTab3 + '</div><!-- closing class="nf-calcDisclaimer" -->\n\n';
+		return localNutritionLabel += globalTab3 + '<br/>\n\n';
 	}
 
 
 	//generate and return the html code for the bottom link area
-	function bottomLinkHtml2018Version($localSettings, localTab1) {
-		var localNutritionLabel = localTab1 + '<div class="nf-spaceAbove"></div>\n';
-		localNutritionLabel += localTab1 + '<a href="' + $localSettings.urlBottomLink + '" target="_newSite" class="nf-homeLinkPrint">' + $localSettings.nameBottomLink + '</a>\n';
-		return localNutritionLabel += localTab1 + '<div class="nf-spaceBelow"></div>\n';
+	function bottomLinkHtml2018Version($localSettings) {
+		let localNutritionLabel = globalTab1 + '<div class="nf-spaceAbove"></div>\n';
+		localNutritionLabel += globalTab1 + '<a href="' + $localSettings.urlBottomLink + '" target="_newSite" class="nf-homeLinkPrint">' + $localSettings.nameBottomLink + '</a>\n';
+		return localNutritionLabel += globalTab1 + '<div class="nf-spaceBelow"></div>\n';
 	}
 
 
 	/*
 	 * generate and return the html code for these areas that share similar html format: vitamin d, calcium, iron and potassium
 	 */
-	function generateHtmlAndComputeValueGivenThePercentage($localSettings, valueIndex, dailyValueIndex, unitIndex_base, unitIndex_percent, naIndex, attributeTexts, showPercentageCode) {
+	function generate2018HtmlAndComputeValueGivenThePercentage(
+			$localSettings, valueIndex, dailyValueIndex, unitIndex_base, unitIndex_percent, naIndex, attributeTexts, showPercentageCode, lastRow
+	) {
 		//initialize the not applicable image icon in case we need to use it
-		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font>' +
-			'<font class="sr-only">' + $localSettings.textDataNotAvailable + '</font>\n';
-		var localNutritionLabel = '<div class="nf-vitamin-column" tabindex="0">\n';
+		let localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font><font class="sr-only">' +
+			$localSettings.textDataNotAvailable + '</font>\n';
+		let localNutritionLabel = '<div class="nf-vitamin-column' + (lastRow ? ' nf-vitamin-column-last' : '') + '" tabindex="0">\n';
 			localNutritionLabel += $localSettings[attributeTexts] + ' ';
 			localNutritionLabel += (
 				$localSettings[naIndex] ?
@@ -1769,7 +1858,8 @@
 							showPercentageCode ?
 								' <span class="nf-pr" aria-hidden="true">' +
 									$localSettings[valueIndex].toFixed($localSettings.decimalPlacesForDailyValues) + $localSettings[unitIndex_percent] +
-								'</span>' : ''
+								'</span>' :
+								''
 						)
 					)
 			) + '\n';
@@ -1778,42 +1868,42 @@
 
 
 	//generate and return the html code for the item area
-	function itemNameHtml2018($localSettings, localTab1, localTab2, localTab3) {
-		var itemNameClass = '';
-		localNutritionLabel = '';
+	function itemNameHtml2018($localSettings) {
+		let itemNameClass = '';
+		let localNutritionLabel = '';
 
 		if ($localSettings.showServingUnitQuantityTextbox) {
 			if (
-					($localSettings.valueServingSizeUnit == null || $localSettings.valueServingSizeUnit == '') ||
+					($localSettings.valueServingSizeUnit === null || $localSettings.valueServingSizeUnit == '') ||
 					(
 						$localSettings.valueServingSizeUnit !== '' &&
 						$localSettings.valueServingSizeUnit !== null &&
 						$localSettings.originalServingUnitQuantity <= 0
 					)
 			) {
-				var hideArrowsClass = '';
-				var textboxClass = 'nf-unitQuantityBox nf-modifier-field';
+				let hideArrowsClass = '';
+				let textboxClass = 'nf-unitQuantityBox nf-modifier-field';
 				if (!$localSettings.hideTextboxArrows) {
-					localNutritionLabel += localTab1 + '<div class="nf-arrows">\n';
-						localNutritionLabel += localTab2 + '<div class="nf-unitQuantityUp nf-arrow-up" aria-label="' + $localSettings.textAriaLabelIncreaseQuantityArrow + '" ';
+					localNutritionLabel += globalTab3 + '<div class="nf-arrows">\n';
+						localNutritionLabel += globalTab4 + '<div class="nf-unitQuantityUp nf-arrow-up" aria-label="' + $localSettings.textAriaLabelIncreaseQuantityArrow + '" ';
 							localNutritionLabel += 'rel="nofollow" tabindex="0"></div>\n';
-						localNutritionLabel += localTab2 + '<div class="nf-unitQuantityDown nf-arrow-down" aria-label="' + $localSettings.textAriaLabelDecreaseQuantityArrow + '" ';
+						localNutritionLabel += globalTab4 + '<div class="nf-unitQuantityDown nf-arrow-down" aria-label="' + $localSettings.textAriaLabelDecreaseQuantityArrow + '" ';
 							localNutritionLabel += 'rel="nofollow" tabindex="0"></div>\n';
-					localNutritionLabel += localTab1 + '</div><!-- closing class="nf-arrows v1" -->\n\n';
+					localNutritionLabel += globalTab3 + '</div><!-- closing class="nf-arrows v1" -->\n\n';
 				} else {
 					textboxClass = 'nf-unitQuantityBox nf-modifier-field nf-arrowsAreHidden';
 					hideArrowsClass = 'nf-fixed-serving ';
 				}
 
-					localNutritionLabel += localTab1 + '<input type="text" value="' + parseFloat(
+					localNutritionLabel += globalTab3 + '<input type="text" value="' + parseFloat(
 						$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
 					) + '" class="' + textboxClass + '" data-role="none" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
 
-					localNutritionLabel += localTab1 + '<input type="hidden" value="' + parseFloat(
+					localNutritionLabel += globalTab3 + '<input type="hidden" value="' + parseFloat(
 						$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
 					) + '" id="nf-nixLabelBeforeQuantity">\n\n';
 
-				var itemNameClass = hideArrowsClass;
+				itemNameClass = hideArrowsClass;
 			} else if (!$localSettings.showServingUnitQuantity) {
 				itemNameClass += 'no-indent';
 			}
@@ -1822,7 +1912,7 @@
 			itemNameClass += 'no-indent';
 		}
 
-		localNutritionLabel += localTab1 + '<div class="nf-item-name ' + itemNameClass + '" tabindex="0">' + '\n';
+		localNutritionLabel += globalTab3 + '<div class="nf-item-name ' + itemNameClass + '" tabindex="0">\n';
 
 			if (
 					$localSettings.showServingUnitQuantity &&
@@ -1830,87 +1920,74 @@
 					$localSettings.valueServingSizeUnit !== '' &&
 					$localSettings.valueServingSizeUnit !== null
 			) {
-				localNutritionLabel += localTab2 + $localSettings.valueServingSizeUnit + '\n';
+				localNutritionLabel += globalTab4 + $localSettings.valueServingSizeUnit + '\n';
 
-				if ($localSettings.valueServingWeightGrams > 0) {
-					localNutritionLabel += localTab2 + '(<span itemprop="servingSize">' +
+				if ($localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0) {
+					localNutritionLabel += globalTab4 + '(<span itemprop="servingSize">' +
 						parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) ) +
 						$localSettings.unitServingWeight +
 					'</span>)\n';
 				}
 			}
 
-			localNutritionLabel += localTab2 + '<div>\n';
-				localNutritionLabel += localTab3 + $localSettings.itemName + '\n';
-				if ($localSettings.showBrandName && $localSettings.brandName != null && $localSettings.brandName != '') {
+			localNutritionLabel += globalTab4 + '<div>\n';
+				localNutritionLabel += globalTab5 + $localSettings.itemName + '\n';
+				if ($localSettings.showBrandName && $localSettings.brandName !== null && $localSettings.brandName != '') {
 					localNutritionLabel += ' - ' + $localSettings.brandName;
 				}
-			localNutritionLabel += '\n' + localTab2 + '</div>\n';
-		return localNutritionLabel += localTab1 + '</div>\n';
+			localNutritionLabel += '\n' + globalTab4 + '</div>\n';
+		return localNutritionLabel += globalTab3 + '</div>\n';
 	}//end of => function itemNameHtml2018($localSettings)
 
 
 	//generate and return the html code for the serving unit quantity area
 	function sevingUnitQuantityHtml2018($localSettings) {
-		//initializing the tab variables (for debugging and editing purposes)
-		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
-		for (x = 3; x < 7; x++) {
-			var tab = '';
-			for (y = 1; y <= x; y++) {
-				tab += '\t';
-			}
-			eval('var localTab' + x + ' = "' + tab + '";');
-		}
-
-		var localServingSizeIsHidden = localServingContainerIsHidden = false;
-		var localNutritionLabel = '';
+		let localServingSizeIsHidden = false;
+		let localServingContainerIsHidden = false;
+		let localNutritionLabel = '';
 
 		if ($localSettings.showServingUnitQuantity) {
 			if ($localSettings.originalServingUnitQuantity > 0) {
-				localNutritionLabel += localTab3 + '<div tabIndex="0"><!-- opening for serving size div -->\n';
-					localNutritionLabel += localTab4 + $localSettings.textServingSize;
+				let servingSizeDivAlreadyClosed = false;
+
+				localNutritionLabel += globalTab3 + '<div tabIndex="0" class="nf-line"><!-- opening for serving size div -->\n';
+					localNutritionLabel += globalTab4 + $localSettings.textServingSize;
 
 					localNutritionLabel += $localSettings.showServingUnitQuantityTextbox ?
 						'' :
 						' <span itemprop="servingSize">' +
 							parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
-						'</span>\n';
+						' </span>\n';
 
-				var servingSizeDivAlreadyClosed = false;
-
-				var unitAddedClass = '';
-				var gramsAddedClass = '';
 				if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null) {
 					if (
 							$localSettings.showServingUnitQuantityTextbox &&
-							$localSettings.valueServingSizeUnit != null &&
+							$localSettings.valueServingSizeUnit !== null &&
 							$localSettings.valueServingSizeUnit != ''
 					) {
-						unitAddedClass = 'nf-unitHasTextbox';
-						gramsAddedClass = 'nf-gramsHasTextbox';
+						let textboxClass = 'nf-unitQuantityBox nf-modifier-field';
 
 						//close the serving size div
 						//this is needed so cases like this will be shown properly
 						servingSizeDivAlreadyClosed = true;
-						localNutritionLabel += '\n' + localTab3 + '</div><!-- closing for serving size div -->\n\n';
+						localNutritionLabel += '\n' + globalTab3 + '</div><!-- closing for serving size div -->\n\n';
 
-						var textboxClass = 'nf-unitQuantityBox nf-modifier-field';
 						if (!$localSettings.hideTextboxArrows) {
-							localNutritionLabel += localTab5 + '<div class="nf-arrows"><!-- opening class="nf-arrows" -->\n';
-								localNutritionLabel += localTab6 + '<div class="nf-unitQuantityUp nf-arrow-up" aria-label="' + $localSettings.textAriaLabelIncreaseQuantityArrow + '" ';
+							localNutritionLabel += globalTab5 + '<div class="nf-arrows"><!-- opening class="nf-arrows" -->\n';
+								localNutritionLabel += globalTab6 + '<div class="nf-unitQuantityUp nf-arrow-up" aria-label="' + $localSettings.textAriaLabelIncreaseQuantityArrow + '" ';
 									localNutritionLabel += 'rel="nofollow" tabindex="0"></div>\n';
-								localNutritionLabel += localTab6 + '<div class="nf-unitQuantityDown nf-arrow-down" aria-label="' + $localSettings.textAriaLabelDecreaseQuantityArrow + '" ';
+								localNutritionLabel += globalTab6 + '<div class="nf-unitQuantityDown nf-arrow-down" aria-label="' + $localSettings.textAriaLabelDecreaseQuantityArrow + '" ';
 									localNutritionLabel += 'rel="nofollow" tabindex="0"></div>\n';
-							localNutritionLabel += localTab5 + '</div><!-- closing class="nf-arrows v2" -->\n\n';
+							localNutritionLabel += globalTab5 + '</div><!-- closing class="nf-arrows v2" -->\n\n';
 						} else {
 							textboxClass = 'nf-unitQuantityBox nf-modifier-field nf-arrowsAreHidden';
 						}
 
-							localNutritionLabel += localTab5 + '<input type="text" data-role="none" value="' + parseFloat(
+							localNutritionLabel += globalTab5 + '<input type="text" data-role="none" value="' + parseFloat(
 								$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
 							) + '" class="' + textboxClass + '" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
 
-							localNutritionLabel += localTab5 + '<input type="hidden" value="' + parseFloat(
+							localNutritionLabel += globalTab5 + '<input type="hidden" value="' + parseFloat(
 								$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
 							) + '" id="nf-nixLabelBeforeQuantity">\n\n';
 					} else if ($localSettings.originalServingUnitQuantity > 0 && $localSettings.showServingUnitQuantityTextbox) {
@@ -1920,17 +1997,17 @@
 					}
 
 					if (!$localSettings.showItemName) {
-						localNutritionLabel += localTab5 + '<div class="nf-item-name" tabindex="0">\n';
-							localNutritionLabel += localTab6 + $localSettings.valueServingSizeUnit + '\n';
+						localNutritionLabel += globalTab5 + '<div class="nf-item-name" tabindex="0">\n';
+							localNutritionLabel += globalTab6 + $localSettings.valueServingSizeUnit + '\n';
 
-						if ($localSettings.valueServingWeightGrams > 0) {
-							localNutritionLabel += localTab6 + '(' +
+						if ($localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0) {
+							localNutritionLabel += globalTab6 + '(' +
 								parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) ) +
 								$localSettings.unitServingWeight +
 							')\n';
 						}
 
-						localNutritionLabel += localTab5 + '</div>\n';
+						localNutritionLabel += globalTab5 + '</div>\n';
 					}
 				//end of => if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null)
 				} else if ($localSettings.originalServingUnitQuantity > 0 && $localSettings.showServingUnitQuantityTextbox) {
@@ -1938,8 +2015,8 @@
 							parseFloat( $localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition) ) +
 						'</span>\n';
 
-					if ( ($localSettings.valueServingSizeUnit == '' || $localSettings.valueServingSizeUnit == null) && $localSettings.valueServingWeightGrams > 0 ) {
-						localNutritionLabel += localTab4 + '(' +
+					if ( ($localSettings.valueServingSizeUnit == '' || $localSettings.valueServingSizeUnit === null) && $localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0 ) {
+						localNutritionLabel += globalTab4 + '(' +
 							parseFloat( $localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition) ) +
 							$localSettings.unitServingWeight +
 						')\n';
@@ -1947,18 +2024,23 @@
 				}
 
 				if (!servingSizeDivAlreadyClosed) {
-					localNutritionLabel += localTab3 + '</div><!-- closing for serving size div -->\n\n';
+					localNutritionLabel += globalTab3 + '</div><!-- closing for serving size div -->\n\n';
 				}
 			//end of => if ($localSettings.originalServingUnitQuantity > 0)
 			} else {
 				localServingSizeIsHidden = true;
 			}
-		}//end of => if ($localSettings.showServingUnitQuantity)
+		//end of => if ($localSettings.showServingUnitQuantity)
+		} else if (!$localSettings.showServingUnitQuantity && $localSettings.showOnlyTheTextServingSize) {
+				localNutritionLabel += globalTab3 + '<div tabIndex="0" class="nf-line">\n';
+					localNutritionLabel += globalTab4 + $localSettings.textServingSize;
+				localNutritionLabel += globalTab3 + '</div>\n\n';
+		}
 
 		return {
-			'servingSizeIsHidden' : localServingSizeIsHidden,
-			'servingContainerIsHidden' : localServingContainerIsHidden,
-			'nutritionLabel' : localNutritionLabel
+			servingSizeIsHidden: localServingSizeIsHidden,
+			servingContainerIsHidden: localServingContainerIsHidden,
+			nutritionLabel: localNutritionLabel
 		};
 	}//end of => function sevingUnitQuantityHtml2018($localSettings)
 
@@ -1969,35 +2051,25 @@
 	function generateAttributeForUK(
 			$localSettings, valueIndex, dailyValueIndex, unitIndex, naIndex, attributeTexts, itemPropValue, roundFunctionName, roundFunctionRuleName, showPercentageCode, indentedName
 	) {
-		//initializing the tab variables (for debugging and editing purposes)
-		//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
-		for (x = 1; x < 6; x++) {
-			var tab = '';
-			for (y = 1; y <= x; y++) {
-				tab += '\t';
-			}
-			eval('var localTab' + x + ' = "' + tab + '";');
-		}
-
 		//initialize the not applicable image icon in case we need to use it
-		var localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font>' +
-			'<font class="sr-only">' + $localSettings.textDataNotAvailable + '</font>\n';
-		var localNutritionLabel = localTab2 + '<tr tabindex="0">\n';
+		let localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font><font class="sr-only">' +
+			$localSettings.textDataNotAvailable + '</font>\n';
+		let localNutritionLabel = globalTab2 + '<tr tabindex="0">\n';
+		let nameClass = '';
+		let nutritionValueLocal = $localSettings[valueIndex];
 
-			var nameClass = '';
 			if (indentedName) {
 				nameClass = 'uk_nf-indent';
 			}
 
 			//value on the name column
-			localNutritionLabel += localTab3 + '<td class="' + nameClass + '">';
-			if (attributeTexts + '' != '') {
+			localNutritionLabel += globalTab3 + '<td class="' + nameClass + '">';
+			if (String(attributeTexts) != '') {
 				localNutritionLabel += $localSettings[attributeTexts];
 			}
 			localNutritionLabel += '</td>\n';
 
 
-			var nutritionValueLocal = $localSettings[valueIndex];
 			if (valueIndex == 'valueCalories' && unitIndex == 'unitEnergy_kj') {
 				nutritionValueLocal *= 4.184;
 			} else if (valueIndex == 'valueSodium') {
@@ -2005,7 +2077,7 @@
 			}
 
 			//value on the second column (per 100 gram column)
-			localNutritionLabel += localTab3 + '<td>';
+			localNutritionLabel += globalTab3 + '<td>';
 			localNutritionLabel += (
 				$localSettings[naIndex] ?
 					localNaValue :
@@ -2022,7 +2094,7 @@
 			localNutritionLabel += '</td>\n';
 
 			//value on the third column (actual value of the nutrition)
-			localNutritionLabel += localTab3 + '<td itemprop="' + itemPropValue + '">';
+			localNutritionLabel += globalTab3 + '<td itemprop="' + itemPropValue + '">';
 			localNutritionLabel += (
 				$localSettings[naIndex] ?
 					localNaValue :
@@ -2039,7 +2111,7 @@
 			localNutritionLabel += '</td>\n';
 
 			//value on the percentage column (4th)
-			localNutritionLabel += localTab3 + '<td aria-hidden="true">'
+			localNutritionLabel += globalTab3 + '<td aria-hidden="true">';
 
 			if (!$localSettings['hidePercentDailyValues'] && showPercentageCode) {
 				//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
@@ -2066,50 +2138,56 @@
 					) + '%';
 			}
 
-		return localNutritionLabel + '</td>\n' + localTab2 + '</tr>\n';
-	}//end of => function generateAttributeForUK($localSettings, valueIndex, dailyValueIndex, unitIndex, naIndex, attributeTexts, itemPropValue,roundFunctionName,
-																									//roundFunctionRuleName, showPercentageCode, indentedName)
+		return localNutritionLabel + '</td>\n' + globalTab2 + '</tr>\n';
+	}//end of => function generateAttributeForUK(**too many parameters**)
 
 
 	//generate and return the html code for the reference intake area
-	function referenceIntakeHtmlUKVersion($localSettings, localTab1, localTab2) {
-		var localNutritionLabel = localTab1 + '<div class="referenceIntake" tabindex="0">\n';
-			localNutritionLabel += localTab2 + '* ' + $localSettings.textUKReferenceIntake + ' ';
+	function referenceIntakeHtmlUKVersion($localSettings) {
+		let localNutritionLabel = globalTab6 + '<div class="referenceIntake" tabindex="0">\n';
+			localNutritionLabel += globalTab7 + '* ' + $localSettings.textUKReferenceIntake + ' ';
 			//the kj value on the reference intake is rounded to the nearest hundred
 			localNutritionLabel += '(' + roundToNearestNum($localSettings.calorieIntake * 4.184, 100) + $localSettings.unitEnergy_kj;
 				localNutritionLabel += '/' + $localSettings.calorieIntake + $localSettings.unitEnergy_kcal + ')\n';
-		return localNutritionLabel += localTab1 + '</div>\n<div class="uk_nf-spaceBelow"></div>\n';
+		return localNutritionLabel += globalTab6 + '</div>\n<div class="uk_nf-spaceBelow"></div>\n';
 	}
 
 
 	//generate and return the html code for the ingredients area
-	function ingredientsHtmlUKVersion($localSettings, localTab1, localTab2) {
-		var localNutritionLabel = localTab1 + '<div class="uk_nf-ingredientListDiv" tabindex="0">\n';
-			localNutritionLabel += localTab2 + '<strong class="active" id="uk_nf-ingredient-statement">' + $localSettings.ingredientLabel + '</strong> ' + $localSettings.ingredientList + '\n';
-		return localNutritionLabel += localTab1 + '</div><br/><!-- closing class="uk_nf-ingredientListDiv" -->\n\n';
+	function ingredientsHtmlUKVersion($localSettings) {
+		let localNutritionLabel = globalTab6 + '<div class="uk_nf-ingredientListDiv" tabindex="0">\n';
+			localNutritionLabel += globalTab7 + '<strong class="active" id="uk_nf-ingredient-statement">' + $localSettings.ingredientLabel + '</strong> ' + $localSettings.ingredientList + '\n';
+		return localNutritionLabel += globalTab6 + '</div><br/><!-- closing class="uk_nf-ingredientListDiv" -->\n\n';
 	}
 
 
 	//generate and return the html code for the disclaimer area
-	function disclaimerHtmlUKVersion($localSettings, localTab1, localTab2) {
-		var localNutritionLabel = localTab1 + '<div id="uk_nf-calcDisclaimer">\n';
-			localNutritionLabel += localTab2 + '<span id="uk_nf-disclaimer" tabindex="0">' + $localSettings.valueDisclaimer + '</span>\n';
-		return localNutritionLabel += localTab1 + '</div><br/><!-- closing id="uk_nf-calcDisclaimer" -->\n\n';
+	function disclaimerHtmlUKVersion($localSettings) {
+		let localNutritionLabel = globalTab6 + '<div id="uk_nf-calcDisclaimer">\n';
+			localNutritionLabel += globalTab7 + '<span id="uk_nf-disclaimer" tabindex="0">' + $localSettings.valueDisclaimer + '</span>\n';
+		return localNutritionLabel += globalTab6 + '</div><br/><!-- closing id="uk_nf-calcDisclaimer" -->\n\n';
 	}
 
 
 	//generate and return the html code for the bottom link area
-	function bottomLinkHtmlUKVersion($localSettings, localTab1) {
-		var localNutritionLabel = localTab1 + '<div class="uk_nf-spaceAbove"></div>\n';
-		localNutritionLabel += localTab1 + '<a href="' + $localSettings.urlBottomLink + '" target="_newSite" class="uk_nf-homeLinkPrint">' + $localSettings.nameBottomLink + '</a>\n';
-		return localNutritionLabel += localTab1 + '<div class="uk_nf-spaceBelow"></div>\n';
+	function bottomLinkHtmlUKVersion($localSettings) {
+		let localNutritionLabel = globalTab6 + '<div class="uk_nf-spaceAbove"></div>\n';
+		localNutritionLabel += globalTab6 + '<a href="' + $localSettings.urlBottomLink + '" target="_newSite" class="uk_nf-homeLinkPrint">' + $localSettings.nameBottomLink + '</a>\n';
+		return localNutritionLabel += globalTab6 + '<div class="uk_nf-spaceBelow"></div>\n';
 	}
 
 
 	NutritionLabel.prototype = {
 		generateLegacy: function() {
 			//this is the function that returns the html code for the nutrition label based on the settings that is supplied by the user
-			var $this = this;
+			let $this = this;
+			let borderCSS = '';
+			let nutritionLabel = '';
+			let sevingUnitQuantityHtmlLegacyResult = sevingUnitQuantityHtmlLegacy($this.settings);
+			let servingSizeIsHidden = sevingUnitQuantityHtmlLegacyResult.servingSizeIsHidden;
+			let servingContainerIsHidden = sevingUnitQuantityHtmlLegacyResult.servingContainerIsHidden;
+			let useLine = 'addedPadding';
+			let useLineAgain = 'addedPadding';
 
 			//return the plugin incase it has already been created
 			if ($this.nutritionLabel) {
@@ -2145,245 +2223,257 @@
 				$this.settings.showIron = false;
 			}
 
-			//initializing the tab variables (for debugging and editing purposes)
-			//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
-			for (x = 1; x < 9; x++) {
-				var tab = '';
-				for (y = 1; y <= x; y++) {
-					tab += '\t';
-				}
-				eval('var tab' + x + ' = "' + tab + '";');
-			}
-
-			var borderCSS = '';
 			if ($this.settings.allowNoBorder) {
 				borderCSS = 'border: 0;';
 			}
 
 			//creates the html code for the label based on the settings
-			var nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="nutritionLabel" style="' + borderCSS;
+			nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="nutritionLabel" style="' + borderCSS;
 			if (!$this.settings.allowCustomWidth) {
 				nutritionLabel += ' width: ' + $this.settings.width + 'px;">\n';
 			} else {
 				nutritionLabel += ' width: ' + $this.settings.widthCustom + ';">\n';
 			}
 
-			nutritionLabel += tab1 + '<div class="title" tabindex="0">' + $this.settings.textNutritionFacts + '</div>\n';
+			nutritionLabel += globalTab1 + '<div class="title" tabindex="0">' + $this.settings.textNutritionFacts + '</div>\n';
 
 			if ($this.settings.showItemName) {
 				nutritionLabel += itemNameHtmlLegacy($this.settings);
 			}
 
-			var sevingUnitQuantityHtmlLegacyResult = sevingUnitQuantityHtmlLegacy($this.settings);
-			var servingSizeIsHidden = sevingUnitQuantityHtmlLegacyResult.servingSizeIsHidden;
-			var servingContainerIsHidden = sevingUnitQuantityHtmlLegacyResult.servingContainerIsHidden;
 			nutritionLabel += sevingUnitQuantityHtmlLegacyResult.nutritionLabel;
 
 			if (
 					(!$this.settings.showItemName && !$this.settings.showServingUnitQuantity) ||
 					(!$this.settings.showItemName && servingSizeIsHidden && servingContainerIsHidden)
 			) {
-				nutritionLabel += tab1 + '<div class="headerSpacer"></div>\n';
+				nutritionLabel += globalTab1 + '<div class="headerSpacer"></div>\n';
 			}
 
-				nutritionLabel += tab1 + '<div class="bar1"></div>\n';
+				nutritionLabel += globalTab1 + '<div class="bar1"></div>\n';
 
 			if ($this.settings.showAmountPerServing) {
-				nutritionLabel += tab1 + '<div class="line m" tabindex="0">';
+				nutritionLabel += globalTab1 + '<div class="addedPadding m" tabindex="0">';
 					nutritionLabel += '<strong>' + $this.settings.textAmountPerServing + '</strong>';
 				nutritionLabel += '</div>\n';
 			}
 
-				nutritionLabel += tab1 + '<div class="line">\n';
+				nutritionLabel += globalTab1 + '<div class="' + ($this.settings.showAmountPerServing ? 'line' : 'addedPadding') + '">\n';
 
 				if ($this.settings.showFatCalories) {
 					nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-						//$localSettings  valueIndex          unitIndex          naIndex          attributeText     localTabValue  lineClass  attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-						$this.settings,  'valueFatCalories', 'unitFatCalories', 'naFatCalories', 'textFatCalories', tab2,         'fr',       2,                    '',            '',           'roundCalories'
+						//$localSettings valueIndex          unitIndex          naIndex          attributeText     localTabValue lineClass attributeDisplayType itemPropValue localExtraTab roundFunctionName
+						$this.settings, 'valueFatCalories', 'unitFatCalories', 'naFatCalories', 'textFatCalories', globalTab2,  'fr',      2,                   '',           '',          'roundCalories'
 					);
 				}
 
 				if ($this.settings.showCalories) {
 					nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText  localTabValue  lineClass  attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-						$this.settings,  'valueCalories', 'unitCalories', 'naCalories', 'textCalories', tab2,          '',        1,                   'calories',     '',           'roundCalories'
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass attributeDisplayType itemPropValue localExtraTab roundFunctionName
+						$this.settings, 'valueCalories', 'unitCalories', 'naCalories', 'textCalories', globalTab2,   '',       1,                  'calories',    '',          'roundCalories'
 					);
 				} else if ($this.settings.showFatCalories) {
-					nutritionLabel += tab2 + '<div>&nbsp;</div>\n';
+					nutritionLabel += globalTab2 + '<div>&nbsp;</div>\n';
 				}
 
-				nutritionLabel += tab1 + '</div>\n';
-				nutritionLabel += tab1 + '<div class="bar2"></div>\n';
+				nutritionLabel += globalTab1 + '</div>\n';
+				nutritionLabel += globalTab1 + '<div class="bar2"></div>\n';
 
 			if (!$this.settings.hidePercentDailyValues) {
-				nutritionLabel += tab1 + '<div class="line ar ">';
+				useLine = 'line';
+				nutritionLabel += globalTab1 + '<div class="addedPadding ar">';
 					nutritionLabel += '<strong>% ' + $this.settings.textDailyValues + '<sup>*</sup></strong>';
 				nutritionLabel += '</div>\n';
 			}
 
 			if ($this.settings.showTotalFat) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex       dailyValueIndex       unitIndex       naIndex       attributeTexts  lineClass  itemPropValue  roundFunctionName  roundFunctionRuleName  boldName  showPercentageCode
-					$this.settings, 'valueTotalFat', 'dailyValueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'line',    'fatContent',  'roundFat',        'roundFatRule',         true,     $this.settings.showDailyTotalFat
+					//$localSetting  valueIndex       dailyValueIndex       unitIndex       naIndex       attributeTexts  lineClass itemPropValue roundFunctionName roundFunctionRuleName boldName showPercentageCode
+					$this.settings, 'valueTotalFat', 'dailyValueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat',  useLine, 'fatContent', 'roundFat',       'roundFatRule',        true,    $this.settings.showDailyTotalFat
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showSatFat) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts  lineClass      itemPropValue          roundFunctionName  roundFunctionRuleName  boldName  showPercentageCode
-					$this.settings, 'valueSatFat', 'dailyValueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',   'line indent', 'saturatedFatContent', 'roundFat',        'roundFatRule',         false,    $this.settings.showDailySatFat
+					//$localSetting  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts lineClass             itemPropValue          roundFunctionName roundFunctionRuleName boldName showPercentageCode
+					$this.settings, 'valueSatFat', 'dailyValueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',   useLine + ' indent', 'saturatedFatContent', 'roundFat',       'roundFatRule',        false,   $this.settings.showDailySatFat
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showTransFat) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex       unitIndex       naIndex       attributeText  localTabValue  lineClass     attributeDisplayType  itemPropValue     localExtraTab  roundFunctionName
-					$this.settings,  'valueTransFat', 'unitTransFat', 'naTransFat', 'textTransFat', tab1,         'line indent', 3,                   'transFatContent', tab2,         'roundFat'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass            attributeDisplayType itemPropValue     localExtraTab roundFunctionName
+					$this.settings, 'valueTransFat', 'unitTransFat', 'naTransFat', 'textTransFat', globalTab1,   useLine + ' indent', 3,                  'transFatContent', globalTab2,  'roundFat'
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showPolyFat) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex      unitIndex      naIndex      attributeText  localTabValue  lineClass     attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valuePolyFat', 'unitPolyFat', 'naPolyFat', 'textPolyFat',  tab1,         'line indent', 2,                    '',            '',           'roundFat'
+					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass            attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valuePolyFat', 'unitPolyFat', 'naPolyFat', 'textPolyFat', globalTab1,   useLine + ' indent', 2,                   '',           '',          'roundFat'
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showMonoFat) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex      unitIndex      naIndex      attributeText  localTabValue  lineClass     attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueMonoFat', 'unitMonoFat', 'naMonoFat', 'textMonoFat',  tab1,         'line indent', 2,                    '',            '',           'roundFat'
+					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass            attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueMonoFat', 'unitMonoFat', 'naMonoFat', 'textMonoFat', globalTab1,   useLine + ' indent', 2,                   '',           '',          'roundFat'
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showCholesterol) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex          dailyValueIndex          unitIndex          naIndex          attributeTexts     lineClass  itemPropValue         roundFunctionName   roundFunctionRuleName  boldName  showPercentageCode
-					$this.settings, 'valueCholesterol', 'dailyValueCholesterol', 'unitCholesterol', 'naCholesterol', 'textCholesterol', 'line',    'cholesterolContent', 'roundCholesterol', 'roundCholesterolRule', true,     $this.settings.showDailyCholesterol
+					//$localSetting  valueIndex          dailyValueIndex          unitIndex          naIndex          attributeTexts    lineClass itemPropValue         roundFunctionName   roundFunctionRuleName  boldName showPercentageCode
+					$this.settings, 'valueCholesterol', 'dailyValueCholesterol', 'unitCholesterol', 'naCholesterol', 'textCholesterol', useLine, 'cholesterolContent', 'roundCholesterol', 'roundCholesterolRule', true,    $this.settings.showDailyCholesterol
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showSodium) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts  lineClass  itemPropValue    roundFunctionName  roundFunctionRuleName  boldName  showPercentageCode
-					$this.settings, 'valueSodium', 'dailyValueSodium', 'unitSodium', 'naSodium', 'textSodium',   'line',    'sodiumContent', 'roundSodium',     'roundSodiumRule',      true,     $this.settings.showDailySodium
+					//$localSetting  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts lineClass itemPropValue    roundFunctionName roundFunctionRuleName boldName showPercentageCode
+					$this.settings, 'valueSodium', 'dailyValueSodium', 'unitSodium', 'naSodium', 'textSodium',   useLine, 'sodiumContent', 'roundSodium',    'roundSodiumRule',     true,    $this.settings.showDailySodium
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showPotassium) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex        dailyValueIndex        unitIndex        naIndex        attributeTexts   lineClass  itemPropValue       roundFunctionName  roundFunctionRuleName  boldName  showPercentageCode
-					$this.settings, 'valuePotassium', 'dailyValuePotassium', 'unitPotassium', 'naPotassium', 'textPotassium', 'line',    'potassiumContent', 'roundPotassium',  'roundPotassiumRule',   true,     $this.settings.showDailyPotassium
+					//$localSetting  valueIndex        dailyValueIndex        unitIndex        naIndex        attributeTexts  lineClass itemPropValue       roundFunctionName roundFunctionRuleName boldName showPercentageCode
+					$this.settings, 'valuePotassium', 'dailyValuePotassium', 'unitPotassium', 'naPotassium', 'textPotassium', useLine, 'potassiumContent', 'roundPotassium', 'roundPotassiumRule',  true,    $this.settings.showDailyPotassium
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showTotalCarb) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex        dailyValueIndex   unitIndex        naIndex        attributeTexts   lineClass  itemPropValue          roundFunctionName             roundFunctionRuleName            boldName  showPercentageCode
-					$this.settings, 'valueTotalCarb', 'dailyValueCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'line',    'carbohydrateContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', true,     $this.settings.showDailyTotalCarb
+					//$localSetting  valueIndex        dailyValueIndex   unitIndex        naIndex        attributeTexts  lineClass itemPropValue          roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
+					$this.settings, 'valueTotalCarb', 'dailyValueCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', useLine, 'carbohydrateContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', true,    $this.settings.showDailyTotalCarb
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showFibers) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts  lineClass      itemPropValue   roundFunctionName             roundFunctionRuleName            boldName  showPercentageCode
-					$this.settings, 'valueFibers', 'dailyValueFiber', 'unitFibers', 'naFibers', 'textFibers',   'line indent', 'fiberContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,    $this.settings.showDailyFibers
+					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts lineClass             itemPropValue   roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
+					$this.settings, 'valueFibers', 'dailyValueFiber', 'unitFibers', 'naFibers', 'textFibers',   useLine + ' indent', 'fiberContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   $this.settings.showDailyFibers
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showSugars) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
-					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts  lineClass      itemPropValue   roundFunctionName             roundFunctionRuleName            boldName  showPercentageCode
-					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',   'line indent', 'sugarContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,    $this.settings.showDailySugars
+					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts lineClass             itemPropValue   roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
+					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',   useLine + ' indent', 'sugarContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   $this.settings.showDailySugars
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showSugarAlcohol) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex           unitIndex           naIndex           attributeText      localTabValue  lineClass     attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', tab1,         'line indent', 4,                   '',             '',           'roundCarbFiberSugarProtein'
+					//$localSettings valueIndex           unitIndex           naIndex           attributeText      localTabValue lineClass            attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', globalTab1,   useLine + ' indent', 4,                   '',            '',          'roundCarbFiberSugarProtein'
 				);
+				useLine = 'line';
 			}
 
 			if ($this.settings.showProteins) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex       unitIndex       naIndex       attributeText  localTabValue  lineClass  attributeDisplayType  itemPropValue    localExtraTab  roundFunctionName
-					$this.settings,  'valueProteins', 'unitProteins', 'naProteins', 'textProteins', tab1,         'line',     1,                   'proteinContent', '',           'roundCarbFiberSugarProtein'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass attributeDisplayType itemPropValue    localExtraTab roundFunctionName
+					$this.settings, 'valueProteins', 'unitProteins', 'naProteins', 'textProteins', globalTab1,   useLine,  1,                  'proteinContent', '',          'roundCarbFiberSugarProtein'
 				);
+				useLine = 'line'; //in case we need to add more attributes below this in future updates
 			}
 
-			nutritionLabel += tab1 + '<div class="bar1"></div>\n';
+			nutritionLabel += globalTab1 + '<div class="bar1"></div>\n';
 
 			if ($this.settings.showVitaminA) {
+				//in case we need to add more attributes above this in future updates
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex       unitIndex       naIndex       attributeText  localTabValue  lineClass       attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueVitaminA', 'unitVitaminA', 'naVitaminA', 'textVitaminA', tab1,         'line vitaminA', 5,                    '',            tab2,         'roundVitaminsCalciumIron'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass                   attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueVitaminA', 'unitVitaminA', 'naVitaminA', 'textVitaminA', globalTab1,   useLineAgain + ' vitaminA', 5,                   '',           globalTab2,  'roundVitaminsCalciumIron'
 				);
+				useLineAgain = 'line';
 			}
 
 			if ($this.settings.showVitaminC) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex       unitIndex       naIndex       attributeText  localTabValue  lineClass       attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueVitaminC', 'unitVitaminC', 'naVitaminC', 'textVitaminC', tab1,         'line vitaminC', 5,                    '',            tab2,         'roundVitaminsCalciumIron'
+					//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass                   attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueVitaminC', 'unitVitaminC', 'naVitaminC', 'textVitaminC', globalTab1,   useLineAgain + ' vitaminC', 5,                   '',           globalTab2,  'roundVitaminsCalciumIron'
 				);
+				useLineAgain = 'line';
 			}
 
 			if ($this.settings.showCalcium) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex      unitIndex      naIndex      attributeText  localTabValue  lineClass      attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueCalcium', 'unitCalcium', 'naCalcium', 'textCalcium',  tab1,         'line calcium', 5,                    '',            tab2,         'roundVitaminsCalciumIron'
+					//$localSettings valueIndex      unitIndex      naIndex      attributeText localTabValue lineClass                  attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueCalcium', 'unitCalcium', 'naCalcium', 'textCalcium', globalTab1,   useLineAgain + ' calcium', 5,                   '',           globalTab2,  'roundVitaminsCalciumIron'
 				);
+				useLineAgain = 'line';
 			}
 
 			if ($this.settings.showIron) {
 				nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-					//$localSettings  valueIndex   unitIndex   naIndex   attributeText  localTabValue  lineClass   attributeDisplayType  itemPropValue  localExtraTab  roundFunctionName
-					$this.settings,  'valueIron', 'unitIron', 'naIron', 'textIron',     tab1,         'line iron', 5,                    '',            tab2,         'roundVitaminsCalciumIron'
+					//$localSettings valueIndex   unitIndex   naIndex   attributeText localTabValue lineClass               attributeDisplayType itemPropValue localExtraTab roundFunctionName
+					$this.settings, 'valueIron', 'unitIron', 'naIron', 'textIron',    globalTab1,   useLineAgain + ' iron', 5,                   '',           globalTab2,  'roundVitaminsCalciumIron'
 				);
+				useLineAgain = 'line'; //in case we need to add more attributes below this in future updates
 			}
 
-				nutritionLabel += tab1 + '<div class="dvCalorieDiet line">\n';
-					nutritionLabel += tab2 + '<div class="calorieNote">\n';
+				nutritionLabel += globalTab1 + '<div class="dvCalorieDiet ' + useLineAgain + '">\n';
+					nutritionLabel += globalTab2 + '<div class="calorieNote">\n';
 
 					if (!$this.settings.hidePercentDailyValues) {
-						nutritionLabel += tab3 + '<span tabindex="0"><span class="star" aria-hidden="true">*</span> ' +
+						nutritionLabel += globalTab3 + '<span tabindex="0"><span class="star" aria-hidden="true">*</span> ' +
 							$this.settings.textPercentDailyPart1 + ' ' +
 							$this.settings.calorieIntake + ' ' +
 							$this.settings.textPercentDailyPart2 + '.</span>\n';
 					}
 
 					if ($this.settings.showIngredients) {
-						nutritionLabel += ingredientsHtmlLegacy($this.settings, tab3, tab4);
+						nutritionLabel += ingredientsHtmlLegacy($this.settings);
 					}
 
 					if ($this.settings.showDisclaimer) {
-						nutritionLabel += disclaimerHtmlLegacy($this.settings, tab3, tab4);
+						nutritionLabel += disclaimerHtmlLegacy($this.settings);
 					}
 
-					nutritionLabel += tab2 + '</div><!-- closing class="calorieNote" -->\n\n';
+					nutritionLabel += globalTab2 + '</div><!-- closing class="calorieNote" -->\n\n';
 
 				if ($this.settings.showCalorieDiet) {
 					nutritionLabel += calorieDietHtmlLegacy($this.settings);
 				}
 
-				nutritionLabel += tab1 + '</div><!-- closing class="dvCalorieDiet line" -->\n\n';
+				nutritionLabel += globalTab1 + '</div><!-- closing class="dvCalorieDiet line" -->\n\n';
 
 			if ($this.settings.showBottomLink) {
-				nutritionLabel += bottomLinkHtmlLegacy($this.settings, tab1);
+				nutritionLabel += bottomLinkHtmlLegacy($this.settings);
 			}
 
 			if ($this.settings.showCustomFooter) {
-				nutritionLabel += tab1 + '<div class="customFooter" tabindex="0">' + $this.settings.valueCustomFooter + '</div>\n';
+				nutritionLabel += globalTab1 + '<div class="customFooter" tabindex="0">' + $this.settings.valueCustomFooter + '</div>\n';
 			}
 
 			//returns the html for the nutrition label
 			return nutritionLabel += '<div class="naTooltip">' + $this.settings.textDataNotAvailable + '</div>\n</div><!-- closing class="nutritionLabel" -->\n';
-		},//end of => generateLegacy: function()
+		}, //end of => generateLegacy: function()
 
 
 		generate2018: function() {
 			//this is the function that returns the html code for the nutrition label based on the settings that is supplied by the user
-			var $this = this;
+			let $this = this;
+			let borderCSS = '';
+			let nutritionLabel = '';
+			let showLineDiv;
+
+			let sevingUnitQuantityHtml2018Result = sevingUnitQuantityHtml2018($this.settings);
+			let servingSizeIsHidden = sevingUnitQuantityHtml2018Result.servingSizeIsHidden;
+			let servingContainerIsHidden = sevingUnitQuantityHtml2018Result.servingContainerIsHidden;
 
 			//return the plugin incase it has already been created
 			if ($this.nutritionLabel) {
@@ -2420,36 +2510,21 @@
 				$this.settings.showDailyPotassium_2018 = false;
 			}
 
-			//initializing the tab variables (for debugging and editing purposes)
-			//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
-			for (x = 1; x < 9; x++) {
-				var tab = '';
-				for (y = 1; y <= x; y++) {
-					tab += '\t';
-				}
-				eval('var tab' + x + ' = "' + tab + '";');
-			}
-
-			var borderCSS = '';
 			if ($this.settings.allowNoBorder) {
 				borderCSS = 'border: 0;';
 			}
 
 			//creates the html code for the label based on the settings
-			var nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="nf" style="' + borderCSS;
+			nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="nf" style="' + borderCSS;
 				if (!$this.settings.allowCustomWidth) {
 					nutritionLabel += ' width: ' + $this.settings.width + 'px;">\n';
 				} else {
 					nutritionLabel += ' width: ' + $this.settings.widthCustom + ';">\n';
 				}
 
-				nutritionLabel += tab1 + '<div class="nf-title" tabindex="0">' + $this.settings.textNutritionFacts + '</div>\n';
+				nutritionLabel += globalTab1 + '<div class="nf-title" tabindex="0">' + $this.settings.textNutritionFacts + '</div>\n';
 
-			var sevingUnitQuantityHtml2018Result = sevingUnitQuantityHtml2018($this.settings);
-			var servingSizeIsHidden = sevingUnitQuantityHtml2018Result.servingSizeIsHidden;
-			var servingContainerIsHidden = sevingUnitQuantityHtml2018Result.servingContainerIsHidden;
-
-			var showLineDiv =
+			showLineDiv =
 				$this.settings.showItemName ||
 				(
 					!$this.settings.showItemName &&
@@ -2459,6 +2534,7 @@
 				(
 					!$this.settings.showItemName &&
 					$this.settings.originalServingUnitQuantity > 0 &&
+					$this.settings.showServingWeightGrams &&
 					$this.settings.valueServingWeightGrams > 0
 				) ||
 				(
@@ -2469,7 +2545,7 @@
 				);
 
 			if (showLineDiv) {
-				nutritionLabel += tab1 + '<div class="nf-line">\n';
+				nutritionLabel += globalTab1 + '<div class="nf-line">\n';
 			}
 
 			if (
@@ -2478,232 +2554,283 @@
 					$this.settings.showServingsPerContainer &&
 					$this.settings.valueServingPerContainer > 0
 			) {
-				nutritionLabel += tab2 + '<div class="nf-per-container" tabindex="0">\n';
-					nutritionLabel += tab3 + parseFloat(
+				nutritionLabel += globalTab2 + '<div class="nf-per-container" tabindex="0">\n';
+					nutritionLabel += globalTab3 + parseFloat(
 						$this.settings.valueServingPerContainer.toFixed($this.settings.decimalPlacesForNutrition)
 					);
 					nutritionLabel += ' ' + $this.settings.textServingsPerContainer + '\n';
-				nutritionLabel += tab2 + '</div>\n\n';
+				nutritionLabel += globalTab2 + '</div>\n\n';
 			}
 
-				nutritionLabel += tab2 + '<div class="nf-serving">\n';
+				nutritionLabel += globalTab2 + '<div class="nf-serving">\n';
 
 					nutritionLabel += sevingUnitQuantityHtml2018Result.nutritionLabel;
 
 					if ($this.settings.showItemName) {
-						nutritionLabel += itemNameHtml2018($this.settings, tab3, tab4, tab5);
+						nutritionLabel += itemNameHtml2018($this.settings);
 					}
 
-				nutritionLabel += tab2 + '</div><!-- end of class="nf-serving" -->\n\n';
+				nutritionLabel += globalTab2 + '</div><!-- end of class="nf-serving" -->\n\n';
 
 			if (showLineDiv) {
-				nutritionLabel += tab1 + '</div><!-- end of class="nf-line" -->\n\n';
+				nutritionLabel += globalTab1 + '</div><!-- end of class="nf-line" -->\n\n';
 			}
 
-				nutritionLabel += tab1 + '<div class="nf-bar2"></div>\n';
-				nutritionLabel += tab1 + '<div class="nf-amount-per-serving" tabindex="0">' + $this.settings.textAmountPerServing + '</div>\n';
+				nutritionLabel += globalTab1 + '<div class="nf-bar2"></div>\n';
+				nutritionLabel += globalTab1 + '<div class="nf-amount-per-serving" tabindex="0">' + $this.settings.textAmountPerServing + '</div>\n';
 
 				if ($this.settings.showCalories) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText   itemPropValue  topDivClass   showPercentageCode  roundFunctionName  roundFunctionRuleName  labelClass   valueClass  dailyValueIndex
-						$this.settings,  'valueCalories', 'unitCalories', 'naCalories', 'textCalories', 'calories',    'nf-calories', false,             'roundCalories',    '',                    '',         'nf-pr',     ''
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue topDivClass   showPercentageCode roundFunctionName roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valueCalories', 'unitCalories', 'naCalories', 'textCalories', 'calories',   'nf-calories', false,            'roundCalories',   '',                   '',       'nf-pr',    ''
 					);
 				}
 
-				nutritionLabel += tab1 + '<div class="nf-bar1"></div>\n';
+				nutritionLabel += globalTab1 + '<div class="nf-bar1"></div>\n';
 
 			if (!$this.settings.hidePercentDailyValues) {
-				nutritionLabel += tab1 + '<div class="nf-line nf-text-right">\n';
-					nutritionLabel += tab2 + '<span class="nf-highlight nf-percent-dv">% ' + $this.settings.textDailyValues + '*</span>\n';
-				nutritionLabel += tab1 + '</div>\n';
+				nutritionLabel += globalTab1 + '<div class="nf-line nf-text-right">\n';
+					nutritionLabel += globalTab2 + '<span class="nf-highlight nf-percent-dv">% ' + $this.settings.textDailyValues + '*</span>\n';
+				nutritionLabel += globalTab1 + '</div>\n';
 			}
 
 				if ($this.settings.showTotalFat) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText   itemPropValue  topDivClass  showPercentageCode                 roundFunctionName  roundFunctionRuleName  labelClass     valueClass  dailyValueIndex
-						$this.settings,  'valueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'fatContent',  'nf-line',    $this.settings.showDailyTotalFat, 'roundFat',        'roundFatRule',        'nf-highlight', '',        'dailyValueTotalFat'
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue topDivClass showPercentageCode                 roundFunctionName roundFunctionRuleName labelClass     valueClass dailyValueIndex
+						$this.settings, 'valueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'fatContent', 'nf-line',   $this.settings.showDailyTotalFat, 'roundFat',       'roundFatRule',       'nf-highlight', '',       'dailyValueTotalFat'
 					);
 				}
 
 				if ($this.settings.showSatFat) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex     unitIndex     naIndex     attributeText  itemPropValue          topDivClass         showPercentageCode               roundFunctionName  roundFunctionRuleName  labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',  'saturatedFatContent', 'nf-line nf-indent', $this.settings.showDailySatFat, 'roundFat',        'roundFatRule',         '',         '',        'dailyValueSatFat'
+						//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue          topDivClass         showPercentageCode               roundFunctionName roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat', 'saturatedFatContent', 'nf-line nf-indent', $this.settings.showDailySatFat, 'roundFat',       'roundFatRule',        '',        '',       'dailyValueSatFat'
 					);
 				}
 
 				if ($this.settings.showTransFat) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText   itemPropValue      topDivClass         showPercentageCode  roundFunctionName  roundFunctionRuleName  labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueTransFat', 'unitTransFat', 'naTransFat', 'textTransFat', 'transFatContent', 'nf-line nf-indent', false,             'roundFat',         '',                     '',         '',        ''
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue      topDivClass         showPercentageCode roundFunctionName roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valueTransFat', 'unitTransFat', 'naTransFat', 'textTransFat', 'transFatContent', 'nf-line nf-indent', false,            'roundFat',        '',                   '',        '',        ''
 					);
 				}
 
 				if ($this.settings.showPolyFat) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex      unitIndex      naIndex      attributeText  itemPropValue  topDivClass         showPercentageCode  roundFunctionName  roundFunctionRuleName  labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valuePolyFat', 'unitPolyFat', 'naPolyFat', 'textPolyFat',  '',           'nf-line nf-indent', false,             'roundFat',         '',                    '',         '',         ''
+						//$localSettings valueIndex      unitIndex      naIndex      attributeText itemPropValue topDivClass         showPercentageCode roundFunctionName roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valuePolyFat', 'unitPolyFat', 'naPolyFat', 'textPolyFat', '',          'nf-line nf-indent', false,            'roundFat',        '',                   '',        '',        ''
 					);
 				}
 
 				if ($this.settings.showMonoFat) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex      unitIndex      naIndex      attributeText  itemPropValue  topDivClass         showPercentageCode  roundFunctionName  roundFunctionRuleName  labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueMonoFat', 'unitMonoFat', 'naMonoFat', 'textMonoFat',  '',           'nf-line nf-indent', false,             'roundFat',         '',                    '',         '',         ''
+						//$localSettings valueIndex      unitIndex      naIndex      attributeText itemPropValue topDivClass         showPercentageCode roundFunctionName roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valueMonoFat', 'unitMonoFat', 'naMonoFat', 'textMonoFat', '',          'nf-line nf-indent', false,            'roundFat',        '',                   '',        '',        ''
 					);
 				}
 
 				if ($this.settings.showCholesterol) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex          unitIndex          naIndex          attributeText      itemPropValue         topDivClass  showPercentageCode                    roundFunctionName   roundFunctionRuleName   labelClass     valueClass  dailyValueIndex
-						$this.settings,  'valueCholesterol', 'unitCholesterol', 'naCholesterol', 'textCholesterol', 'cholesterolContent', 'nf-line',    $this.settings.showDailyCholesterol, 'roundCholesterol', 'roundCholesterolRule', 'nf-highlight', '',        'dailyValueCholesterol'
+						//$localSettings valueIndex          unitIndex          naIndex          attributeText      itemPropValue         topDivClass showPercentageCode                    roundFunctionName   roundFunctionRuleName   labelClass     valueClass dailyValueIndex
+						$this.settings, 'valueCholesterol', 'unitCholesterol', 'naCholesterol', 'textCholesterol', 'cholesterolContent', 'nf-line',   $this.settings.showDailyCholesterol, 'roundCholesterol', 'roundCholesterolRule', 'nf-highlight', '',       'dailyValueCholesterol'
 					);
 				}
 
 				if ($this.settings.showSodium) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex     unitIndex     naIndex     attributeText  itemPropValue    topDivClass  showPercentageCode               roundFunctionName  roundFunctionRuleName  labelClass     valueClass  dailyValueIndex
-						$this.settings,  'valueSodium', 'unitSodium', 'naSodium', 'textSodium',  'sodiumContent', 'nf-line',    $this.settings.showDailySodium, 'roundSodium',     'roundSodiumRule',     'nf-highlight', '',        'dailyValueSodium'
+						//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue    topDivClass showPercentageCode               roundFunctionName roundFunctionRuleName labelClass     valueClass dailyValueIndex
+						$this.settings, 'valueSodium', 'unitSodium', 'naSodium', 'textSodium', 'sodiumContent', 'nf-line',   $this.settings.showDailySodium, 'roundSodium',    'roundSodiumRule',    'nf-highlight', '',       'dailyValueSodium'
 					);
 				}
 
 				if ($this.settings.showTotalCarb) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex        unitIndex        naIndex        attributeText    itemPropValue          topDivClass  showPercentageCode                  roundFunctionName             roundFunctionRuleName             labelClass      valueClass  dailyValueIndex
-						$this.settings,  'valueTotalCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'carbohydrateContent', 'nf-line',    $this.settings.showDailyTotalCarb, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule',  'nf-highlight', '',        'dailyValueCarb'
+						//$localSettings valueIndex        unitIndex        naIndex        attributeText    itemPropValue          topDivClass showPercentageCode                  roundFunctionName             roundFunctionRuleName            labelClass      valueClass dailyValueIndex
+						$this.settings, 'valueTotalCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'carbohydrateContent', 'nf-line',   $this.settings.showDailyTotalCarb, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', 'nf-highlight', '',       'dailyValueCarb'
 					);
 				}
 
 				if ($this.settings.showFibers) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex     unitIndex     naIndex     attributeText  itemPropValue   topDivClass         showPercentageCode               roundFunctionName             roundFunctionRuleName            labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueFibers', 'unitFibers', 'naFibers', 'textFibers',  'fiberContent', 'nf-line nf-indent', $this.settings.showDailyFibers, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',         '',        'dailyValueFiber'
+						//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass         showPercentageCode               roundFunctionName             roundFunctionRuleName            labelClass valueClass dailyValueIndex
+						$this.settings, 'valueFibers', 'unitFibers', 'naFibers', 'textFibers', 'fiberContent', 'nf-line nf-indent', $this.settings.showDailyFibers, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',        '',       'dailyValueFiber'
 					);
 				}
 
 				if ($this.settings.showSugars) {
 					if (!$this.settings.indentSugarAndRemoveBoldStyleFor2018Label) {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings  valueIndex     unitIndex     naIndex     attributeText  itemPropValue   topDivClass  showPercentageCode               roundFunctionName             roundFunctionRuleName              labelClass     valueClass  dailyValueIndex
-							$this.settings,  'valueSugars', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'nf-line',    $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule',  'nf-highlight', '',        'dailyValueSugar'
+							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass showPercentageCode               roundFunctionName             roundFunctionRuleName             labelClass     valueClass dailyValueIndex
+							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line',   $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', 'nf-highlight', '',       'dailyValueSugar'
 						);
 					} else {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings  valueIndex     unitIndex     naIndex     attributeText  itemPropValue   topDivClass         showPercentageCode               roundFunctionName             roundFunctionRuleName              labelClass  valueClass  dailyValueIndex
-							$this.settings,  'valueSugars', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'nf-line nf-indent', $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule',  '',          '',        'dailyValueSugar'
+							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass         showPercentageCode               roundFunctionName             roundFunctionRuleName            labelClass valueClass dailyValueIndex
+							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line nf-indent', $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',        '',       'dailyValueSugar'
 						);
 					}
 				}
 
 				if ($this.settings.showAddedSugars) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex          unitIndex          naIndex          attributeText      itemPropValue  topDivClass          showPercentageCode                    roundFunctionName             roundFunctionRuleName            labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueAddedSugars', 'unitAddedSugars', 'naAddedSugars', 'textAddedSugars1', '',           'nf-line nf-indent2', $this.settings.showDailyAddedSugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',         '',        'dailyValueAddedSugar'
+						//$localSettings valueIndex          unitIndex          naIndex          attributeText      itemPropValue topDivClass          showPercentageCode                    roundFunctionName             roundFunctionRuleName            labelClass valueClass dailyValueIndex
+						$this.settings, 'valueAddedSugars', 'unitAddedSugars', 'naAddedSugars', 'textAddedSugars1', '',          'nf-line nf-indent2', $this.settings.showDailyAddedSugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',        '',       'dailyValueAddedSugar'
 					);
 				}
 
 				if ($this.settings.showSugarAlcohol) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex           unitIndex           naIndex           attributeText       itemPropValue  topDivClass         showPercentageCode  roundFunctionName            roundFunctionRuleName  labelClass  valueClass  dailyValueIndex
-						$this.settings,  'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', '',            'nf-line nf-indent', false,             'roundCarbFiberSugarProtein', '',                    '',         '',         ''
+						//$localSettings valueIndex           unitIndex           naIndex           attributeText       itemPropValue topDivClass         showPercentageCode roundFunctionName            roundFunctionRuleName labelClass valueClass dailyValueIndex
+						$this.settings, 'valueSugarAlcohol', 'unitSugarAlcohol', 'naSugarAlcohol', 'textSugarAlcohol', '',           'nf-line nf-indent', false,            'roundCarbFiberSugarProtein', '',                   '',        '',        ''
 					);
 				}
 
 				if ($this.settings.showProteins) {
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText   itemPropValue     topDivClass  showPercentageCode  roundFunctionName            roundFunctionRuleName  labelClass     valueClass  dailyValueIndex
-						$this.settings,  'valueProteins', 'unitProteins', 'naProteins', 'textProteins', 'proteinContent', 'nf-line',    false,             'roundCarbFiberSugarProtein', '',                   'nf-highlight', '',         ''
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue     topDivClass showPercentageCode roundFunctionName            roundFunctionRuleName labelClass     valueClass dailyValueIndex
+						$this.settings, 'valueProteins', 'unitProteins', 'naProteins', 'textProteins', 'proteinContent', 'nf-line',   false,            'roundCarbFiberSugarProtein', '',                  'nf-highlight', '',        ''
 					);
 				}
 
 			if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018) {
-				nutritionLabel += tab1 + '<div class="nf-bar2"></div>\n';
-				nutritionLabel += tab1 + '<div class="nf-vitamins">\n';
-			}
+				let lastRowNutrition = 'valueVitaminD';
+				let firstRowNutrition = 'valuePotassium_2018';
 
-				if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018) {
-					nutritionLabel += tab2 + '<div class="nf-vitamins">\n';
+				nutritionLabel += globalTab1 + '<div class="nf-bar2"></div>\n';
+				nutritionLabel += globalTab1 + '<div class="nf-vitamins">\n';
+					nutritionLabel += globalTab2 + '<div class="nf-vitamins">\n';
 
-					if ($this.settings.showVitaminD) {
-						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
-							//$localSettings  valueIndex       dailyValueIndex       unitIndex_base       unitIndex_percent       naIndex       attributeTexts  showPercentageCode
-							$this.settings,  'valueVitaminD', 'dailyValueVitaminD', 'unitVitaminD_base', 'unitVitaminD_percent', 'naVitaminD', 'textVitaminD',  $this.settings.showDailyVitaminD
+					//check which one is the last row
+					if (!$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						if ($this.settings.showPotassium_2018) {
+							lastRowNutrition = 'valuePotassium_2018';
+						} else {
+							if ($this.settings.showIron) {
+								lastRowNutrition = 'valueIron';
+							} else if ($this.settings.showCalcium) {
+								lastRowNutrition = 'valueCalcium';
+							}
+						}
+					}
+
+					//check which one is the first row
+					if ($this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						if ($this.settings.showVitaminD) {
+							firstRowNutrition = 'valueVitaminD';
+						} else {
+							if ($this.settings.showCalcium) {
+								firstRowNutrition = 'valueCalcium';
+							} else if ($this.settings.showIron) {
+								firstRowNutrition = 'valueIron';
+							}
+						}
+					}
+
+					if ($this.settings.showVitaminD && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += globalTab3 + generate2018HtmlAndComputeValueGivenThePercentage(
+							//$localSettings valueIndex       dailyValueIndex       unitIndex_base       unitIndex_percent       naIndex       attributeTexts showPercentageCode                lastRow
+							$this.settings, 'valueVitaminD', 'dailyValueVitaminD', 'unitVitaminD_base', 'unitVitaminD_percent', 'naVitaminD', 'textVitaminD', $this.settings.showDailyVitaminD, lastRowNutrition == 'valueVitaminD'
+						);
+					} else if ($this.settings.showVitaminD && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += generateAttributeHtml2018Version(
+							//$localSettings valueIndex       unitIndex            naIndex       attributeText   itemPropValue     topDivClass                                            showPercentageCode                 roundFunctionName                roundFunctionRuleName               labelClass valueClass dailyValueIndex
+							$this.settings, 'valueVitaminD', 'unitVitaminD_base', 'naVitaminD', 'textVitaminD', 'vitaminDContent', firstRowNutrition == 'valueVitaminD' ? '' : 'nf-line', $this.settings.showDailyVitaminD, 'roundFor2018LabelVitaminDIron', 'roundFor2018LabelVitaminDIronRule', '',        '',       'dailyValueVitaminD'
 						);
 					}
 
-					if ($this.settings.showCalcium) {
-						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
-							//$localSettings  valueIndex      dailyValueIndex      unitIndex_base      unitIndex_percent      naIndex      attributeTexts  showPercentageCode
-							$this.settings,  'valueCalcium', 'dailyValueCalcium', 'unitCalcium_base', 'unitCalcium_percent', 'naCalcium', 'textCalcium',   $this.settings.showDailyCalcium
+					if ($this.settings.showCalcium && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += globalTab3 + generate2018HtmlAndComputeValueGivenThePercentage(
+							//$localSettings valueIndex      dailyValueIndex      unitIndex_base      unitIndex_percent      naIndex      attributeTexts showPercentageCode               lastRow
+							$this.settings, 'valueCalcium', 'dailyValueCalcium', 'unitCalcium_base', 'unitCalcium_percent', 'naCalcium', 'textCalcium',  $this.settings.showDailyCalcium, lastRowNutrition == 'valueCalcium'
+						);
+					} else if ($this.settings.showCalcium && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += generateAttributeHtml2018Version(
+							//$localSettings valueIndex      unitIndex            naIndex     attributeText  itemPropValue    topDivClass                                           showPercentageCode                roundFunctionName                    roundFunctionRuleName                   labelClass valueClass dailyValueIndex
+							$this.settings, 'valueCalcium', 'unitCalcium_base', 'naCalcium', 'textCalcium', 'calciumContent', firstRowNutrition == 'valueCalcium' ? '' : 'nf-line', $this.settings.showDailyCalcium, 'roundFor2018LabelCalciumPotassium', 'roundFor2018LabelCalciumPotassiumRule', '',        '',       'dailyValueCalcium'
 						);
 					}
 
-					if ($this.settings.showIron) {
-						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
-							//$localSettings  valueIndex    dailyValueIndex  unitIndex_base   unitIndex_percent   naIndex   attributeTexts  showPercentageCode
-							$this.settings,  'valueIron', 'dailyValueIron', 'unitIron_base', 'unitIron_percent', 'naIron', 'textIron',      $this.settings.showDailyIron
+					if ($this.settings.showIron && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += globalTab3 + generate2018HtmlAndComputeValueGivenThePercentage(
+							//$localSettings valueIndex    dailyValueIndex  unitIndex_base   unitIndex_percent   naIndex   attributeTexts showPercentageCode            lastRow
+							$this.settings, 'valueIron', 'dailyValueIron', 'unitIron_base', 'unitIron_percent', 'naIron', 'textIron',     $this.settings.showDailyIron, lastRowNutrition == 'valueIron'
+						);
+					} else if ($this.settings.showIron && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += generateAttributeHtml2018Version(
+							//$localSettings valueIndex   unitIndex        naIndex   attributeText itemPropValue topDivClass                                          showPercentageCode             roundFunctionName                roundFunctionRuleName               labelClass valueClass dailyValueIndex
+							$this.settings, 'valueIron', 'unitIron_base', 'naIron', 'textIron',   'ironContent', firstRowNutrition == 'valueIron' ? '' : 'nf-line',   $this.settings.showDailyIron, 'roundFor2018LabelVitaminDIron', 'roundFor2018LabelVitaminDIronRule', '',        '',       'dailyValueIron'
 						);
 					}
 
-					if ($this.settings.showPotassium_2018) {
-						nutritionLabel += tab3 + generateHtmlAndComputeValueGivenThePercentage(
-							//$localSettings  valueIndex             dailyValueIndex             unitIndex_base        unitIndex_percent        naIndex             attributeTexts  showPercentageCode
-							$this.settings,  'valuePotassium_2018', 'dailyValuePotassium_2018', 'unitPotassium_base', 'unitPotassium_percent', 'naPotassium_2018', 'textPotassium', $this.settings.showDailyPotassium_2018
+					if ($this.settings.showPotassium_2018 && !$this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += globalTab3 + generate2018HtmlAndComputeValueGivenThePercentage(
+							//$localSettings valueIndex             dailyValueIndex             unitIndex_base        unitIndex_percent        naIndex             attributeTexts  showPercentageCode                      lastRow
+							$this.settings, 'valuePotassium_2018', 'dailyValuePotassium_2018', 'unitPotassium_base', 'unitPotassium_percent', 'naPotassium_2018', 'textPotassium', $this.settings.showDailyPotassium_2018, lastRowNutrition == 'valuePotassium_2018'
+						);
+					} else if ($this.settings.showPotassium_2018 && $this.settings.useBaseValueFor2018LabelAndNotDVPercentage) {
+						nutritionLabel += generateAttributeHtml2018Version(
+							//$localSettings valueIndex             unitIndex             naIndex             attributeText    itemPropValue      topDivClass                                                  showPercentageCode                       roundFunctionName                    roundFunctionRuleName                   labelClass valueClass dailyValueIndex
+							$this.settings, 'valuePotassium_2018', 'unitPotassium_base', 'naPotassium_2018', 'textPotassium', 'potassiumContent', firstRowNutrition == 'valuePotassium_2018' ? '' : 'nf-line', $this.settings.showDailyPotassium_2018, 'roundFor2018LabelCalciumPotassium', 'roundFor2018LabelCalciumPotassiumRule', '',        '',       'dailyValuePotassium_2018'
 						);
 					}
 
-					nutritionLabel += tab2 + '</div>\n';
-				}
+					nutritionLabel += globalTab2 + '</div>\n';
 
-			if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018) {
-				nutritionLabel += tab1 + '</div>\n';
-			}
+				nutritionLabel += globalTab1 + '</div>\n';
+			}//end of => if ($this.settings.showVitaminD || $this.settings.showCalcium || $this.settings.showIron || $this.settings.showPotassium_2018)
 
-				nutritionLabel += tab1 + '<div class="nf-bar1"></div>\n';
+				nutritionLabel += globalTab1 + '<div class="nf-bar2"></div>\n';
 
 				if ($this.settings.showCaffeine) {
+					let labelClassCaffeine = 'nf-highlight';
+					if (!$this.settings.boldCaffeine) {
+						labelClassCaffeine = '';
+					}
+
 					nutritionLabel += generateAttributeHtml2018Version(
-						//$localSettings  valueIndex       unitIndex       naIndex       attributeText   itemPropValue      topDivClass  showPercentageCode  roundFunctionName  roundFunctionRuleName  labelClass     valueClass  dailyValueIndex
-						$this.settings,  'valueCaffeine', 'unitCaffeine', 'naCaffeine', 'textCaffeine', 'caffeineContent', 'nf-line',    false,             'roundCaffeine',    '',                   'nf-highlight', '',         ''
+						//$localSettings valueIndex       unitIndex       naIndex       attributeText   itemPropValue     topDivClass showPercentageCode roundFunctionName roundFunctionRuleName labelClass          valueClass dailyValueIndex
+						$this.settings, 'valueCaffeine', 'unitCaffeine', 'naCaffeine', 'textCaffeine', 'caffeineContent', '',         false,            'roundCaffeine',   '',                   labelClassCaffeine, '',        ''
 					);
 
-					nutritionLabel += tab1 + '<div class="nf-bar2"></div>\n';
-					nutritionLabel += tab1 + '<div class="nf-vitamins">\n';
+					nutritionLabel += globalTab1 + '<div class="nf-bar1"></div>\n';
+					nutritionLabel += globalTab1 + '<div class="nf-vitamins">\n';
 				}
 
-				nutritionLabel += tab1 + '<div class="' + ($this.settings.hidePercentDailyValues ? 'nf-footnoteHiddenDailyValues' : 'nf-footnote') + '">\n';
+				nutritionLabel += globalTab1 + '<div class="' + ($this.settings.hidePercentDailyValues ? 'nf-footnoteHiddenDailyValues' : 'nf-footnote') + '">\n';
 					if (!$this.settings.hidePercentDailyValues) {
-						nutritionLabel += tab2 + '<span tabIndex="0">' + $this.settings.textPercentDaily2018VersionPart1;
+						nutritionLabel += globalTab2 + '<span tabIndex="0">' + $this.settings.textPercentDaily2018VersionPart1;
 						nutritionLabel += $this.settings.calorieIntake;
 						nutritionLabel += $this.settings.textPercentDaily2018VersionPart2 + '</span>\n';
 					}
 
 					if ($this.settings.showIngredients) {
-						nutritionLabel += ingredientsHtml2018Version($this.settings, tab3, tab4);
+						nutritionLabel += ingredientsHtml2018Version($this.settings);
 					}
 
 					if ($this.settings.showDisclaimer) {
-						nutritionLabel += disclaimerHtml2018Version($this.settings, tab3, tab4);
+						nutritionLabel += disclaimerHtml2018Version($this.settings);
 					}
 
-				nutritionLabel += tab1 + '</div>\n';
+				nutritionLabel += globalTab1 + '</div>\n';
 
 				if ($this.settings.showBottomLink) {
-					nutritionLabel += bottomLinkHtml2018Version($this.settings, tab1);
+					nutritionLabel += bottomLinkHtml2018Version($this.settings);
 				}
 
 				if ($this.settings.showCustomFooter) {
-					nutritionLabel += tab1 + '<div class="nf-customFooter" tabindex="0">' + $this.settings.valueCustomFooter + '</div>\n';
+					nutritionLabel += globalTab1 + '<div class="nf-customFooter" tabindex="0">' + $this.settings.valueCustomFooter + '</div>\n';
 				}
 
 			//returns the html for the nutrition label
 			return nutritionLabel += '<div class="naTooltip">' + $this.settings.textDataNotAvailable + '</div>\n</div><!-- closing class="nf" -->\n';
-		},//end of => generate2018: function()
+		}, //end of => generate2018: function()
 
 
 		generateUK: function() {
 			//this is the function that returns the html code for the nutrition label based on the settings that is supplied by the user
-			var $this = this;
+			let $this = this;
+			let borderCSS = '';
+			let nutritionLabel = '';
 
 			//return the plugin incase it has already been created
 			if ($this.nutritionLabel) {
@@ -2718,7 +2845,6 @@
 				$this.settings.showSugars = $this.settings.naSugars ? false : $this.settings.showSugars;
 				$this.settings.showFibers = $this.settings.naFibers ? false : $this.settings.showFibers;
 				$this.settings.showProteins = $this.settings.naProteins ? false : $this.settings.showProteins;
-				$this.settings.showCalories = $this.settings.naCalories ? false : $this.settings.showCalories;
 				$this.settings.showSodium = $this.settings.naSodium ? false : $this.settings.showSodium;
 			}
 
@@ -2732,176 +2858,163 @@
 				$this.settings.naSugars = true;
 				$this.settings.naFibers = true;
 				$this.settings.naProteins = true;
-				$this.settings.naCalories = true;
 				$this.settings.naSodium = true;
 			}
 
-			//initializing the tab variables (for debugging and editing purposes)
-			//tab variables are used to make the printing of the html code readable when you copy the code using firebug => inspect => copy innerhtml
-			for (x = 1; x < 8; x++) {
-				var tab = '';
-				for (y = 1; y <= x; y++) {
-					tab += '\t';
-				}
-				eval('var tab' + x + ' = "' + tab + '";');
-			}
-
-			var borderCSS = '';
 			if ($this.settings.allowNoBorder) {
 				borderCSS = 'border: 0;';
 			}
 
 			//creates the html code for the label based on the settings
-			var nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="uk_nf uk" style="' + borderCSS;
+			nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="uk_nf uk" style="' + borderCSS;
 			if (!$this.settings.allowCustomWidth) {
 				nutritionLabel += ' width: ' + $this.settings.width + 'px;">\n';
 			} else {
 				nutritionLabel += ' width: ' + $this.settings.widthCustom + ';">\n';
 			}
 
-			nutritionLabel += tab1 + '<div class="uk_nf-title" tabindex="0">' + $this.settings.textNutritionFacts + '</div>\n';
+			nutritionLabel += globalTab1 + '<div class="uk_nf-title" tabindex="0">' + $this.settings.textNutritionFacts + '</div>\n';
 
 			if ($this.settings.showItemNameForUK) {
-				nutritionLabel += tab1 + '<div class="uk_nf-item-name" tabindex="0">' + $this.settings.itemName + '</div>\n';
+				nutritionLabel += globalTab1 + '<div class="uk_nf-item-name" tabindex="0">' + $this.settings.itemName + '</div>\n';
 			}
 
 			//for the uk label, If the serving name is empty, have it default to "Serving" ($this.settings.textUKDefaultServingNameIfEmpty)
-			if ($this.settings.convertEmptyServingNametoServingForUKLabel && $this.settings.valueServingSizeUnit + '' === '') {
+			if ($this.settings.convertEmptyServingNametoServingForUKLabel && String($this.settings.valueServingSizeUnit) === '') {
 				$this.settings.valueServingSizeUnit = $this.settings.textUKDefaultServingNameIfEmpty;
 			}
 
-			nutritionLabel += tab1 + '<table>\n';
-				nutritionLabel += tab2 + '<thead>\n';
-					nutritionLabel += tab3 + '<tr>\n';
-						nutritionLabel += tab4 + '<th>' + $this.settings.textUKTypicalValues + '</th>\n';
-						nutritionLabel += tab4 + '<th>' + $this.settings.textUKPer100 + ' 100' + $this.settings.unitGramOrMlForThePer100Part + '</th>\n';
+			nutritionLabel += globalTab1 + '<table>\n';
+				nutritionLabel += globalTab2 + '<thead>\n';
+					nutritionLabel += globalTab3 + '<tr>\n';
+						nutritionLabel += globalTab4 + '<th>' + $this.settings.textUKTypicalValues + '</th>\n';
+						nutritionLabel += globalTab4 + '<th>' + $this.settings.textUKPer100 + ' 100' + $this.settings.unitGramOrMlForThePer100Part + '</th>\n';
 
-						nutritionLabel += tab4 + '<th>';
+						nutritionLabel += globalTab4 + '<th>';
 
 					if ($this.settings.showServingUnitQuantityTextbox) {
 						if (!$this.settings.hideTextboxArrows) {
-							nutritionLabel += tab5 + '<div class="setter">\n';
-								nutritionLabel += tab6 + '<a href="' + $this.settings.textAriaLabelIncreaseQuantityArrow + '" class="uk_nf-unitQuantityUp" ';
+							nutritionLabel += globalTab5 + '<div class="setter">\n';
+								nutritionLabel += globalTab6 + '<a href="' + $this.settings.textAriaLabelIncreaseQuantityArrow + '" class="uk_nf-unitQuantityUp" ';
 									nutritionLabel += 'aria-label="' + $this.settings.textAriaLabelIncreaseQuantityArrow + '" rel="nofollow" tabindex="0"></a>\n';
-								nutritionLabel += tab6 + '<a href="' + $this.settings.textAriaLabelDecreaseQuantityArrow + '" class="uk_nf-unitQuantityDown" ';
+								nutritionLabel += globalTab6 + '<a href="' + $this.settings.textAriaLabelDecreaseQuantityArrow + '" class="uk_nf-unitQuantityDown" ';
 									nutritionLabel += 'aria-label="' + $this.settings.textAriaLabelDecreaseQuantityArrow + '" rel="nofollow" tabindex="0"></a>\n';
-							nutritionLabel += tab5 + '</div><!-- closing class="setter" -->\n\n';
+							nutritionLabel += globalTab5 + '</div><!-- closing class="setter" -->\n\n';
 						}
 
-							nutritionLabel += tab5 + '<input type="text" data-role="none" value="' + parseFloat(
+							nutritionLabel += globalTab5 + '<input type="text" data-role="none" value="' + parseFloat(
 								$this.settings.valueServingUnitQuantity.toFixed(this.settings.decimalPlacesForQuantityTextbox)
 							) + '" ';
 								nutritionLabel += 'class="uk_nf-unitQuantityBox uk_nf-modifier-field" aria-label="' + this.settings.textAriaLabelChangeQuantityTextbox + '">\n';
 
-							nutritionLabel += tab5 + '<input type="hidden" value="' + parseFloat(
+							nutritionLabel += globalTab5 + '<input type="hidden" value="' + parseFloat(
 								this.settings.valueServingUnitQuantity.toFixed(this.settings.decimalPlacesForQuantityTextbox)
 							) + '" id="uk_nf-nixLabelBeforeQuantity">\n\n';
 					} else {
-							nutritionLabel += tab5 + $this.settings.valueServingUnitQuantity;
+							nutritionLabel += globalTab5 + $this.settings.valueServingUnitQuantity;
 					}
 
-							nutritionLabel += tab5 + '<span class="uk_nf-servingUnit">' + $this.settings.valueServingSizeUnit;
+							nutritionLabel += globalTab5 + '<span class="uk_nf-servingUnit">' + $this.settings.valueServingSizeUnit;
 								nutritionLabel += ' (' + $this.settings.valueServingWeightGrams.toFixed() + $this.settings.unitGramOrMlForThePer100Part + ')</span>\n';
 						nutritionLabel += '</th>\n';
 
-						nutritionLabel += tab4 + '<th>%*(' + $this.settings.valueServingWeightGrams.toFixed() + $this.settings.unitGramOrMlForThePer100Part + ')</th>\n';
-					nutritionLabel += tab3 + '</tr>\n';
-				nutritionLabel += tab2 + '</thead>\n';
-			nutritionLabel += tab1 + '<tbody>\n';
+						nutritionLabel += globalTab4 + '<th>%*(' + $this.settings.valueServingWeightGrams.toFixed() + $this.settings.unitGramOrMlForThePer100Part + ')</th>\n';
+					nutritionLabel += globalTab3 + '</tr>\n';
+				nutritionLabel += globalTab2 + '</thead>\n';
+			nutritionLabel += globalTab1 + '<tbody>\n';
 
 			if ($this.settings.showCalories) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex       dailyValueIndex   unitIndex        naIndex       attributeTexts  itemPropValue   roundFunctionName    roundFunctionRuleName  showPercentageCode  indentedName
-					$this.settings,  'valueCalories', '',               'unitEnergy_kj', 'naCalories', 'textCalories',  '',            'roundToNearestNum', 'roundToNearestNum',    false,              false
+					//$localSettings valueIndex       dailyValueIndex unitIndex        naIndex       attributeTexts itemPropValue roundFunctionName    roundFunctionRuleName showPercentageCode indentedName
+					$this.settings, 'valueCalories', '',             'unitEnergy_kj', 'naCalories', 'textCalories', '',          'roundToNearestNum', 'roundToNearestNum',   false,             false
 				);
 
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex       dailyValueIndex         unitIndex          naIndex      attributeTexts   itemPropValue  roundFunctionName    roundFunctionRuleName  showPercentageCode              indentedName
-					$this.settings,  'valueCalories', 'dailyValueEnergyKcal', 'unitEnergy_kcal', 'naCalories', '',              '',           'roundToNearestNum', 'roundToNearestNum',    $this.settings.showDailyEnergy, false
+					//$localSettings valueIndex       dailyValueIndex         unitIndex          naIndex      attributeTexts itemPropValue roundFunctionName    roundFunctionRuleName showPercentageCode              indentedName
+					$this.settings, 'valueCalories', 'dailyValueEnergyKcal', 'unitEnergy_kcal', 'naCalories', '',            '',          'roundToNearestNum', 'roundToNearestNum',   $this.settings.showDailyEnergy, false
 				);
 			}
 			if ($this.settings.showTotalFat) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex       dailyValueIndex       unitIndex       naIndex       attributeTexts  itemPropValue  roundFunctionName                                roundFunctionRuleName                               showPercentageCode                indentedName
-					$this.settings,  'valueTotalFat', 'dailyValueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'fatContent',  'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyTotalFat, false
+					//$localSettings valueIndex       dailyValueIndex       unitIndex       naIndex       attributeTexts  itemPropValue roundFunctionName                                roundFunctionRuleName                               showPercentageCode                indentedName
+					$this.settings, 'valueTotalFat', 'dailyValueTotalFat', 'unitTotalFat', 'naTotalFat', 'textTotalFat', 'fatContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyTotalFat, false
 				);
 			}
 
 			if ($this.settings.showSatFat) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts  itemPropValue          roundFunctionName        roundFunctionRuleName       showPercentageCode              indentedName
-					$this.settings,  'valueSatFat', 'dailyValueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',   'saturatedFatContent', 'roundForUKLabelSatFat', 'roundForUKLabelSatFatRule', $this.settings.showDailySatFat, true
+					//$localSettings valueIndex     dailyValueIndex     unitIndex     naIndex     attributeTexts itemPropValue          roundFunctionName        roundFunctionRuleName       showPercentageCode              indentedName
+					$this.settings, 'valueSatFat', 'dailyValueSatFat', 'unitSatFat', 'naSatFat', 'textSatFat',  'saturatedFatContent', 'roundForUKLabelSatFat', 'roundForUKLabelSatFatRule', $this.settings.showDailySatFat, true
 				);
 			}
 
 			if ($this.settings.showTotalCarb) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex        dailyValueIndex   unitIndex        naIndex        attributeTexts   itemPropValue          roundFunctionName                                roundFunctionRuleName                               showPercentageCode                 indentedName
-					$this.settings,  'valueTotalCarb', 'dailyValueCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'carbohydrateContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyTotalCarb, false
+					//$localSettings valueIndex        dailyValueIndex   unitIndex        naIndex        attributeTexts   itemPropValue          roundFunctionName                                roundFunctionRuleName                               showPercentageCode                 indentedName
+					$this.settings, 'valueTotalCarb', 'dailyValueCarb', 'unitTotalCarb', 'naTotalCarb', 'textTotalCarb', 'carbohydrateContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyTotalCarb, false
 				);
 			}
 
 			if ($this.settings.showSugars) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts  itemPropValue   roundFunctionName                                roundFunctionRuleName                               showPercentageCode             indentedName
-					$this.settings,  'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',   'sugarContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailySugars, true
+					//$localSettings valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts itemPropValue   roundFunctionName                                roundFunctionRuleName                               showPercentageCode             indentedName
+					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',  'sugarContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailySugars, true
 				);
 			}
 
 			if ($this.settings.showFibers) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex     dailyValueIndex   unitIndex     naIndex     attributeTexts  itemPropValue   roundFunctionName                                roundFunctionRuleName                               showPercentageCode  indentedName
-					$this.settings,  'valueFibers', '',               'unitFibers', 'naFibers', 'textFibers',   'fiberContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', false,              false
+					//$localSettings valueIndex     dailyValueIndex unitIndex     naIndex     attributeTexts itemPropValue   roundFunctionName                                roundFunctionRuleName                               showPercentageCode indentedName
+					$this.settings, 'valueFibers', '',             'unitFibers', 'naFibers', 'textFibers',  'fiberContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', false,             false
 				);
 			}
 
 			if ($this.settings.showProteins) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex       dailyValueIndex      unitIndex       naIndex       attributeTexts   itemPropValue     roundFunctionName                                roundFunctionRuleName                               showPercentageCode               indentedName
-					$this.settings,  'valueProteins', 'dailyValueProtein', 'unitProteins', 'naProteins', 'textProteins',  'proteinContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyProtein, false
+					//$localSettings valueIndex       dailyValueIndex      unitIndex       naIndex       attributeTexts  itemPropValue     roundFunctionName                                roundFunctionRuleName                               showPercentageCode               indentedName
+					$this.settings, 'valueProteins', 'dailyValueProtein', 'unitProteins', 'naProteins', 'textProteins', 'proteinContent', 'roundForUKLabelTotalFatCarbsSugarFiberProtein', 'roundForUKLabelTotalFatCarbsSugarFiberProteinRule', $this.settings.showDailyProtein, false
 				);
 			}
 
 			if ($this.settings.showSodium) {
 				nutritionLabel += generateAttributeForUK(
-					//$localSettings  valueIndex     dailyValueIndex   unitIndex   naIndex     attributeTexts  itemPropValue    roundFunctionName      roundFunctionRuleName     showPercentageCode             indentedName
-					$this.settings,  'valueSodium', 'dailyValueSalt', 'unitSalt', 'naSodium', 'textSodium',   'sodiumContent', 'roundForUKLabelSalt', 'roundForUKLabelSaltRule', $this.settings.showDailySodium, false
+					//$localSettings valueIndex     dailyValueIndex   unitIndex   naIndex     attributeTexts itemPropValue    roundFunctionName      roundFunctionRuleName     showPercentageCode             indentedName
+					$this.settings, 'valueSodium', 'dailyValueSalt', 'unitSalt', 'naSodium', 'textSodium',  'sodiumContent', 'roundForUKLabelSalt', 'roundForUKLabelSaltRule', $this.settings.showDailySodium, false
 				);
 			}
 
-					nutritionLabel += tab2 + '</tbody>\n';
-					nutritionLabel += tab2 + '<tfoot>\n';
-						nutritionLabel += tab3 + '<tr>\n';
-							nutritionLabel += tab4 + '<td colspan="4">\n';
-								nutritionLabel += tab5 + '<div class="uk_nf-footnote">\n';
+					nutritionLabel += globalTab2 + '</tbody>\n';
+					nutritionLabel += globalTab2 + '<tfoot>\n';
+						nutritionLabel += globalTab3 + '<tr>\n';
+							nutritionLabel += globalTab4 + '<td colspan="4">\n';
+								nutritionLabel += globalTab5 + '<div class="uk_nf-footnote">\n';
 
-									nutritionLabel += referenceIntakeHtmlUKVersion($this.settings, tab6, tab7);
+									nutritionLabel += referenceIntakeHtmlUKVersion($this.settings);
 
 								if ($this.settings.showIngredients) {
-									nutritionLabel += ingredientsHtmlUKVersion($this.settings, tab6, tab7);
+									nutritionLabel += ingredientsHtmlUKVersion($this.settings);
 								}
 
 								if ($this.settings.showDisclaimer) {
-									nutritionLabel += disclaimerHtmlUKVersion($this.settings, tab6, tab7);
+									nutritionLabel += disclaimerHtmlUKVersion($this.settings);
 								}
 
 								if ($this.settings.showBottomLink) {
-									nutritionLabel += bottomLinkHtmlUKVersion($this.settings, tab6);
+									nutritionLabel += bottomLinkHtmlUKVersion($this.settings);
 								}
 
 								if ($this.settings.showCustomFooter) {
-									nutritionLabel += tab6 + '<div class="uk_nf-customFooter" tabindex="0">\n' + tab7 + $this.settings.valueCustomFooter + '\n' + tab6 + '</div>\n';
+									nutritionLabel += globalTab6 + '<div class="uk_nf-customFooter" tabindex="0">\n' + globalTab7 + $this.settings.valueCustomFooter + '\n' + globalTab6 + '</div>\n';
 								}
 
-								nutritionLabel += tab5 + '</div>\n';
-							nutritionLabel += tab4 + '</td>\n';
-						nutritionLabel += tab3 + '</tr>\n';
-					nutritionLabel += tab2 + '</tfoot>\n';
-				nutritionLabel += tab1 + '</table>\n';
+								nutritionLabel += globalTab5 + '</div>\n';
+							nutritionLabel += globalTab4 + '</td>\n';
+						nutritionLabel += globalTab3 + '</tr>\n';
+					nutritionLabel += globalTab2 + '</tfoot>\n';
+				nutritionLabel += globalTab1 + '</table>\n';
 
 			//returns the html for the nutrition label
 			return nutritionLabel += '<div class="naTooltip">' + $this.settings.textDataNotAvailable + '</div>\n</div><!-- closing class="uk_nf" -->\n';
 		}//end of => generateUK: function()
 	};//end of => NutritionLabel.prototype
-
 })(jQuery);
