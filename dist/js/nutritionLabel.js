@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     10.0.5                                                                                                                      |
+ * @current version     10.0.6                                                                                                                      |
  * @stable version      9.0.10                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -644,14 +644,14 @@
 				//if the arrows are not hidden
 				if (!$settings.hideTextboxArrows) {
 					//increase the unit quantity by clicking the up arrow
-					$('#' + $elem.attr('id')).delegate('.unitQuantityUp', 'click', function(e) {
+					$('#' + $elem.attr('id')).on('click', '.unitQuantityUp', function(e) {
 						e.preventDefault();
 						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
 						changeQuantityByArrow($(this),      1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
 					});
 
 					//decrease the unit quantity by clicking the down arrow
-					$('#' + $elem.attr('id')).delegate('.unitQuantityDown', 'click', function(e) {
+					$('#' + $elem.attr('id')).on('click', '.unitQuantityDown', function(e) {
 						e.preventDefault();
 						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
 						changeQuantityByArrow($(this),      -1,           updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
@@ -659,14 +659,14 @@
 				}
 
 				//the textbox unit quantity value is changed
-				$('#' + $elem.attr('id')).delegate('.unitQuantityBox', 'change', function(e) {
+				$('#' + $elem.attr('id')).on('change', '.unitQuantityBox', function(e) {
 					e.preventDefault();
 					                    //($thisTextbox $localSettings                                     nutritionLabel  $elem  forLegacyLabel forUKLabel)
 					changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, true,          false);
 				});
 
 				//the textbox unit quantity value is changed
-				$('#' + $elem.attr('id')).delegate('.unitQuantityBox', 'keydown', function(e) {
+				$('#' + $elem.attr('id')).on('keydown', '.unitQuantityBox', function(e) {
 					if (e.keyCode == 13) {
 						e.preventDefault();
 						                   //($thisTextbox $localSettings,                                     nutritionLabel  $elem  forLegacyLabel forUKLabel)
@@ -685,14 +685,14 @@
 				//if the arrows are not hidden
 				if (!$settings.hideTextboxArrows) {
 					//increase the unit quantity by clicking the up arrow
-					$('#' + $elem.attr('id')).delegate('.uk_nf-unitQuantityUp', 'click', function(e) {
+					$('#' + $elem.attr('id')).on('click', '.uk_nf-unitQuantityUp', function(e) {
 						e.preventDefault();
 						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
 						changeQuantityByArrow($(this),      1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
 					});
 
 					//decrease the unit quantity by clicking the down arrow
-					$('#' + $elem.attr('id')).delegate('.uk_nf-unitQuantityDown', 'click', function(e) {
+					$('#' + $elem.attr('id')).on('click', '.uk_nf-unitQuantityDown', function(e) {
 						e.preventDefault();
 						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
 						changeQuantityByArrow($(this),      -1,           updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
@@ -700,14 +700,14 @@
 				}
 
 				//the textbox unit quantity value is changed
-				$('#' + $elem.attr('id')).delegate('.uk_nf-unitQuantityBox', 'change', function(e) {
+				$('#' + $elem.attr('id')).on('change', '.uk_nf-unitQuantityBox', function(e) {
 					e.preventDefault();
 					                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
 					changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         true);
 				});
 
 				//the textbox unit quantity value is changed
-				$('#' + $elem.attr('id')).delegate('.uk_nf-unitQuantityBox', 'keydown', function(e) {
+				$('#' + $elem.attr('id')).on('keydown', '.uk_nf-unitQuantityBox', function(e) {
 					if (e.keyCode == 13) {
 						e.preventDefault();
 						                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
@@ -726,14 +726,14 @@
 				//if the arrows are not hidden
 				if (!$settings.hideTextboxArrows) {
 					//increase the unit quantity by clicking the up arrow
-					$('#' + $elem.attr('id')).delegate('div.nf-unitQuantityUp', 'click', function(e) {
+					$('#' + $elem.attr('id')).on('click', 'div.nf-unitQuantityUp', function(e) {
 						e.preventDefault();
 						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
 						changeQuantityByArrow($(this),      1,            updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
 					});
 
 					//decrease the unit quantity by clicking the down arrow
-					$('#' + $elem.attr('id')).delegate('div.nf-unitQuantityDown', 'click', function(e) {
+					$('#' + $elem.attr('id')).on('click', 'div.nf-unitQuantityDown', function(e) {
 						e.preventDefault();
 						                   //($thisQuantity changeValueBy $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
 						changeQuantityByArrow($(this),      -1,           updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
@@ -741,14 +741,14 @@
 				}
 
 				//the textbox unit quantity value is changed
-				$('#' + $elem.attr('id')).delegate('.nf-unitQuantityBox', 'change', function(e) {
+				$('#' + $elem.attr('id')).on('change', '.nf-unitQuantityBox', function(e) {
 					e.preventDefault();
 					                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
 					changeQuantityTextbox($(this),     updateTheSettingsAfterAnEvent($settings, settings), nutritionLabel, $elem, false,         false);
 				});
 
 				//the textbox unit quantity value is changed
-				$('#' + $elem.attr('id')).delegate('.nf-unitQuantityBox', 'keydown', function(e) {
+				$('#' + $elem.attr('id')).on('keydown', '.nf-unitQuantityBox', function(e) {
 					if (e.keyCode == 13) {
 						e.preventDefault();
 						                   //($thisTextbox $localSettings                                      nutritionLabel  $elem  forLegacyLabel forUKLabel)
@@ -756,7 +756,7 @@
 					}
 				});
 			}
-		}//end of of => else => if ($updatedsettings.showLegacyVersion) => else if ($updatedsettings.showUKVersion)
+		}//end of => else => if ($updatedsettings.showLegacyVersion) => else if ($updatedsettings.showUKVersion)
 
 		//store the object for later reference
 		$elem.data('_nutritionLabel', nutritionLabel);
@@ -810,29 +810,27 @@
 	function notApplicableHover($localElem) {
 		//this code is for pages with multiple nutrition labels generated by the plugin like the demo page
 		if ($localElem.attr('id') !== undefined && $localElem.attr('id') !== '') {
-			$('#' + $localElem.attr('id') + ' .notApplicable').hover(
-				function() {
-					$('#' + $localElem.attr('id') + ' .naTooltip').css({
-						top: $(this).position().top + 'px',
-						left: $(this).position().left + 10 + 'px'
-					}).show();
-				},
-				function() {
-					$('#' + $localElem.attr('id') + ' .naTooltip').hide();
-				}
-			);
+			$('#' + $localElem.attr('id') + ' .notApplicable').on('mouseenter', function() {
+				$('#' + $localElem.attr('id') + ' .naTooltip').css({
+					top: $(this).position().top + 'px',
+					left: $(this).position().left + 10 + 'px'
+				}).show();
+			});
+
+			$('#' + $localElem.attr('id') + ' .notApplicable').on('mouseleave', function() {
+				$('#' + $localElem.attr('id') + ' .naTooltip').hide();
+			});
 		} else {
-			$('#' + $localElem.attr('id') + ' .notApplicable').hover(
-				function() {
-					$('.naTooltip').css({
-						top: $(this).position().top + 'px',
-						left: $(this).position().left + 10 + 'px'
-					}).show();
-				},
-				function() {
-					$('.naTooltip').hide();
-				}
-			);
+			$('#' + $localElem.attr('id') + ' .notApplicable').on('mouseenter', function() {
+				$('.naTooltip').css({
+					top: $(this).position().top + 'px',
+					left: $(this).position().left + 10 + 'px'
+				}).show();
+			});
+
+			$('#' + $localElem.attr('id') + ' .notApplicable').on('mouseleave', function() {
+				$('.naTooltip').hide();
+			});
 		}
 	}
 
