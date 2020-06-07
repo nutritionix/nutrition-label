@@ -1,6 +1,8 @@
 Nutrition Label jQuery Plugin by Nutritionix
 ============================================
 
+[![NPM](https://nodei.co/npm/nutrition-label-jquery-plugin.png)](https://www.npmjs.com/package/nutrition-label-jquery-plugin)
+
 [Check out the Demo!](http://dev2.nutritionix.com/html/label-jquery-plugin/demo/demo.html)
 
 Summary: Create a FDA-style nutrition label with any nutrition data source (even the [Nutritionix API](http://www.nutritionix.com/api)!)
