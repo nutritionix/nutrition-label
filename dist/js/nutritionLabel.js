@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     10.0.6                                                                                                                      |
- * @stable version      9.0.10                                                                                                                      |
+ * @current version     11.0.1                                                                                                                      |
+ * @stable version      10.0.6                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
@@ -552,7 +552,7 @@
 		}
 
 		return settings;
-	}
+	}//end of => function cleanSettings(settings)
 
 
 	function updateNutritionValueWithMultiplier(settings) {
@@ -604,7 +604,7 @@
 		}
 
 		return settings;
-	}
+	}//end of => function updateNutritionValueWithMultiplier(settings)
 
 
 	function init(settings, $elem) {
@@ -941,7 +941,7 @@
 		previousValue = parseFloat($('#' + $elem.attr('id') + ' #' + nixLabelBeforeQuantityID).val());
 
 		textBoxValue = !regIsPosNumber($thisTextbox.val()) ? previousValue : parseFloat($thisTextbox.val());
-		$thisTextbox.val(textBoxValue.toFixed($localSettings.decimalPlacesForQuantityTextbox));
+		$thisTextbox.val( roundLoDash(textBoxValue, $localSettings.decimalPlacesForQuantityTextbox) );
 
 		$localSettings.valueServingUnitQuantity = textBoxValue;
 		                                                //($localSettings  nutritionLabel  $elem  forLegacyLabel  forInitialization forUKLabel)
@@ -959,10 +959,10 @@
 		handleQuantityChange(
 			$localSettings,
 			'textbox',
-			previousValue.toFixed($localSettings.decimalPlacesForQuantityTextbox),
-			textBoxValue.toFixed($localSettings.decimalPlacesForQuantityTextbox)
+			roundLoDash(previousValue, $localSettings.decimalPlacesForQuantityTextbox),
+			roundLoDash(textBoxValue, $localSettings.decimalPlacesForQuantityTextbox)
 		);
-	}
+	}//end of => function changeQuantityTextbox($thisTextbox, $localSettings, nutritionLabel, $elem, forLegacyLabel, forUKLabel)
 
 
 	function changeQuantityByArrow($thisQuantity, changeValueBy, $localSettings, nutritionLabel, $elem, forLegacyLabel, forUKLabel) {
@@ -997,7 +997,7 @@
 		}
 
 		$thisQuantity.parent().parent().find('input.' + unitQuantityBoxClass).val(
-			currentQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
+			roundLoDash(currentQuantity, $localSettings.decimalPlacesForQuantityTextbox)
 		);
 
 		$localSettings.valueServingUnitQuantity = currentQuantity;
@@ -1042,7 +1042,7 @@
 	function roundCalories(toRound, decimalPlace) {
 		toRound = roundCaloriesRule(toRound);
 		if (toRound > 0) {
-			toRound = parseFloat(toRound.toFixed(decimalPlace));
+			toRound = roundLoDash(toRound, decimalPlace);
 		}
 		return toRound;
 	}
@@ -1051,7 +1051,7 @@
 	function roundFat(toRound, decimalPlace) {
 		toRound = roundFatRule(toRound);
 		if (toRound > 0) {
-			toRound = parseFloat(toRound.toFixed(decimalPlace));
+			toRound = roundLoDash(toRound, decimalPlace);
 		}
 		return toRound;
 	}
@@ -1060,7 +1060,7 @@
 	function roundSodium(toRound, decimalPlace) {
 		toRound = roundSodiumRule(toRound);
 		if (toRound > 0) {
-			toRound = parseFloat(toRound.toFixed(decimalPlace));
+			toRound = roundLoDash(toRound, decimalPlace);
 		}
 		return toRound;
 	}
@@ -1069,7 +1069,7 @@
 	function roundPotassium(toRound, decimalPlace) {
 		toRound = roundPotassiumRule(toRound);
 		if (toRound > 0) {
-			toRound = parseFloat(toRound.toFixed(decimalPlace));
+			toRound = roundLoDash(toRound, decimalPlace);
 		}
 		return toRound;
 	}
@@ -1086,7 +1086,7 @@
 
 		if (normalVersion) {
 			if (toRound > 0) {
-				toRound = parseFloat(toRound.toFixed(decimalPlace));
+				toRound = roundLoDash(toRound, decimalPlace);
 			}
 		} else {
 			toRound = '< 5';
@@ -1106,7 +1106,7 @@
 
 		if (normalVersion) {
 			if (toRound > 0) {
-				toRound = parseFloat(toRound.toFixed(decimalPlace));
+				toRound = roundLoDash(toRound, decimalPlace);
 			}
 		} else {
 			toRound = '< 1';
@@ -1118,7 +1118,7 @@
 	function roundCaffeine(toRound, decimalPlace) {
 		toRound = roundToNearestNum(toRound, 1);
 		if (toRound > 0) {
-			toRound = parseFloat(toRound.toFixed(decimalPlace));
+			toRound = roundLoDash(toRound, decimalPlace);
 		}
 
 		return toRound;
@@ -1248,11 +1248,11 @@
 			return 0;
 		} else if (toRound < 10) {
 			//< 10 > 0.5 - express to nearest 0.1 increment
-			return parseFloat(roundToNearestNum(toRound, 0.1).toFixed(1));
+			return roundLoDash(roundToNearestNum(toRound, 0.1), 1);
 		}
 
 		//> 10 express to nearest 1 increment
-		return parseFloat(roundToNearestNum(toRound, 1).toFixed());
+		return roundLoDash( roundToNearestNum(toRound, 1) );
 	}
 
 
@@ -1277,11 +1277,11 @@
 			return 0;
 		} else if (toRound < 10) {
 			//< 10 > 0.5 - express to nearest 0.1 increment
-			return parseFloat(roundToNearestNum(toRound, 0.1).toFixed(1));
+			return roundLoDash(roundToNearestNum(toRound, 0.1), 1);
 		}
 
 		//> 10 express to nearest 1 increment
-		return parseFloat(roundToNearestNum(toRound, 1).toFixed());
+		return roundLoDash( roundToNearestNum(toRound, 1) );
 	}
 
 
@@ -1307,18 +1307,18 @@
 			return 0;
 		} else if (toRound < 1) {
 			//< 10 > 0.5 - express to nearest 0.1 increment
-			return parseFloat(roundToNearestNum(toRound, 0.01).toFixed(2));
+			return roundLoDash(roundToNearestNum(toRound, 0.01), 2);
 		}
 
 		//> 1 express to nearest 0.1 increment
-		return parseFloat(roundToNearestNum(toRound, 0.1).toFixed(1));
+		return roundLoDash(roundToNearestNum(toRound, 0.1), 1);
 	}
 
 
 	function roundFor2018LabelVitaminDIron(toRound) {
 		toRound = roundFor2018LabelVitaminDIronRule(toRound);
 		if (toRound > 0) {
-			return parseFloat(toRound.toFixed(1));
+			return roundLoDash(toRound, 1);
 		}
 
 		return 0;
@@ -1385,13 +1385,13 @@
 						textboxClass = 'unitQuantityBox arrowsAreHidden';
 					}
 
-						localNutritionLabel += globalTab3 + '<input type="text" value="' + parseFloat(
-							$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
-						) + '" class="' + textboxClass + '" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
+						localNutritionLabel += globalTab3 + '<input type="text" value="' +
+							roundLoDash($localSettings.valueServingUnitQuantity, $localSettings.decimalPlacesForQuantityTextbox) +
+							'" class="' + textboxClass + '" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
 
-						localNutritionLabel += globalTab3 + '<input type="hidden" value="' + parseFloat(
-							$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
-						) + '" id="nixLabelBeforeQuantity">\n';
+						localNutritionLabel += globalTab3 + '<input type="hidden" value="' +
+							roundLoDash($localSettings.valueServingUnitQuantity, $localSettings.decimalPlacesForQuantityTextbox) +
+							'" id="nixLabelBeforeQuantity">\n';
 
 					localNutritionLabel += globalTab2 + '</div><!-- closing class="servingSizeField" -->\n\n';
 				tabTemp = globalTab2;
@@ -1442,7 +1442,7 @@
 						localNutritionLabel += $localSettings.showServingUnitQuantityTextbox ?
 							'' :
 							globalTab3 + '<div class="servingUnitQuantity fl" itemprop="servingSize">' +
-								parseFloat($localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition)) +
+								roundLoDash($localSettings.originalServingUnitQuantity, $localSettings.decimalPlacesForNutrition) +
 							'</div>\n';
 
 				if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null) {
@@ -1468,18 +1468,18 @@
 							textboxClass = 'unitQuantityBox arrowsAreHidden';
 						}
 
-							localNutritionLabel += globalTab4 + '<input type="text" value="' + parseFloat(
-								$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
-							) + '" class="' + textboxClass + '" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
+							localNutritionLabel += globalTab4 + '<input type="text" value="' +
+								roundLoDash($localSettings.valueServingUnitQuantity, $localSettings.decimalPlacesForQuantityTextbox) +
+								'" class="' + textboxClass + '" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
 
-							localNutritionLabel += globalTab4 + '<input type="hidden" value="' + parseFloat(
-								$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
-							) + '" id="nixLabelBeforeQuantity">\n';
+							localNutritionLabel += globalTab4 + '<input type="hidden" value="' +
+								roundLoDash($localSettings.valueServingUnitQuantity, $localSettings.decimalPlacesForQuantityTextbox) +
+								'" id="nixLabelBeforeQuantity">\n';
 
 						localNutritionLabel += globalTab3 + '</div><!-- closing class="servingSizeField" -->\n\n';
 					} else if ($localSettings.originalServingUnitQuantity > 0 && $localSettings.showServingUnitQuantityTextbox) {
 						localNutritionLabel += globalTab3 + '<div class="servingUnitQuantity" itemprop="servingSize">' +
-							parseFloat($localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition)) +
+							roundLoDash($localSettings.originalServingUnitQuantity, $localSettings.decimalPlacesForNutrition) +
 						'</div>\n';
 					}
 
@@ -1490,7 +1490,7 @@
 				//end of => if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null)
 				} else if ($localSettings.originalServingUnitQuantity > 0 && $localSettings.showServingUnitQuantityTextbox) {
 						localNutritionLabel += globalTab3 + '<div class="servingUnitQuantity fl" itemprop="servingSize">' +
-							parseFloat($localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition)) +
+							roundLoDash($localSettings.originalServingUnitQuantity, $localSettings.decimalPlacesForNutrition) +
 						'</div>\n';
 				}
 
@@ -1498,7 +1498,7 @@
 						localNutritionLabel += globalTab3 + '<' + ($localSettings.legacyVersion == 1 ? 'div' : 'span') + ' class="servingWeightGrams ' +
 							($localSettings.legacyVersion == 1 ? 'fl' : '') + ' ' + gramsAddedClass + '">' +
 							'(<span itemprop="servingSize">' +
-									parseFloat($localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition)) +
+									roundLoDash($localSettings.valueServingWeightGrams, $localSettings.decimalPlacesForNutrition) +
 									$localSettings.unitServingWeight +
 								'</span>)\n</' +
 						($localSettings.legacyVersion == 1 ? 'div' : 'span') + '>\n';
@@ -1515,9 +1515,9 @@
 			if ($localSettings.showServingsPerContainer) {
 				//Serving per container
 				if ($localSettings.valueServingPerContainer > 0) {
-					localNutritionLabel += globalTab2 + '<div tabindex="0">' + $localSettings.textServingsPerContainer + ' ' + parseFloat(
-						$localSettings.valueServingPerContainer.toFixed($localSettings.decimalPlacesForNutrition)
-					) + '</div>\n';
+					localNutritionLabel += globalTab2 + '<div tabindex="0">' + $localSettings.textServingsPerContainer + ' ' +
+						roundLoDash($localSettings.valueServingPerContainer, $localSettings.decimalPlacesForNutrition) +
+					'</div>\n';
 				} else {
 					localServingContainerIsHidden = true;
 				}
@@ -1663,7 +1663,7 @@
 			(
 				$localSettings.allowFDARounding ?
 					eval(roundFunctionName)($localSettings[valueIndex], $localSettings.decimalPlacesForNutrition) :
-					parseFloat($localSettings[valueIndex].toFixed($localSettings.decimalPlacesForNutrition))
+					roundLoDash($localSettings[valueIndex], $localSettings.decimalPlacesForNutrition)
 			) + $localSettings[unitIndex];
 
 		if (attributeDisplayType == 1 || attributeDisplayType == 4) {
@@ -1700,17 +1700,17 @@
 				localNutritionLabel += $localSettings[naIndex] ?
 					localNaValue :
 					'<strong>' +
-					parseFloat(
-						parseFloat(
+						roundLoDash(
 							(
 								(
 									$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
 								) / (
-									$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * (parseFloat($localSettings.calorieIntake) / 2000).toFixed(2) //the 2nd part is the calorie intake
+									$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * roundLoDash(parseFloat($localSettings.calorieIntake) / 2000, 2) //the 2nd part is the calorie intake
 								)
-							) * 100
-						).toFixed($localSettings.decimalPlacesForDailyValues)
-					) + '</strong>%';
+							) * 100,
+							$localSettings.decimalPlacesForDailyValues
+						) +
+					'</strong>%';
 			localNutritionLabel += '</div>\n';
 		}
 
@@ -1726,7 +1726,7 @@
 				(
 					$localSettings.allowFDARounding ?
 						eval(roundFunctionName)($localSettings[valueIndex], $localSettings.decimalPlacesForNutrition) :
-						parseFloat($localSettings[valueIndex].toFixed($localSettings.decimalPlacesForNutrition))
+						roundLoDash($localSettings[valueIndex], $localSettings.decimalPlacesForNutrition)
 				) + $localSettings[unitIndex]
 		) + '\n';
 		return localNutritionLabel += globalTab1 + '</span></div>\n';
@@ -1750,16 +1750,15 @@
 				//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
 				localNutritionLabel += $localSettings[naIndex] ?
 					localNaValue :
-					parseFloat(
-						parseFloat(
+					roundLoDash(
+						(
 							(
-								(
-									$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
-								) / (
-									$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * (parseFloat($localSettings.calorieIntake) / 2000).toFixed(2)
-								)
-							) * 100
-						).toFixed($localSettings.decimalPlacesForDailyValues)
+								$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
+							) / (
+								$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * roundLoDash(parseFloat($localSettings.calorieIntake) / 2000, 2)
+							)
+						) * 100,
+						$localSettings.decimalPlacesForDailyValues
 					) + '%';
 			localNutritionLabel += '</span>\n';
 		}
@@ -1776,7 +1775,7 @@
 					(
 						$localSettings.allowFDARounding ?
 							eval(roundFunctionName)($localSettings[valueIndex], $localSettings.decimalPlacesForNutrition) :
-							parseFloat($localSettings[valueIndex].toFixed($localSettings.decimalPlacesForNutrition))
+							roundLoDash($localSettings[valueIndex], $localSettings.decimalPlacesForNutrition)
 					) + $localSettings[unitIndex];
 			localNutritionLabel += '</span>\n';
 		//special case for added sugars
@@ -1789,7 +1788,7 @@
 						(
 							$localSettings.allowFDARounding ?
 								eval(roundFunctionName)($localSettings[valueIndex], $localSettings.decimalPlacesForNutrition) :
-								parseFloat($localSettings[valueIndex].toFixed($localSettings.decimalPlacesForNutrition))
+								roundLoDash($localSettings[valueIndex], $localSettings.decimalPlacesForNutrition)
 						) + $localSettings[unitIndex];
 				localNutritionLabel += '</span>\n';
 				localNutritionLabel += $localSettings['textAddedSugars2'];
@@ -1847,15 +1846,16 @@
 				$localSettings[naIndex] ?
 					localNaValue :
 					(
-						parseFloat(
+						roundLoDash(
 							//percentage / 100 * daily value
-							($localSettings[valueIndex] / 100) * $localSettings[dailyValueIndex]
-						).toFixed($localSettings.decimalPlacesForDailyValues) +
+							($localSettings[valueIndex] / 100) * $localSettings[dailyValueIndex],
+							$localSettings.decimalPlacesForDailyValues
+						) +
 						$localSettings[unitIndex_base] +
 						(
 							showPercentageCode ?
 								' <span class="nf-pr" aria-hidden="true">' +
-									$localSettings[valueIndex].toFixed($localSettings.decimalPlacesForDailyValues) + $localSettings[unitIndex_percent] +
+									roundLoDash($localSettings[valueIndex], $localSettings.decimalPlacesForDailyValues) + $localSettings[unitIndex_percent] +
 								'</span>' :
 								''
 						)
@@ -1893,13 +1893,13 @@
 					hideArrowsClass = 'nf-fixed-serving ';
 				}
 
-					localNutritionLabel += globalTab3 + '<input type="text" value="' + parseFloat(
-						$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
-					) + '" class="' + textboxClass + '" data-role="none" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
+					localNutritionLabel += globalTab3 + '<input type="text" value="' +
+						roundLoDash($localSettings.valueServingUnitQuantity, $localSettings.decimalPlacesForQuantityTextbox) +
+						'" class="' + textboxClass + '" data-role="none" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
 
-					localNutritionLabel += globalTab3 + '<input type="hidden" value="' + parseFloat(
-						$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
-					) + '" id="nf-nixLabelBeforeQuantity">\n\n';
+					localNutritionLabel += globalTab3 + '<input type="hidden" value="' +
+						roundLoDash($localSettings.valueServingUnitQuantity, $localSettings.decimalPlacesForQuantityTextbox) +
+						'" id="nf-nixLabelBeforeQuantity">\n\n';
 
 				itemNameClass = hideArrowsClass;
 			} else if (!$localSettings.showServingUnitQuantity) {
@@ -1922,7 +1922,7 @@
 
 				if ($localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0) {
 					localNutritionLabel += globalTab4 + '(<span itemprop="servingSize">' +
-						parseFloat($localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition)) +
+						roundLoDash($localSettings.valueServingWeightGrams, $localSettings.decimalPlacesForNutrition) +
 						$localSettings.unitServingWeight +
 					'</span>)\n';
 				}
@@ -1954,7 +1954,7 @@
 					localNutritionLabel += $localSettings.showServingUnitQuantityTextbox ?
 						'' :
 						' <span itemprop="servingSize">' +
-							parseFloat($localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition)) +
+							roundLoDash($localSettings.originalServingUnitQuantity, $localSettings.decimalPlacesForNutrition) +
 						' </span>\n';
 
 				if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null) {
@@ -1981,16 +1981,16 @@
 							textboxClass = 'nf-unitQuantityBox nf-modifier-field nf-arrowsAreHidden';
 						}
 
-							localNutritionLabel += globalTab5 + '<input type="text" data-role="none" value="' + parseFloat(
-								$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
-							) + '" class="' + textboxClass + '" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
+							localNutritionLabel += globalTab5 + '<input type="text" data-role="none" value="' +
+								roundLoDash($localSettings.valueServingUnitQuantity, $localSettings.decimalPlacesForQuantityTextbox) +
+								'" class="' + textboxClass + '" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
 
-							localNutritionLabel += globalTab5 + '<input type="hidden" value="' + parseFloat(
-								$localSettings.valueServingUnitQuantity.toFixed($localSettings.decimalPlacesForQuantityTextbox)
-							) + '" id="nf-nixLabelBeforeQuantity">\n\n';
+							localNutritionLabel += globalTab5 + '<input type="hidden" value="' +
+								roundLoDash($localSettings.valueServingUnitQuantity, $localSettings.decimalPlacesForQuantityTextbox) +
+								'" id="nf-nixLabelBeforeQuantity">\n\n';
 					} else if ($localSettings.originalServingUnitQuantity > 0 && $localSettings.showServingUnitQuantityTextbox) {
 							localNutritionLabel += ' <span itemprop="servingSize">' +
-								parseFloat($localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition)) +
+								roundLoDash($localSettings.originalServingUnitQuantity, $localSettings.decimalPlacesForNutrition) +
 							'</span>\n';
 					}
 
@@ -2000,7 +2000,7 @@
 
 						if ($localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0) {
 							localNutritionLabel += globalTab6 + '(' +
-								parseFloat($localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition)) +
+								roundLoDash($localSettings.valueServingWeightGrams, $localSettings.decimalPlacesForNutrition) +
 								$localSettings.unitServingWeight +
 							')\n';
 						}
@@ -2010,12 +2010,12 @@
 				//end of => if ($localSettings.valueServingSizeUnit !== '' && $localSettings.valueServingSizeUnit !== null)
 				} else if ($localSettings.originalServingUnitQuantity > 0 && $localSettings.showServingUnitQuantityTextbox) {
 						localNutritionLabel += ' <span itemprop="servingSize">' +
-							parseFloat($localSettings.originalServingUnitQuantity.toFixed($localSettings.decimalPlacesForNutrition)) +
+							roundLoDash($localSettings.originalServingUnitQuantity, $localSettings.decimalPlacesForNutrition) +
 						'</span>\n';
 
 					if (($localSettings.valueServingSizeUnit == '' || $localSettings.valueServingSizeUnit === null) && $localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0) {
 						localNutritionLabel += globalTab4 + '(' +
-							parseFloat($localSettings.valueServingWeightGrams.toFixed($localSettings.decimalPlacesForNutrition)) +
+							roundLoDash($localSettings.valueServingWeightGrams, $localSettings.decimalPlacesForNutrition) +
 							$localSettings.unitServingWeight +
 						')\n';
 					}
@@ -2086,7 +2086,7 @@
 									eval(roundFunctionName)(nutritionValueLocal / $localSettings.valueServingWeightGrams * 100, 1) :
 									eval(roundFunctionName)(nutritionValueLocal / $localSettings.valueServingWeightGrams * 100)
 							) :
-							parseFloat((nutritionValueLocal / $localSettings.valueServingWeightGrams * 100).toFixed($localSettings.decimalPlacesForNutrition))
+							roundLoDash((nutritionValueLocal / $localSettings.valueServingWeightGrams * 100), $localSettings.decimalPlacesForNutrition)
 					) + $localSettings[unitIndex]
 			);
 			localNutritionLabel += '</td>\n';
@@ -2103,7 +2103,7 @@
 									eval(roundFunctionName)(nutritionValueLocal, 1) :
 									eval(roundFunctionName)(nutritionValueLocal)
 							) :
-							parseFloat(nutritionValueLocal.toFixed($localSettings.decimalPlacesForNutrition))
+							roundLoDash(nutritionValueLocal, $localSettings.decimalPlacesForNutrition)
 					) + $localSettings[unitIndex]
 			);
 			localNutritionLabel += '</td>\n';
@@ -2115,24 +2115,23 @@
 				//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
 				localNutritionLabel += $localSettings[naIndex] ?
 					localNaValue :
-					parseFloat(
-						parseFloat(
+					roundLoDash(
+						(
 							(
-								(
-									$localSettings.allowFDARounding ?
-										(
-											valueIndex == 'valueCalories' ?
-												eval(roundFunctionRuleName)(nutritionValueLocal, 1) :
-												eval(roundFunctionRuleName)(nutritionValueLocal)
-										) :
-										nutritionValueLocal
-								) / (
-									$localSettings[dailyValueIndex] == 0 ?
-										1 :
-										$localSettings[dailyValueIndex] * (parseFloat($localSettings.calorieIntake) / 2000).toFixed(2) //the 2nd part is the calorie intake
-								)
-							) * 100
-						).toFixed($localSettings.decimalPlacesForDailyValues)
+								$localSettings.allowFDARounding ?
+									(
+										valueIndex == 'valueCalories' ?
+											eval(roundFunctionRuleName)(nutritionValueLocal, 1) :
+											eval(roundFunctionRuleName)(nutritionValueLocal)
+									) :
+									nutritionValueLocal
+							) / (
+								$localSettings[dailyValueIndex] == 0 ?
+									1 :
+									$localSettings[dailyValueIndex] * roundLoDash( (parseFloat($localSettings.calorieIntake) / 2000), 2 ) //the 2nd part is the calorie intake
+							)
+						) * 100,
+						$localSettings.decimalPlacesForDailyValues
 					) + '%';
 			}
 
@@ -2173,6 +2172,56 @@
 		localNutritionLabel += globalTab6 + '<a href="' + $localSettings.urlBottomLink + '" target="_newSite" class="uk_nf-homeLinkPrint">' + $localSettings.nameBottomLink + '</a>\n';
 		return localNutritionLabel += globalTab6 + '<div class="uk_nf-spaceBelow"></div>\n';
 	}
+
+
+	//based on https://github.com/lodash/lodash/blob/master/.internal/createRound.js
+	/**
+	 * Creates a function like `round`.
+	 *
+	 * @private
+	 * @param {string} methodName The name of the `Math` method to use when rounding.
+	 * @returns {Function} Returns the new round function.
+	 */
+	function createRound(methodName) {
+		const func = Math[methodName];
+		return (number, precision) => {
+			precision = precision === null ? 0 : ( precision >= 0 ? Math.min(precision, 292) : Math.max(precision, -292) );
+			if (precision) {
+				// Shift with exponential notation to avoid floating-point issues.
+				// See [MDN](https://mdn.io/round#Examples) for more details.
+				let pair = `${number}e`.split('e');
+				const value = func(`${pair[0]}e${+pair[1] + precision}`);
+
+				pair = `${value}e`.split('e');
+				return +`${pair[0]}e${+pair[1] - precision}`;
+			}
+
+			return func(number);
+		}
+	}
+
+
+	//based on https://github.com/lodash/lodash/blob/master/round.js
+	/**
+	 * Computes `number` rounded to `precision`.
+	 *
+	 * @since 3.10.0
+	 * @category Math
+	 * @param {number} number The number to round.
+	 * @param {number} [precision=0] The precision to round to.
+	 * @returns {number} Returns the rounded number.
+	 * @example
+	 *
+	 * round(4.006)
+	 * // => 4
+	 *
+	 * round(4.006, 2)
+	 * // => 4.01
+	 *
+	 * round(4060, -2)
+	 * // => 4100
+	 */
+	const roundLoDash = createRound('round');
 
 
 	NutritionLabel.prototype = {
@@ -2553,9 +2602,7 @@
 					$this.settings.valueServingPerContainer > 0
 			) {
 				nutritionLabel += globalTab2 + '<div class="nf-per-container" tabindex="0">\n';
-					nutritionLabel += globalTab3 + parseFloat(
-						$this.settings.valueServingPerContainer.toFixed($this.settings.decimalPlacesForNutrition)
-					);
+					nutritionLabel += globalTab3 + roundLoDash($this.settings.valueServingPerContainer, $this.settings.decimalPlacesForNutrition);
 					nutritionLabel += ' ' + $this.settings.textServingsPerContainer + '\n';
 				nutritionLabel += globalTab2 + '</div>\n\n';
 			}
@@ -2900,23 +2947,22 @@
 							nutritionLabel += globalTab5 + '</div><!-- closing class="setter" -->\n\n';
 						}
 
-							nutritionLabel += globalTab5 + '<input type="text" data-role="none" value="' + parseFloat(
-								$this.settings.valueServingUnitQuantity.toFixed(this.settings.decimalPlacesForQuantityTextbox)
-							) + '" ';
+							nutritionLabel += globalTab5 + '<input type="text" data-role="none" value="' +
+								roundLoDash($this.settings.valueServingUnitQuantity, this.settings.decimalPlacesForQuantityTextbox) + '" ';
 								nutritionLabel += 'class="uk_nf-unitQuantityBox uk_nf-modifier-field" aria-label="' + this.settings.textAriaLabelChangeQuantityTextbox + '">\n';
 
-							nutritionLabel += globalTab5 + '<input type="hidden" value="' + parseFloat(
-								this.settings.valueServingUnitQuantity.toFixed(this.settings.decimalPlacesForQuantityTextbox)
-							) + '" id="uk_nf-nixLabelBeforeQuantity">\n\n';
+							nutritionLabel += globalTab5 + '<input type="hidden" value="' +
+								roundLoDash(this.settings.valueServingUnitQuantity, this.settings.decimalPlacesForQuantityTextbox) +
+								'" id="uk_nf-nixLabelBeforeQuantity">\n\n';
 					} else {
 							nutritionLabel += globalTab5 + $this.settings.valueServingUnitQuantity;
 					}
 
 							nutritionLabel += globalTab5 + '<span class="uk_nf-servingUnit">' + $this.settings.valueServingSizeUnit;
-								nutritionLabel += ' (' + $this.settings.valueServingWeightGrams.toFixed() + $this.settings.unitGramOrMlForThePer100Part + ')</span>\n';
+								nutritionLabel += ' (' + roundLoDash($this.settings.valueServingWeightGrams) + $this.settings.unitGramOrMlForThePer100Part + ')</span>\n';
 						nutritionLabel += '</th>\n';
 
-						nutritionLabel += globalTab4 + '<th>%*(' + $this.settings.valueServingWeightGrams.toFixed() + $this.settings.unitGramOrMlForThePer100Part + ')</th>\n';
+						nutritionLabel += globalTab4 + '<th>%*(' + roundLoDash($this.settings.valueServingWeightGrams) + $this.settings.unitGramOrMlForThePer100Part + ')</th>\n';
 					nutritionLabel += globalTab3 + '</tr>\n';
 				nutritionLabel += globalTab2 + '</thead>\n';
 			nutritionLabel += globalTab1 + '<tbody>\n';
@@ -2932,6 +2978,7 @@
 					$this.settings, 'valueCalories', 'dailyValueEnergyKcal', 'unitEnergy_kcal', 'naCalories', '',            '',          'roundToNearestNum', 'roundToNearestNum',   $this.settings.showDailyEnergy, false
 				);
 			}
+
 			if ($this.settings.showTotalFat) {
 				nutritionLabel += generateAttributeForUK(
 					//$localSettings valueIndex       dailyValueIndex       unitIndex       naIndex       attributeTexts  itemPropValue roundFunctionName                                roundFunctionRuleName                               showPercentageCode                indentedName

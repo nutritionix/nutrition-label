@@ -1,4 +1,4 @@
-var <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>2018 Version Demo Page</title>
@@ -8,6 +8,13 @@ var <!DOCTYPE html>
 
 	<!-- google webfont for nutrition label -->
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Archivo+Black" />
+
+	<style>
+	.valueTD {
+		padding-left: 30px;
+		padding-top: 5px;
+	}
+	</style>
 </head>
 <body>
 <div class="container-fluid">
@@ -16,53 +23,89 @@ var <!DOCTYPE html>
 			<ul class="nav nav-sidebar">
 				<li><a href="../demo.html"><i class="icon-chevron-right"></i> Back to Demo Page</a></li>
 
-				<li><a href="#test1"><i class="icon-chevron-right"></i> Example 1</a></li>
-				<li><a href="#test2"><i class="icon-chevron-right"></i> Example 2</a></li>
-				<li><a href="#test3"><i class="icon-chevron-right"></i> Example 3</a></li>
-				<li><a href="#test4"><i class="icon-chevron-right"></i> Example 4</a></li>
+				<li><a href="#test1"><i class="icon-chevron-right"></i> Eg 1 - Rounding Off; Decimal Place 1 - Use %DV Values</a></li>
+				<li><a href="#test2"><i class="icon-chevron-right"></i> Eg 2 - Rounding On; Decimal Place 1 - Use %DV Values</a></li>
+				<li><a href="#test3"><i class="icon-chevron-right"></i> Eg 3 - Rounding Off; Decimal Place 1 - Use Base Values Values</a></li>
+				<li><a href="#test4"><i class="icon-chevron-right"></i> Eg 4 - Rounding On; Decimal Place 1 - Use Base Values Values</a></li>
+
+				<li><a href="#test5"><i class="icon-chevron-right"></i> Eg 5 - Rounding Off; Decimal Place 2 - Use %DV Values</a></li>
+				<li><a href="#test6"><i class="icon-chevron-right"></i> Eg 6 - Rounding On; Decimal Place 2 - Use %DV Values</a></li>
+				<li><a href="#test7"><i class="icon-chevron-right"></i> Eg 7 - Rounding Off; Decimal Place 2 - Use Base Values Values</a></li>
+				<li><a href="#test8"><i class="icon-chevron-right"></i> Eg 8 - Rounding On; Decimal Place 2 - Use Base Values Values</a></li>
+
+				<li><a href="#test9"><i class="icon-chevron-right"></i> Eg 9 - Rounding Off; Decimal Place 3 - Use %DV Values</a></li>
+				<li><a href="#test10"><i class="icon-chevron-right"></i> Eg 10 - Rounding On; Decimal Place 3 - Use %DV Values</a></li>
+				<li><a href="#test11"><i class="icon-chevron-right"></i> Eg 11 - Rounding Off; Decimal Place 3 - Use Base Values Values</a></li>
+				<li><a href="#test12"><i class="icon-chevron-right"></i> Eg 12 - Rounding On; Decimal Place 3 - Use Base Values Values</a></li>
+
+				<li><a href="#test13"><i class="icon-chevron-right"></i> Eg 13 - Rounding Off; Decimal Place 4 - Use %DV Values</a></li>
+				<li><a href="#test14"><i class="icon-chevron-right"></i> Eg 14 - Rounding On; Decimal Place 4 - Use %DV Values</a></li>
+				<li><a href="#test15"><i class="icon-chevron-right"></i> Eg 15 - Rounding Off; Decimal Place 4 - Use Base Values Values</a></li>
+				<li><a href="#test16"><i class="icon-chevron-right"></i> Eg 16 - Rounding On; Decimal Place 4 - Use Base Values Values</a></li>
 			</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<div class="row">
 				<div class="col-md-4">
 					<div id="test1"></div>
+					<div id="test1Data"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Example #1 - FDA Rounding Off - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
+					<h3>Example #1 - Rounding Off; Decimal Place 1 - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
 <pre id="pre1">
-let min = 100;
-let max = 1000;
+let min = 200;
+let max = 2000;
 
 $('#test1').nutritionLabel({
-	itemName : 'Demo FDA Rounding Off',
+	showServingsPerContainer : true,
+	itemName : 'Rounding Off; Decimal Place 1 - Use %DV Values',
+	showPolyFat : true,
+	showMonoFat : true,
 
-	valueServingWeightGrams : Math.floor((Math.random() * max) + min) * .1,
-	valueServingPerContainer : Math.floor((Math.random() * max) + min) * .1,
-	valueCalories : Math.floor((Math.random() * max) + min) * .1,
-	valueFatCalories : Math.floor((Math.random() * max) + min) * .1,
-	valueTotalFat : Math.floor((Math.random() * max) + min) * .1,
-	valueSatFat : Math.floor((Math.random() * max) + min) * .1,
-	valueTransFat : Math.floor((Math.random() * max) + min) * .1,
-	valuePolyFat : Math.floor((Math.random() * max) + min) * .1,
-	valueMonoFat : Math.floor((Math.random() * max) + min) * .1,
-	valueCholesterol : Math.floor((Math.random() * max) + min) * .1,
-	valueSodium : Math.floor((Math.random() * max) + min) * .1,
-	valuePotassium : Math.floor((Math.random() * max) + min) * .1, //this is for the legacy version
-	valuePotassium_2018 : Math.floor((Math.random() * max) + min) * .1, //this is for the 2018 version
-	valueTotalCarb : Math.floor((Math.random() * max) + min) * .1,
-	valueFibers : Math.floor((Math.random() * max) + min) * .1,
-	valueSugars : Math.floor((Math.random() * max) + min) * .1,
-	valueAddedSugars : Math.floor((Math.random() * max) + min) * .1,
-	valueProteins : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminA : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminC : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminD : Math.floor((Math.random() * max) + min) * .1,
-	valueCalcium : Math.floor((Math.random() * max) + min) * .1,
-	valueIron : Math.floor((Math.random() * max) + min) * .1,
-	valueCaffeine : Math.floor((Math.random() * max) + min) * .1,
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .01,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .01,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .01,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .01,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .01,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .01,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .01,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .01,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .01,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .01,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .01,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .01,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .01,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .01,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .01,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .01,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .01,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .01,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .01, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .01,
 
 	showLegacyVersion : false
 });
+
+$('#test1Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test1Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test1Data #varValueCalories').html(varValueCalories);
+$('#test1Data #varValueTotalFat').html(varValueTotalFat);
+$('#test1Data #varValueSatFat').html(varValueSatFat);
+$('#test1Data #varValueTransFat').html(varValueTransFat);
+$('#test1Data #varValuePolyFat').html(varValuePolyFat);
+$('#test1Data #varValueMonoFat').html(varValueMonoFat);
+$('#test1Data #varValueCholesterol').html(varValueCholesterol);
+$('#test1Data #varValueSodium').html(varValueSodium);
+$('#test1Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test1Data #varValueFibers').html(varValueFibers);
+$('#test1Data #varValueSugars').html(varValueSugars);
+$('#test1Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test1Data #varValueProteins').html(varValueProteins);
+$('#test1Data #varValueVitaminD').html(varValueVitaminD);
+$('#test1Data #varValueCalcium').html(varValueCalcium);
+$('#test1Data #varValueIron').html(varValueIron);
+$('#test1Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test1Data #varValueCaffeine').html(varValueCaffeine);
 </pre>
 				</div>
 			</div><br /><br /><br />
@@ -71,44 +114,65 @@ $('#test1').nutritionLabel({
 			<div class="row">
 				<div class="col-md-4">
 					<div id="test2"></div>
+					<div id="test2Data"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Example #2 - FDA Rounding On - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
+					<h3>Example #2 - Rounding On; Decimal Place 1 - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
 <pre id="pre2">
-let min = 100;
-let max = 1000;
+let min = 200;
+let max = 2000;
 
 $('#test2').nutritionLabel({
-	itemName : 'Demo FDA Rounding On',
+	showServingsPerContainer : true,
+	itemName : 'Rounding On; Decimal Place 1 - Use %DV Values',
 	allowFDARounding : true,
+	showPolyFat : true,
+	showMonoFat : true,
 
-	valueServingWeightGrams : Math.floor((Math.random() * max) + min) * .1,
-	valueServingPerContainer : Math.floor((Math.random() * max) + min) * .1,
-	valueCalories : Math.floor((Math.random() * max) + min) * .1,
-	valueFatCalories : Math.floor((Math.random() * max) + min) * .1,
-	valueTotalFat : Math.floor((Math.random() * max) + min) * .1,
-	valueSatFat : Math.floor((Math.random() * max) + min) * .1,
-	valueTransFat : Math.floor((Math.random() * max) + min) * .1,
-	valuePolyFat : Math.floor((Math.random() * max) + min) * .1,
-	valueMonoFat : Math.floor((Math.random() * max) + min) * .1,
-	valueCholesterol : Math.floor((Math.random() * max) + min) * .1,
-	valueSodium : Math.floor((Math.random() * max) + min) * .1,
-	valuePotassium : Math.floor((Math.random() * max) + min) * .1, //this is for the legacy version
-	valuePotassium_2018 : Math.floor((Math.random() * max) + min) * .1, //this is for the 2018 version
-	valueTotalCarb : Math.floor((Math.random() * max) + min) * .1,
-	valueFibers : Math.floor((Math.random() * max) + min) * .1,
-	valueSugars : Math.floor((Math.random() * max) + min) * .1,
-	valueAddedSugars : Math.floor((Math.random() * max) + min) * .1,
-	valueProteins : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminA : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminC : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminD : Math.floor((Math.random() * max) + min) * .1,
-	valueCalcium : Math.floor((Math.random() * max) + min) * .1,
-	valueIron : Math.floor((Math.random() * max) + min) * .1,
-	valueCaffeine : Math.floor((Math.random() * max) + min) * .1,
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .01,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .01,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .01,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .01,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .01,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .01,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .01,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .01,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .01,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .01,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .01,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .01,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .01,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .01,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .01,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .01,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .01,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .01,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .01, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .01,
 
 	showLegacyVersion : false
 });
+
+$('#test2Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test2Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test2Data #varValueCalories').html(varValueCalories);
+$('#test2Data #varValueTotalFat').html(varValueTotalFat);
+$('#test2Data #varValueSatFat').html(varValueSatFat);
+$('#test2Data #varValueTransFat').html(varValueTransFat);
+$('#test2Data #varValuePolyFat').html(varValuePolyFat);
+$('#test2Data #varValueMonoFat').html(varValueMonoFat);
+$('#test2Data #varValueCholesterol').html(varValueCholesterol);
+$('#test2Data #varValueSodium').html(varValueSodium);
+$('#test2Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test2Data #varValueFibers').html(varValueFibers);
+$('#test2Data #varValueSugars').html(varValueSugars);
+$('#test2Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test2Data #varValueProteins').html(varValueProteins);
+$('#test2Data #varValueVitaminD').html(varValueVitaminD);
+$('#test2Data #varValueCalcium').html(varValueCalcium);
+$('#test2Data #varValueIron').html(varValueIron);
+$('#test2Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test2Data #varValueCaffeine').html(varValueCaffeine);
 </pre>
 				</div>
 			</div><br /><br /><br />
@@ -117,12 +181,13 @@ $('#test2').nutritionLabel({
 			<div class="row">
 				<div class="col-md-4">
 					<div id="test3"></div>
+					<div id="test3Data"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Example #3 - FDA Rounding Off - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
+					<h3>Example #3 - Rounding Off; Decimal Place 1 - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
 <pre id="pre3">
-let min = 100;
-let max = 1000;
+let min = 200;
+let max = 2000;
 let minVitaminDIron = 50;
 let maxVitaminDIron = 100;
 let minCalcium = 100;
@@ -131,36 +196,56 @@ let minPotassium = 100;
 let maxPotassium = 1500;
 
 $('#test3').nutritionLabel({
-	itemName : 'Demo FDA Rounding Off',
+	showServingsPerContainer : true,
 	useBaseValueFor2018LabelAndNotDVPercentage : true,
+	itemName : 'Rounding Off; Decimal Place 1 - Use Base Values',
+	showPolyFat : true,
+	showMonoFat : true,
 
-	valueServingWeightGrams : Math.floor((Math.random() * max) + min) * .1,
-	valueServingPerContainer : Math.floor((Math.random() * max) + min) * .1,
-	valueCalories : Math.floor((Math.random() * max) + min) * .1,
-	valueFatCalories : Math.floor((Math.random() * max) + min) * .1,
-	valueTotalFat : Math.floor((Math.random() * max) + min) * .1,
-	valueSatFat : Math.floor((Math.random() * max) + min) * .1,
-	valueTransFat : Math.floor((Math.random() * max) + min) * .1,
-	valuePolyFat : Math.floor((Math.random() * max) + min) * .1,
-	valueMonoFat : Math.floor((Math.random() * max) + min) * .1,
-	valueCholesterol : Math.floor((Math.random() * max) + min) * .1,
-	valueSodium : Math.floor((Math.random() * max) + min) * .1,
-	valuePotassium : Math.floor((Math.random() * max) + min) * .1, //this is for the legacy version
-	valuePotassium_2018 : Math.floor((Math.random() * maxPotassium) + minPotassium) * .1, //this is for the 2018 version
-	valueTotalCarb : Math.floor((Math.random() * max) + min) * .1,
-	valueFibers : Math.floor((Math.random() * max) + min) * .1,
-	valueSugars : Math.floor((Math.random() * max) + min) * .1,
-	valueAddedSugars : Math.floor((Math.random() * max) + min) * .1,
-	valueProteins : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminA : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminC : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminD : Math.floor((Math.random() * maxVitaminDIron) + minVitaminDIron) * .1,
-	valueCalcium : Math.floor((Math.random() * maxCalcium) + minCalcium) * .1,
-	valueIron : Math.floor((Math.random() * maxVitaminDIron) + minVitaminDIron) * .1,
-	valueCaffeine : Math.floor((Math.random() * max) + min) * .1,
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .01,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .01,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .01,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .01,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .01,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .01,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .01,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .01,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .01,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .01,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .01,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .01,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .01,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .01,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .01,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .01,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .01,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .01,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .01, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .01,
 
 	showLegacyVersion : false
 });
+
+$('#test3Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test3Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test3Data #varValueCalories').html(varValueCalories);
+$('#test3Data #varValueTotalFat').html(varValueTotalFat);
+$('#test3Data #varValueSatFat').html(varValueSatFat);
+$('#test3Data #varValueTransFat').html(varValueTransFat);
+$('#test3Data #varValuePolyFat').html(varValuePolyFat);
+$('#test3Data #varValueMonoFat').html(varValueMonoFat);
+$('#test3Data #varValueCholesterol').html(varValueCholesterol);
+$('#test3Data #varValueSodium').html(varValueSodium);
+$('#test3Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test3Data #varValueFibers').html(varValueFibers);
+$('#test3Data #varValueSugars').html(varValueSugars);
+$('#test3Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test3Data #varValueProteins').html(varValueProteins);
+$('#test3Data #varValueVitaminD').html(varValueVitaminD);
+$('#test3Data #varValueCalcium').html(varValueCalcium);
+$('#test3Data #varValueIron').html(varValueIron);
+$('#test3Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test3Data #varValueCaffeine').html(varValueCaffeine);
 </pre>
 				</div>
 			</div><br /><br /><br />
@@ -169,12 +254,13 @@ $('#test3').nutritionLabel({
 			<div class="row">
 				<div class="col-md-4">
 					<div id="test4"></div>
+					<div id="test4Data"></div>
 				</div>
 				<div class="col-md-8">
-					<h3>Example #4 - FDA Rounding On - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
+					<h3>Example #4 - Rounding On; Decimal Place 1 - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
 <pre id="pre4">
-let min = 100;
-let max = 1000;
+let min = 200;
+let max = 2000;
 let minVitaminDIron = 50;
 let maxVitaminDIron = 100;
 let minCalcium = 100;
@@ -183,36 +269,909 @@ let minPotassium = 100;
 let maxPotassium = 1500;
 
 $('#test4').nutritionLabel({
-	itemName : 'Demo FDA Rounding On',
+	showServingsPerContainer : true,
+	useBaseValueFor2018LabelAndNotDVPercentage : true,
 	allowFDARounding : true,
+	itemName : 'Rounding On; Decimal Place 1 - Use Base Values',
+	showPolyFat : true,
+	showMonoFat : true,
 
-	valueServingWeightGrams : Math.floor((Math.random() * max) + min) * .1,
-	valueServingPerContainer : Math.floor((Math.random() * max) + min) * .1,
-	valueCalories : Math.floor((Math.random() * max) + min) * .1,
-	valueFatCalories : Math.floor((Math.random() * max) + min) * .1,
-	valueTotalFat : Math.floor((Math.random() * max) + min) * .1,
-	valueSatFat : Math.floor((Math.random() * max) + min) * .1,
-	valueTransFat : Math.floor((Math.random() * max) + min) * .1,
-	valuePolyFat : Math.floor((Math.random() * max) + min) * .1,
-	valueMonoFat : Math.floor((Math.random() * max) + min) * .1,
-	valueCholesterol : Math.floor((Math.random() * max) + min) * .1,
-	valueSodium : Math.floor((Math.random() * max) + min) * .1,
-	valuePotassium : Math.floor((Math.random() * max) + min) * .1, //this is for the legacy version
-	valuePotassium_2018 : Math.floor((Math.random() * maxPotassium) + minPotassium) * .1, //this is for the 2018 version
-	valueTotalCarb : Math.floor((Math.random() * max) + min) * .1,
-	valueFibers : Math.floor((Math.random() * max) + min) * .1,
-	valueSugars : Math.floor((Math.random() * max) + min) * .1,
-	valueAddedSugars : Math.floor((Math.random() * max) + min) * .1,
-	valueProteins : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminA : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminC : Math.floor((Math.random() * max) + min) * .1,
-	valueVitaminD : Math.floor((Math.random() * maxVitaminDIron) + minVitaminDIron) * .1,
-	valueCalcium : Math.floor((Math.random() * maxCalcium) + minCalcium) * .1,
-	valueIron : Math.floor((Math.random() * maxVitaminDIron) + minVitaminDIron) * .1,
-	valueCaffeine : Math.floor((Math.random() * max) + min) * .1,
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .01,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .01,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .01,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .01,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .01,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .01,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .01,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .01,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .01,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .01,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .01,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .01,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .01,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .01,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .01,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .01,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .01,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .01,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .01, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .01,
 
 	showLegacyVersion : false
 });
+
+$('#test4Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test4Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test4Data #varValueCalories').html(varValueCalories);
+$('#test4Data #varValueTotalFat').html(varValueTotalFat);
+$('#test4Data #varValueSatFat').html(varValueSatFat);
+$('#test4Data #varValueTransFat').html(varValueTransFat);
+$('#test4Data #varValuePolyFat').html(varValuePolyFat);
+$('#test4Data #varValueMonoFat').html(varValueMonoFat);
+$('#test4Data #varValueCholesterol').html(varValueCholesterol);
+$('#test4Data #varValueSodium').html(varValueSodium);
+$('#test4Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test4Data #varValueFibers').html(varValueFibers);
+$('#test4Data #varValueSugars').html(varValueSugars);
+$('#test4Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test4Data #varValueProteins').html(varValueProteins);
+$('#test4Data #varValueVitaminD').html(varValueVitaminD);
+$('#test4Data #varValueCalcium').html(varValueCalcium);
+$('#test4Data #varValueIron').html(varValueIron);
+$('#test4Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test4Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test5"></div>
+					<div id="test5Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #5 - Rounding Off; Decimal Place 2 - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre5">
+let min = 2000;
+let max = 20000;
+
+$('#test5').nutritionLabel({
+	showServingsPerContainer : true,
+	itemName : 'Rounding Off; Decimal Place 2 - Use %DV Values',
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 2,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .001,
+
+	showLegacyVersion : false
+});
+
+$('#test5Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test5Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test5Data #varValueCalories').html(varValueCalories);
+$('#test5Data #varValueTotalFat').html(varValueTotalFat);
+$('#test5Data #varValueSatFat').html(varValueSatFat);
+$('#test5Data #varValueTransFat').html(varValueTransFat);
+$('#test5Data #varValuePolyFat').html(varValuePolyFat);
+$('#test5Data #varValueMonoFat').html(varValueMonoFat);
+$('#test5Data #varValueCholesterol').html(varValueCholesterol);
+$('#test5Data #varValueSodium').html(varValueSodium);
+$('#test5Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test5Data #varValueFibers').html(varValueFibers);
+$('#test5Data #varValueSugars').html(varValueSugars);
+$('#test5Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test5Data #varValueProteins').html(varValueProteins);
+$('#test5Data #varValueVitaminD').html(varValueVitaminD);
+$('#test5Data #varValueCalcium').html(varValueCalcium);
+$('#test5Data #varValueIron').html(varValueIron);
+$('#test5Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test5Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test6"></div>
+					<div id="test6Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #6 - Rounding On; Decimal Place 2 - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre6">
+let min = 2000;
+let max = 20000;
+
+$('#test6').nutritionLabel({
+	showServingsPerContainer : true,
+	itemName : 'Rounding On; Decimal Place 2 - Use %DV Values',
+	allowFDARounding : true,
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 2,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .001,
+
+	showLegacyVersion : false
+});
+
+$('#test6Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test6Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test6Data #varValueCalories').html(varValueCalories);
+$('#test6Data #varValueTotalFat').html(varValueTotalFat);
+$('#test6Data #varValueSatFat').html(varValueSatFat);
+$('#test6Data #varValueTransFat').html(varValueTransFat);
+$('#test6Data #varValuePolyFat').html(varValuePolyFat);
+$('#test6Data #varValueMonoFat').html(varValueMonoFat);
+$('#test6Data #varValueCholesterol').html(varValueCholesterol);
+$('#test6Data #varValueSodium').html(varValueSodium);
+$('#test6Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test6Data #varValueFibers').html(varValueFibers);
+$('#test6Data #varValueSugars').html(varValueSugars);
+$('#test6Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test6Data #varValueProteins').html(varValueProteins);
+$('#test6Data #varValueVitaminD').html(varValueVitaminD);
+$('#test6Data #varValueCalcium').html(varValueCalcium);
+$('#test6Data #varValueIron').html(varValueIron);
+$('#test6Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test6Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test7"></div>
+					<div id="test7Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #7 - Rounding Off; Decimal Place 2 - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre7">
+let min = 2000;
+let max = 20000;
+let minVitaminDIron = 50;
+let maxVitaminDIron = 100;
+let minCalcium = 100;
+let maxCalcium = 1500;
+let minPotassium = 100;
+let maxPotassium = 1500;
+
+$('#test7').nutritionLabel({
+	showServingsPerContainer : true,
+	useBaseValueFor2018LabelAndNotDVPercentage : true,
+	itemName : 'Rounding Off; Decimal Place 2 - Use Base Values',
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 2,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .001,
+
+	showLegacyVersion : false
+});
+
+$('#test7Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test7Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test7Data #varValueCalories').html(varValueCalories);
+$('#test7Data #varValueTotalFat').html(varValueTotalFat);
+$('#test7Data #varValueSatFat').html(varValueSatFat);
+$('#test7Data #varValueTransFat').html(varValueTransFat);
+$('#test7Data #varValuePolyFat').html(varValuePolyFat);
+$('#test7Data #varValueMonoFat').html(varValueMonoFat);
+$('#test7Data #varValueCholesterol').html(varValueCholesterol);
+$('#test7Data #varValueSodium').html(varValueSodium);
+$('#test7Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test7Data #varValueFibers').html(varValueFibers);
+$('#test7Data #varValueSugars').html(varValueSugars);
+$('#test7Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test7Data #varValueProteins').html(varValueProteins);
+$('#test7Data #varValueVitaminD').html(varValueVitaminD);
+$('#test7Data #varValueCalcium').html(varValueCalcium);
+$('#test7Data #varValueIron').html(varValueIron);
+$('#test7Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test7Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test8"></div>
+					<div id="test8Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #8 - Rounding On; Decimal Place 2 - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre8">
+let min = 2000;
+let max = 20000;
+let minVitaminDIron = 50;
+let maxVitaminDIron = 100;
+let minCalcium = 100;
+let maxCalcium = 1500;
+let minPotassium = 100;
+let maxPotassium = 1500;
+
+$('#test8').nutritionLabel({
+	showServingsPerContainer : true,
+	useBaseValueFor2018LabelAndNotDVPercentage : true,
+	allowFDARounding : true,
+	itemName : 'Rounding On; Decimal Place 2 - Use Base Values',
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 2,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .001,
+
+	showLegacyVersion : false
+});
+
+$('#test8Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test8Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test8Data #varValueCalories').html(varValueCalories);
+$('#test8Data #varValueTotalFat').html(varValueTotalFat);
+$('#test8Data #varValueSatFat').html(varValueSatFat);
+$('#test8Data #varValueTransFat').html(varValueTransFat);
+$('#test8Data #varValuePolyFat').html(varValuePolyFat);
+$('#test8Data #varValueMonoFat').html(varValueMonoFat);
+$('#test8Data #varValueCholesterol').html(varValueCholesterol);
+$('#test8Data #varValueSodium').html(varValueSodium);
+$('#test8Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test8Data #varValueFibers').html(varValueFibers);
+$('#test8Data #varValueSugars').html(varValueSugars);
+$('#test8Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test8Data #varValueProteins').html(varValueProteins);
+$('#test8Data #varValueVitaminD').html(varValueVitaminD);
+$('#test8Data #varValueCalcium').html(varValueCalcium);
+$('#test8Data #varValueIron').html(varValueIron);
+$('#test8Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test8Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test9"></div>
+					<div id="test9Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #9 - Rounding Off; Decimal Place 3 - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre9">
+let min = 20000;
+let max = 200000;
+
+$('#test9').nutritionLabel({
+	showServingsPerContainer : true,
+	itemName : 'Rounding Off; Decimal Place 3 - Use %DV Values',
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 3,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .0001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .0001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .0001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .0001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .0001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .0001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .0001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .0001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .0001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .0001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .0001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .0001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .0001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .0001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .0001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .0001,
+
+	showLegacyVersion : false
+});
+
+$('#test9Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test9Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test9Data #varValueCalories').html(varValueCalories);
+$('#test9Data #varValueTotalFat').html(varValueTotalFat);
+$('#test9Data #varValueSatFat').html(varValueSatFat);
+$('#test9Data #varValueTransFat').html(varValueTransFat);
+$('#test9Data #varValuePolyFat').html(varValuePolyFat);
+$('#test9Data #varValueMonoFat').html(varValueMonoFat);
+$('#test9Data #varValueCholesterol').html(varValueCholesterol);
+$('#test9Data #varValueSodium').html(varValueSodium);
+$('#test9Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test9Data #varValueFibers').html(varValueFibers);
+$('#test9Data #varValueSugars').html(varValueSugars);
+$('#test9Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test9Data #varValueProteins').html(varValueProteins);
+$('#test9Data #varValueVitaminD').html(varValueVitaminD);
+$('#test9Data #varValueCalcium').html(varValueCalcium);
+$('#test9Data #varValueIron').html(varValueIron);
+$('#test9Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test9Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test10"></div>
+					<div id="test10Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #10 - Rounding On; Decimal Place 3 - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre10">
+let min = 20000;
+let max = 200000;
+
+$('#test10').nutritionLabel({
+	showServingsPerContainer : true,
+	itemName : 'Rounding On; Decimal Place 3 - Use %DV Values',
+	allowFDARounding : true,
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 3,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .0001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .0001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .0001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .0001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .0001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .0001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .0001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .0001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .0001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .0001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .0001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .0001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .0001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .0001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .0001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .0001,
+
+	showLegacyVersion : false
+});
+
+$('#test10Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test10Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test10Data #varValueCalories').html(varValueCalories);
+$('#test10Data #varValueTotalFat').html(varValueTotalFat);
+$('#test10Data #varValueSatFat').html(varValueSatFat);
+$('#test10Data #varValueTransFat').html(varValueTransFat);
+$('#test10Data #varValuePolyFat').html(varValuePolyFat);
+$('#test10Data #varValueMonoFat').html(varValueMonoFat);
+$('#test10Data #varValueCholesterol').html(varValueCholesterol);
+$('#test10Data #varValueSodium').html(varValueSodium);
+$('#test10Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test10Data #varValueFibers').html(varValueFibers);
+$('#test10Data #varValueSugars').html(varValueSugars);
+$('#test10Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test10Data #varValueProteins').html(varValueProteins);
+$('#test10Data #varValueVitaminD').html(varValueVitaminD);
+$('#test10Data #varValueCalcium').html(varValueCalcium);
+$('#test10Data #varValueIron').html(varValueIron);
+$('#test10Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test10Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test11"></div>
+					<div id="test11Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #11 - Rounding Off; Decimal Place 3 - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre11">
+let min = 20000;
+let max = 200000;
+let minVitaminDIron = 50;
+let maxVitaminDIron = 100;
+let minCalcium = 100;
+let maxCalcium = 1500;
+let minPotassium = 100;
+let maxPotassium = 1500;
+
+$('#test11').nutritionLabel({
+	showServingsPerContainer : true,
+	useBaseValueFor2018LabelAndNotDVPercentage : true,
+	itemName : 'Rounding Off; Decimal Place 3 - Use Base Values',
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 3,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .0001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .0001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .0001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .0001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .0001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .0001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .0001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .0001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .0001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .0001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .0001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .0001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .0001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .0001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .0001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .0001,
+
+	showLegacyVersion : false
+});
+
+$('#test11Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test11Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test11Data #varValueCalories').html(varValueCalories);
+$('#test11Data #varValueTotalFat').html(varValueTotalFat);
+$('#test11Data #varValueSatFat').html(varValueSatFat);
+$('#test11Data #varValueTransFat').html(varValueTransFat);
+$('#test11Data #varValuePolyFat').html(varValuePolyFat);
+$('#test11Data #varValueMonoFat').html(varValueMonoFat);
+$('#test11Data #varValueCholesterol').html(varValueCholesterol);
+$('#test11Data #varValueSodium').html(varValueSodium);
+$('#test11Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test11Data #varValueFibers').html(varValueFibers);
+$('#test11Data #varValueSugars').html(varValueSugars);
+$('#test11Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test11Data #varValueProteins').html(varValueProteins);
+$('#test11Data #varValueVitaminD').html(varValueVitaminD);
+$('#test11Data #varValueCalcium').html(varValueCalcium);
+$('#test11Data #varValueIron').html(varValueIron);
+$('#test11Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test11Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test12"></div>
+					<div id="test12Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #12 - Rounding On; Decimal Place 3 - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre12">
+let min = 20000;
+let max = 200000;
+let minVitaminDIron = 50;
+let maxVitaminDIron = 100;
+let minCalcium = 100;
+let maxCalcium = 1500;
+let minPotassium = 100;
+let maxPotassium = 1500;
+
+$('#test12').nutritionLabel({
+	showServingsPerContainer : true,
+	useBaseValueFor2018LabelAndNotDVPercentage : true,
+	allowFDARounding : true,
+	itemName : 'Rounding On; Decimal Place 3 - Use Base Values',
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 3,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .0001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .0001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .0001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .0001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .0001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .0001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .0001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .0001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .0001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .0001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .0001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .0001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .0001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .0001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .0001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .0001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .0001,
+
+	showLegacyVersion : false
+});
+
+$('#test12Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test12Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test12Data #varValueCalories').html(varValueCalories);
+$('#test12Data #varValueTotalFat').html(varValueTotalFat);
+$('#test12Data #varValueSatFat').html(varValueSatFat);
+$('#test12Data #varValueTransFat').html(varValueTransFat);
+$('#test12Data #varValuePolyFat').html(varValuePolyFat);
+$('#test12Data #varValueMonoFat').html(varValueMonoFat);
+$('#test12Data #varValueCholesterol').html(varValueCholesterol);
+$('#test12Data #varValueSodium').html(varValueSodium);
+$('#test12Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test12Data #varValueFibers').html(varValueFibers);
+$('#test12Data #varValueSugars').html(varValueSugars);
+$('#test12Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test12Data #varValueProteins').html(varValueProteins);
+$('#test12Data #varValueVitaminD').html(varValueVitaminD);
+$('#test12Data #varValueCalcium').html(varValueCalcium);
+$('#test12Data #varValueIron').html(varValueIron);
+$('#test12Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test12Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test13"></div>
+					<div id="test13Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #13 - Rounding Off; Decimal Place 4 - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre13">
+let min = 200000;
+let max = 2000000;
+
+$('#test13').nutritionLabel({
+	showServingsPerContainer : true,
+	itemName : 'Rounding Off; Decimal Place 4 - Use %DV Values',
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 4,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .00001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .00001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .00001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .00001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .00001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .00001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .00001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .00001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .00001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .00001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .00001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .00001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .00001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .00001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .00001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .00001,
+
+	showLegacyVersion : false
+});
+
+$('#test13Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test13Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test13Data #varValueCalories').html(varValueCalories);
+$('#test13Data #varValueTotalFat').html(varValueTotalFat);
+$('#test13Data #varValueSatFat').html(varValueSatFat);
+$('#test13Data #varValueTransFat').html(varValueTransFat);
+$('#test13Data #varValuePolyFat').html(varValuePolyFat);
+$('#test13Data #varValueMonoFat').html(varValueMonoFat);
+$('#test13Data #varValueCholesterol').html(varValueCholesterol);
+$('#test13Data #varValueSodium').html(varValueSodium);
+$('#test13Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test13Data #varValueFibers').html(varValueFibers);
+$('#test13Data #varValueSugars').html(varValueSugars);
+$('#test13Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test13Data #varValueProteins').html(varValueProteins);
+$('#test13Data #varValueVitaminD').html(varValueVitaminD);
+$('#test13Data #varValueCalcium').html(varValueCalcium);
+$('#test13Data #varValueIron').html(varValueIron);
+$('#test13Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test13Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test14"></div>
+					<div id="test14Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #14 - Rounding On; Decimal Place 4 - Use %DV for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre14">
+let min = 200000;
+let max = 2000000;
+
+$('#test14').nutritionLabel({
+	showServingsPerContainer : true,
+	itemName : 'Rounding On; Decimal Place 4 - Use %DV Values',
+	allowFDARounding : true,
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 4,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .00001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .00001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .00001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .00001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .00001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .00001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .00001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .00001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .00001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .00001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .00001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .00001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .00001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .00001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .00001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .00001,
+
+	showLegacyVersion : false
+});
+
+$('#test14Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test14Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test14Data #varValueCalories').html(varValueCalories);
+$('#test14Data #varValueTotalFat').html(varValueTotalFat);
+$('#test14Data #varValueSatFat').html(varValueSatFat);
+$('#test14Data #varValueTransFat').html(varValueTransFat);
+$('#test14Data #varValuePolyFat').html(varValuePolyFat);
+$('#test14Data #varValueMonoFat').html(varValueMonoFat);
+$('#test14Data #varValueCholesterol').html(varValueCholesterol);
+$('#test14Data #varValueSodium').html(varValueSodium);
+$('#test14Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test14Data #varValueFibers').html(varValueFibers);
+$('#test14Data #varValueSugars').html(varValueSugars);
+$('#test14Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test14Data #varValueProteins').html(varValueProteins);
+$('#test14Data #varValueVitaminD').html(varValueVitaminD);
+$('#test14Data #varValueCalcium').html(varValueCalcium);
+$('#test14Data #varValueIron').html(varValueIron);
+$('#test14Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test14Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test15"></div>
+					<div id="test15Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #15 - Rounding Off; Decimal Place 4 - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre15">
+let min = 200000;
+let max = 2000000;
+let minVitaminDIron = 50;
+let maxVitaminDIron = 100;
+let minCalcium = 100;
+let maxCalcium = 1500;
+let minPotassium = 100;
+let maxPotassium = 1500;
+
+$('#test15').nutritionLabel({
+	showServingsPerContainer : true,
+	useBaseValueFor2018LabelAndNotDVPercentage : true,
+	itemName : 'Rounding Off; Decimal Place 4 - Use Base Values',
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 4,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .00001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .00001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .00001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .00001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .00001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .00001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .00001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .00001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .00001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .00001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .00001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .00001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .00001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .00001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .00001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .00001,
+
+	showLegacyVersion : false
+});
+
+$('#test15Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test15Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test15Data #varValueCalories').html(varValueCalories);
+$('#test15Data #varValueTotalFat').html(varValueTotalFat);
+$('#test15Data #varValueSatFat').html(varValueSatFat);
+$('#test15Data #varValueTransFat').html(varValueTransFat);
+$('#test15Data #varValuePolyFat').html(varValuePolyFat);
+$('#test15Data #varValueMonoFat').html(varValueMonoFat);
+$('#test15Data #varValueCholesterol').html(varValueCholesterol);
+$('#test15Data #varValueSodium').html(varValueSodium);
+$('#test15Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test15Data #varValueFibers').html(varValueFibers);
+$('#test15Data #varValueSugars').html(varValueSugars);
+$('#test15Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test15Data #varValueProteins').html(varValueProteins);
+$('#test15Data #varValueVitaminD').html(varValueVitaminD);
+$('#test15Data #varValueCalcium').html(varValueCalcium);
+$('#test15Data #varValueIron').html(varValueIron);
+$('#test15Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test15Data #varValueCaffeine').html(varValueCaffeine);
+</pre>
+				</div>
+			</div><br /><br /><br />
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test16"></div>
+					<div id="test16Data"></div>
+				</div>
+				<div class="col-md-8">
+					<h3>Example #16 - Rounding On; Decimal Place 4 - Use Base Values for Vitamin D, Potassium, Iron and Calcium</h3>
+<pre id="pre16">
+let min = 200000;
+let max = 2000000;
+let minVitaminDIron = 50;
+let maxVitaminDIron = 100;
+let minCalcium = 100;
+let maxCalcium = 1500;
+let minPotassium = 100;
+let maxPotassium = 1500;
+
+$('#test16').nutritionLabel({
+	showServingsPerContainer : true,
+	useBaseValueFor2018LabelAndNotDVPercentage : true,
+	allowFDARounding : true,
+	itemName : 'Rounding On; Decimal Place 4 - Use Base Values',
+	showPolyFat : true,
+	showMonoFat : true,
+	decimalPlacesForNutrition : 4,
+
+	valueServingWeightGrams : varValueServingWeightGrams = Math.floor((Math.random() * max) + min) * .00001,
+	valueServingPerContainer : varValueServingPerContainer = Math.floor((Math.random() * max) + min) * .00001,
+	valueCalories : varValueCalories = Math.floor((Math.random() * max) + min) * .00001,
+	valueTotalFat : varValueTotalFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueSatFat : varValueSatFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueTransFat : varValueTransFat = Math.floor((Math.random() * max) + min) * .00001,
+	valuePolyFat : varValuePolyFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueMonoFat : varValueMonoFat = Math.floor((Math.random() * max) + min) * .00001,
+	valueCholesterol : varValueCholesterol = Math.floor((Math.random() * max) + min) * .00001,
+	valueSodium : varValueSodium = Math.floor((Math.random() * max) + min) * .00001,
+	valueTotalCarb : varValueTotalCarb = Math.floor((Math.random() * max) + min) * .00001,
+	valueFibers : varValueFibers = Math.floor((Math.random() * max) + min) * .00001,
+	valueSugars : varValueSugars = Math.floor((Math.random() * max) + min) * .00001,
+	valueAddedSugars : varValueAddedSugars = Math.floor((Math.random() * max) + min) * .00001,
+	valueProteins : varValueProteins = Math.floor((Math.random() * max) + min) * .00001,
+	valueVitaminD : varValueVitaminD = Math.floor((Math.random() * max) + min) * .00001,
+	valueCalcium : varValueCalcium = Math.floor((Math.random() * max) + min) * .00001,
+	valueIron : varValueIron = Math.floor((Math.random() * max) + min) * .00001,
+	valuePotassium_2018 : varValuePotassium_2018 = Math.floor((Math.random() * max) + min) * .00001, //this is for the 2018 version
+	valueCaffeine : varValueCaffeine = Math.floor((Math.random() * max) + min) * .00001,
+
+	showLegacyVersion : false
+});
+
+$('#test16Data #varValueServingWeightGrams').html(varValueServingWeightGrams);
+$('#test16Data #varValueServingPerContainer').html(varValueServingPerContainer);
+$('#test16Data #varValueCalories').html(varValueCalories);
+$('#test16Data #varValueTotalFat').html(varValueTotalFat);
+$('#test16Data #varValueSatFat').html(varValueSatFat);
+$('#test16Data #varValueTransFat').html(varValueTransFat);
+$('#test16Data #varValuePolyFat').html(varValuePolyFat);
+$('#test16Data #varValueMonoFat').html(varValueMonoFat);
+$('#test16Data #varValueCholesterol').html(varValueCholesterol);
+$('#test16Data #varValueSodium').html(varValueSodium);
+$('#test16Data #varValueTotalCarb').html(varValueTotalCarb);
+$('#test16Data #varValueFibers').html(varValueFibers);
+$('#test16Data #varValueSugars').html(varValueSugars);
+$('#test16Data #varValueAddedSugars').html(varValueAddedSugars);
+$('#test16Data #varValueProteins').html(varValueProteins);
+$('#test16Data #varValueVitaminD').html(varValueVitaminD);
+$('#test16Data #varValueCalcium').html(varValueCalcium);
+$('#test16Data #varValueIron').html(varValueIron);
+$('#test16Data #varValuePotassium_2018').html(varValuePotassium_2018);
+$('#test16Data #varValueCaffeine').html(varValueCaffeine);
 </pre>
 				</div>
 			</div><br /><br /><br />
@@ -225,11 +1184,64 @@ $('#test4').nutritionLabel({
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="../../nutritionLabel-min.js"></script>
 <script type="text/javascript">
+let tableTemplate = '<br/><table><tbody>' +
+	'<tr><th colspan="2">Actual Data used by the label</th></tr>' +
+	'<tr><td>Serving Weight Grams</td><td class="valueTD" id="varValueServingWeightGrams"></td></tr>' +
+	'<tr><td>Servings Per Container</td><td class="valueTD" id="varValueServingPerContainer"></td></tr>' +
+	'<tr><td>Calories</td><td class="valueTD" id="varValueCalories"></td></tr>' +
+	'<tr><td>Total Fat</td><td class="valueTD" id="varValueTotalFat"></td></tr>' +
+	'<tr><td>Saturated Fat</td><td class="valueTD" id="varValueSatFat"></td></tr>' +
+	'<tr><td>Trans Fat</td><td class="valueTD" id="varValueTransFat"></td></tr>' +
+	'<tr><td>Polysaturated Fat</td><td class="valueTD" id="varValuePolyFat"></td></tr>' +
+	'<tr><td>Monosaturated Fat</td><td class="valueTD" id="varValueMonoFat"></td></tr>' +
+	'<tr><td>Cholesterol</td><td class="valueTD" id="varValueCholesterol"></td></tr>' +
+	'<tr><td>Sodium</td><td class="valueTD" id="varValueSodium"></td></tr>' +
+	'<tr><td>Total Carb</td><td class="valueTD" id="varValueTotalCarb"></td></tr>' +
+	'<tr><td>Fibers</td><td class="valueTD" id="varValueFibers"></td></tr>' +
+	'<tr><td>Sugars</td><td class="valueTD" id="varValueSugars"></td></tr>' +
+	'<tr><td>Added Sugars</td><td class="valueTD" id="varValueAddedSugars"></td></tr>' +
+	'<tr><td>Proteins</td><td class="valueTD" id="varValueProteins"></td></tr>' +
+	'<tr><td>Vitamin D</td><td class="valueTD" id="varValueVitaminD"></td></tr>' +
+	'<tr><td>Calcium</td><td class="valueTD" id="varValueCalcium"></td></tr>' +
+	'<tr><td>Iron</td><td class="valueTD" id="varValueIron"></td></tr>' +
+	'<tr><td>Potassium</td><td class="valueTD" id="varValuePotassium_2018"></td></tr>' +
+	'<tr><td>Caffeine</td><td class="valueTD" id="varValueCaffeine"></td></tr>' +
+'</tbody></table>';
+
 $(document).ready(function(){
+	$('#test1Data').html(tableTemplate);
+	$('#test2Data').html(tableTemplate);
+	$('#test3Data').html(tableTemplate);
+	$('#test4Data').html(tableTemplate);
+	$('#test5Data').html(tableTemplate);
+	$('#test6Data').html(tableTemplate);
+	$('#test7Data').html(tableTemplate);
+	$('#test8Data').html(tableTemplate);
+	$('#test9Data').html(tableTemplate);
+	$('#test10Data').html(tableTemplate);
+	$('#test11Data').html(tableTemplate);
+	$('#test12Data').html(tableTemplate);
+	$('#test13Data').html(tableTemplate);
+	$('#test14Data').html(tableTemplate);
+	$('#test15Data').html(tableTemplate);
+	$('#test16Data').html(tableTemplate);
+
 	eval( eval( $('#pre1').html() ) );
 	eval( eval( $('#pre2').html() ) );
 	eval( eval( $('#pre3').html() ) );
 	eval( eval( $('#pre4').html() ) );
+	eval( eval( $('#pre5').html() ) );
+	eval( eval( $('#pre6').html() ) );
+	eval( eval( $('#pre7').html() ) );
+	eval( eval( $('#pre8').html() ) );
+	eval( eval( $('#pre9').html() ) );
+	eval( eval( $('#pre10').html() ) );
+	eval( eval( $('#pre11').html() ) );
+	eval( eval( $('#pre12').html() ) );
+	eval( eval( $('#pre13').html() ) );
+	eval( eval( $('#pre14').html() ) );
+	eval( eval( $('#pre15').html() ) );
+	eval( eval( $('#pre16').html() ) );
 });
 </script>
 

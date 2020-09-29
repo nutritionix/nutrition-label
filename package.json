@@ -1,6 +1,6 @@
 {
   "name": "nutrition-label-jquery-plugin",
-  "version": "10.0.6",
+  "version": "11.0.1",
   "description": "To be able to create a FDA-style nutrition label with any nutrition data source",
   "main": "nutritionLabel-min.js",
   "dependencies": {},
@@ -13,12 +13,15 @@
     "url": "git+https://github.com/nutritionix/nutrition-label.git"
   },
   "keywords": [
-    "nutritionix",
     "nutrition",
+    "nutrition-label",
     "jquery",
     "plugin",
-    "label"
-  ],
+    "jquery-plugin",
+    "fda",
+    "label",
+    "food-label"
+	],
   "author": "Leo Joseph Gajitos <leejay22@gmail.com>",
   "license": "MIT",
   "bugs": {

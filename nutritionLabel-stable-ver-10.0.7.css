@@ -1,4 +1,4 @@
- /*
+/*
  ***************************************************************************************************************************************************+
  * NUTRITIONIX.com                                                                                                                                  |
  *                                                                                                                                                  |
@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     10.0.6                                                                                                                      |
- * @stable version      9.0.10                                                                                                                      |
+ * @current version     11.0.1                                                                                                                      |
+ * @stable version      10.0.6                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
@@ -33,7 +33,6 @@
 .nutritionLabel input.unitQuantityBox.ui-shadow-inset {
 	box-shadow: none;
 }
-
 
 
 .nutritionLabel {
@@ -92,14 +91,14 @@
 	content: '\0000a0';
 }
 .nutritionLabel .bar1 {
-	height: 10px;
+	height: 11px;
 	line-height:0;
 	font-size:1px;
 	background: #333;
 	margin-top: 3px;
 }
 .nutritionLabel .bar2 {
-	height: 5px;
+	height: 6px;
 	line-height:0;
 	font-size:1px;
 	background: #333;
@@ -272,6 +271,10 @@
 .nutritionLabel .ingredientListDiv {
 	padding-top: 10px;
 }
+
+.nutritionLabel .addedPadding {
+	padding: 1px 0;
+}
 /*******************************************************************************************************************
 *************************************END OF THE LEGACY RELATED STYLES**********************************************
 ******************************************************************************************************************/
@@ -343,9 +346,13 @@
 }
 
 .nf-vitamin-column {
- font-size: .94em;
- padding: 1px 0;
- border-bottom: 1px solid #000;
+	font-size: .94em;
+	padding: 1px 0;
+	border-bottom: 1px solid #000;
+}
+
+.nf-vitamin-column-last {
+	border-bottom: 0;
 }
 
 .nf-footnote, .nf-footnoteHiddenDailyValues {
@@ -492,7 +499,7 @@ div.nf-unitQuantityUp:hover, div.nf-unitQuantityDown:hover{
 }
 
 .nf-item-name.no-indent {
-    margin-left: 0;
+	margin-left: 0;
 }
 .nf-arrowsAreHidden + input + .nf-item-name {
 	margin-left: 35px;
@@ -692,26 +699,26 @@ div, span{
 ******************************************************************************************************************/
 
 .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  border: 0;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	border: 0;
 }
 
 .nutritionLabel div::-webkit-scrollbar,
 .nf div::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
+	-webkit-appearance: none;
+	width: 7px;
 }
 .nutritionLabel div::-webkit-scrollbar-thumb,
 .nf div::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: #c1c1c1;
-    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.3);
+	border-radius: 4px;
+	background-color: #c1c1c1;
+	-webkit-box-shadow: 0 0 1px rgba(255,255,255,.3);
 }
 
 .nutritionLabel div::-webkit-scrollbar-thumb:hover,
@@ -721,7 +728,7 @@ div, span{
 
 .nutritionLabel div::-webkit-scrollbar-track,
 .nf div::-webkit-scrollbar-track {
-    background: #e9e9e9;
-    border: 0 none #fff;
-    border-radius: 4px;
+	background: #e9e9e9;
+	border: 0 none #fff;
+	border-radius: 4px;
 }

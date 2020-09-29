@@ -1,4 +1,13 @@
 
+version 11.0.1 - September 30, 2020
+
+ - change the .toFixed function to something that's more reliable https://github.com/nutritionix/nutrition-label/issues/102
+
+ - also changed the tool used to minify the css and js files from https://github.com/yui/yuicompressor to this one https://javascript-minifier.com/ (using https://github.com/promatik/PHP-JS-CSS-Minifier)
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 10.0.6 - May 10, 2020
 
  - made some changes on the code so the plugin can work with the latest version of jquery (currently it is version 3.5.1) https://github.com/nutritionix/nutrition-label/issues/129
