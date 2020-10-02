@@ -1385,7 +1385,7 @@
 						textboxClass = 'unitQuantityBox arrowsAreHidden';
 					}
 
-						localNutritionLabel += globalTab3 + '<input type="text" value="' +
+						localNutritionLabel += globalTab3 + '<input type="text" data-role="none" value="' +
 							roundLoDash($localSettings.valueServingUnitQuantity, $localSettings.decimalPlacesForQuantityTextbox) +
 							'" class="' + textboxClass + '" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
 
