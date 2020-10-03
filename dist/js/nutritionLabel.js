@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.1                                                                                                                      |
+ * @current version     11.0.2                                                                                                                      |
  * @stable version      10.0.6                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -1385,7 +1385,7 @@
 						textboxClass = 'unitQuantityBox arrowsAreHidden';
 					}
 
-						localNutritionLabel += globalTab3 + '<input type="text" value="' +
+						localNutritionLabel += globalTab3 + '<input type="text" data-role="none" value="' +
 							roundLoDash($localSettings.valueServingUnitQuantity, $localSettings.decimalPlacesForQuantityTextbox) +
 							'" class="' + textboxClass + '" aria-label="' + $localSettings.textAriaLabelChangeQuantityTextbox + '">\n';
 

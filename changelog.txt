@@ -1,4 +1,11 @@
 
+version 11.0.2 - October 4, 2020
+
+ - fixed the arrow design issue on the legacy mobile labels (related to the use of the latest version of jqm) https://github.com/nutritionix/nutrition-label/issues/132
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 11.0.1 - September 30, 2020
 
  - change the .toFixed function to something that's more reliable https://github.com/nutritionix/nutrition-label/issues/102
