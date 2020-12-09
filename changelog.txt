@@ -1,4 +1,11 @@
 
+version 11.0.3 - December 9, 2020
+
+ - added `role="region" aria-label="nutrition label` on all label div so it will pass the aria landmark validation for Axe https://dequeuniversity.com/rules/axe/3.5/region?application=AxeChrome
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 11.0.2 - October 4, 2020
 
  - fixed the arrow design issue on the legacy mobile labels (related to the use of the latest version of jqm) https://github.com/nutritionix/nutrition-label/issues/132
