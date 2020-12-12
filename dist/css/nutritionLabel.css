@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.3                                                                                                                      |
+ * @current version     11.0.4                                                                                                                      |
  * @stable version      11.0.2                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -105,7 +105,7 @@
 }
 
 .nutritionLabel .dvCalorieDiet {
-	color: #777;
+	color: #707070;
 }
 .nutritionLabel .calorieNote {
 	padding: .60em 0 0 .70em;
@@ -117,7 +117,7 @@
 	font-size: .7em;
 	border-bottom: 1px solid #333;
 	text-align: left;
-	color: #777;
+	color: #707070;
 }
 .nutritionLabel .tblCalorieDiet {
 	width: 100%;
@@ -126,7 +126,7 @@
 	padding: 0;
 	line-height: normal;
 	font-size: .7em;
-	color: #777;
+	color: #707070;
 }
 .nutritionLabel .ar {
 	text-align: right;
@@ -139,7 +139,7 @@
 }
 
 .nutritionLabel #calcDisclaimer {
-	color: #777;
+	color: #707070;
 }
 
 .notApplicable{

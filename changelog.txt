@@ -1,4 +1,11 @@
 
+version 11.0.4 - December 12, 2020
+
+ - css changes from Rommel to fix the validation issue "contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds" for Axe https://dequeuniversity.com/rules/axe/3.5/region?application=AxeChrome
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 11.0.3 - December 9, 2020
 
  - added `role="region" aria-label="nutrition label` on all label div so it will pass the aria landmark validation for Axe https://dequeuniversity.com/rules/axe/3.5/region?application=AxeChrome
