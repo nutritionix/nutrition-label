@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.4                                                                                                                      |
- * @stable version      11.0.2                                                                                                                      |
+ * @current version     11.0.5                                                                                                                      |
+ * @stable version      11.0.4                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
@@ -1695,25 +1695,6 @@
 		//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
 		let localNutritionLabel = globalTab1 + '<div class="' + lineClass + '" tabindex="0">\n';
 
-		if (!$localSettings['hidePercentDailyValues'] && showPercentageCode) {
-			localNutritionLabel += globalTab2 + '<div class="dv" aria-hidden="true">';
-				localNutritionLabel += $localSettings[naIndex] ?
-					localNaValue :
-					'<strong>' +
-						roundLoDash(
-							(
-								(
-									$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
-								) / (
-									$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * roundLoDash(parseFloat($localSettings.calorieIntake) / 2000, 2) //the 2nd part is the calorie intake
-								)
-							) * 100,
-							$localSettings.decimalPlacesForDailyValues
-						) +
-					'</strong>%';
-			localNutritionLabel += '</div>\n';
-		}
-
 		if (boldName) {
 			localNutritionLabel += globalTab2 + '<strong>' + $localSettings[attributeTexts] + '</strong> <span itemprop="' + itemPropValue + '">';
 		} else {
@@ -1729,6 +1710,26 @@
 						roundLoDash($localSettings[valueIndex], $localSettings.decimalPlacesForNutrition)
 				) + $localSettings[unitIndex]
 		) + '\n';
+
+		if (!$localSettings['hidePercentDailyValues'] && showPercentageCode) {
+			localNutritionLabel += globalTab2 + '<div class="dv">';
+				localNutritionLabel += $localSettings[naIndex] ?
+					localNaValue :
+					'<strong>' +
+						roundLoDash(
+							(
+								(
+									$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
+								) / (
+									$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * roundLoDash(parseFloat($localSettings.calorieIntake) / 2000, 2) //the 2nd part is the calorie intake
+								)
+							) * 100,
+							$localSettings.decimalPlacesForDailyValues
+						) +
+					'</strong>% <span class="sr-only">' + $localSettings.textDailyValues + '</span>';
+			localNutritionLabel += '</div>\n';
+		}
+
 		return localNutritionLabel += globalTab1 + '</span></div>\n';
 	}//end of => function generateAttributeWithPercentageHtmlLegacy(**too many parameters**)
 
@@ -1744,24 +1745,6 @@
 		let localNaValue = '<font class="notApplicable" aria-hidden="true">' + $localSettings.textNotApplicable + '&nbsp;</font><font class="sr-only">' +
 			$localSettings.textDataNotAvailable + '</font>\n';
 		let localNutritionLabel = globalTab1 + '<div class="' + topDivClass + '" tabindex="0">\n';
-
-		if (showPercentageCode && !$localSettings['hidePercentDailyValues']) {
-			localNutritionLabel += globalTab2 + '<span class="nf-highlight nf-pr" aria-hidden="true">';
-				//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
-				localNutritionLabel += $localSettings[naIndex] ?
-					localNaValue :
-					roundLoDash(
-						(
-							(
-								$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
-							) / (
-								$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * roundLoDash(parseFloat($localSettings.calorieIntake) / 2000, 2)
-							)
-						) * 100,
-						$localSettings.decimalPlacesForDailyValues
-					) + '%';
-			localNutritionLabel += '</span>\n';
-		}
 
 		//this is for everything else
 		if (valueIndex != 'valueAddedSugars') {
@@ -1792,6 +1775,24 @@
 						) + $localSettings[unitIndex];
 				localNutritionLabel += '</span>\n';
 				localNutritionLabel += $localSettings['textAddedSugars2'];
+			localNutritionLabel += '</span>\n';
+		}
+
+		if (showPercentageCode && !$localSettings['hidePercentDailyValues']) {
+			localNutritionLabel += globalTab2 + '<span class="nf-highlight nf-pr">';
+				//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
+				localNutritionLabel += $localSettings[naIndex] ?
+					localNaValue :
+					roundLoDash(
+						(
+							(
+								$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
+							) / (
+								$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * roundLoDash(parseFloat($localSettings.calorieIntake) / 2000, 2)
+							)
+						) * 100,
+						$localSettings.decimalPlacesForDailyValues
+					) + '% <span class="sr-only">' + $localSettings.textDailyValues + '</span>';
 			localNutritionLabel += '</span>\n';
 		}
 
@@ -1854,7 +1855,7 @@
 						$localSettings[unitIndex_base] +
 						(
 							showPercentageCode ?
-								' <span class="nf-pr" aria-hidden="true">' +
+								' <span class="nf-pr">' +
 									roundLoDash($localSettings[valueIndex], $localSettings.decimalPlacesForDailyValues) + $localSettings[unitIndex_percent] +
 								'</span>' :
 								''

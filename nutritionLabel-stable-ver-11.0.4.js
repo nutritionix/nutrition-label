@@ -9,8 +9,8 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.4                                                                                                                      |
- * @stable version      11.0.2                                                                                                                      |
+ * @current version     11.0.5                                                                                                                      |
+ * @stable version      11.0.4                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
@@ -2275,7 +2275,7 @@
 			}
 
 			//creates the html code for the label based on the settings
-			nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="nutritionLabel" style="' + borderCSS;
+			nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="nutritionLabel" role="region" aria-label="nutrition label" style="' + borderCSS;
 			if (!$this.settings.allowCustomWidth) {
 				nutritionLabel += ' width: ' + $this.settings.width + 'px;">\n';
 			} else {
@@ -2562,7 +2562,7 @@
 			}
 
 			//creates the html code for the label based on the settings
-			nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="nf" style="' + borderCSS;
+			nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="nf" role="region" aria-label="nutrition label" style="' + borderCSS;
 				if (!$this.settings.allowCustomWidth) {
 					nutritionLabel += ' width: ' + $this.settings.width + 'px;">\n';
 				} else {
@@ -2911,7 +2911,7 @@
 			}
 
 			//creates the html code for the label based on the settings
-			nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" class="uk_nf uk" style="' + borderCSS;
+			nutritionLabel = '<div itemscope itemtype="http://schema.org/NutritionInformation" role="region" aria-label="nutrition label" class="uk_nf uk" style="' + borderCSS;
 			if (!$this.settings.allowCustomWidth) {
 				nutritionLabel += ' width: ' + $this.settings.width + 'px;">\n';
 			} else {

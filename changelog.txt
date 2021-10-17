@@ -1,4 +1,10 @@
 
+version 11.0.5 - October 17, 2021
+
+ - accessibility improvements listed here https://github.com/nutritionix/nutrition-label/issues/134
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
 version 11.0.4 - December 12, 2020
 
  - css changes from Rommel to fix the validation issue "contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds" for Axe https://dequeuniversity.com/rules/axe/3.5/region?application=AxeChrome
