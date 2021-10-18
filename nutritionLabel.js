@@ -2308,21 +2308,21 @@
 
 				nutritionLabel += globalTab1 + '<div class="' + ($this.settings.showAmountPerServing ? 'line' : 'addedPadding') + '">\n';
 
-				if ($this.settings.showFatCalories) {
-					nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
-						//$localSettings valueIndex          unitIndex          naIndex          attributeText     localTabValue lineClass attributeDisplayType itemPropValue localExtraTab roundFunctionName
-						$this.settings, 'valueFatCalories', 'unitFatCalories', 'naFatCalories', 'textFatCalories', globalTab2,  'fr',      2,                   '',           '',          'roundCalories'
-					);
-				}
-
 				if ($this.settings.showCalories) {
 					nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
 						//$localSettings valueIndex       unitIndex       naIndex       attributeText  localTabValue lineClass attributeDisplayType itemPropValue localExtraTab roundFunctionName
-						$this.settings, 'valueCalories', 'unitCalories', 'naCalories', 'textCalories', globalTab2,   '',       1,                  'calories',    '',          'roundCalories'
+						$this.settings, 'valueCalories', 'unitCalories', 'naCalories', 'textCalories', globalTab2,   'fl',       1,                  'calories',    '',          'roundCalories'
 					);
 				} else if ($this.settings.showFatCalories) {
 					nutritionLabel += globalTab2 + '<div>&nbsp;</div>\n';
 				}
+
+				if ($this.settings.showFatCalories) {
+					nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
+						//$localSettings valueIndex          unitIndex          naIndex          attributeText     localTabValue lineClass attributeDisplayType itemPropValue localExtraTab roundFunctionName
+						$this.settings, 'valueFatCalories', 'unitFatCalories', 'naFatCalories', 'textFatCalories', globalTab2,  'ar',      2,                   '',           '',          'roundCalories'
+					);
+				}				
 
 				nutritionLabel += globalTab1 + '</div>\n';
 				nutritionLabel += globalTab1 + '<div class="bar2"></div>\n';
