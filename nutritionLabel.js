@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.5                                                                                                                      |
+ * @current version     11.0.6                                                                                                                      |
  * @stable version      11.0.4                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -2322,7 +2322,7 @@
 						//$localSettings valueIndex          unitIndex          naIndex          attributeText     localTabValue lineClass attributeDisplayType itemPropValue localExtraTab roundFunctionName
 						$this.settings, 'valueFatCalories', 'unitFatCalories', 'naFatCalories', 'textFatCalories', globalTab2,  'ar',      2,                   '',           '',          'roundCalories'
 					);
-				}				
+				}
 
 				nutritionLabel += globalTab1 + '</div>\n';
 				nutritionLabel += globalTab1 + '<div class="bar2"></div>\n';
