@@ -1483,7 +1483,7 @@
 						'</div>\n';
 					}
 
-						localNutritionLabel += globalTab3 + '<div class="servingUnit fl ' + unitAddedClass + '">' +
+						localNutritionLabel += globalTab3 + '<div class="servingUnit fl ' + unitAddedClass + '" tabindex="0">' +
 							$localSettings.valueServingSizeUnit +
 						($localSettings.legacyVersion == 1 ? '</div>\n' : '');
 
