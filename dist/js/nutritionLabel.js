@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.6                                                                                                                      |
+ * @current version     11.0.7                                                                                                                      |
  * @stable version      11.0.4                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -1483,7 +1483,7 @@
 						'</div>\n';
 					}
 
-						localNutritionLabel += globalTab3 + '<div class="servingUnit fl ' + unitAddedClass + '">' +
+						localNutritionLabel += globalTab3 + '<div class="servingUnit fl ' + unitAddedClass + '" tabindex="0">' +
 							$localSettings.valueServingSizeUnit +
 						($localSettings.legacyVersion == 1 ? '</div>\n' : '');
 
@@ -2306,7 +2306,7 @@
 				nutritionLabel += '</div>\n';
 			}
 
-				nutritionLabel += globalTab1 + '<div class="' + ($this.settings.showAmountPerServing ? 'line' : 'addedPadding') + '">\n';
+				nutritionLabel += globalTab1 + '<div class="' + ($this.settings.showAmountPerServing ? 'line' : 'addedPadding cf') + '">\n';
 
 				if ($this.settings.showCalories) {
 					nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
