@@ -2306,7 +2306,7 @@
 				nutritionLabel += '</div>\n';
 			}
 
-				nutritionLabel += globalTab1 + '<div class="' + ($this.settings.showAmountPerServing ? 'line' : 'addedPadding') + '">\n';
+				nutritionLabel += globalTab1 + '<div class="' + ($this.settings.showAmountPerServing ? 'line' : 'addedPadding cf') + '">\n';
 
 				if ($this.settings.showCalories) {
 					nutritionLabel += generateAttributeWithoutPercentageHtmlLegacy(
