@@ -1,4 +1,11 @@
 
+version 11.0.8 - October 27, 2021
+
+ - another bug fix related to this task https://github.com/nutritionix/nutrition-label/issues/135
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 11.0.7 - October 21, 2021
 
  - bug fix related to this task https://github.com/nutritionix/nutrition-label/issues/135
