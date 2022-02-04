@@ -304,8 +304,7 @@
 .nf-highlight,
 .nf-serving,
 .nf-amount-per-serving,
-.nf-calories,
-.nf-text-strong {
+.nf-calories {
 	font-family: 'Archivo Black', sans-serif;
 }
 
@@ -516,11 +515,39 @@ div, span{
 .nf .nf-spaceBelow {
 	 height: 10px;
 }
+
+/*
+Added October 15, 2021
+*/
 .nf-text-strong {
-    font-size: 1.2em;
-    line-height: 1.3;
+	font-family: 'Archivo Black', sans-serif;
+	font-size: 1.2em;
+	line-height: 1.3;
 }
 
+/*
+Added January 31, 2022
+*/
+
+.nf-item-name.block {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.2em;
+    line-height: 1.3;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+}
+
+.nf-serving-unit-name {
+    margin-left: 50px;
+    line-height: 1.25em;
+    padding-top: 4px;
+    padding-bottom: 3px;
+}
+
+.nf-serving-unit.no-indent {
+    margin-left: 0;
+}
 /*******************************************************************************************************************
 *************************************END OF THE 2018 LABEL RELATED STYLES******************************************
 ******************************************************************************************************************/
