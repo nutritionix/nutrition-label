@@ -1955,7 +1955,7 @@
 			if ($localSettings.originalServingUnitQuantity > 0) {
 				let servingSizeDivAlreadyClosed = false;
 
-				localNutritionLabel += globalTab3 + '<div tabIndex="0" class="nf-line"><!-- opening for serving size div -->\n';
+				localNutritionLabel += globalTab3 + '<div tabIndex="0"><!-- opening for serving size div -->\n';
 					localNutritionLabel += globalTab4 + $localSettings.textServingSize;
 
 				localNutritionLabel += $localSettings.showServingUnitQuantityTextbox ?
@@ -2599,10 +2599,6 @@
 					$this.settings.valueServingPerContainer > 0
 				);
 
-			if (showLineDiv) {
-				nutritionLabel += globalTab1 + '<div class="nf-line">\n';
-			}
-
 			if (
 					$this.settings.showServingUnitQuantity &&
 					$this.settings.originalServingUnitQuantity > 0 &&
@@ -2614,6 +2610,10 @@
 					nutritionLabel += ' ' + $this.settings.textServingsPerContainer + '\n';
 				nutritionLabel += globalTab2 + '</div>\n\n';
 			}
+
+			if (showLineDiv) {
+				nutritionLabel += globalTab1 + '<div class="nf-line">\n';
+			}			
 
 				//xxx
 				nutritionLabel += globalTab2 + '<div class="nf-serving">\n';
