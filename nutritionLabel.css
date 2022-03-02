@@ -764,3 +764,12 @@ Added January 31, 2022
 	border: 0 none #fff;
 	border-radius: 4px;
 }
+
+/* Added Feb 16, 2022 */
+.nf-arrowsAreHidden + #nf-nixLabelBeforeQuantity + .nf-serving-unit-name {
+	margin-left: 33px;
+}
+
+.nf-serving-unit-name.no-indent {
+	margin-left: 0;
+}
