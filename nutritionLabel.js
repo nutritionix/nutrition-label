@@ -2617,12 +2617,12 @@
 
 				//xxx
 				nutritionLabel += globalTab2 + '<div class="nf-serving">\n';
-
+				nutritionLabel += sevingUnitQuantityHtml2018Result.nutritionLabel;
+				
 					if ($this.settings.showItemName) {
 						nutritionLabel += itemNameHtml2018($this.settings);
 					}
 
-					nutritionLabel += sevingUnitQuantityHtml2018Result.nutritionLabel;
 				nutritionLabel += globalTab2 + '</div><!-- end of class="nf-serving" -->\n\n';
 
 			if (showLineDiv) {
