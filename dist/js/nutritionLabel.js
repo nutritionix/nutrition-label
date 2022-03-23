@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.8                                                                                                                      |
+ * @current version     11.0.9                                                                                                                      |
  * @stable version      11.0.4                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -861,7 +861,10 @@
 			//for the 2018 label
 			ingredientListID = 'nf-ingredientList';
 			calcDisclaimerTextID = 'nf-calcDisclaimerText';
-			nameElementClass = 'nf-item-name';
+
+			//xxx - in case this needs to be reverted
+			//nameElementClass = 'nf-item-name';
+			nameElementClass = 'nf-item-name block';
 		} else if (!forLegacyLabel && forUKLabel) {
 			//for the uk label
 			ingredientListID = 'uk_nf-ingredient-statement';
@@ -1911,7 +1914,10 @@
 			itemNameClass += 'no-indent';
 		}
 
-		localNutritionLabel += globalTab3 + '<div class="nf-item-name ' + itemNameClass + '" tabindex="0">\n';
+		//xxx - item name div
+		//xxx - rommel - this is one of the area i am confused as it this area can contain both the serving unit name ($localSettings.valueServingSizeUnit)
+			//and the item / modifier name ($localSettings.itemName)
+		localNutritionLabel += globalTab3 + '<div class="nf-serving-unit-name ' + itemNameClass + '" tabindex="0">\n';
 
 			if (
 					$localSettings.showServingUnitQuantity &&
@@ -1929,7 +1935,7 @@
 				}
 			}
 
-			localNutritionLabel += globalTab4 + '<div>\n';
+			localNutritionLabel += globalTab4 + '<div class="nf-item-name block">\n';
 				localNutritionLabel += globalTab5 + $localSettings.itemName + '\n';
 				if ($localSettings.showBrandName && $localSettings.brandName !== null && $localSettings.brandName != '') {
 					localNutritionLabel += ' - ' + $localSettings.brandName;
@@ -1949,10 +1955,10 @@
 			if ($localSettings.originalServingUnitQuantity > 0) {
 				let servingSizeDivAlreadyClosed = false;
 
-				localNutritionLabel += globalTab3 + '<div tabIndex="0" class="nf-line"><!-- opening for serving size div -->\n';
+				localNutritionLabel += globalTab3 + '<div tabIndex="0"><!-- opening for serving size div -->\n';
 					localNutritionLabel += globalTab4 + $localSettings.textServingSize;
 
-					localNutritionLabel += $localSettings.showServingUnitQuantityTextbox ?
+				localNutritionLabel += $localSettings.showServingUnitQuantityTextbox ?
 						'' :
 						' <span itemprop="servingSize">' +
 							roundLoDash($localSettings.originalServingUnitQuantity, $localSettings.decimalPlacesForNutrition) +
@@ -1996,7 +2002,8 @@
 					}
 
 					if (!$localSettings.showItemName) {
-						localNutritionLabel += globalTab5 + '<div class="nf-item-name" tabindex="0">\n';
+						//xxx - serving unit name div
+						localNutritionLabel += globalTab5 + '<div class="nf-serving-unit-name" tabindex="0">\n';
 							localNutritionLabel += globalTab6 + $localSettings.valueServingSizeUnit + '\n';
 
 						if ($localSettings.showServingWeightGrams && $localSettings.valueServingWeightGrams > 0) {
@@ -2592,10 +2599,6 @@
 					$this.settings.valueServingPerContainer > 0
 				);
 
-			if (showLineDiv) {
-				nutritionLabel += globalTab1 + '<div class="nf-line">\n';
-			}
-
 			if (
 					$this.settings.showServingUnitQuantity &&
 					$this.settings.originalServingUnitQuantity > 0 &&
@@ -2608,9 +2611,13 @@
 				nutritionLabel += globalTab2 + '</div>\n\n';
 			}
 
-				nutritionLabel += globalTab2 + '<div class="nf-serving">\n';
+			if (showLineDiv) {
+				nutritionLabel += globalTab1 + '<div class="nf-line">\n';
+			}
 
-					nutritionLabel += sevingUnitQuantityHtml2018Result.nutritionLabel;
+				//xxx
+				nutritionLabel += globalTab2 + '<div class="nf-serving">\n';
+				nutritionLabel += sevingUnitQuantityHtml2018Result.nutritionLabel;
 
 					if ($this.settings.showItemName) {
 						nutritionLabel += itemNameHtml2018($this.settings);

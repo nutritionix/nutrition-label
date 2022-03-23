@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.8                                                                                                                      |
+ * @current version     11.0.9                                                                                                                      |
  * @stable version      11.0.4                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -304,8 +304,7 @@
 .nf-highlight,
 .nf-serving,
 .nf-amount-per-serving,
-.nf-calories,
-.nf-text-strong {
+.nf-calories {
 	font-family: 'Archivo Black', sans-serif;
 }
 
@@ -516,11 +515,39 @@ div, span{
 .nf .nf-spaceBelow {
 	 height: 10px;
 }
+
+/*
+Added October 15, 2021
+*/
 .nf-text-strong {
-    font-size: 1.2em;
-    line-height: 1.3;
+	font-family: 'Archivo Black', sans-serif;
+	font-size: 1.2em;
+	line-height: 1.3;
 }
 
+/*
+Added January 31, 2022
+*/
+
+.nf-item-name.block {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.2em;
+    line-height: 1;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+}
+
+.nf-serving-unit-name {
+    margin-left: 50px;
+    line-height: 1.25em;
+    padding-top: 4px;
+    padding-bottom: 3px;
+}
+
+.nf-serving-unit.no-indent {
+    margin-left: 0;
+}
 /*******************************************************************************************************************
 *************************************END OF THE 2018 LABEL RELATED STYLES******************************************
 ******************************************************************************************************************/
@@ -736,4 +763,13 @@ div, span{
 	background: #e9e9e9;
 	border: 0 none #fff;
 	border-radius: 4px;
+}
+
+/* Added Feb 16, 2022 */
+.nf-arrowsAreHidden + #nf-nixLabelBeforeQuantity + .nf-serving-unit-name {
+	margin-left: 33px;
+}
+
+.nf-serving-unit-name.no-indent {
+	margin-left: 0;
 }
