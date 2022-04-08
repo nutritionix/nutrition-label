@@ -392,6 +392,7 @@
 .nf-bar1,
 .nf-bar2 {
 	background-color: #000;
+	clear: both;
 }
 
 .clear:before,
