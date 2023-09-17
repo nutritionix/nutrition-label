@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.10                                                                                                                     |
+ * @current version     11.0.11                                                                                                                     |
  * @stable version      11.0.4                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -50,21 +50,21 @@
 	<p>These are the default values on the plugin that you need to change to create a customized nutrition label to suit your needs.</p>
 	<pre style="padding: 20px 40px; font-size: 14px;">
 //default fixedWidth of the nutrition label
-width : 280,
+width: 280,
 
 //to allow custom width - usually needed for mobile sites
-allowCustomWidth : false,
-widthCustom : 'auto',
+allowCustomWidth: false,
+widthCustom: 'auto',
 
 //to allow the label to have no border
-allowNoBorder : false,
+allowNoBorder: false,
 
 //to enable rounding of the nutritional values based on the FDA rounding rules http://goo.gl/RMD2O
-allowFDARounding : false,
+allowFDARounding: false,
 
 //to enabled the google analytics event logging
-allowGoogleAnalyticsEventLog : false,
-gooleAnalyticsFunctionName : 'ga',
+allowGoogleAnalyticsEventLog: false,
+gooleAnalyticsFunctionName: 'ga',
 
 //enable triggering of user function on quantity change: global function name
 userFunctionNameOnQuantityChange: null,
@@ -72,41 +72,41 @@ userFunctionNameOnQuantityChange: null,
 userFunctionOnQuantityChange: null,
 
 //when set to true, this will hide the values if they are not applicable
-hideNotApplicableValues : false,
+hideNotApplicableValues: false,
 
 //when set to true, this will hide all the percent daily values
-hidePercentDailyValues : false,
+hidePercentDailyValues: false,
 
 //the brand name of the item for this label (eg. just salad)
-brandName : 'Brand where this item belongs to',
+brandName: 'Brand where this item belongs to',
 //to scroll the ingredients if the innerheight is > scrollHeightComparison
-scrollLongIngredients : false,
-scrollHeightComparison : 100,
+scrollLongIngredients: false,
+scrollHeightComparison: 100,
 //the height in px of the ingredients div
-scrollHeightPixel : 95,
+scrollHeightPixel: 95,
 //this is to set how many decimal places will be shown on the nutrition values (calories, fat, protein, vitamin a, iron, etc)
-decimalPlacesForNutrition : 1,
+decimalPlacesForNutrition: 1,
 //this is to set how many decimal places will be shown for the "% daily values*"
-decimalPlacesForDailyValues : 0,
+decimalPlacesForDailyValues: 0,
 //this is to set how many decimal places will be shown for the serving unit quantity textbox
-decimalPlacesForQuantityTextbox : 1,
+decimalPlacesForQuantityTextbox: 1,
 
 //to scroll the item name if the jQuery.height() is > scrollLongItemNamePixel
-scrollLongItemName : true,
-scrollLongItemNamePixel : 36,
+scrollLongItemName: true,
+scrollLongItemNamePixel: 36,
 //this is needed to fix some issues on the 2018 label as the layout of the label is very different than the legacy one
-scrollLongItemNamePixel2018Override : 34,
+scrollLongItemNamePixel2018Override: 34,
 
 //this will only affect Vitamin D (valueVitaminD), Calcium (valueCalcium), Iron (valueIron) and Potassium (valuePotassium_2018).
 	//this will tell the system to process these values as base values and not % Daily Values (default)
-useBaseValueFor2018LabelAndNotDVPercentage : false, //this is for the 2018 version
+useBaseValueFor2018LabelAndNotDVPercentage: false, //this is for the 2018 version
 
 //show the customizable link at the bottom
-showBottomLink : false,
+showBottomLink: false,
 //url for the customizable link at the bottom
-urlBottomLink : 'http://www.nutritionix.com',
+urlBottomLink: 'http://www.nutritionix.com',
 //link name for the customizable link at the bottom
-nameBottomLink : 'Nutritionix',
+nameBottomLink: 'Nutritionix',
 
 //this value can be changed and the value of the nutritions will be affected directly
 //the computation is "current nutrition value" * "serving unit quantity value" = "final nutrition value"
@@ -132,282 +132,282 @@ nameBottomLink : 'Nutritionix',
 		//RESULT: [valueServingUnitQuantity default to 1.0] itemName
 
 	//NOTE 4: to see the different resulting labels, check the html/demo-texbox-case*.html files
-valueServingUnitQuantity : 1.0,
-valueServingSizeUnit : '',
-showServingUnitQuantityTextbox : true,
+valueServingUnitQuantity: 1.0,
+valueServingSizeUnit: '',
+showServingUnitQuantityTextbox: true,
 //the name of the item for this label (eg. cheese burger or mayonnaise)
-itemName : 'Item / Ingredient Name',
-showServingUnitQuantity : true,
+itemName: 'Item / Ingredient Name',
+showServingUnitQuantity: true,
 //allow hiding of the textbox arrows
-hideTextboxArrows : false,
+hideTextboxArrows: false,
 //this is for the 2018 version and will only work when showServingUnitQuantity is false. see https://github.com/nutritionix/nutrition-label/issues/123
-showOnlyTheTextServingSize : false,
+showOnlyTheTextServingSize: false,
 
 //these 2 settings are used internally.
 //this is just added here instead of a global variable to prevent a bug when there are multiple instances of the plugin like on the demo pages
-originalServingUnitQuantity : 0,
+originalServingUnitQuantity: 0,
 //this is used to fix the computation issue on the textbox
-nutritionValueMultiplier : 1,
+nutritionValueMultiplier: 1,
 //this is used for the computation of the servings per container
-totalContainerQuantity : 1,
+totalContainerQuantity: 1,
 
 //default calorie intake
-calorieIntake : 2000,
+calorieIntake: 2000,
 
 //these are the recommended daily intake values
-dailyValueTotalFat : 65, //this should be 70 for the uk version
-dailyValueSatFat : 20,
-dailyValueCholesterol : 300,
-dailyValueSodium : 2400,
-dailyValuePotassium : 3500,
-dailyValuePotassium_2018 : 4700, //this is for the 2018 version
-dailyValueCarb : 300, //this should be 260 for the uk version
-dailyValueFiber : 25,
-dailyValueCalcium : 1300, //this is for the 2018 version
-dailyValueIron : 18,
-dailyValueVitaminD : 20,
-dailyValueAddedSugar : 50,
-dailyValueSugar : 100, //this should be 90 for the uk version
-dailyValueEnergyKcal : 2000, //this is for the uk version
-dailyValueProtein : 50, //this is for the uk version
-dailyValueSalt : 6, //this is for the uk version
+dailyValueTotalFat: 65, //this should be 70 for the uk version
+dailyValueSatFat: 20,
+dailyValueCholesterol: 300,
+dailyValueSodium: 2400,
+dailyValuePotassium: 3500,
+dailyValuePotassium_2018: 4700, //this is for the 2018 version
+dailyValueCarb: 300, //this should be 260 for the uk version
+dailyValueFiber: 25,
+dailyValueCalcium: 1300, //this is for the 2018 version
+dailyValueIron: 18,
+dailyValueVitaminD: 20,
+dailyValueAddedSugar: 50,
+dailyValueSugar: 90,
+dailyValueEnergyKcal: 2000, //this is for the uk version
+dailyValueProtein: 50, //this is for the uk version
+dailyValueSalt: 6, //this is for the uk version
 
 //these values can be change to hide some nutrition values
-showCalories : true,
-showFatCalories : true,
-showTotalFat : true,
-showSatFat : true,
-showTransFat : true,
-showPolyFat : false,
-showMonoFat : false,
-showCholesterol : true,
-showSodium : true,
+showCalories: true,
+showFatCalories: true,
+showTotalFat: true,
+showSatFat: true,
+showTransFat: true,
+showPolyFat: false,
+showMonoFat: false,
+showCholesterol: true,
+showSodium: true,
 showPotassium: false, //this is for the legacy version
 showPotassium_2018: true, //this is for the 2018 version
-showTotalCarb : true,
-showFibers : true,
-showSugars : true,
-showAddedSugars : true,
-showSugarAlcohol : false, //this is for the 2018 version
-showProteins : true,
-showVitaminA : true,
-showVitaminC : true,
-showVitaminD : true, //this is for the 2018 version
-showCalcium : true, //this is for the 2018 version
-showIron : true,
-showCaffeine : true, //this is for the 2018 version
-showServingWeightGrams : true,
+showTotalCarb: true,
+showFibers: true,
+showSugars: true,
+showAddedSugars: true,
+showSugarAlcohol: false, //this is for the 2018 version
+showProteins: true,
+showVitaminA: true,
+showVitaminC: true,
+showVitaminD: true, //this is for the 2018 version
+showCalcium: true, //this is for the 2018 version
+showIron: true,
+showCaffeine: true, //this is for the 2018 version
+showServingWeightGrams: true,
 
 //these values can be change to hide some nutrition daily values
 	//take note that the setting 'hidePercentDailyValues' override these values
-showDailyTotalFat : true,
-showDailySatFat : true,
-showDailyCholesterol : true,
-showDailySodium : true,
+showDailyTotalFat: true,
+showDailySatFat: true,
+showDailyCholesterol: true,
+showDailySodium: true,
 showDailyPotassium: true, //this is for the legacy version
 showDailyPotassium_2018: true, //this is for the 2018 version
-showDailyTotalCarb : true,
-showDailyFibers : true,
-showDailySugars : false,
-showDailyAddedSugars : true, //this is for the 2018 version
-showDailyVitaminD : true, //this is for the 2018 version
-showDailyCalcium : true, //this is for the 2018 version
-showDailyIron : true,
-showDailyProtein : true, //this is for the uk version
-showDailyEnergy : true, //this is for the uk version
+showDailyTotalCarb: true,
+showDailyFibers: true,
+showDailySugars: false,
+showDailyAddedSugars: true, //this is for the 2018 version
+showDailyVitaminD: true, //this is for the 2018 version
+showDailyCalcium: true, //this is for the 2018 version
+showDailyIron: true,
+showDailyProtein: true, //this is for the uk version
+showDailyEnergy: true, //this is for the uk version
 
 //to show the 'amount per serving' text
-showAmountPerServing : true,
+showAmountPerServing: true,
 //to show the 'servings per container' data and replace the default 'Serving Size' value (without unit and servings per container text and value)
-showServingsPerContainer : false,
+showServingsPerContainer: false,
 //to show the item name. there are special cases where the item name is replaced with 'servings per container' value
-showItemName : true,
+showItemName: true,
 //to show the item name for the UK version. the main difference with the previous setting is this feature is set to false by default. the UK version will ignore the showItemName setting
-showItemNameForUK : false,
+showItemNameForUK: false,
 //show the brand where this item belongs to
-showBrandName : false,
+showBrandName: false,
 //to show the ingredients value or not
-showIngredients : true,
+showIngredients: true,
 //to show the calorie diet info at the bottom of the label
-showCalorieDiet : false,
+showCalorieDiet: false,
 //to show the customizable footer which can contain html and js codes
-showCustomFooter : false,
+showCustomFooter: false,
 //see https://github.com/nutritionix/nutrition-label/issues/93 and then https://github.com/nutritionix/nutrition-label/issues/104
-indentSugarAndRemoveBoldStyleFor2018Label : true,
-boldCaffeine : true, //this is for the 2018 version
+indentSugarAndRemoveBoldStyleFor2018Label: true,
+boldCaffeine: true, //this is for the 2018 version
 
 //to show the disclaimer text or not
-showDisclaimer : false,
+showDisclaimer: false,
 //the height in px of the disclaimer div
-scrollDisclaimerHeightComparison : 100,
-scrollDisclaimer : 95,
-valueDisclaimer : 'Please note that these nutrition values are estimated based on our standard serving portions. ' +
+scrollDisclaimerHeightComparison: 100,
+scrollDisclaimer: 95,
+valueDisclaimer: 'Please note that these nutrition values are estimated based on our standard serving portions. ' +
 	'As food servings may have a slight variance each time you visit, please expect these values to be with in 10% +/- of your actual meal. ' +
 	'If you have any questions about our nutrition calculator, please contact Nutritionix.',
-ingredientLabel : 'INGREDIENTS:',
-valueCustomFooter : '',
+ingredientLabel: 'INGREDIENTS:',
+valueCustomFooter: '',
 
 //the are to set some values as 'not applicable'. this means that the nutrition label will appear but the value will be a 'gray dash'
-naCalories : false,
-naFatCalories : false,
-naTotalFat : false,
-naSatFat : false,
-naTransFat : false,
-naPolyFat : false,
-naMonoFat : false,
-naCholesterol : false,
-naSodium : false,
-naPotassium : false, //this is for the legacy version
-naPotassium_2018 : false, //this is for the 2018 version
-naTotalCarb : false,
-naFibers : false,
-naSugars : false,
-naAddedSugars : false, //this is for the 2018 version
-naSugarAlcohol : false,
-naProteins : false,
-naVitaminA : false,
-naVitaminC : false,
-naVitaminD : false, //this is for the 2018 version
-naCalcium : false, //this is for the 2018 version
-naIron : false,
-naCaffeine : false, //this is for the 2018 version
+naCalories: false,
+naFatCalories: false,
+naTotalFat: false,
+naSatFat: false,
+naTransFat: false,
+naPolyFat: false,
+naMonoFat: false,
+naCholesterol: false,
+naSodium: false,
+naPotassium: false, //this is for the legacy version
+naPotassium_2018: false, //this is for the 2018 version
+naTotalCarb: false,
+naFibers: false,
+naSugars: false,
+naAddedSugars: false, //this is for the 2018 version
+naSugarAlcohol: false,
+naProteins: false,
+naVitaminA: false,
+naVitaminC: false,
+naVitaminD: false, //this is for the 2018 version
+naCalcium: false, //this is for the 2018 version
+naIron: false,
+naCaffeine: false, //this is for the 2018 version
 
 //these are the default values for the nutrition info
-valueServingWeightGrams : 0,
-valueServingPerContainer : 1,
-valueCalories : 0,
-valueFatCalories : 0,
-valueTotalFat : 0,
-valueSatFat : 0,
-valueTransFat : 0,
-valuePolyFat : 0,
-valueMonoFat : 0,
-valueCholesterol : 0,
-valueSodium : 0,
-valuePotassium : 0, //this is for the legacy version
-valuePotassium_2018 : 0, //this is for the 2018 version
-valueTotalCarb : 0,
-valueFibers : 0,
-valueSugars : 0,
-valueAddedSugars : 0, //this is for the 2018 version
-valueSugarAlcohol : 0,
-valueProteins : 0,
-valueVitaminA : 0,
-valueVitaminC : 0,
-valueVitaminD : 0, //this is for the 2018 version
-valueCalcium : 0, //this is for the 2018 version
-valueIron : 0,
-valueCaffeine : 0, //this is for the 2018 version
+valueServingWeightGrams: 0,
+valueServingPerContainer: 1,
+valueCalories: 0,
+valueFatCalories: 0,
+valueTotalFat: 0,
+valueSatFat: 0,
+valueTransFat: 0,
+valuePolyFat: 0,
+valueMonoFat: 0,
+valueCholesterol: 0,
+valueSodium: 0,
+valuePotassium: 0, //this is for the legacy version
+valuePotassium_2018: 0, //this is for the 2018 version
+valueTotalCarb: 0,
+valueFibers: 0,
+valueSugars: 0,
+valueAddedSugars: 0, //this is for the 2018 version
+valueSugarAlcohol: 0,
+valueProteins: 0,
+valueVitaminA: 0,
+valueVitaminC: 0,
+valueVitaminD: 0, //this is for the 2018 version
+valueCalcium: 0, //this is for the 2018 version
+valueIron: 0,
+valueCaffeine: 0, //this is for the 2018 version
 
 //customizable units for the values
-unitCalories : '',
-unitFatCalories : '',
-unitTotalFat : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
-unitSatFat : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
-unitTransFat : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
-unitPolyFat : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
-unitMonoFat : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
-unitCholesterol : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>',
-unitSodium : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>',
-unitPotassium : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the legacy version
-unitPotassium_base : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
-unitPotassium_percent : '%', //this is for the 2018 version
-unitTotalCarb : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
-unitFibers : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
-unitSugars : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
-unitAddedSugars : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>', //this is for the 2018 version
-unitSugarAlcohol : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
-unitProteins : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
-unitVitaminA : '%',
-unitVitaminC : '%',
-unitVitaminD_base : '<span aria-hidden="true">mcg</span><span class="sr-only"> micrograms</span>', //this is for the 2018 version
-unitVitaminD_percent : '%', //this is for the 2018 version
-unitCalcium : '%', //this is for the 2018 version
-unitCalcium_base : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
-unitCalcium_percent : '%', //this is for the 2018 version
-unitIron : '%',
-unitIron_base : '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
-unitIron_percent : '%', //this is for the 2018 version
-unitServingWeight : '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>', //this is for the 2018 version
-unitEnergy_kj : 'kj', //this is for the uk version
-unitEnergy_kcal : 'kcal', //this is for the uk version
-unitSalt : 'g', //this is for the uk version
-unitGramOrMlForThePer100Part : 'g', //this is for the uk version
-unitCaffeine : 'mg', //this is for the 2018 version
+unitCalories: '',
+unitFatCalories: '',
+unitTotalFat: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitSatFat: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitTransFat: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitPolyFat: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitMonoFat: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitCholesterol: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>',
+unitSodium: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>',
+unitPotassium: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the legacy version
+unitPotassium_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
+unitPotassium_percent: '%', //this is for the 2018 version
+unitTotalCarb: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitFibers: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitSugars: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitAddedSugars: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>', //this is for the 2018 version
+unitSugarAlcohol: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitProteins: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>',
+unitVitaminA: '%',
+unitVitaminC: '%',
+unitVitaminD_base: '<span aria-hidden="true">mcg</span><span class="sr-only"> micrograms</span>', //this is for the 2018 version
+unitVitaminD_percent: '%', //this is for the 2018 version
+unitCalcium: '%', //this is for the 2018 version
+unitCalcium_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
+unitCalcium_percent: '%', //this is for the 2018 version
+unitIron: '%',
+unitIron_base: '<span aria-hidden="true">mg</span><span class="sr-only"> milligrams</span>', //this is for the 2018 version
+unitIron_percent: '%', //this is for the 2018 version
+unitServingWeight: '<span aria-hidden="true">g</span><span class="sr-only"> grams</span>', //this is for the 2018 version
+unitEnergy_kj: 'kj', //this is for the uk version
+unitEnergy_kcal: 'kcal', //this is for the uk version
+unitSalt: 'g', //this is for the uk version
+unitGramOrMlForThePer100Part: 'g', //this is for the uk version
+unitCaffeine: 'mg', //this is for the 2018 version
 
 //these are the values for the optional calorie diet
-valueCol1CalorieDiet : 2000,
-valueCol2CalorieDiet : 2500,
-valueCol1DietaryTotalFat : 0,
-valueCol2DietaryTotalFat : 0,
-valueCol1DietarySatFat : 0,
-valueCol2DietarySatFat : 0,
-valueCol1DietaryCholesterol : 0,
-valueCol2DietaryCholesterol : 0,
-valueCol1DietarySodium : 0,
-valueCol2DietarySodium : 0,
-valueCol1DietaryPotassium : 0,
-valueCol2DietaryPotassium : 0,
-valueCol1DietaryTotalCarb : 0,
-valueCol2DietaryTotalCarb : 0,
-valueCol1Dietary : 0,
-valueCol2Dietary : 0,
+valueCol1CalorieDiet: 2000,
+valueCol2CalorieDiet: 2500,
+valueCol1DietaryTotalFat: 0,
+valueCol2DietaryTotalFat: 0,
+valueCol1DietarySatFat: 0,
+valueCol2DietarySatFat: 0,
+valueCol1DietaryCholesterol: 0,
+valueCol2DietaryCholesterol: 0,
+valueCol1DietarySodium: 0,
+valueCol2DietarySodium: 0,
+valueCol1DietaryPotassium: 0,
+valueCol2DietaryPotassium: 0,
+valueCol1DietaryTotalCarb: 0,
+valueCol2DietaryTotalCarb: 0,
+valueCol1Dietary: 0,
+valueCol2Dietary: 0,
 
 //these text settings is so you can create nutrition labels in different languages or to simply change them to your need
-textNutritionFacts : 'Nutrition Facts',
-textDailyValues : 'Daily Value',
-textServingSize : 'Serving Size:',
-textServingsPerContainer : 'Servings Per Container',
-textAmountPerServing : 'Amount Per Serving',
-textCalories : 'Calories',
-textFatCalories : 'Calories from Fat',
-textTotalFat : 'Total Fat',
-textSatFat : 'Saturated Fat',
-textTransFat : '<em>Trans</em> Fat',
-textPolyFat : 'Polyunsaturated Fat',
-textMonoFat : 'Monounsaturated Fat',
-textCholesterol : 'Cholesterol',
-textSodium : 'Sodium',
-textPotassium : 'Potassium',
-textTotalCarb : 'Total Carbohydrates',
-textFibers : 'Dietary Fiber',
-textSugars : 'Sugars',
-textAddedSugars1 : 'Includes ',
-textAddedSugars2 : ' Added Sugars', //this is for the 2018 version
-textSugarAlcohol : 'Sugar Alcohol',
-textProteins : 'Protein',
-textVitaminA : 'Vitamin A',
-textVitaminC : 'Vitamin C',
-textVitaminD : 'Vitamin D', //this is for the 2018 version
-textCalcium : 'Calcium', //this is for the 2018 version
-textIron : 'Iron',
-textNotApplicable : '-',
-ingredientList : 'None',
-textPercentDailyPart1 : 'Percent Daily Values are based on a',
-textPercentDailyPart2 : 'calorie diet',
-textPercentDaily2018VersionPart1 : 'The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. ',
-textPercentDaily2018VersionPart2 : ' calories a day is used for general nutrition advice.',
-textGoogleAnalyticsEventCategory : 'Nutrition Label',
-textGoogleAnalyticsEventActionUpArrow : 'Quantity Up Arrow Clicked',
-textGoogleAnalyticsEventActionDownArrow : 'Quantity Down Arrow Clicked',
-textGoogleAnalyticsEventActionTextbox : 'Quantity Textbox Changed',
-textUKTypicalValues : 'Typical Values', //this is for the uk version
-textUKReferenceIntake : 'Reference intake of an average adult', //this is for the uk version
-textUKPer100 : 'Per', //this is for the uk version
-textUKDefaultServingNameIfEmpty : 'Serving', //this is for the uk version
-textDataNotAvailable : 'Data not available',
-textAriaLabelIncreaseQuantityArrow : 'Increase the Quantity Arrow',
-textAriaLabelDecreaseQuantityArrow : 'Decrease the Quantity Arrow',
-textAriaLabelChangeQuantityTextbox : 'Change the Quantity Textbox',
-textCalorieDietHtmlLegacyLessThan : 'Less than',
-textCalorieDietHtmlLegacyDietary : 'Dietary',
-textCaffeine : 'Caffeine', //this is for the 2018 version
+textNutritionFacts: 'Nutrition Facts',
+textDailyValues: 'Daily Value',
+textServingSize: 'Serving Size:',
+textServingsPerContainer: 'Servings Per Container',
+textAmountPerServing: 'Amount Per Serving',
+textCalories: 'Calories',
+textFatCalories: 'Calories from Fat',
+textTotalFat: 'Total Fat',
+textSatFat: 'Saturated Fat',
+textTransFat: '<em>Trans</em> Fat',
+textPolyFat: 'Polyunsaturated Fat',
+textMonoFat: 'Monounsaturated Fat',
+textCholesterol: 'Cholesterol',
+textSodium: 'Sodium',
+textPotassium: 'Potassium',
+textTotalCarb: 'Total Carbohydrates',
+textFibers: 'Dietary Fiber',
+textSugars: 'Sugars',
+textAddedSugars1: 'Includes ',
+textAddedSugars2: ' Added Sugars', //this is for the 2018 version
+textSugarAlcohol: 'Sugar Alcohol',
+textProteins: 'Protein',
+textVitaminA: 'Vitamin A',
+textVitaminC: 'Vitamin C',
+textVitaminD: 'Vitamin D', //this is for the 2018 version
+textCalcium: 'Calcium', //this is for the 2018 version
+textIron: 'Iron',
+textNotApplicable: '-',
+ingredientList: 'None',
+textPercentDailyPart1: 'Percent Daily Values are based on a',
+textPercentDailyPart2: 'calorie diet',
+textPercentDaily2018VersionPart1: 'The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. ',
+textPercentDaily2018VersionPart2: ' calories a day is used for general nutrition advice.',
+textGoogleAnalyticsEventCategory: 'Nutrition Label',
+textGoogleAnalyticsEventActionUpArrow: 'Quantity Up Arrow Clicked',
+textGoogleAnalyticsEventActionDownArrow: 'Quantity Down Arrow Clicked',
+textGoogleAnalyticsEventActionTextbox: 'Quantity Textbox Changed',
+textUKTypicalValues: 'Typical Values', //this is for the uk version
+textUKReferenceIntake: 'Reference intake of an average adult', //this is for the uk version
+textUKPer100: 'Per', //this is for the uk version
+textUKDefaultServingNameIfEmpty: 'Serving', //this is for the uk version
+textDataNotAvailable: 'Data not available',
+textAriaLabelIncreaseQuantityArrow: 'Increase the Quantity Arrow',
+textAriaLabelDecreaseQuantityArrow: 'Decrease the Quantity Arrow',
+textAriaLabelChangeQuantityTextbox: 'Change the Quantity Textbox',
+textCalorieDietHtmlLegacyLessThan: 'Less than',
+textCalorieDietHtmlLegacyDietary: 'Dietary',
+textCaffeine: 'Caffeine', //this is for the 2018 version
 
 //if the showLegacyVersion is true, the system will show the legacy version
 //if both the showLegacyVersion and showUKVersion are false, the system will show the 2018 version
 //if both the showLegacyVersion is false and showUKVersion is true, the system will show the uk version
-showLegacyVersion : true,
-showUKVersion : false,
+showLegacyVersion: true,
+showUKVersion: false,
 
 //for the uk label, If the serving name is empty, have it default to "Serving"
 convertEmptyServingNametoServingForUKLabel: true,

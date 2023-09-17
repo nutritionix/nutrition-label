@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.10                                                                                                                     |
+ * @current version     11.0.11                                                                                                                     |
  * @stable version      11.0.4                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -209,7 +209,7 @@
 		dailyValueIron: 18,
 		dailyValueVitaminD: 20,
 		dailyValueAddedSugar: 50,
-		dailyValueSugar: 100, //this should be 90 for the uk version
+		dailyValueSugar: 90,
 		dailyValueEnergyKcal: 2000, //this is for the uk version
 		dailyValueProtein: 50, //this is for the uk version
 		dailyValueSalt: 6, //this is for the uk version
@@ -862,8 +862,6 @@
 			ingredientListID = 'nf-ingredientList';
 			calcDisclaimerTextID = 'nf-calcDisclaimerText';
 
-			//xxx - in case this needs to be reverted
-			//nameElementClass = 'nf-item-name';
 			nameElementClass = 'nf-item-name block';
 		} else if (!forLegacyLabel && forUKLabel) {
 			//for the uk label
@@ -1214,7 +1212,13 @@
 	//Total Carbohydrate, Dietary Fiber, Sugar and Protein rounding rule
 	function roundVitaminsCalciumIron(toRound) {
 		if (toRound > 0) {
-			if (toRound < 10) {
+			if (toRound < 1) {
+				//< 1 express as 0
+				return 0;
+			} else if (toRound <= 2) {
+				//1% to 2% express as 2%
+				return 2;
+			} else if (toRound < 10) {
 				//< 10 - round to nearest even number
 				return roundToNearestNum(toRound, 2);
 			} else if (toRound < 50) {
@@ -1782,21 +1786,42 @@
 		}
 
 		if (showPercentageCode && !$localSettings['hidePercentDailyValues']) {
-			localNutritionLabel += globalTab2 + '<span class="nf-highlight nf-pr">';
-				//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
-				localNutritionLabel += $localSettings[naIndex] ?
-					localNaValue :
-					roundLoDash(
+				localNutritionLabel += globalTab2 + '<span class="nf-highlight nf-pr">';
+
+				if ( $.inArray(unitIndex, ["unitVitaminD_base", "unitCalcium_base", "unitIron_base", "unitPotassium_base"]) !== -1) {
+					//for the vitamins and minerals for 2018 value when the base value is given and the %DV is computed
+					let computedPercentDVValue = (
 						(
+							$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
+						) /
+						(
+							$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * roundLoDash(parseFloat($localSettings.calorieIntake) / 2000, 2)
+						)
+					) * 100;
+
+					localNutritionLabel += $localSettings[naIndex] ?
+						localNaValue :
+						!$localSettings.allowFDARounding ?
+							roundLoDash(computedPercentDVValue, $localSettings.decimalPlacesForDailyValues) :
+							roundVitaminsCalciumIron(computedPercentDVValue);
+				} else {
+					//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
+					localNutritionLabel += $localSettings[naIndex] ?
+						localNaValue :
+						roundLoDash(
 							(
-								$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
-							) / (
-								$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * roundLoDash(parseFloat($localSettings.calorieIntake) / 2000, 2)
-							)
-						) * 100,
-						$localSettings.decimalPlacesForDailyValues
-					) + '% <span class="sr-only">' + $localSettings.textDailyValues + '</span>';
-			localNutritionLabel += '</span>\n';
+								(
+									$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
+								) / (
+									$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * roundLoDash(parseFloat($localSettings.calorieIntake) / 2000, 2)
+								)
+							) * 100,
+							$localSettings.decimalPlacesForDailyValues
+						);
+				}
+
+					localNutritionLabel += '% <span class="sr-only">' + $localSettings.textDailyValues + '</span>'
+				localNutritionLabel += '</span>\n';
 		}
 
 		return localNutritionLabel += globalTab1 + '</div>\n';
@@ -1914,9 +1939,6 @@
 			itemNameClass += 'no-indent';
 		}
 
-		//xxx - item name div
-		//xxx - rommel - this is one of the area i am confused as it this area can contain both the serving unit name ($localSettings.valueServingSizeUnit)
-			//and the item / modifier name ($localSettings.itemName)
 		localNutritionLabel += globalTab3 + '<div class="nf-serving-unit-name ' + itemNameClass + '" tabindex="0">\n';
 
 			if (
@@ -2002,7 +2024,6 @@
 					}
 
 					if (!$localSettings.showItemName) {
-						//xxx - serving unit name div
 						localNutritionLabel += globalTab5 + '<div class="nf-serving-unit-name" tabindex="0">\n';
 							localNutritionLabel += globalTab6 + $localSettings.valueServingSizeUnit + '\n';
 
@@ -2424,7 +2445,7 @@
 			if ($this.settings.showSugars) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
 					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts lineClass             itemPropValue   roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
-					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',   useLine + ' indent', 'sugarContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   $this.settings.showDailySugars
+					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',   useLine + ' indent', 'sugarContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   false
 				);
 				useLine = 'line';
 			}
@@ -2615,7 +2636,6 @@
 				nutritionLabel += globalTab1 + '<div class="nf-line">\n';
 			}
 
-				//xxx
 				nutritionLabel += globalTab2 + '<div class="nf-serving">\n';
 				nutritionLabel += sevingUnitQuantityHtml2018Result.nutritionLabel;
 
@@ -2713,13 +2733,13 @@
 				if ($this.settings.showSugars) {
 					if (!$this.settings.indentSugarAndRemoveBoldStyleFor2018Label) {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass showPercentageCode               roundFunctionName             roundFunctionRuleName             labelClass     valueClass dailyValueIndex
-							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line',   $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', 'nf-highlight', '',       'dailyValueSugar'
+							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass showPercentageCode roundFunctionName             roundFunctionRuleName             labelClass     valueClass dailyValueIndex
+							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line',   false,             'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', 'nf-highlight', '',       'dailyValueSugar'
 						);
 					} else {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass         showPercentageCode               roundFunctionName             roundFunctionRuleName            labelClass valueClass dailyValueIndex
-							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line nf-indent', $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',        '',       'dailyValueSugar'
+							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass         showPercentageCode roundFunctionName             roundFunctionRuleName            labelClass valueClass dailyValueIndex
+							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line nf-indent', false,             'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',        '',       'dailyValueSugar'
 						);
 					}
 				}
