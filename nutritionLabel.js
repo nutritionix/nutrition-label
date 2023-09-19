@@ -197,14 +197,14 @@
 		calorieIntake: 2000,
 
 		//these are the recommended daily intake values
-		dailyValueTotalFat: 65, //this should be 70 for the uk version
+		dailyValueTotalFat: 65, //this should be 70 for the uk version and 78 for the 2018 version
 		dailyValueSatFat: 20,
 		dailyValueCholesterol: 300,
-		dailyValueSodium: 2400,
+		dailyValueSodium: 2400, //this should be 2300 for the uk version
 		dailyValuePotassium: 3500,
 		dailyValuePotassium_2018: 4700, //this is for the 2018 version
-		dailyValueCarb: 300, //this should be 260 for the uk version
-		dailyValueFiber: 25,
+		dailyValueCarb: 300, //this should be 260 for the uk version and 275 for the 2018 version
+		dailyValueFiber: 25, //this should be 28 for the 2018 version
 		dailyValueCalcium: 1300, //this is for the 2018 version
 		dailyValueIron: 18,
 		dailyValueVitaminD: 20,
