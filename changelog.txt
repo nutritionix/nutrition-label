@@ -1,4 +1,11 @@
 
+version 11.0.12 - September 21, 2023
+
+ - REVERTED - Remove Total Sugars %DV from Legacy and 2018 Label Versions https://github.com/nutritionix/nutrition-label/issues/141#issuecomment-1728379600
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 11.0.11 - September 17, 2023
 
  - changes on the %DV computations https://github.com/nutritionix/nutrition-label/issues/140

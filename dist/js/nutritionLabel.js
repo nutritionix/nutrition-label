@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.11                                                                                                                     |
+ * @current version     11.0.12                                                                                                                     |
  * @stable version      11.0.4                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -197,19 +197,19 @@
 		calorieIntake: 2000,
 
 		//these are the recommended daily intake values
-		dailyValueTotalFat: 65, //this should be 70 for the uk version
+		dailyValueTotalFat: 65, //this should be 70 for the uk version and 78 for the 2018 version
 		dailyValueSatFat: 20,
 		dailyValueCholesterol: 300,
-		dailyValueSodium: 2400,
+		dailyValueSodium: 2400, //this should be 2300 for the uk version
 		dailyValuePotassium: 3500,
 		dailyValuePotassium_2018: 4700, //this is for the 2018 version
-		dailyValueCarb: 300, //this should be 260 for the uk version
-		dailyValueFiber: 25,
+		dailyValueCarb: 300, //this should be 260 for the uk version and 275 for the 2018 version
+		dailyValueFiber: 25, //this should be 28 for the 2018 version
 		dailyValueCalcium: 1300, //this is for the 2018 version
 		dailyValueIron: 18,
 		dailyValueVitaminD: 20,
 		dailyValueAddedSugar: 50,
-		dailyValueSugar: 90,
+		dailyValueSugar: 100, //this should be 90 for the uk version
 		dailyValueEnergyKcal: 2000, //this is for the uk version
 		dailyValueProtein: 50, //this is for the uk version
 		dailyValueSalt: 6, //this is for the uk version
@@ -2445,7 +2445,7 @@
 			if ($this.settings.showSugars) {
 				nutritionLabel += generateAttributeWithPercentageHtmlLegacy(
 					//$localSetting  valueIndex     dailyValueIndex    unitIndex     naIndex     attributeTexts lineClass             itemPropValue   roundFunctionName             roundFunctionRuleName            boldName showPercentageCode
-					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',   useLine + ' indent', 'sugarContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   false
+					$this.settings, 'valueSugars', 'dailyValueSugar', 'unitSugars', 'naSugars', 'textSugars',   useLine + ' indent', 'sugarContent', 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', false,   $this.settings.showDailySugars
 				);
 				useLine = 'line';
 			}
@@ -2733,13 +2733,13 @@
 				if ($this.settings.showSugars) {
 					if (!$this.settings.indentSugarAndRemoveBoldStyleFor2018Label) {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass showPercentageCode roundFunctionName             roundFunctionRuleName             labelClass     valueClass dailyValueIndex
-							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line',   false,             'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', 'nf-highlight', '',       'dailyValueSugar'
+							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass showPercentageCode              roundFunctionName             roundFunctionRuleName             labelClass     valueClass dailyValueIndex
+							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line',   $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', 'nf-highlight', '',       'dailyValueSugar'
 						);
 					} else {
 						nutritionLabel += generateAttributeHtml2018Version(
-							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass         showPercentageCode roundFunctionName             roundFunctionRuleName            labelClass valueClass dailyValueIndex
-							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line nf-indent', false,             'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',        '',       'dailyValueSugar'
+							//$localSettings valueIndex     unitIndex     naIndex     attributeText itemPropValue   topDivClass         showPercentageCode              roundFunctionName             roundFunctionRuleName            labelClass valueClass dailyValueIndex
+							$this.settings, 'valueSugars', 'unitSugars', 'naSugars', 'textSugars', 'sugarContent', 'nf-line nf-indent', $this.settings.showDailySugars, 'roundCarbFiberSugarProtein', 'roundCarbFiberSugarProteinRule', '',        '',       'dailyValueSugar'
 						);
 					}
 				}
