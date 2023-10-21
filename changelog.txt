@@ -1,4 +1,11 @@
 
+version 11.0.13 - October 21, 2023
+
+ - change how the 2018 %DV are computed for Potassium, Vitamin D, Calcium and Iron) https://github.com/nutritionix/nutrition-label/issues/142
+
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
 version 11.0.12 - September 21, 2023
 
  - REVERTED - Remove Total Sugars %DV from Legacy and 2018 Label Versions https://github.com/nutritionix/nutrition-label/issues/141#issuecomment-1728379600

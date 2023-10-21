@@ -9,7 +9,7 @@
  * @license             This Nutritionix jQuery Nutrition Label is dual licensed under the MIT and GPL licenses.                                    |
  * @link                http://www.nutritionix.com                                                                                                  |
  * @github              http://github.com/nutritionix/nutrition-label                                                                               |
- * @current version     11.0.12                                                                                                                     |
+ * @current version     11.0.13                                                                                                                     |
  * @stable version      11.0.4                                                                                                                      |
  * @supported browser   Firefox, Chrome, IE8+                                                                                                       |
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
@@ -1790,20 +1790,14 @@
 
 				if ( $.inArray(unitIndex, ["unitVitaminD_base", "unitCalcium_base", "unitIron_base", "unitPotassium_base"]) !== -1) {
 					//for the vitamins and minerals for 2018 value when the base value is given and the %DV is computed
-					let computedPercentDVValue = (
-						(
-							$localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]
-						) /
-						(
-							$localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * roundLoDash(parseFloat($localSettings.calorieIntake) / 2000, 2)
-						)
-					) * 100;
+					let dvDivisor = $localSettings[dailyValueIndex] == 0 ? 1 : $localSettings[dailyValueIndex] * roundLoDash(parseFloat($localSettings.calorieIntake) / 2000, 2);
+					let computedPercentDVValue = ( ($localSettings.allowFDARounding ? eval(roundFunctionRuleName)($localSettings[valueIndex]) : $localSettings[valueIndex]) / dvDivisor ) * 100;
 
 					localNutritionLabel += $localSettings[naIndex] ?
 						localNaValue :
 						!$localSettings.allowFDARounding ?
 							roundLoDash(computedPercentDVValue, $localSettings.decimalPlacesForDailyValues) :
-							roundVitaminsCalciumIron(computedPercentDVValue);
+							roundVitaminsCalciumIron( ($localSettings[valueIndex] / dvDivisor) * 100 );
 				} else {
 					//https://github.com/nutritionix/nutrition-label/wiki/How-the-Percent-Daily-Value-is-Computed
 					localNutritionLabel += $localSettings[naIndex] ?
